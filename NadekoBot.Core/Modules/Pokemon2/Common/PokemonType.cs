@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Newtonsoft.Json;
 
-namespace NadekoBot.Modules.Pokemon.Common
+namespace NadekoBot.Modules.Pokemon2.Common
 {
     public class PokemonType
     {
@@ -15,9 +18,6 @@ namespace NadekoBot.Modules.Pokemon.Common
         public List<PokemonMultiplier> Multipliers { get; set; }
         public string Icon { get; set; }
         public string[] Moves { get; set; }
-
-        public override string ToString() => 
-            Icon + "**" + Name.ToLowerInvariant() + "**" + Icon;
     }
     public class PokemonMultiplier
     {
@@ -28,5 +28,18 @@ namespace NadekoBot.Modules.Pokemon.Common
         }
         public string Type { get; set; }
         public double Multiplication { get; set; }
+    }
+    
+    public class PokemonSpecies
+    {
+        public int number { get; set; }
+        public string name { get; set; }
+        public int baseExperience { get; set; }
+        public Dictionary<string, int> baseStats { get; set; }
+        public int evolveLevel { get; set; }
+        public string evolveTo { get; set; }
+        public string[] types { get; set; }
+        public Dictionary<string, string> moves { get; set; }
+        public string imageLink { get; set; }
     }
 }
