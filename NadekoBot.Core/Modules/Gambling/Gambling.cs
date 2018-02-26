@@ -175,7 +175,7 @@ namespace NadekoBot.Modules.Gambling
 
             var embed = new EmbedBuilder()
                 .WithTitle(GetText("transactions",
-                    ((SocketGuild)Context.Guild).GetUser(userId)?.ToString() ?? $"{userId}"))
+                    ((SocketGuild)Context.Guild)?.GetUser(userId)?.ToString() ?? $"{userId}"))
                 .WithOkColor();
 
             var desc = "";
@@ -571,7 +571,7 @@ namespace NadekoBot.Modules.Gambling
         }
 
         [NadekoCommand, Usage, Description, Aliases]
-        public async Task Rps(RpsPick pick, ShmartNumber amount)
+        public async Task Rps(RpsPick pick, ShmartNumber amount = default)
         {
             long oldAmount = amount;
             if (!await CheckBetOptional(amount) || (amount == 1))
