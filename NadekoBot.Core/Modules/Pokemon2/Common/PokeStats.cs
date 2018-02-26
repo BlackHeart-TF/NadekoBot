@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Discord;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -27,5 +28,18 @@ namespace NadekoBot.Modules.Pokemon2.Common
         /// </summary>
         public List<ulong> LastAttacked { get; set; } = new List<ulong>();
 
+        public TrainerStats Attack(IGuildUser user)
+        {
+            LastAttacked.Add(user.Id);
+            MovesMade++;
+            return this;
+        }
+
+        public TrainerStats Reset()
+        {
+            LastAttacked = new List<ulong>();
+            MovesMade = 0;
+            return this;
+        }
     }
 }

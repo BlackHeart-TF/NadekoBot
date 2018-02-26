@@ -41,5 +41,14 @@ namespace NadekoBot.Modules.Pokemon2.Common
         public string[] types { get; set; }
         public Dictionary<string, string> moves { get; set; }
         public string imageLink { get; set; }
+
+        public string GetTypeString()
+        {
+            string types = "";
+            foreach (var type in this.types)
+                types += type + "/";
+            types = types.TrimEnd('/');
+            return types;
+        }
     }
 }

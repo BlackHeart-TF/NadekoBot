@@ -5,11 +5,15 @@ using System.Text;
 using NadekoBot.Modules.Pokemon2.Services;
 using System.Linq;
 using NadekoBot.Core.Services.Database.Models;
+using Discord;
+using System.Collections.Concurrent;
 
 namespace NadekoBot.Modules.Pokemon2.Extentions
 {
     static class Extentions 
     {
+
+        public static ConcurrentDictionary<ulong, TrainerStats> UserStats = new ConcurrentDictionary<ulong, TrainerStats>();
         private static readonly PokemonService service = new PokemonService();
         public static PokemonSpecies GetSpecies(this PokemonSprite pkm)
         {
@@ -19,16 +23,12 @@ namespace NadekoBot.Modules.Pokemon2.Extentions
         public static string PokemonString(this PokemonSprite pkm)
         {
             var species = pkm.GetSpecies();
-            string types = "";
-            foreach (var type in species.types)
-                types += type + "/";
-            types = types.TrimEnd('/');
             var str = $"**Name**: {pkm.NickName}\n" +
                 $"**Species**: {species.name}\n" +
                 $"**HP**: {pkm.HP}/{pkm.MaxHP}\n" +
                 $"**Level**: {pkm.Level}\n" +
                 $"**XP**: {pkm.XP}/{pkm.XPRequired()}\n" +
-                $"**TYPE**:{types}\n" +
+                $"**TYPE**:{species.GetTypeString()}\n" +
                 $"**Stats**\n" +
                 $"**Attack:** {pkm.Attack}\n" +
                 $"**Defense:** {pkm.Defense}\n" +
@@ -40,6 +40,7 @@ namespace NadekoBot.Modules.Pokemon2.Extentions
             }
             return str;
         }
+        
         public static string PokemonMoves(this PokemonSprite pkm)
         {
             var species = pkm.GetSpecies();
@@ -102,7 +103,15 @@ namespace NadekoBot.Modules.Pokemon2.Extentions
             return service.pokemonTypes.Where(x => x.Name == str).DefaultIfEmpty(null).FirstOrDefault();
 
         }
-
+        public static TrainerStats GetTrainerStats(this IGuildUser user)
+        {
+           var stats = UserStats.GetOrAdd(user.Id, new TrainerStats());
+            return stats;
+        }
+        public static void UpdateTrainerStats(this IGuildUser user, TrainerStats stats)
+        {
+            UserStats.AddOrUpdate(user.Id, x => stats, (s, t) => stats);
+        }
         /// <summary>
         /// levels up the pokemon, along with all the accompanying changes; including evolution
         /// </summary>
@@ -136,7 +145,6 @@ namespace NadekoBot.Modules.Pokemon2.Extentions
                     pkm.SpeciesId = newSpecies;
                 }
             }
-
 
         }
 

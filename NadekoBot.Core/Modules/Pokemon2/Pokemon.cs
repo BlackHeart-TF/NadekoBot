@@ -11,6 +11,7 @@ using System.Linq;
 using NadekoBot.Modules.Pokemon2.Extentions;
 using NadekoBot.Modules.Pokemon2.Common;
 using System.Collections.Concurrent;
+using NadekoBot.Extensions;
 
 namespace NadekoBot.Modules.Pokemon2
 {
@@ -18,7 +19,6 @@ namespace NadekoBot.Modules.Pokemon2
     {
         private readonly DbService _db;
         private readonly ICurrencyService _cs;
-        public static ConcurrentDictionary<ulong, TrainerStats> UserStats = new ConcurrentDictionary<ulong, TrainerStats>();
         
 
 
@@ -37,11 +37,17 @@ namespace NadekoBot.Modules.Pokemon2
                 target = (IGuildUser)Context.User;
             var active = ActivePokemon(target);
 
-            var msg = new EmbedBuilder()
-             .WithImageUrl(active.GetSpecies().imageLink)
-             .Build();
-
-            await ReplyAsync($"**{target.Mention}**:\n{active.PokemonString()}", false, msg);
+            //await ReplyAsync($"**{target.Mention}**:\n{active.PokemonString()}");
+            await Context.Channel.EmbedAsync(new EmbedBuilder().WithOkColor()
+                            .WithTitle(active.NickName.ToTitleCase())
+                            .WithDescription("**Species:** " + active.GetSpecies().name + " **Owner:** " + target.Mention)
+                            .AddField(efb => efb.WithName("**Stats**").WithValue("\n**Level:** " + active.Level + "\n**HP:** " + active.HP + "/" + 
+                                active.MaxHP + "\n**XP:** " + active.XP + "/" + active.XPRequired() + "\n**Type:** "+ active.GetSpecies().GetTypeString()).WithIsInline(true))
+                            .AddField(efb => efb.WithName("**Moves**").WithValue(string.Join('\n', active.PokemonMoves())).WithIsInline(true))
+                            .WithImageUrl(active.GetSpecies().imageLink));
+                            //.AddField(efb => efb.WithName(GetText("height_weight")).WithValue(GetText("height_weight_val", p.HeightM, p.WeightKg)).WithIsInline(true))
+                            //.AddField(efb => efb.WithName(GetText("abilities")).WithValue(string.Join(",\n", p.Abilities.Select(a => a.Value))).WithIsInline(true)));
+            return;
         }
 
         [NadekoCommand, Usage, Description, Alias]
@@ -104,7 +110,15 @@ namespace NadekoBot.Modules.Pokemon2
             var target = (IGuildUser)Context.User;
             var list = PokemonList(target);
             var newpkm = list.Where(x => x.NickName == name.Trim()).DefaultIfEmpty(null).FirstOrDefault();
+            var trainer = ((IGuildUser)Context.User).GetTrainerStats();
+            if (trainer.MovesMade > 0)
+            {
+                await ReplyAsync("You can't do that right now.");
+                return;
+            }
             SwitchPokemon(target, newpkm);
+            trainer.MovesMade++;
+            target.UpdateTrainerStats(trainer);
             await ReplyAsync($"Switched to **{newpkm.NickName}**");
 
         }
@@ -121,8 +135,8 @@ namespace NadekoBot.Modules.Pokemon2
                 await ReplyAsync($"Cannot use \"{moveString}\", see `{Prefix}pML` for moves");
                 return;
             }
-            var attackerStats = UserStats.GetOrAdd(Context.User.Id, new TrainerStats());
-            var defenderStats = UserStats.GetOrAdd(target.Id, new TrainerStats());
+            var attackerStats = ((IGuildUser)Context.User).GetTrainerStats();
+            var defenderStats = target.GetTrainerStats();
             if (attackerStats.MovesMade > TrainerStats.MaxMoves || attackerStats.LastAttacked.Contains(target.Id))
             {
                 await ReplyAsync($"{Context.User.Mention} already attacked {target.Mention}!");
@@ -136,27 +150,22 @@ namespace NadekoBot.Modules.Pokemon2
             
             KeyValuePair<string, string> move = new KeyValuePair<string, string>(moveString, species.moves[moveString]);
             var defenderPokemon = ActivePokemon(target);
-            PokemonAttack attack = new PokemonAttack(attackerPokemon, defenderPokemon, move);
-            var msg = attack.AttackString();
-            defenderPokemon.HP -= attack.Damage;
+
             if (defenderPokemon.HP == 0)
             {
                 await ReplyAsync($"{defenderPokemon.NickName} has already fainted!");
                 return;
             }
-            var HP = (defenderPokemon.HP < 0) ? 0 : defenderPokemon.HP;
-            msg += $"{defenderPokemon.NickName} has {HP} HP left!";
+
+            PokemonAttack attack = new PokemonAttack(attackerPokemon, defenderPokemon, move);
+            var msg = attack.AttackString();
+            
+            defenderPokemon.HP -= attack.Damage;
+            msg += $"{defenderPokemon.NickName} has {defenderPokemon.HP} HP left!";
             await ReplyAsync(msg);
             //Update stats, you shall
-            attackerStats.LastAttacked.Add(target.Id);
-            attackerStats.MovesMade++;
-            defenderStats.LastAttacked = new List<ulong>();
-            defenderStats.MovesMade = 0;
-            UserStats.AddOrUpdate(Context.User.Id, x => attackerStats, (s, t) => attackerStats);
-            UserStats.AddOrUpdate(target.Id, x => defenderStats, (s, t) => defenderStats);
-
-            if (defenderPokemon.HP <= 0)
-                defenderPokemon.HP = 0;
+            ((IGuildUser)Context.User).UpdateTrainerStats(attackerStats.Attack(target));
+            target.UpdateTrainerStats(defenderStats.Reset());
             UpdatePokemon(attackerPokemon);
             UpdatePokemon(defenderPokemon);
 
@@ -166,7 +175,6 @@ namespace NadekoBot.Modules.Pokemon2
                 var str = $"{defenderPokemon.NickName} fainted!\n{attackerPokemon.NickName}'s owner {Context.User.Mention} receives 1 point\n";
                 var lvl = attackerPokemon.Level;
                 var extraXP = attackerPokemon.Reward(defenderPokemon);
-
                 str += $"{attackerPokemon.NickName} gained {extraXP} from the battle\n";
                 if (attackerPokemon.Level > lvl) //levled up
                 {
@@ -198,6 +206,8 @@ namespace NadekoBot.Modules.Pokemon2
                     str += $"\n{target.Mention} has no pokemon left!";
                     //do something?
                 }
+                UpdatePokemon(attackerPokemon);
+                UpdatePokemon(defenderPokemon);
                 await ReplyAsync(str);
                 await _cs.AddAsync(Context.User.Id, "Victorious in pokemon", 1);
             }

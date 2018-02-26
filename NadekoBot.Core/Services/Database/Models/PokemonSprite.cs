@@ -2,9 +2,21 @@
 {
     public class PokemonSprite : DbEntity
     {
+        private int hp;
+
         public long OwnerId { get; set; }
         public string NickName { get; set; }
-        public int HP { get; set; }
+        public int HP
+        {
+            get { return hp; }
+            set
+            {
+                if (value <= 0)
+                    hp = 0;
+                else
+                    hp = value;
+            }
+        }
         public long XP { get; set; }
         public int Level { get; set; }
         public int SpeciesId { get; set; }

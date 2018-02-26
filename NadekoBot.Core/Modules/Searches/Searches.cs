@@ -747,7 +747,7 @@ namespace NadekoBot.Modules.Searches
             await Context.Channel.SendConfirmAsync($"https://images.google.com/searchbyimage?image_url={imageLink}").ConfigureAwait(false);
         }
 
-        [NadekoCommand, Usage, Description, Aliases]
+        [NadekoCommand, Usage, Description, Aliases("Safe")]
         public Task Safebooru([Remainder] string tag = null)
             => InternalDapiCommand(Context.Message, tag, DapiSearchType.Safebooru);
 
