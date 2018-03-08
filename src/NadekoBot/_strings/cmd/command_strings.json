@@ -168,18 +168,19 @@
       "{0}slowmode"
     ]
   },
-  "cleanvplust": {
-    "Cmd": "cleanvplust cv+t",
-    "Desc": "Deletes all text channels ending in `-voice` for which voicechannels are not found. Use at your own risk.",
+  "vcrolelist": {
+    "Cmd": "vcrolelist",
+    "Desc": "Shows a list of currently set voice channel roles.",
     "Usage": [
-      "{0}cleanv+t"
+      "{0}vcrolelist"
     ]
   },
-  "voiceplustext": {
-    "Cmd": "voice+text v+t",
-    "Desc": "Creates a text channel for each voice channel only users in that voice channel can see. If you are server owner, keep in mind you will see them all the time regardless.",
+  "vcrole": {
+    "Cmd": "vcrole",
+    "Desc": "Sets or resets a role which will be given to users who join the voice channel you're in when you run this command. Provide no role name to disable. You must be in a voice channel to run this command.",
     "Usage": [
-      "{0}v+t"
+      "{0}vcrole SomeRole",
+      "{0}vcrole"
     ]
   },
   "scsc": {
@@ -1339,9 +1340,16 @@
   },
   "playlists": {
     "Cmd": "playlists pls",
-    "Desc": "Lists all playlists. Paginated, 20 per page. Default page is 0.",
+    "Desc": "Lists all playlists. Paginated, 20 per page.",
     "Usage": [
       "{0}pls 1"
+    ]
+  },
+  "playlistshow": {
+    "Cmd": "playlistshow plshow",
+    "Desc": "Lists all songs in a playlist spepcified by its id. Paginated, 20 per page.",
+    "Usage": [
+      "{0}plshow 1"
     ]
   },
   "deleteplaylist": {
@@ -2541,21 +2549,6 @@
       "{0}l7 s"
     ]
   },
-  "vcrolelist": {
-    "Cmd": "vcrolelist",
-    "Desc": "Shows a list of currently set voice channel roles.",
-    "Usage": [
-      "{0}vcrolelist"
-    ]
-  },
-  "vcrole": {
-    "Cmd": "vcrole",
-    "Desc": "Sets or resets a role which will be given to users who join the voice channel you're in when you run this command. Provide no role name to disable. You must be in a voice channel to run this command.",
-    "Usage": [
-      "{0}vcrole SomeRole",
-      "{0}vcrole"
-    ]
-  },
   "crad": {
     "Cmd": "crad",
     "Desc": "Toggles whether the message triggering the custom reaction will be automatically deleted.",
@@ -2619,14 +2612,14 @@
     "Cmd": "scadd",
     "Desc": "Adds a command to the list of commands which will be executed automatically in the current channel, in the order they were added in, by the bot when it startups up.",
     "Usage": [
-      "{0}scadd .stats"
+      "{0}scadd {0}stats"
     ]
   },
   "startupcommandremove": {
     "Cmd": "scrm",
     "Desc": "Removes a startup command with the provided command text.",
     "Usage": [
-      "{0}scrm .stats"
+      "{0}scrm {0}stats"
     ]
   },
   "startupcommandsclear": {
@@ -3116,7 +3109,7 @@
     "cmd": "execsql",
     "desc": "Executes an sql command and returns the number of affected rows. Dangerous.",
     "usage": [
-      "{0}execsql UPDATE Currency SET Amount=Amount+1234"
+      "{0}execsql UPDATE DiscordUser SET CurrencyAmount=CurrencyAmount+1234"
     ]
   },
   "deletewaifus": {

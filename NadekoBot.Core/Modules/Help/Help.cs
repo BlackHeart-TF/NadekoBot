@@ -120,6 +120,13 @@ namespace NadekoBot.Modules.Help
         [Priority(0)]
         public async Task H([Remainder] string fail)
         {
+            var prefixless = _cmds.Commands.FirstOrDefault(x => x.Name.ToLowerInvariant() == fail);
+            if(prefixless!= null)
+            {
+                await H(prefixless);
+                return;
+            }
+
             await ReplyErrorLocalized("command_not_found").ConfigureAwait(false);
         }
 
@@ -151,13 +158,21 @@ namespace NadekoBot.Modules.Help
             foreach (var com in _cmds.Commands.OrderBy(com => com.Module.GetTopLevelModule().Name).GroupBy(c => c.Aliases.First()).Select(g => g.First()))
             {
                 var module = com.Module.GetTopLevelModule();
+                string optHelpStr = null;
+                var opt = ((NadekoOptions)com.Attributes.FirstOrDefault(x => x is NadekoOptions))?.OptionType;
+                if (opt != null)
+                {
+                    optHelpStr = _service.GetCommandOptionHelp(opt);
+                }
                 var obj = new
                 {
                     Aliases = com.Aliases.Select(x => Prefix + x).ToArray(),
-                    Description = string.Format(com.Summary, Prefix) + _service.GetCommandRequirements(com, Context.Guild),
+                    Description = string.Format(com.Summary, Prefix),
                     Usage = JsonConvert.DeserializeObject<string[]>(com.Remarks).Select(x => string.Format(x, Prefix)).ToArray(),
                     Submodule = com.Module.Name,
                     Module = com.Module.GetTopLevelModule().Name,
+                    Options = optHelpStr,
+                    Requirements = _service.GetCommandRequirements(com),
                 };
                 if (cmdData.TryGetValue(module.Name, out var cmds))
                     cmds.Add(obj);
@@ -167,7 +182,7 @@ namespace NadekoBot.Modules.Help
                         obj
                     });
             }
-            File.WriteAllText("../../docs/cmds.json", JsonConvert.SerializeObject(cmdData));
+            File.WriteAllText("../../docs/cmds_new.json", JsonConvert.SerializeObject(cmdData, Formatting.Indented));
             await ReplyConfirmLocalized("commandlist_regen").ConfigureAwait(false);
         }
 

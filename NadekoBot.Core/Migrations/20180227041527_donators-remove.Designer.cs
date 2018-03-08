@@ -13,9 +13,10 @@ using System;
 namespace NadekoBot.Migrations
 {
     [DbContext(typeof(NadekoContext))]
-    partial class NadekoSqliteContextModelSnapshot : ModelSnapshot
+    [Migration("20180227041527_donators-remove")]
+    partial class donatorsremove
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1021,47 +1022,6 @@ namespace NadekoBot.Migrations
                     b.HasIndex("MusicPlaylistId");
 
                     b.ToTable("PlaylistSong");
-                });
-
-            modelBuilder.Entity("NadekoBot.Core.Services.Database.Models.PokemonSprite", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("Attack");
-
-                    b.Property<DateTime?>("DateAdded");
-
-                    b.Property<int>("Defense");
-
-                    b.Property<int>("HP");
-
-                    b.Property<bool>("IsActive");
-
-                    b.Property<int>("Level");
-
-                    b.Property<int>("MaxHP");
-
-                    b.Property<string>("NickName");
-
-                    b.Property<long>("OwnerId");
-
-                    b.Property<int>("SpecialAttack");
-
-                    b.Property<int>("SpecialDefense");
-
-                    b.Property<int>("SpeciesId");
-
-                    b.Property<int>("Speed");
-
-                    b.Property<long>("XP");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id")
-                        .IsUnique();
-
-                    b.ToTable("PokeSprite");
                 });
 
             modelBuilder.Entity("NadekoBot.Core.Services.Database.Models.Poll", b =>

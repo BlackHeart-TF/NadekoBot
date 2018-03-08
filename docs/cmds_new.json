@@ -4,7 +4,7 @@
       "Aliases": [
         ".delmsgoncmd"
       ],
-      "Description": "Toggles the automatic deletion of the user's successful command message to prevent chat flood. You can use it either as a server toggle, channel whitelist, or channel blacklist, as channel option has 3 settings: Enable (always do it on this channel), Disable (never do it on this channel), and Inherit (respect server setting). Use `list` parameter to see the current states.**Requires Administrator server permission.**",
+      "Description": "Toggles the automatic deletion of the user's successful command message to prevent chat flood. You can use it either as a server toggle, channel whitelist, or channel blacklist, as channel option has 3 settings: Enable (always do it on this channel), Disable (never do it on this channel), and Inherit (respect server setting). Use `list` parameter to see the current states.",
       "Usage": [
         ".delmsgoncmd",
         ".delmsgoncmd channel enable",
@@ -13,211 +13,262 @@
       ],
       "Submodule": "Administration",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Administrator Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".deafen",
         ".deaf"
       ],
-      "Description": "Deafens mentioned user or users.**Requires DeafenMembers server permission.**",
+      "Description": "Deafens mentioned user or users.",
       "Usage": [
         ".deaf \"@Someguy\"",
         ".deaf \"@Someguy\" \"@Someguy\""
       ],
       "Submodule": "Administration",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "DeafenMembers Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".undeafen",
         ".undef"
       ],
-      "Description": "Undeafens mentioned user or users.**Requires DeafenMembers server permission.**",
+      "Description": "Undeafens mentioned user or users.",
       "Usage": [
         ".undef \"@Someguy\"",
         ".undef \"@Someguy\" \"@Someguy\""
       ],
       "Submodule": "Administration",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "DeafenMembers Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".delvoichanl",
         ".dvch"
       ],
-      "Description": "Deletes a voice channel with a given name.**Requires ManageChannels server permission.**",
+      "Description": "Deletes a voice channel with a given name.",
       "Usage": [
         ".dvch VoiceChannelName"
       ],
       "Submodule": "Administration",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageChannels Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".creatvoichanl",
         ".cvch"
       ],
-      "Description": "Creates a new voice channel with a given name.**Requires ManageChannels server permission.**",
+      "Description": "Creates a new voice channel with a given name.",
       "Usage": [
         ".cvch VoiceChannelName"
       ],
       "Submodule": "Administration",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageChannels Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".deltxtchanl",
         ".dtch"
       ],
-      "Description": "Deletes a text channel with a given name.**Requires ManageChannels server permission.**",
+      "Description": "Deletes a text channel with a given name.",
       "Usage": [
         ".dtch TextChannelName"
       ],
       "Submodule": "Administration",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageChannels Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".creatxtchanl",
         ".ctch"
       ],
-      "Description": "Creates a new text channel with a given name.**Requires ManageChannels server permission.**",
+      "Description": "Creates a new text channel with a given name.",
       "Usage": [
         ".ctch TextChannelName"
       ],
       "Submodule": "Administration",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageChannels Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".settopic",
         ".st"
       ],
-      "Description": "Sets a topic on the current channel.**Requires ManageChannels server permission.**",
+      "Description": "Sets a topic on the current channel.",
       "Usage": [
         ".st My new topic"
       ],
       "Submodule": "Administration",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageChannels Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".setchanlname",
         ".schn"
       ],
-      "Description": "Changes the name of the current channel.**Requires ManageChannels server permission.**",
+      "Description": "Changes the name of the current channel.",
       "Usage": [
         ".schn NewName"
       ],
       "Submodule": "Administration",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageChannels Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".edit"
       ],
-      "Description": "Edits bot's message, you have to specify message ID and new text. Supports embeds.**Requires ManageMessages server permission.**",
+      "Description": "Edits bot's message, you have to specify message ID and new text. Supports embeds.",
       "Usage": [
         ".edit 7479498384 Hi :^)"
       ],
       "Submodule": "Administration",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".autoassignrole",
         ".aar"
       ],
-      "Description": "Automaticaly assigns a specified role to every user who joins the server. Provide no arguments to disable.**Requires ManageRoles server permission.**",
+      "Description": "Automaticaly assigns a specified role to every user who joins the server. Provide no arguments to disable.",
       "Usage": [
         ".aar",
         ".aar RoleName"
       ],
       "Submodule": "AutoAssignRoleCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".execsql"
       ],
-      "Description": "Executes an sql command and returns the number of affected rows. Dangerous.**Bot owner only**",
+      "Description": "Executes an sql command and returns the number of affected rows. Dangerous.",
       "Usage": [
         ".execsql UPDATE Currency SET Amount=Amount+1234"
       ],
       "Submodule": "DangerousCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".deletewaifus"
       ],
-      "Description": "Deletes everything from WaifuUpdates and WaifuInfo tables.**Bot owner only**",
+      "Description": "Deletes everything from WaifuUpdates and WaifuInfo tables.",
       "Usage": [
         ".deletewaifus"
       ],
       "Submodule": "DangerousCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".deletecurrency"
       ],
-      "Description": "Deletes everything from Currency and CurrencyTransactions.**Bot owner only**",
+      "Description": "Deletes everything from Currency and CurrencyTransactions.",
       "Usage": [
         ".deletecurrency"
       ],
       "Submodule": "DangerousCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".deleteplaylists"
       ],
-      "Description": "Deletes everything from MusicPlaylists.**Bot owner only**",
+      "Description": "Deletes everything from MusicPlaylists.",
       "Usage": [
         ".deleteplaylists"
       ],
       "Submodule": "DangerousCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".deleteexp"
       ],
-      "Description": "deleteexp**Bot owner only**",
+      "Description": "deleteexp",
       "Usage": [
         "deleteexp"
       ],
       "Submodule": "DangerousCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".gvc"
       ],
-      "Description": "Toggles game voice channel feature in the voice channel you're currently in. Users who join the game voice channel will get automatically redirected to the voice channel with the name of their current game, if it exists. Can't move users to channels that the bot has no connect permission for. One per server.**Requires Administrator server permission.**",
+      "Description": "Toggles game voice channel feature in the voice channel you're currently in. Users who join the game voice channel will get automatically redirected to the voice channel with the name of their current game, if it exists. Can't move users to channels that the bot has no connect permission for. One per server.",
       "Usage": [
         ".gvc"
       ],
       "Submodule": "GameChannelCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Administrator Server Permission"
+      ]
     },
     {
       "Aliases": [
@@ -231,7 +282,8 @@
       ],
       "Submodule": "LocalizationCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -245,7 +297,8 @@
       ],
       "Submodule": "LocalizationCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -258,182 +311,231 @@
       ],
       "Submodule": "LocalizationCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".logserver"
       ],
-      "Description": "Enables or Disables ALL log events. If enabled, all log events will log to this channel.**Requires Administrator server permission.** **Bot owner only**",
+      "Description": "Enables or Disables ALL log events. If enabled, all log events will log to this channel.",
       "Usage": [
         ".logserver enable",
         ".logserver disable"
       ],
       "Submodule": "LogCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Administrator Server Permission",
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".logignore"
       ],
-      "Description": "Toggles whether the `.logserver` command ignores this channel. Useful if you have hidden admin channel and public log channel.**Requires Administrator server permission.** **Bot owner only**",
+      "Description": "Toggles whether the `.logserver` command ignores this channel. Useful if you have hidden admin channel and public log channel.",
       "Usage": [
         ".logignore"
       ],
       "Submodule": "LogCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Administrator Server Permission",
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".logevents"
       ],
-      "Description": "Shows a list of all events you can subscribe to with `.log`**Requires Administrator server permission.** **Bot owner only**",
+      "Description": "Shows a list of all events you can subscribe to with `.log`",
       "Usage": [
         ".logevents"
       ],
       "Submodule": "LogCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Administrator Server Permission",
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".log"
       ],
-      "Description": "Toggles logging event. Disables it if it is active anywhere on the server. Enables if it isn't active. Use `.logevents` to see a list of all events you can subscribe to.**Requires Administrator server permission.** **Bot owner only**",
+      "Description": "Toggles logging event. Disables it if it is active anywhere on the server. Enables if it isn't active. Use `.logevents` to see a list of all events you can subscribe to.",
       "Usage": [
         ".log userpresence",
         ".log userbanned"
       ],
       "Submodule": "LogCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Administrator Server Permission",
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".setmuterole"
       ],
-      "Description": "Sets a name of the role which will be assigned to people who should be muted. Default is nadeko-mute.**Requires ManageRoles server permission.**",
+      "Description": "Sets a name of the role which will be assigned to people who should be muted. Default is nadeko-mute.",
       "Usage": [
         ".setmuterole Silenced"
       ],
       "Submodule": "MuteCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".mute"
       ],
-      "Description": "Mutes a mentioned user both from speaking and chatting. You can also specify time in minutes (up to 1440) for how long the user should be muted.**Requires ManageRoles server permission.** **Requires MuteMembers server permission.**",
+      "Description": "Mutes a mentioned user both from speaking and chatting. You can also specify time in minutes (up to 1440) for how long the user should be muted.",
       "Usage": [
         ".mute @Someone",
         ".mute 30 @Someone"
       ],
       "Submodule": "MuteCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission",
+        "MuteMembers Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".unmute"
       ],
-      "Description": "Unmutes a mentioned user previously muted with `.mute` command.**Requires ManageRoles server permission.** **Requires MuteMembers server permission.**",
+      "Description": "Unmutes a mentioned user previously muted with `.mute` command.",
       "Usage": [
         ".unmute @Someone"
       ],
       "Submodule": "MuteCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission",
+        "MuteMembers Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".chatmute"
       ],
-      "Description": "Prevents a mentioned user from chatting in text channels.**Requires ManageRoles server permission.**",
+      "Description": "Prevents a mentioned user from chatting in text channels.",
       "Usage": [
         ".chatmute @Someone"
       ],
       "Submodule": "MuteCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".chatunmute"
       ],
-      "Description": "Removes a mute role previously set on a mentioned user with `.chatmute` which prevented him from chatting in text channels.**Requires ManageRoles server permission.**",
+      "Description": "Removes a mute role previously set on a mentioned user with `.chatmute` which prevented him from chatting in text channels.",
       "Usage": [
         ".chatunmute @Someone"
       ],
       "Submodule": "MuteCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".voicemute"
       ],
-      "Description": "Prevents a mentioned user from speaking in voice channels.**Requires MuteMembers server permission.**",
+      "Description": "Prevents a mentioned user from speaking in voice channels.",
       "Usage": [
         ".voicemute @Someone"
       ],
       "Submodule": "MuteCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "MuteMembers Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".voiceunmute"
       ],
-      "Description": "Gives a previously voice-muted user a permission to speak.**Requires MuteMembers server permission.**",
+      "Description": "Gives a previously voice-muted user a permission to speak.",
       "Usage": [
         ".voiceunmute @Someguy"
       ],
       "Submodule": "MuteCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "MuteMembers Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".rotateplaying",
         ".ropl"
       ],
-      "Description": "Toggles rotation of playing status of the dynamic strings you previously specified.**Bot owner only**",
+      "Description": "Toggles rotation of playing status of the dynamic strings you previously specified.",
       "Usage": [
         ".ropl"
       ],
       "Submodule": "PlayingRotateCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".addplaying",
         ".adpl"
       ],
-      "Description": "Adds a specified string to the list of playing strings to rotate. You have to pick either 'Playing', 'Watching' or 'Listening' as the first parameter. Supported placeholders: `%servers%`, `%users%`, `%playing%`, `%queued%`, `%time%`, `%shardid%`, `%shardcount%`, `%shardguilds%`.**Bot owner only**",
+      "Description": "Adds a specified string to the list of playing strings to rotate. You have to pick either 'Playing', 'Watching' or 'Listening' as the first parameter. Supported placeholders: `%servers%`, `%users%`, `%playing%`, `%queued%`, `%time%`, `%shardid%`, `%shardcount%`, `%shardguilds%`.",
       "Usage": [
         ".adpl Playing with you",
         ".adpl Watching you sleep"
       ],
       "Submodule": "PlayingRotateCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".listplaying",
         ".lipl"
       ],
-      "Description": "Lists all playing statuses with their corresponding number.**Bot owner only**",
+      "Description": "Lists all playing statuses with their corresponding number.",
       "Usage": [
         ".lipl"
       ],
       "Submodule": "PlayingRotateCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
@@ -441,13 +543,16 @@
         ".rmpl",
         ".repl"
       ],
-      "Description": "Removes a playing string on a given number.**Bot owner only**",
+      "Description": "Removes a playing string on a given number.",
       "Usage": [
         ".rmpl"
       ],
       "Submodule": "PlayingRotateCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
@@ -459,37 +564,44 @@
       ],
       "Submodule": "PrefixCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".defprefix"
       ],
-      "Description": "Sets bot's default prefix for all bot commands. Provide no arguments to see the current default prefix. This will not change this server's current prefix.**Bot owner only**",
+      "Description": "Sets bot's default prefix for all bot commands. Provide no arguments to see the current default prefix. This will not change this server's current prefix.",
       "Usage": [
         ".defprefix +"
       ],
       "Submodule": "PrefixCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".antiraid"
       ],
-      "Description": "Sets an anti-raid protection on the server. First argument is number of people which will trigger the protection. Second one is a time interval in which that number of people needs to join in order to trigger the protection, and third argument is punishment for those people (Kick, Ban, Mute)**Requires Administrator server permission.**",
+      "Description": "Sets an anti-raid protection on the server. First argument is number of people which will trigger the protection. Second one is a time interval in which that number of people needs to join in order to trigger the protection, and third argument is punishment for those people (Kick, Ban, Mute)",
       "Usage": [
         ".antiraid 5 20 Kick"
       ],
       "Submodule": "ProtectionCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Administrator Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".antispam"
       ],
-      "Description": "Stops people from repeating same message X times in a row. You can specify to either mute, kick or ban the offenders. If you're using mute, you can add a number of seconds at the end to use a timed mute. Max message count is 10.**Requires Administrator server permission.**",
+      "Description": "Stops people from repeating same message X times in a row. You can specify to either mute, kick or ban the offenders. If you're using mute, you can add a number of seconds at the end to use a timed mute. Max message count is 10.",
       "Usage": [
         ".antispam 3 Mute",
         ".antispam 4 Kick",
@@ -497,19 +609,25 @@
       ],
       "Submodule": "ProtectionCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Administrator Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".antispamignore"
       ],
-      "Description": "Toggles whether antispam ignores current channel. Antispam must be enabled.**Requires Administrator server permission.**",
+      "Description": "Toggles whether antispam ignores current channel. Antispam must be enabled.",
       "Usage": [
         ".antispamignore"
       ],
       "Submodule": "ProtectionCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Administrator Server Permission"
+      ]
     },
     {
       "Aliases": [
@@ -522,7 +640,8 @@
       ],
       "Submodule": "ProtectionCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -538,152 +657,186 @@
       ],
       "Submodule": "PruneCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".slowmode"
       ],
-      "Description": "Toggles slowmode. Disable by specifying no parameters. To enable, specify a number of messages each user can send, and an interval in seconds. For example 1 message every 5 seconds.**Requires ManageMessages server permission.**",
+      "Description": "Toggles slowmode. Disable by specifying no parameters. To enable, specify a number of messages each user can send, and an interval in seconds. For example 1 message every 5 seconds.",
       "Usage": [
         ".slowmode 1 5",
         ".slowmode"
       ],
       "Submodule": "SlowModeCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".slowmodewl"
       ],
-      "Description": "Ignores a role or a user from the slowmode feature.**Requires ManageMessages server permission.**",
+      "Description": "Ignores a role or a user from the slowmode feature.",
       "Usage": [
         ".slowmodewl SomeRole",
         ".slowmodewl AdminDude"
       ],
       "Submodule": "SlowModeCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".reactionroles",
         ".rero"
       ],
-      "Description": "Specify role names and server emojis with which they're represented, the bot will then add those emojis to the previous message in the channel, and users will be able to get the roles by clicking on the emoji. You can set 'excl' as the first argument to make them exclusive. You can have up to 5 of these enabled on one server at a time.**Requires ManageRoles server permission.**",
+      "Description": "Specify role names and server emojis with which they're represented, the bot will then add those emojis to the previous message in the channel, and users will be able to get the roles by clicking on the emoji. You can set 'excl' as the first argument to make them exclusive. You can have up to 5 of these enabled on one server at a time.",
       "Usage": [
         ".reactionroles Gamer :SomeServerEmoji: Streamer :Other: Watcher :Other2:",
         ".reactionroles excl Horde :Horde: Alliance :Alliance:"
       ],
       "Submodule": "RoleCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".reactionroleslist",
         ".reroli"
       ],
-      "Description": "Lists all ReactionRole messages on this channel and their indexes.**Requires ManageRoles server permission.**",
+      "Description": "Lists all ReactionRole messages on this channel and their indexes.",
       "Usage": [
         ".reactionroleslist"
       ],
       "Submodule": "RoleCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".reactionrolesremove",
         ".rerorm"
       ],
-      "Description": "Removed a ReactionRole message on the specified index.**Requires ManageRoles server permission.**",
+      "Description": "Removed a ReactionRole message on the specified index.",
       "Usage": [
         ".reactionrolesrm 1"
       ],
       "Submodule": "RoleCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".setrole",
         ".sr"
       ],
-      "Description": "Sets a role for a given user.**Requires ManageRoles server permission.**",
+      "Description": "Sets a role for a given user.",
       "Usage": [
         ".sr @User Guest"
       ],
       "Submodule": "RoleCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".removerole",
         ".rr"
       ],
-      "Description": "Removes a role from a given user.**Requires ManageRoles server permission.**",
+      "Description": "Removes a role from a given user.",
       "Usage": [
         ".rr @User Admin"
       ],
       "Submodule": "RoleCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".renamerole",
         ".renr"
       ],
-      "Description": "Renames a role. The role you are renaming must be lower than bot's highest role.**Requires ManageRoles server permission.**",
+      "Description": "Renames a role. The role you are renaming must be lower than bot's highest role.",
       "Usage": [
         ".renr \"First role\" SecondRole"
       ],
       "Submodule": "RoleCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".removeallroles",
         ".rar"
       ],
-      "Description": "Removes all roles from a mentioned user.**Requires ManageRoles server permission.**",
+      "Description": "Removes all roles from a mentioned user.",
       "Usage": [
         ".rar @User"
       ],
       "Submodule": "RoleCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".createrole",
         ".cr"
       ],
-      "Description": "Creates a role with a given name.**Requires ManageRoles server permission.**",
+      "Description": "Creates a role with a given name.",
       "Usage": [
         ".cr Awesome Role"
       ],
       "Submodule": "RoleCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".rolehoist",
         ".rh"
       ],
-      "Description": "Toggles whether this role is displayed in the sidebar or not.**Requires ManageRoles server permission.**",
+      "Description": "Toggles whether this role is displayed in the sidebar or not.",
       "Usage": [
         ".rh Guests",
         ".rh \"Space Wizards\""
       ],
       "Submodule": "RoleCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission"
+      ]
     },
     {
       "Aliases": [
@@ -698,38 +851,45 @@
       ],
       "Submodule": "RoleCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".mentionrole",
         ".menro"
       ],
-      "Description": "Mentions a role. If the role is not mentionable, bot will make it mentionable for a moment.**Requires MentionEveryone server permission.**",
+      "Description": "Mentions a role. If the role is not mentionable, bot will make it mentionable for a moment.",
       "Usage": [
         ".menro RoleName"
       ],
       "Submodule": "RoleCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "MentionEveryone Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".adsarm"
       ],
-      "Description": "Toggles the automatic deletion of confirmations for `.iam` and `.iamn` commands.**Requires ManageMessages server permission.**",
+      "Description": "Toggles the automatic deletion of confirmations for `.iam` and `.iamn` commands.",
       "Usage": [
         ".adsarm"
       ],
       "Submodule": "SelfAssignedRolesCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".asar"
       ],
-      "Description": "Adds a role to the list of self-assignable roles. You can also specify a group. If 'Exclusive self-assignable roles' feature is enabled, users will be able to pick one role per group.**Requires ManageRoles server permission.**",
+      "Description": "Adds a role to the list of self-assignable roles. You can also specify a group. If 'Exclusive self-assignable roles' feature is enabled, users will be able to pick one role per group.",
       "Usage": [
         ".asar Gamer",
         ".asar 1 Alliance",
@@ -737,19 +897,25 @@
       ],
       "Submodule": "SelfAssignedRolesCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".rsar"
       ],
-      "Description": "Removes a specified role from the list of self-assignable roles.**Requires ManageRoles server permission.**",
+      "Description": "Removes a specified role from the list of self-assignable roles.",
       "Usage": [
         ".rsar"
       ],
       "Submodule": "SelfAssignedRolesCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission"
+      ]
     },
     {
       "Aliases": [
@@ -762,33 +928,40 @@
       ],
       "Submodule": "SelfAssignedRolesCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".togglexclsar",
         ".tesar"
       ],
-      "Description": "Toggles whether the self-assigned roles are exclusive. While enabled, users can only have one self-assignable role per group.**Requires ManageRoles server permission.**",
+      "Description": "Toggles whether the self-assigned roles are exclusive. While enabled, users can only have one self-assignable role per group.",
       "Usage": [
         ".tesar"
       ],
       "Submodule": "SelfAssignedRolesCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".rolelevelreq",
         ".rlr"
       ],
-      "Description": "Set a level requirement on a self-assignable role.**Requires ManageRoles server permission.**",
+      "Description": "Set a level requirement on a self-assignable role.",
       "Usage": [
         ".rlr 5 SomeRole"
       ],
       "Submodule": "SelfAssignedRolesCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission"
+      ]
     },
     {
       "Aliases": [
@@ -800,7 +973,8 @@
       ],
       "Submodule": "SelfAssignedRolesCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -813,91 +987,113 @@
       ],
       "Submodule": "SelfAssignedRolesCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".scadd"
       ],
-      "Description": "Adds a command to the list of commands which will be executed automatically in the current channel, in the order they were added in, by the bot when it startups up.**Bot owner only**",
+      "Description": "Adds a command to the list of commands which will be executed automatically in the current channel, in the order they were added in, by the bot when it startups up.",
       "Usage": [
         ".scadd .stats"
       ],
       "Submodule": "SelfCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".sclist"
       ],
-      "Description": "Lists all startup commands in the order they will be executed in.**Bot owner only**",
+      "Description": "Lists all startup commands in the order they will be executed in.",
       "Usage": [
         ".sclist"
       ],
       "Submodule": "SelfCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".wait"
       ],
-      "Description": "Used only as a startup command. Waits a certain number of miliseconds before continuing the execution of the following startup commands.**Bot owner only**",
+      "Description": "Used only as a startup command. Waits a certain number of miliseconds before continuing the execution of the following startup commands.",
       "Usage": [
         ".wait 3000"
       ],
       "Submodule": "SelfCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".scrm"
       ],
-      "Description": "Removes a startup command with the provided command text.**Bot owner only**",
+      "Description": "Removes a startup command with the provided command text.",
       "Usage": [
         ".scrm .stats"
       ],
       "Submodule": "SelfCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".scclr"
       ],
-      "Description": "Removes all startup commands.**Bot owner only**",
+      "Description": "Removes all startup commands.",
       "Usage": [
         ".scclr"
       ],
       "Submodule": "SelfCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".fwmsgs"
       ],
-      "Description": "Toggles forwarding of non-command messages sent to bot's DM to the bot owners**Bot owner only**",
+      "Description": "Toggles forwarding of non-command messages sent to bot's DM to the bot owners",
       "Usage": [
         ".fwmsgs"
       ],
       "Submodule": "SelfCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".fwtoall"
       ],
-      "Description": "Toggles whether messages will be forwarded to all bot owners or only to the first one specified in the credentials.json file**Bot owner only**",
+      "Description": "Toggles whether messages will be forwarded to all bot owners or only to the first one specified in the credentials.json file",
       "Usage": [
         ".fwtoall"
       ],
       "Submodule": "SelfCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
@@ -910,112 +1106,137 @@
       ],
       "Submodule": "SelfCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".restartshard"
       ],
-      "Description": "Try (re)connecting a shard with a certain shardid when it dies. No one knows will it work. Keep an eye on the console for errors.**Bot owner only**",
+      "Description": "Try (re)connecting a shard with a certain shardid when it dies. No one knows will it work. Keep an eye on the console for errors.",
       "Usage": [
         ".restartshard 2"
       ],
       "Submodule": "SelfCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".leave"
       ],
-      "Description": "Makes Nadeko leave the server. Either server name or server ID is required.**Bot owner only**",
+      "Description": "Makes Nadeko leave the server. Either server name or server ID is required.",
       "Usage": [
         ".leave 123123123331"
       ],
       "Submodule": "SelfCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".die"
       ],
-      "Description": "Shuts the bot down.**Bot owner only**",
+      "Description": "Shuts the bot down.",
       "Usage": [
         ".die"
       ],
       "Submodule": "SelfCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".restart"
       ],
-      "Description": "Restarts the bot. Might not work.**Bot owner only**",
+      "Description": "Restarts the bot. Might not work.",
       "Usage": [
         ".restart"
       ],
       "Submodule": "SelfCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".setname",
         ".newnm"
       ],
-      "Description": "Gives the bot a new name.**Bot owner only**",
+      "Description": "Gives the bot a new name.",
       "Usage": [
         ".newnm BotName"
       ],
       "Submodule": "SelfCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".setnick"
       ],
-      "Description": "Changes the nickname of the bot on this server. You can also target other users to change their nickname.**Requires ManageNicknames server permission.**",
+      "Description": "Changes the nickname of the bot on this server. You can also target other users to change their nickname.",
       "Usage": [
         ".setnick BotNickname",
         ".setnick @SomeUser New Nickname"
       ],
       "Submodule": "SelfCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageNicknames Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".setstatus"
       ],
-      "Description": "Sets the bot's status. (Online/Idle/Dnd/Invisible)**Bot owner only**",
+      "Description": "Sets the bot's status. (Online/Idle/Dnd/Invisible)",
       "Usage": [
         ".setstatus Idle"
       ],
       "Submodule": "SelfCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".setavatar",
         ".setav"
       ],
-      "Description": "Sets a new avatar image for the NadekoBot. Argument is a direct link to an image.**Bot owner only**",
+      "Description": "Sets a new avatar image for the NadekoBot. Argument is a direct link to an image.",
       "Usage": [
         ".setav http://i.imgur.com/xTG3a1I.jpg"
       ],
       "Submodule": "SelfCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".setgame"
       ],
-      "Description": "Sets the bots game status to either Playing, Listening, or Watching.**Bot owner only**",
+      "Description": "Sets the bots game status to either Playing, Listening, or Watching.",
       "Usage": [
         ".setgame Playing with snakes.",
         ".setgame Watching anime.",
@@ -1023,155 +1244,194 @@
       ],
       "Submodule": "SelfCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".setstream"
       ],
-      "Description": "Sets the bots stream. First argument is the twitch link, second argument is stream name.**Bot owner only**",
+      "Description": "Sets the bots stream. First argument is the twitch link, second argument is stream name.",
       "Usage": [
         ".setstream TWITCHLINK Hello"
       ],
       "Submodule": "SelfCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".send"
       ],
-      "Description": "Sends a message to someone on a different server through the bot.  Separate server and channel/user ids with `|` and prefix the channel id with `c:` and the user id with `u:`.**Bot owner only**",
+      "Description": "Sends a message to someone on a different server through the bot.  Separate server and channel/user ids with `|` and prefix the channel id with `c:` and the user id with `u:`.",
       "Usage": [
         ".send serverid|c:channelid message",
         ".send serverid|u:userid message"
       ],
       "Submodule": "SelfCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".imagesreload"
       ],
-      "Description": "Reloads images bot is using. Safe to use even when bot is being used heavily.**Bot owner only**",
+      "Description": "Reloads images bot is using. Safe to use even when bot is being used heavily.",
       "Usage": [
         ".imagesreload"
       ],
       "Submodule": "SelfCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".botconfigreload"
       ],
-      "Description": "Reloads bot configuration in case you made changes to the BotConfig table either with .execsql or manually in the .db file.**Bot owner only**",
+      "Description": "Reloads bot configuration in case you made changes to the BotConfig table either with .execsql or manually in the .db file.",
       "Usage": [
         ".botconfigreload"
       ],
       "Submodule": "SelfCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".greetdel",
         ".grdel"
       ],
-      "Description": "Sets the time it takes (in seconds) for greet messages to be auto-deleted. Set it to 0 to disable automatic deletion.**Requires ManageServer server permission.**",
+      "Description": "Sets the time it takes (in seconds) for greet messages to be auto-deleted. Set it to 0 to disable automatic deletion.",
       "Usage": [
         ".greetdel 0",
         ".greetdel 30"
       ],
       "Submodule": "ServerGreetCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageServer Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".greet"
       ],
-      "Description": "Toggles anouncements on the current channel when someone joins the server.**Requires ManageServer server permission.**",
+      "Description": "Toggles anouncements on the current channel when someone joins the server.",
       "Usage": [
         ".greet"
       ],
       "Submodule": "ServerGreetCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageServer Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".greetmsg"
       ],
-      "Description": "Sets a new join announcement message which will be shown in the server's channel. Type `%user%` if you want to mention the new member. Using it with no message will show the current greet message. You can use embed json from <https://embedbuilder.nadekobot.me/> instead of a regular text, if you want the message to be embedded.**Requires ManageServer server permission.**",
+      "Description": "Sets a new join announcement message which will be shown in the server's channel. Type `%user%` if you want to mention the new member. Using it with no message will show the current greet message. You can use embed json from <https://embedbuilder.nadekobot.me/> instead of a regular text, if you want the message to be embedded.",
       "Usage": [
         ".greetmsg Welcome, %user%."
       ],
       "Submodule": "ServerGreetCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageServer Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".greetdm"
       ],
-      "Description": "Toggles whether the greet messages will be sent in a DM (This is separate from greet - you can have both, any or neither enabled).**Requires ManageServer server permission.**",
+      "Description": "Toggles whether the greet messages will be sent in a DM (This is separate from greet - you can have both, any or neither enabled).",
       "Usage": [
         ".greetdm"
       ],
       "Submodule": "ServerGreetCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageServer Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".greetdmmsg"
       ],
-      "Description": "Sets a new join announcement message which will be sent to the user who joined. Type `%user%` if you want to mention the new member. Using it with no message will show the current DM greet message. You can use embed json from <https://embedbuilder.nadekobot.me> instead of a regular text, if you want the message to be embedded.**Requires ManageServer server permission.**",
+      "Description": "Sets a new join announcement message which will be sent to the user who joined. Type `%user%` if you want to mention the new member. Using it with no message will show the current DM greet message. You can use embed json from <https://embedbuilder.nadekobot.me> instead of a regular text, if you want the message to be embedded.",
       "Usage": [
         ".greetdmmsg Welcome to the server, %user%"
       ],
       "Submodule": "ServerGreetCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageServer Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".bye"
       ],
-      "Description": "Toggles anouncements on the current channel when someone leaves the server.**Requires ManageServer server permission.**",
+      "Description": "Toggles anouncements on the current channel when someone leaves the server.",
       "Usage": [
         ".bye"
       ],
       "Submodule": "ServerGreetCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageServer Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".byemsg"
       ],
-      "Description": "Sets a new leave announcement message. Type `%user%` if you want to show the name the user who left. Type `%id%` to show id. Using this command with no message will show the current bye message. You can use embed json from <https://embedbuilder.nadekobot.me/> instead of a regular text, if you want the message to be embedded.**Requires ManageServer server permission.**",
+      "Description": "Sets a new leave announcement message. Type `%user%` if you want to show the name the user who left. Type `%id%` to show id. Using this command with no message will show the current bye message. You can use embed json from <https://embedbuilder.nadekobot.me/> instead of a regular text, if you want the message to be embedded.",
       "Usage": [
         ".byemsg %user% has left."
       ],
       "Submodule": "ServerGreetCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageServer Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".byedel"
       ],
-      "Description": "Sets the time it takes (in seconds) for bye messages to be auto-deleted. Set it to `0` to disable automatic deletion.**Requires ManageServer server permission.**",
+      "Description": "Sets the time it takes (in seconds) for bye messages to be auto-deleted. Set it to `0` to disable automatic deletion.",
       "Usage": [
         ".byedel 0",
         ".byedel 30"
       ],
       "Submodule": "ServerGreetCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageServer Server Permission"
+      ]
     },
     {
       "Aliases": [
@@ -1183,7 +1443,8 @@
       ],
       "Submodule": "TimeZoneCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1196,72 +1457,88 @@
       ],
       "Submodule": "TimeZoneCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".warn"
       ],
-      "Description": "Warns a user.**Requires BanMembers server permission.**",
+      "Description": "Warns a user.",
       "Usage": [
         ".warn @b1nzy Very rude person"
       ],
       "Submodule": "UserPunishCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "BanMembers Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".warnlog"
       ],
-      "Description": "See a list of warnings of a certain user.**Requires BanMembers server permission.**",
+      "Description": "See a list of warnings of a certain user.",
       "Usage": [
         ".warnlog @b1nzy"
       ],
       "Submodule": "UserPunishCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "BanMembers Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".warnlogall"
       ],
-      "Description": "See a list of all warnings on the server. 15 users per page.**Requires BanMembers server permission.**",
+      "Description": "See a list of all warnings on the server. 15 users per page.",
       "Usage": [
         ".warnlogall",
         ".warnlogall 2"
       ],
       "Submodule": "UserPunishCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "BanMembers Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".warnclear",
         ".warnc"
       ],
-      "Description": "Clears all warnings from a certain user. You can specify a number to clear a specific one.**Requires BanMembers server permission.**",
+      "Description": "Clears all warnings from a certain user. You can specify a number to clear a specific one.",
       "Usage": [
         ".warnclear @PoorDude 3",
         ".warnclear @PoorDude"
       ],
       "Submodule": "UserPunishCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "BanMembers Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".warnpunish",
         ".warnp"
       ],
-      "Description": "Sets a punishment for a certain number of warnings. Provide no punishment to remove.**Requires BanMembers server permission.**",
+      "Description": "Sets a punishment for a certain number of warnings. Provide no punishment to remove.",
       "Usage": [
         ".warnpunish 5 Ban",
         ".warnpunish 3"
       ],
       "Submodule": "UserPunishCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "BanMembers Server Permission"
+      ]
     },
     {
       "Aliases": [
@@ -1274,84 +1551,106 @@
       ],
       "Submodule": "UserPunishCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".ban",
         ".b"
       ],
-      "Description": "Bans a user by ID or name with an optional message.**Requires BanMembers server permission.**",
+      "Description": "Bans a user by ID or name with an optional message.",
       "Usage": [
         ".b \"@some Guy\" Your behaviour is toxic."
       ],
       "Submodule": "UserPunishCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "BanMembers Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".unban"
       ],
-      "Description": "Unbans a user with the provided user#discrim or id.**Requires BanMembers server permission.**",
+      "Description": "Unbans a user with the provided user#discrim or id.",
       "Usage": [
         ".unban kwoth#1234",
         ".unban 123123123"
       ],
       "Submodule": "UserPunishCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "BanMembers Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".softban",
         ".sb"
       ],
-      "Description": "Bans and then unbans a user by ID or name with an optional message.**Requires KickMembers server permission.** **Requires ManageMessages server permission.**",
+      "Description": "Bans and then unbans a user by ID or name with an optional message.",
       "Usage": [
         ".sb \"@some Guy\" Your behaviour is toxic."
       ],
       "Submodule": "UserPunishCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "KickMembers Server Permission",
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".kick",
         ".k"
       ],
-      "Description": "Kicks a mentioned user.**Requires KickMembers server permission.**",
+      "Description": "Kicks a mentioned user.",
       "Usage": [
         ".k \"@some Guy\" Your behaviour is toxic."
       ],
       "Submodule": "UserPunishCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "KickMembers Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".masskill"
       ],
-      "Description": "Specify a new-line separated list of `userid reason`. You can use Username#discrim instead of UserId. Specified users will be banned from the current server, blacklisted from the bot, and have all of their flowers taken away.**Requires BanMembers server permission.** **Bot owner only**",
+      "Description": "Specify a new-line separated list of `userid reason`. You can use Username#discrim instead of UserId. Specified users will be banned from the current server, blacklisted from the bot, and have all of their flowers taken away.",
       "Usage": [
         ".masskill BadPerson#1234 Toxic person"
       ],
       "Submodule": "UserPunishCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "BanMembers Server Permission",
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".vcrole"
       ],
-      "Description": "Sets or resets a role which will be given to users who join the voice channel you're in when you run this command. Provide no role name to disable. You must be in a voice channel to run this command.**Requires ManageRoles server permission.** **Requires ManageChannels server permission.**",
+      "Description": "Sets or resets a role which will be given to users who join the voice channel you're in when you run this command. Provide no role name to disable. You must be in a voice channel to run this command.",
       "Usage": [
         ".vcrole SomeRole",
         ".vcrole"
       ],
       "Submodule": "VcRoleCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission",
+        "ManageChannels Server Permission"
+      ]
     },
     {
       "Aliases": [
@@ -1363,7 +1662,8 @@
       ],
       "Submodule": "VcRoleCommands",
       "Module": "Administration",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     }
   ],
   "CustomReactions": [
@@ -1378,7 +1678,8 @@
       ],
       "Submodule": "CustomReactions",
       "Module": "CustomReactions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1391,7 +1692,8 @@
       ],
       "Submodule": "CustomReactions",
       "Module": "CustomReactions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1405,7 +1707,8 @@
       ],
       "Submodule": "CustomReactions",
       "Module": "CustomReactions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1418,7 +1721,8 @@
       ],
       "Submodule": "CustomReactions",
       "Module": "CustomReactions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1431,7 +1735,8 @@
       ],
       "Submodule": "CustomReactions",
       "Module": "CustomReactions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1444,7 +1749,8 @@
       ],
       "Submodule": "CustomReactions",
       "Module": "CustomReactions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1456,7 +1762,8 @@
       ],
       "Submodule": "CustomReactions",
       "Module": "CustomReactions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1468,7 +1775,8 @@
       ],
       "Submodule": "CustomReactions",
       "Module": "CustomReactions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1480,20 +1788,24 @@
       ],
       "Submodule": "CustomReactions",
       "Module": "CustomReactions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".crstatsclear"
       ],
-      "Description": "Resets the counters on `.crstats`. You can specify a trigger to clear stats only for that trigger.**Bot owner only**",
+      "Description": "Resets the counters on `.crstats`. You can specify a trigger to clear stats only for that trigger.",
       "Usage": [
         ".crstatsclear",
         ".crstatsclear rng"
       ],
       "Submodule": "CustomReactions",
       "Module": "CustomReactions",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
@@ -1506,7 +1818,8 @@
       ],
       "Submodule": "CustomReactions",
       "Module": "CustomReactions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     }
   ],
   "Gambling": [
@@ -1520,32 +1833,39 @@
       ],
       "Submodule": "Gambling",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".timelyreset"
       ],
-      "Description": "Resets all user timeouts on `.timely` command.**Bot owner only**",
+      "Description": "Resets all user timeouts on `.timely` command.",
       "Usage": [
         ".timelyreset"
       ],
       "Submodule": "Gambling",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".timelyset"
       ],
-      "Description": "Sets the 'timely' currency allowance amount for users. Second argument is period in hours, default is 24 hours.**Bot owner only**",
+      "Description": "Sets the 'timely' currency allowance amount for users. Second argument is period in hours, default is 24 hours.",
       "Usage": [
         ".timelyset 100",
         ".timelyset 50 12"
       ],
       "Submodule": "Gambling",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
@@ -1558,7 +1878,8 @@
       ],
       "Submodule": "Gambling",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1571,7 +1892,8 @@
       ],
       "Submodule": "Gambling",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1589,7 +1911,8 @@
       ],
       "Submodule": "Gambling",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1602,7 +1925,8 @@
       ],
       "Submodule": "Gambling",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1615,32 +1939,39 @@
       ],
       "Submodule": "Gambling",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".award"
       ],
-      "Description": "Awards someone a certain amount of currency. You can specify the reason after the Username. You can also specify a role name to award currency to all users in a role.**Bot owner only**",
+      "Description": "Awards someone a certain amount of currency. You can specify the reason after the Username. You can also specify a role name to award currency to all users in a role.",
       "Usage": [
         ".award 100 @person",
         ".award 5 Role Of Gamblers"
       ],
       "Submodule": "Gambling",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".take"
       ],
-      "Description": "Takes a certain amount of currency from someone.**Bot owner only**",
+      "Description": "Takes a certain amount of currency from someone.",
       "Usage": [
         ".take 1 @SomeGuy"
       ],
       "Submodule": "Gambling",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
@@ -1653,7 +1984,8 @@
       ],
       "Submodule": "Gambling",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1666,7 +1998,8 @@
       ],
       "Submodule": "Gambling",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1679,7 +2012,8 @@
       ],
       "Submodule": "Gambling",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1692,7 +2026,8 @@
       ],
       "Submodule": "Gambling",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1704,7 +2039,8 @@
       ],
       "Submodule": "AnimalRacingCommands",
       "Module": "Gambling",
-      "Options": "--start-time (-s)   "
+      "Options": "--start-time (-s)   ",
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1718,7 +2054,8 @@
       ],
       "Submodule": "AnimalRacingCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1731,7 +2068,8 @@
       ],
       "Submodule": "BlackJackCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1743,7 +2081,8 @@
       ],
       "Submodule": "BlackJackCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1755,7 +2094,8 @@
       ],
       "Submodule": "BlackJackCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1767,20 +2107,24 @@
       ],
       "Submodule": "BlackJackCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".eventstart"
       ],
-      "Description": "Starts one of the events seen on public nadeko. Events: `reaction`**Bot owner only**",
+      "Description": "Starts one of the events seen on public nadeko. Events: `reaction`",
       "Usage": [
         ".eventstart reaction",
         ".eventstart reaction -d 1 -a 50 --pot-size 1500"
       ],
       "Submodule": "CurrencyEventsCommands",
       "Module": "Gambling",
-      "Options": "--amount (-a)   Amount of currency each user receives.\n--pot-size (-p)   The maximum amount of currency that can be rewarded. 0 means no limit.\n--duration (-d)   Number of hours the event should run for. Default 24."
+      "Options": "--amount (-a)   Amount of currency each user receives.\n--pot-size (-p)   The maximum amount of currency that can be rewarded. 0 means no limit.\n--duration (-d)   Number of hours the event should run for. Default 24.",
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
@@ -1793,7 +2137,8 @@
       ],
       "Submodule": "CurrencyRaffleCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1808,7 +2153,8 @@
       ],
       "Submodule": "DiceRollCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1822,7 +2168,8 @@
       ],
       "Submodule": "DiceRollCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1835,7 +2182,8 @@
       ],
       "Submodule": "DiceRollCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1848,7 +2196,8 @@
       ],
       "Submodule": "DrawCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1861,7 +2210,8 @@
       ],
       "Submodule": "DrawCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1874,7 +2224,8 @@
       ],
       "Submodule": "DrawCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1887,7 +2238,8 @@
       ],
       "Submodule": "FlipCoinCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1901,7 +2253,8 @@
       ],
       "Submodule": "FlipCoinCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1914,7 +2267,8 @@
       ],
       "Submodule": "FlowerShopCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -1926,68 +2280,84 @@
       ],
       "Submodule": "FlowerShopCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".shopadd"
       ],
-      "Description": "Adds an item to the shop by specifying type price and name. Available types are role and list.**Requires Administrator server permission.**",
+      "Description": "Adds an item to the shop by specifying type price and name. Available types are role and list.",
       "Usage": [
         ".shopadd role 1000 Rich"
       ],
       "Submodule": "FlowerShopCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Administrator Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".shoplistadd"
       ],
-      "Description": "Adds an item to the list of items for sale in the shop entry given the index. You usually want to run this command in the secret channel, so that the unique items are not leaked.**Requires Administrator server permission.**",
+      "Description": "Adds an item to the list of items for sale in the shop entry given the index. You usually want to run this command in the secret channel, so that the unique items are not leaked.",
       "Usage": [
         ".shoplistadd 1 Uni-que-Steam-Key"
       ],
       "Submodule": "FlowerShopCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Administrator Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".shoprem",
         ".shoprm"
       ],
-      "Description": "Removes an item from the shop by its ID.**Requires Administrator server permission.**",
+      "Description": "Removes an item from the shop by its ID.",
       "Usage": [
         ".shoprm 1"
       ],
       "Submodule": "FlowerShopCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Administrator Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".slotstats"
       ],
-      "Description": "Shows the total stats of the slot command for this bot's session.**Bot owner only**",
+      "Description": "Shows the total stats of the slot command for this bot's session.",
       "Usage": [
         ".slotstats"
       ],
       "Submodule": "SlotCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".slottest"
       ],
-      "Description": "Tests to see how much slots payout for X number of plays.**Bot owner only**",
+      "Description": "Tests to see how much slots payout for X number of plays.",
       "Usage": [
         ".slottest 1000"
       ],
       "Submodule": "SlotCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
@@ -1999,7 +2369,8 @@
       ],
       "Submodule": "SlotCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2011,7 +2382,8 @@
       ],
       "Submodule": "WaifuClaimCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2024,7 +2396,8 @@
       ],
       "Submodule": "WaifuClaimCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2036,7 +2409,8 @@
       ],
       "Submodule": "WaifuClaimCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2048,7 +2422,8 @@
       ],
       "Submodule": "WaifuClaimCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2061,7 +2436,8 @@
       ],
       "Submodule": "WaifuClaimCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2075,7 +2451,8 @@
       ],
       "Submodule": "WaifuClaimCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2089,7 +2466,8 @@
       ],
       "Submodule": "WaifuClaimCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2104,7 +2482,8 @@
       ],
       "Submodule": "WaifuClaimCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2117,7 +2496,8 @@
       ],
       "Submodule": "WheelOfFortuneCommands",
       "Module": "Gambling",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     }
   ],
   "Games": [
@@ -2131,7 +2511,8 @@
       ],
       "Submodule": "Games",
       "Module": "Games",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2143,7 +2524,8 @@
       ],
       "Submodule": "Games",
       "Module": "Games",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2155,7 +2537,8 @@
       ],
       "Submodule": "Games",
       "Module": "Games",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2167,7 +2550,8 @@
       ],
       "Submodule": "Games",
       "Module": "Games",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2181,19 +2565,23 @@
       ],
       "Submodule": "AcropobiaCommands",
       "Module": "Games",
-      "Options": "--submission-time (-s)   Time after which the submissions are closed and voting starts.\n--vote-time (-v)   Time after which the voting is closed and the winner is declared."
+      "Options": "--submission-time (-s)   Time after which the submissions are closed and voting starts.\n--vote-time (-v)   Time after which the voting is closed and the winner is declared.",
+      "Requirements": []
     },
     {
       "Aliases": [
         ".cleverbot"
       ],
-      "Description": "Toggles cleverbot session. When enabled, the bot will reply to messages starting with bot mention in the server. Custom reactions starting with %mention% won't work if cleverbot is enabled.**Requires ManageMessages server permission.**",
+      "Description": "Toggles cleverbot session. When enabled, the bot will reply to messages starting with bot mention in the server. Custom reactions starting with %mention% won't work if cleverbot is enabled.",
       "Usage": [
         ".cleverbot"
       ],
       "Submodule": "ChatterBotCommands",
       "Module": "Games",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
@@ -2206,7 +2594,8 @@
       ],
       "Submodule": "Connect4Commands",
       "Module": "Games",
-      "Options": "--turn-timer (-t)   Turn time in seconds. Default 15."
+      "Options": "--turn-timer (-t)   Turn time in seconds. Default 15.",
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2218,7 +2607,8 @@
       ],
       "Submodule": "HangmanCommands",
       "Module": "Games",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2231,7 +2621,8 @@
       ],
       "Submodule": "HangmanCommands",
       "Module": "Games",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2243,7 +2634,8 @@
       ],
       "Submodule": "HangmanCommands",
       "Module": "Games",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2255,7 +2647,8 @@
       ],
       "Submodule": "LeetCommands",
       "Module": "Games",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2267,7 +2660,8 @@
       ],
       "Submodule": "NunchiCommands",
       "Module": "Games",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2279,7 +2673,8 @@
       ],
       "Submodule": "PlantPickCommands",
       "Module": "Games",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2292,57 +2687,70 @@
       ],
       "Submodule": "PlantPickCommands",
       "Module": "Games",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".gencurrency",
         ".gc"
       ],
-      "Description": "Toggles currency generation on this channel. Every posted message will have chance to spawn currency. Chance is specified by the Bot Owner. (default is 2%)**Requires ManageMessages server permission.**",
+      "Description": "Toggles currency generation on this channel. Every posted message will have chance to spawn currency. Chance is specified by the Bot Owner. (default is 2%)",
       "Usage": [
         ".gc"
       ],
       "Submodule": "PlantPickCommands",
       "Module": "Games",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".poll",
         ".ppoll"
       ],
-      "Description": "Creates a public poll which requires users to type a number of the voting option in the channel command is ran in.**Requires ManageMessages server permission.**",
+      "Description": "Creates a public poll which requires users to type a number of the voting option in the channel command is ran in.",
       "Usage": [
         ".ppoll Question?;Answer1;Answ 2;A_3"
       ],
       "Submodule": "PollCommands",
       "Module": "Games",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".pollstats"
       ],
-      "Description": "Shows the poll results without stopping the poll on this server.**Requires ManageMessages server permission.**",
+      "Description": "Shows the poll results without stopping the poll on this server.",
       "Usage": [
         ".pollstats"
       ],
       "Submodule": "PollCommands",
       "Module": "Games",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".pollend"
       ],
-      "Description": "Stops active poll on this server and prints the results in this channel.**Requires ManageMessages server permission.**",
+      "Description": "Stops active poll on this server and prints the results in this channel.",
       "Usage": [
         ".pollend"
       ],
       "Submodule": "PollCommands",
       "Module": "Games",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
@@ -2354,7 +2762,8 @@
       ],
       "Submodule": "SpeedTypingCommands",
       "Module": "Games",
-      "Options": "--start-time (-s)   How long does it take for the race to start. Default 5."
+      "Options": "--start-time (-s)   How long does it take for the race to start. Default 5.",
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2366,19 +2775,23 @@
       ],
       "Submodule": "SpeedTypingCommands",
       "Module": "Games",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".typeadd"
       ],
-      "Description": "Adds a new article to the typing contest.**Bot owner only**",
+      "Description": "Adds a new article to the typing contest.",
       "Usage": [
         ".typeadd wordswords"
       ],
       "Submodule": "SpeedTypingCommands",
       "Module": "Games",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
@@ -2391,19 +2804,23 @@
       ],
       "Submodule": "SpeedTypingCommands",
       "Module": "Games",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".typedel"
       ],
-      "Description": "Deletes a typing article given the ID.**Bot owner only**",
+      "Description": "Deletes a typing article given the ID.",
       "Usage": [
         ".typedel 3"
       ],
       "Submodule": "SpeedTypingCommands",
       "Module": "Games",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
@@ -2416,7 +2833,8 @@
       ],
       "Submodule": "TicTacToeCommands",
       "Module": "Games",
-      "Options": "--turn-timer (-t)   Turn time in seconds. Default 15."
+      "Options": "--turn-timer (-t)   Turn time in seconds. Default 15.",
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2430,7 +2848,8 @@
       ],
       "Submodule": "TriviaCommands",
       "Module": "Games",
-      "Options": "--pokemon (-p)   Whether it's 'Who's that pokemon?' trivia.\n--nohint   Don't show any hints.\n--win-req (-w)   Winning requirement. Set 0 for an infinite game. Default 10.\n--question-timer (-q)   How long until the question ends. Default 30.\n--timeout (-t)   Number of questions of inactivity in order stop. Set 0 for never. Default 10."
+      "Options": "--pokemon (-p)   Whether it's 'Who's that pokemon?' trivia.\n--nohint   Don't show any hints.\n--win-req (-w)   Winning requirement. Set 0 for an infinite game. Default 10.\n--question-timer (-q)   How long until the question ends. Default 30.\n--timeout (-t)   Number of questions of inactivity in order stop. Set 0 for never. Default 10.",
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2442,7 +2861,8 @@
       ],
       "Submodule": "TriviaCommands",
       "Module": "Games",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2454,7 +2874,8 @@
       ],
       "Submodule": "TriviaCommands",
       "Module": "Games",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     }
   ],
   "Help": [
@@ -2469,7 +2890,8 @@
       ],
       "Submodule": "Help",
       "Module": "Help",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2483,7 +2905,8 @@
       ],
       "Submodule": "Help",
       "Module": "Help",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2497,19 +2920,23 @@
       ],
       "Submodule": "Help",
       "Module": "Help",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".hgit"
       ],
-      "Description": "Generates the commandlist.md file.**Bot owner only**",
+      "Description": "Generates the commandlist.md file.",
       "Usage": [
         ".hgit"
       ],
       "Submodule": "Help",
       "Module": "Help",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
@@ -2523,7 +2950,8 @@
       ],
       "Submodule": "Help",
       "Module": "Help",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2535,7 +2963,8 @@
       ],
       "Submodule": "Help",
       "Module": "Help",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     }
   ],
   "Music": [
@@ -2552,7 +2981,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2566,7 +2996,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2579,7 +3010,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2593,7 +3025,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2607,7 +3040,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2621,7 +3055,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2634,7 +3069,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2647,7 +3083,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2660,7 +3097,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2673,7 +3111,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2686,7 +3125,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2699,7 +3139,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2712,7 +3153,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2725,7 +3167,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2738,7 +3181,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2750,7 +3194,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2762,7 +3207,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2775,7 +3221,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2788,7 +3235,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2801,7 +3249,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2814,7 +3263,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2827,7 +3277,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2841,7 +3292,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2854,7 +3306,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2867,33 +3320,40 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".local",
         ".lo"
       ],
-      "Description": "Queues a local file by specifying a full path.**Bot owner only**",
+      "Description": "Queues a local file by specifying a full path.",
       "Usage": [
         ".lo C:/music/mysong.mp3"
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".localplaylst",
         ".lopl"
       ],
-      "Description": "Queues all songs from a directory.**Bot owner only**",
+      "Description": "Queues all songs from a directory.",
       "Usage": [
         ".lopl C:/music/classical"
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
@@ -2906,7 +3366,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2919,7 +3380,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2933,7 +3395,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2947,7 +3410,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2960,7 +3424,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2973,7 +3438,8 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -2986,33 +3452,40 @@
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".setmusicchannel",
         ".smch"
       ],
-      "Description": "Sets the current channel as the default music output channel. This will output playing, finished, paused and removed songs to that channel instead of the channel where the first song was queued in.**Requires ManageMessages server permission.**",
+      "Description": "Sets the current channel as the default music output channel. This will output playing, finished, paused and removed songs to that channel instead of the channel where the first song was queued in.",
       "Usage": [
         ".smch"
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".unsetmusicchannel",
         ".usmch"
       ],
-      "Description": "Bot will output playing, finished, paused and removed songs to the channel where the first song was queued in.**Requires ManageMessages server permission.**",
+      "Description": "Bot will output playing, finished, paused and removed songs to the channel where the first song was queued in.",
       "Usage": [
         ".smch"
       ],
       "Submodule": "Music",
       "Module": "Music",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     }
   ],
   "NSFW": [
@@ -3020,40 +3493,49 @@
       "Aliases": [
         ".autohentai"
       ],
-      "Description": "Posts a hentai every X seconds with a random tag from the provided tags. Use `|` to separate tags. 20 seconds minimum. Provide no arguments to disable.**Requires ManageMessages channel permission.**",
+      "Description": "Posts a hentai every X seconds with a random tag from the provided tags. Use `|` to separate tags. 20 seconds minimum. Provide no arguments to disable.",
       "Usage": [
         ".autohentai 30 yuri|tail|long_hair",
         ".autohentai"
       ],
       "Submodule": "NSFW",
       "Module": "NSFW",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Channel Permission"
+      ]
     },
     {
       "Aliases": [
         ".autoboobs"
       ],
-      "Description": "Posts a boobs every X seconds. 20 seconds minimum. Provide no arguments to disable.**Requires ManageMessages channel permission.**",
+      "Description": "Posts a boobs every X seconds. 20 seconds minimum. Provide no arguments to disable.",
       "Usage": [
         ".autoboobs 30",
         ".autoboobs"
       ],
       "Submodule": "NSFW",
       "Module": "NSFW",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Channel Permission"
+      ]
     },
     {
       "Aliases": [
         ".autobutts"
       ],
-      "Description": "Posts a butts every X seconds. 20 seconds minimum. Provide no arguments to disable.**Requires ManageMessages channel permission.**",
+      "Description": "Posts a butts every X seconds. 20 seconds minimum. Provide no arguments to disable.",
       "Usage": [
         ".autobutts 30",
         ".autobutts"
       ],
       "Submodule": "NSFW",
       "Module": "NSFW",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Channel Permission"
+      ]
     },
     {
       "Aliases": [
@@ -3065,7 +3547,8 @@
       ],
       "Submodule": "NSFW",
       "Module": "NSFW",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3077,7 +3560,8 @@
       ],
       "Submodule": "NSFW",
       "Module": "NSFW",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3089,7 +3573,8 @@
       ],
       "Submodule": "NSFW",
       "Module": "NSFW",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3101,7 +3586,8 @@
       ],
       "Submodule": "NSFW",
       "Module": "NSFW",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3113,7 +3599,8 @@
       ],
       "Submodule": "NSFW",
       "Module": "NSFW",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3125,7 +3612,8 @@
       ],
       "Submodule": "NSFW",
       "Module": "NSFW",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3137,7 +3625,8 @@
       ],
       "Submodule": "NSFW",
       "Module": "NSFW",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3149,7 +3638,8 @@
       ],
       "Submodule": "NSFW",
       "Module": "NSFW",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3161,7 +3651,8 @@
       ],
       "Submodule": "NSFW",
       "Module": "NSFW",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3176,7 +3667,8 @@
       ],
       "Submodule": "NSFW",
       "Module": "NSFW",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3189,19 +3681,23 @@
       ],
       "Submodule": "NSFW",
       "Module": "NSFW",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".nsfwcc"
       ],
-      "Description": "Clears nsfw cache.**Bot owner only**",
+      "Description": "Clears nsfw cache.",
       "Usage": [
         ".nsfwcc"
       ],
       "Submodule": "NSFW",
       "Module": "NSFW",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     }
   ],
   "Permissions": [
@@ -3216,7 +3712,8 @@
       ],
       "Submodule": "Permissions",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3229,7 +3726,8 @@
       ],
       "Submodule": "Permissions",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3243,7 +3741,8 @@
       ],
       "Submodule": "Permissions",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3256,7 +3755,8 @@
       ],
       "Submodule": "Permissions",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3269,7 +3769,8 @@
       ],
       "Submodule": "Permissions",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3282,7 +3783,8 @@
       ],
       "Submodule": "Permissions",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3295,7 +3797,8 @@
       ],
       "Submodule": "Permissions",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3308,7 +3811,8 @@
       ],
       "Submodule": "Permissions",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3321,7 +3825,8 @@
       ],
       "Submodule": "Permissions",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3334,7 +3839,8 @@
       ],
       "Submodule": "Permissions",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3347,7 +3853,8 @@
       ],
       "Submodule": "Permissions",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3360,7 +3867,8 @@
       ],
       "Submodule": "Permissions",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3373,7 +3881,8 @@
       ],
       "Submodule": "Permissions",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3386,7 +3895,8 @@
       ],
       "Submodule": "Permissions",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3399,7 +3909,8 @@
       ],
       "Submodule": "Permissions",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3412,7 +3923,8 @@
       ],
       "Submodule": "Permissions",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3425,45 +3937,55 @@
       ],
       "Submodule": "Permissions",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".ubl"
       ],
-      "Description": "Either [add]s or [rem]oves a user specified by a Mention or an ID from a blacklist.**Bot owner only**",
+      "Description": "Either [add]s or [rem]oves a user specified by a Mention or an ID from a blacklist.",
       "Usage": [
         ".ubl add @SomeUser",
         ".ubl rem 12312312313"
       ],
       "Submodule": "BlacklistCommands",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".cbl"
       ],
-      "Description": "Either [add]s or [rem]oves a channel specified by an ID from a blacklist.**Bot owner only**",
+      "Description": "Either [add]s or [rem]oves a channel specified by an ID from a blacklist.",
       "Usage": [
         ".cbl rem 12312312312"
       ],
       "Submodule": "BlacklistCommands",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".sbl"
       ],
-      "Description": "Either [add]s or [rem]oves a server specified by a Name or an ID from a blacklist.**Bot owner only**",
+      "Description": "Either [add]s or [rem]oves a server specified by a Name or an ID from a blacklist.",
       "Usage": [
         ".sbl add 12312321312",
         ".sbl rem SomeTrashServer"
       ],
       "Submodule": "BlacklistCommands",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
@@ -3476,7 +3998,8 @@
       ],
       "Submodule": "CmdCdsCommands",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3489,7 +4012,8 @@
       ],
       "Submodule": "CmdCdsCommands",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3502,7 +4026,8 @@
       ],
       "Submodule": "FilterCommands",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3515,7 +4040,8 @@
       ],
       "Submodule": "FilterCommands",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3528,7 +4054,8 @@
       ],
       "Submodule": "FilterCommands",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3541,7 +4068,8 @@
       ],
       "Submodule": "FilterCommands",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3553,7 +4081,8 @@
       ],
       "Submodule": "FilterCommands",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3566,70 +4095,86 @@
       ],
       "Submodule": "FilterCommands",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".listglobalperms",
         ".lgp"
       ],
-      "Description": "Lists global permissions set by the bot owner.**Bot owner only**",
+      "Description": "Lists global permissions set by the bot owner.",
       "Usage": [
         ".lgp"
       ],
       "Submodule": "GlobalPermissionCommands",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".globalmodule",
         ".gmod"
       ],
-      "Description": "Toggles whether a module can be used on any server.**Bot owner only**",
+      "Description": "Toggles whether a module can be used on any server.",
       "Usage": [
         ".gmod nsfw"
       ],
       "Submodule": "GlobalPermissionCommands",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".globalcommand",
         ".gcmd"
       ],
-      "Description": "Toggles whether a command can be used on any server.**Bot owner only**",
+      "Description": "Toggles whether a command can be used on any server.",
       "Usage": [
         ".gcmd .stats"
       ],
       "Submodule": "GlobalPermissionCommands",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".resetperms"
       ],
-      "Description": "Resets the bot's permissions module on this server to the default value.**Requires Administrator server permission.**",
+      "Description": "Resets the bot's permissions module on this server to the default value.",
       "Usage": [
         ".resetperms"
       ],
       "Submodule": "ResetPermissionsCommands",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Administrator Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".resetglobalperms"
       ],
-      "Description": "Resets global permissions set by bot owner.**Bot owner only**",
+      "Description": "Resets global permissions set by bot owner.",
       "Usage": [
         ".resetglobalperms"
       ],
       "Submodule": "ResetPermissionsCommands",
       "Module": "Permissions",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     }
   ],
   "Pokemon": [
@@ -3643,7 +4188,8 @@
       ],
       "Submodule": "Pokemon",
       "Module": "Pokemon",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3656,7 +4202,8 @@
       ],
       "Submodule": "Pokemon",
       "Module": "Pokemon",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3668,7 +4215,8 @@
       ],
       "Submodule": "Pokemon",
       "Module": "Pokemon",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3680,7 +4228,8 @@
       ],
       "Submodule": "Pokemon",
       "Module": "Pokemon",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3693,7 +4242,8 @@
       ],
       "Submodule": "Pokemon",
       "Module": "Pokemon",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     }
   ],
   "Searches": [
@@ -3707,7 +4257,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3721,7 +4272,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3733,19 +4285,23 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".say"
       ],
-      "Description": "Bot will send the message you typed in this channel. Supports embeds.**Requires ManageMessages server permission.**",
+      "Description": "Bot will send the message you typed in this channel. Supports embeds.",
       "Usage": [
         ".say hi"
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
@@ -3758,7 +4314,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3770,7 +4327,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3783,7 +4341,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3796,7 +4355,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3809,7 +4369,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3822,7 +4383,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3835,7 +4397,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3848,7 +4411,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3860,7 +4424,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3872,7 +4437,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3885,7 +4451,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3899,7 +4466,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3912,7 +4480,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3925,7 +4494,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3938,7 +4508,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3951,7 +4522,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3963,7 +4535,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3975,7 +4548,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3987,7 +4561,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -3999,7 +4574,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4011,7 +4587,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4024,7 +4601,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4038,7 +4616,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4050,7 +4629,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4063,7 +4643,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4076,7 +4657,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4088,7 +4670,8 @@
       ],
       "Submodule": "Searches",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4100,7 +4683,8 @@
       ],
       "Submodule": "AnimeSearchCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4112,7 +4696,8 @@
       ],
       "Submodule": "AnimeSearchCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4126,7 +4711,8 @@
       ],
       "Submodule": "AnimeSearchCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4140,20 +4726,24 @@
       ],
       "Submodule": "AnimeSearchCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".feed",
         ".feedadd"
       ],
-      "Description": "Subscribes to a feed. Bot will post an update up to once every 10 seconds. You can have up to 10 feeds on one server. All feeds must have unique URLs.**Requires ManageMessages server permission.**",
+      "Description": "Subscribes to a feed. Bot will post an update up to once every 10 seconds. You can have up to 10 feeds on one server. All feeds must have unique URLs.",
       "Usage": [
         ".feed https://www.rt.com/rss/"
       ],
       "Submodule": "FeedCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
@@ -4161,26 +4751,32 @@
         ".feedrm",
         ".feeddel"
       ],
-      "Description": "Stops tracking a feed on the given index. Use `.feeds` command to see a list of feeds and their indexes.**Requires ManageMessages server permission.**",
+      "Description": "Stops tracking a feed on the given index. Use `.feeds` command to see a list of feeds and their indexes.",
       "Usage": [
         ".feedremove 3"
       ],
       "Submodule": "FeedCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".feeds",
         ".feedlist"
       ],
-      "Description": "Shows the list of feeds you've subscribed to on this server.**Requires ManageMessages server permission.**",
+      "Description": "Shows the list of feeds you've subscribed to on this server.",
       "Usage": [
         ".feeds"
       ],
       "Submodule": "FeedCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
@@ -4193,7 +4789,8 @@
       ],
       "Submodule": "JokeCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4206,7 +4803,8 @@
       ],
       "Submodule": "JokeCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4219,7 +4817,8 @@
       ],
       "Submodule": "JokeCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4231,7 +4830,8 @@
       ],
       "Submodule": "JokeCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4244,7 +4844,8 @@
       ],
       "Submodule": "JokeCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4256,7 +4857,8 @@
       ],
       "Submodule": "MemegenCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4268,7 +4870,8 @@
       ],
       "Submodule": "MemegenCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4281,7 +4884,8 @@
       ],
       "Submodule": "OsuCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4293,7 +4897,8 @@
       ],
       "Submodule": "OsuCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4305,7 +4910,8 @@
       ],
       "Submodule": "OsuCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4319,7 +4925,8 @@
       ],
       "Submodule": "OverwatchCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4332,7 +4939,8 @@
       ],
       "Submodule": "PathOfExileCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4345,7 +4953,8 @@
       ],
       "Submodule": "PathOfExileCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4358,7 +4967,8 @@
       ],
       "Submodule": "PathOfExileCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4371,7 +4981,8 @@
       ],
       "Submodule": "PathOfExileCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4383,7 +4994,8 @@
       ],
       "Submodule": "PlaceCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4396,7 +5008,8 @@
       ],
       "Submodule": "PlaceCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4409,7 +5022,8 @@
       ],
       "Submodule": "PokemonSearchCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4422,86 +5036,105 @@
       ],
       "Submodule": "PokemonSearchCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".smashcast",
         ".hb"
       ],
-      "Description": "Notifies this channel when the specified user starts streaming.**Requires ManageMessages server permission.**",
+      "Description": "Notifies this channel when the specified user starts streaming.",
       "Usage": [
         ".smashcast SomeStreamer"
       ],
       "Submodule": "StreamNotificationCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".twitch",
         ".tw"
       ],
-      "Description": "Notifies this channel when the specified user starts streaming.**Requires ManageMessages server permission.**",
+      "Description": "Notifies this channel when the specified user starts streaming.",
       "Usage": [
         ".twitch SomeStreamer"
       ],
       "Submodule": "StreamNotificationCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".picarto",
         ".pa"
       ],
-      "Description": "Notifies this channel when the specified user starts streaming.**Requires ManageMessages server permission.**",
+      "Description": "Notifies this channel when the specified user starts streaming.",
       "Usage": [
         ".picarto SomeStreamer"
       ],
       "Submodule": "StreamNotificationCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".mixer",
         ".bm"
       ],
-      "Description": "Notifies this channel when the specified user starts streaming.**Requires ManageMessages server permission.**",
+      "Description": "Notifies this channel when the specified user starts streaming.",
       "Usage": [
         ".mixer SomeStreamer"
       ],
       "Submodule": "StreamNotificationCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".streamadd",
         ".stadd"
       ],
-      "Description": "Notifies this channel when the user's stream on the specified URL goes online or offline.**Requires ManageMessages server permission.**",
+      "Description": "Notifies this channel when the user's stream on the specified URL goes online or offline.",
       "Usage": [
         ".stadd twitch.tv/someguy"
       ],
       "Submodule": "StreamNotificationCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".streamremove",
         ".strm"
       ],
-      "Description": "Removes notifications of a specified stream on the specified platform on this channel. You can also just specify an url.**Requires ManageMessages server permission.**",
+      "Description": "Removes notifications of a specified stream on the specified platform on this channel. You can also just specify an url.",
       "Usage": [
         ".strm Twitch SomeGuy",
         ".strm twitch.tv/someguy"
       ],
       "Submodule": "StreamNotificationCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
@@ -4514,7 +5147,8 @@
       ],
       "Submodule": "StreamNotificationCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4527,7 +5161,8 @@
       ],
       "Submodule": "StreamNotificationCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4540,21 +5175,26 @@
       ],
       "Submodule": "TranslateCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".autotrans",
         ".at"
       ],
-      "Description": "Starts automatic translation of all messages by users who set their `.atl` in this channel. You can set \"del\" argument to automatically delete all translated user messages.**Requires Administrator server permission.** **Bot owner only**",
+      "Description": "Starts automatic translation of all messages by users who set their `.atl` in this channel. You can set \"del\" argument to automatically delete all translated user messages.",
       "Usage": [
         ".at",
         ".at del"
       ],
       "Submodule": "TranslateCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Administrator Server Permission",
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
@@ -4567,7 +5207,8 @@
       ],
       "Submodule": "TranslateCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4579,7 +5220,8 @@
       ],
       "Submodule": "TranslateCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4593,7 +5235,8 @@
       ],
       "Submodule": "XkcdCommands",
       "Module": "Searches",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     }
   ],
   "Utility": [
@@ -4608,7 +5251,8 @@
       ],
       "Submodule": "Utility",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4621,7 +5265,8 @@
       ],
       "Submodule": "Utility",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4633,7 +5278,8 @@
       ],
       "Submodule": "Utility",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4646,7 +5292,8 @@
       ],
       "Submodule": "Utility",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4660,7 +5307,8 @@
       ],
       "Submodule": "Utility",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4673,7 +5321,8 @@
       ],
       "Submodule": "Utility",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4686,7 +5335,8 @@
       ],
       "Submodule": "Utility",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4699,7 +5349,8 @@
       ],
       "Submodule": "Utility",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4712,7 +5363,8 @@
       ],
       "Submodule": "Utility",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4725,20 +5377,24 @@
       ],
       "Submodule": "Utility",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".createinvite",
         ".crinv"
       ],
-      "Description": "Creates a new invite which has infinite max uses and never expires.**Requires CreateInstantInvite channel permission.**",
+      "Description": "Creates a new invite which has infinite max uses and never expires.",
       "Usage": [
         ".crinv"
       ],
       "Submodule": "Utility",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "CreateInstantInvite Channel Permission"
+      ]
     },
     {
       "Aliases": [
@@ -4750,7 +5406,8 @@
       ],
       "Submodule": "Utility",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4763,31 +5420,38 @@
       ],
       "Submodule": "Utility",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".listservers"
       ],
-      "Description": "Lists servers the bot is on with some basic info. 15 per page.**Bot owner only**",
+      "Description": "Lists servers the bot is on with some basic info. 15 per page.",
       "Usage": [
         ".listservers 3"
       ],
       "Submodule": "Utility",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".savechat"
       ],
-      "Description": "Saves a number of messages to a text file and sends it to you.**Bot owner only**",
+      "Description": "Saves a number of messages to a text file and sends it to you.",
       "Usage": [
         ".savechat 150"
       ],
       "Submodule": "Utility",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
@@ -4799,21 +5463,25 @@
       ],
       "Submodule": "Utility",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".botconfigedit",
         ".bce"
       ],
-      "Description": "Sets one of available bot config settings to a specified value. Use the command without any parameters to get a list of available settings.**Bot owner only**",
+      "Description": "Sets one of available bot config settings to a specified value. Use the command without any parameters to get a list of available settings.",
       "Usage": [
         ".bce CurrencyName b1nzy",
         ".bce"
       ],
       "Submodule": "BotConfigCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
@@ -4826,7 +5494,8 @@
       ],
       "Submodule": "CalcCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4838,21 +5507,25 @@
       ],
       "Submodule": "CalcCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".alias",
         ".cmdmap"
       ],
-      "Description": "Create a custom alias for a certain Nadeko command. Provide no alias to remove the existing one.**Requires Administrator server permission.**",
+      "Description": "Create a custom alias for a certain Nadeko command. Provide no alias to remove the existing one.",
       "Usage": [
         ".alias allin .bf all h",
         ".alias \"linux thingy\" >loonix Spyware Windows"
       ],
       "Submodule": "CommandMapCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Administrator Server Permission"
+      ]
     },
     {
       "Aliases": [
@@ -4867,7 +5540,8 @@
       ],
       "Submodule": "CommandMapCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4880,7 +5554,8 @@
       ],
       "Submodule": "InfoCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4893,7 +5568,8 @@
       ],
       "Submodule": "InfoCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4906,19 +5582,23 @@
       ],
       "Submodule": "InfoCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".activity"
       ],
-      "Description": "Checks for spammers.**Bot owner only**",
+      "Description": "Checks for spammers.",
       "Usage": [
         ".activity"
       ],
       "Submodule": "InfoCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
@@ -4930,7 +5610,8 @@
       ],
       "Submodule": "PatreonCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4943,7 +5624,8 @@
       ],
       "Submodule": "PatreonCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4957,7 +5639,8 @@
       ],
       "Submodule": "QuoteCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4969,7 +5652,8 @@
       ],
       "Submodule": "QuoteCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4981,7 +5665,8 @@
       ],
       "Submodule": "QuoteCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -4994,7 +5679,8 @@
       ],
       "Submodule": "QuoteCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5006,7 +5692,8 @@
       ],
       "Submodule": "QuoteCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5019,20 +5706,24 @@
       ],
       "Submodule": "QuoteCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".delallq",
         ".daq"
       ],
-      "Description": "Deletes all quotes on a specified keyword.**Requires Administrator server permission.**",
+      "Description": "Deletes all quotes on a specified keyword.",
       "Usage": [
         ".delallq kek"
       ],
       "Submodule": "QuoteCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Administrator Server Permission"
+      ]
     },
     {
       "Aliases": [
@@ -5045,7 +5736,8 @@
       ],
       "Submodule": "RemindCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5059,7 +5751,8 @@
       ],
       "Submodule": "RemindCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5072,125 +5765,153 @@
       ],
       "Submodule": "RemindCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".remindtemplate"
       ],
-      "Description": "Sets message for when the remind is triggered.  Available placeholders are `%user%` - user who ran the command, `%message%` - Message specified in the remind, `%target%` - target channel of the remind.**Bot owner only**",
+      "Description": "Sets message for when the remind is triggered.  Available placeholders are `%user%` - user who ran the command, `%message%` - Message specified in the remind, `%target%` - target channel of the remind.",
       "Usage": [
         ".remindtemplate %user%, do %message%!"
       ],
       "Submodule": "RemindCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
         ".repeatinvoke",
         ".repinv"
       ],
-      "Description": "Immediately shows the repeat message on a certain index and restarts its timer.**Requires ManageMessages server permission.**",
+      "Description": "Immediately shows the repeat message on a certain index and restarts its timer.",
       "Usage": [
         ".repinv 1"
       ],
       "Submodule": "RepeatCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".repeatremove",
         ".reprm"
       ],
-      "Description": "Removes a repeating message on a specified index. Use `.repeatlist` to see indexes.**Requires ManageMessages server permission.**",
+      "Description": "Removes a repeating message on a specified index. Use `.repeatlist` to see indexes.",
       "Usage": [
         ".reprm 2"
       ],
       "Submodule": "RepeatCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".repeat"
       ],
-      "Description": "Repeat a message every `X` minutes in the current channel. You can instead specify time of day for the message to be repeated at daily (make sure you've set your server's timezone). You can have up to 5 repeating messages on the server in total.**Requires ManageMessages server permission.**",
+      "Description": "Repeat a message every `X` minutes in the current channel. You can instead specify time of day for the message to be repeated at daily (make sure you've set your server's timezone). You can have up to 5 repeating messages on the server in total.",
       "Usage": [
         ".repeat 5 Hello there",
         ".repeat 17:30 tea time"
       ],
       "Submodule": "RepeatCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".repeatlist",
         ".replst"
       ],
-      "Description": "Shows currently repeating messages and their indexes.**Requires ManageMessages server permission.**",
+      "Description": "Shows currently repeating messages and their indexes.",
       "Usage": [
         ".repeatlist"
       ],
       "Submodule": "RepeatCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".streamrole"
       ],
-      "Description": "Sets a role which is monitored for streamers (FromRole), and a role to add if a user from 'FromRole' is streaming (AddRole). When a user from 'FromRole' starts streaming, they will receive an 'AddRole'. Provide no arguments to disable**Requires ManageRoles server permission.**",
+      "Description": "Sets a role which is monitored for streamers (FromRole), and a role to add if a user from 'FromRole' is streaming (AddRole). When a user from 'FromRole' starts streaming, they will receive an 'AddRole'. Provide no arguments to disable",
       "Usage": [
         ".streamrole \"Eligible Streamers\" \"Featured Streams\""
       ],
       "Submodule": "StreamRoleCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".streamrolekw",
         ".srkw"
       ],
-      "Description": "Sets keyword which is required in the stream's title in order for the streamrole to apply. Provide no keyword in order to reset.**Requires ManageRoles server permission.**",
+      "Description": "Sets keyword which is required in the stream's title in order for the streamrole to apply. Provide no keyword in order to reset.",
       "Usage": [
         ".srkw",
         ".srkw PUBG"
       ],
       "Submodule": "StreamRoleCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".streamrolebl",
         ".srbl"
       ],
-      "Description": "Adds or removes a blacklisted user. Blacklisted users will never receive the stream role.**Requires ManageRoles server permission.**",
+      "Description": "Adds or removes a blacklisted user. Blacklisted users will never receive the stream role.",
       "Usage": [
         ".srbl add @b1nzy#1234",
         ".srbl rem @b1nzy#1234"
       ],
       "Submodule": "StreamRoleCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".streamrolewl",
         ".srwl"
       ],
-      "Description": "Adds or removes a whitelisted user. Whitelisted users will receive the stream role even if they don't have the specified keyword in their stream title.**Requires ManageRoles server permission.**",
+      "Description": "Adds or removes a whitelisted user. Whitelisted users will receive the stream role even if they don't have the specified keyword in their stream title.",
       "Usage": [
         ".srwl add @b1nzy#1234",
         ".srwl rem @b1nzy#1234"
       ],
       "Submodule": "StreamRoleCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission"
+      ]
     },
     {
       "Aliases": [
@@ -5202,7 +5923,8 @@
       ],
       "Submodule": "UnitConverterCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5214,20 +5936,24 @@
       ],
       "Submodule": "UnitConverterCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".verboseerror",
         ".ve"
       ],
-      "Description": "Toggles whether the bot should print command errors when a command is incorrectly used.**Requires ManageMessages server permission.**",
+      "Description": "Toggles whether the bot should print command errors when a command is incorrectly used.",
       "Usage": [
         ".ve"
       ],
       "Submodule": "VerboseErrorCommands",
       "Module": "Utility",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageMessages Server Permission"
+      ]
     }
   ],
   "Xp": [
@@ -5242,7 +5968,8 @@
       ],
       "Submodule": "Xp",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5259,33 +5986,40 @@
       ],
       "Submodule": "Xp",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".xprolereward",
         ".xprr"
       ],
-      "Description": "Sets a role reward on a specified level. Provide no role name in order to remove the role reward.**Requires ManageRoles server permission.**",
+      "Description": "Sets a role reward on a specified level. Provide no role name in order to remove the role reward.",
       "Usage": [
         ".xprr 3 Social"
       ],
       "Submodule": "Xp",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "ManageRoles Server Permission"
+      ]
     },
     {
       "Aliases": [
         ".xpcurreward",
         ".xpcr"
       ],
-      "Description": "Sets a currency reward on a specified level. Provide no amount in order to remove the reward.**Bot owner only**",
+      "Description": "Sets a currency reward on a specified level. Provide no amount in order to remove the reward.",
       "Usage": [
         ".xpcr 3 50"
       ],
       "Submodule": "Xp",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Bot Owner Only"
+      ]
     },
     {
       "Aliases": [
@@ -5299,21 +6033,25 @@
       ],
       "Submodule": "Xp",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".xpexclude",
         ".xpex"
       ],
-      "Description": "Exclude a channel, role or current server from the xp system.**Requires Administrator server permission.**",
+      "Description": "Exclude a channel, role or current server from the xp system.",
       "Usage": [
         ".xpex Role Excluded-Role",
         ".xpex Server"
       ],
       "Submodule": "Xp",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Administrator Server Permission"
+      ]
     },
     {
       "Aliases": [
@@ -5326,7 +6064,8 @@
       ],
       "Submodule": "Xp",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5339,7 +6078,8 @@
       ],
       "Submodule": "Xp",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5352,19 +6092,23 @@
       ],
       "Submodule": "Xp",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".xpadd"
       ],
-      "Description": "Adds xp to a user on the server. This does not affect their global ranking. You can use negative values.**Requires Administrator server permission.**",
+      "Description": "Adds xp to a user on the server. This does not affect their global ranking. You can use negative values.",
       "Usage": [
         ".xpadd 100 @b1nzy"
       ],
       "Submodule": "Xp",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Administrator Server Permission"
+      ]
     },
     {
       "Aliases": [
@@ -5376,7 +6120,8 @@
       ],
       "Submodule": "Club",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5388,7 +6133,8 @@
       ],
       "Submodule": "Club",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5400,7 +6146,8 @@
       ],
       "Submodule": "Club",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5412,7 +6159,8 @@
       ],
       "Submodule": "Club",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5424,7 +6172,8 @@
       ],
       "Submodule": "Club",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5436,7 +6185,8 @@
       ],
       "Submodule": "Club",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5448,7 +6198,8 @@
       ],
       "Submodule": "Club",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5460,7 +6211,8 @@
       ],
       "Submodule": "Club",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5472,7 +6224,8 @@
       ],
       "Submodule": "Club",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5484,7 +6237,8 @@
       ],
       "Submodule": "Club",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5496,7 +6250,8 @@
       ],
       "Submodule": "Club",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5508,7 +6263,8 @@
       ],
       "Submodule": "Club",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5520,7 +6276,8 @@
       ],
       "Submodule": "Club",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5532,7 +6289,8 @@
       ],
       "Submodule": "Club",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5544,7 +6302,8 @@
       ],
       "Submodule": "Club",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5556,7 +6315,8 @@
       ],
       "Submodule": "Club",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
@@ -5568,20 +6328,24 @@
       ],
       "Submodule": "Club",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": []
     },
     {
       "Aliases": [
         ".xpreset"
       ],
-      "Description": "Resets specified user's XP, or the XP of all users in the server. You can't reverse this action.**Requires Administrator server permission.**",
+      "Description": "Resets specified user's XP, or the XP of all users in the server. You can't reverse this action.",
       "Usage": [
         ".xpreset @b1nzy",
         ".xpreset"
       ],
       "Submodule": "ResetCommands",
       "Module": "Xp",
-      "Options": null
+      "Options": null,
+      "Requirements": [
+        "Administrator Server Permission"
+      ]
     }
   ]
 }

@@ -57,9 +57,9 @@ VALUES ({userId}, {username}, {discrim}, {avatarId});
                 .ToArray();
         }
 
-        public IEnumerable<DiscordUser> GetTopRichest(int count, int skip = 0)
+        public IEnumerable<DiscordUser> GetTopRichest(ulong botId, int count, int skip = 0)
         {
-            return _set.Where(c => c.CurrencyAmount > 0)
+            return _set.Where(c => c.CurrencyAmount > 0 && botId != c.UserId)
                 .OrderByDescending(c => c.CurrencyAmount)
                 .Skip(skip)
                 .Take(count)
@@ -74,7 +74,11 @@ VALUES ({userId}, {username}, {discrim}, {avatarId});
 
         public void RemoveFromMany(List<long> ids)
         {
-            _set.RemoveRange(_set.Where(x => ids.Contains((long)x.UserId)));
+            var items = _set.Where(x => ids.Contains((long)x.UserId));
+            foreach (var item in items)
+            {
+                item.CurrencyAmount = 0;
+            }
         }
 
         public bool TryUpdateCurrencyState(ulong userId, string name, string discrim, string avatarId, long amount, bool allowNegative = false)
@@ -137,10 +141,6 @@ INSERT OR IGNORE INTO DiscordUser (UserId, Username, Discriminator, AvatarId, Cu
 VALUES ({userId}, {name}, {discrim}, {avatarId}, {amount});
 ");
             }
-
-            
-
-
             return true;
         }
     }
