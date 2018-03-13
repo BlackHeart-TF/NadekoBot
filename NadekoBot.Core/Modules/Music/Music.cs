@@ -129,7 +129,8 @@ namespace NadekoBot.Modules.Music
                         var queuedMessage = await mp.OutputTextChannel.EmbedAsync(embed).ConfigureAwait(false);
                         if (mp.Stopped)
                         {
-                            (await ReplyErrorLocalized("queue_stopped", Format.Code(Prefix + "play")).ConfigureAwait(false)).DeleteAfter(10);
+                            await Play((index+1).ToString());
+                            //(await ReplyErrorLocalized("queue_stopped", Format.Code(Prefix + "play")).ConfigureAwait(false)).DeleteAfter(10);
                         }
                         queuedMessage?.DeleteAfter(10);
                     }
