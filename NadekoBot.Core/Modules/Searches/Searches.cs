@@ -263,7 +263,7 @@ namespace NadekoBot.Modules.Searches
         [NadekoCommand, Usage, Description, Aliases]
         public async Task RandomCat()
         {
-            var res = JObject.Parse(await _service.Http.GetStringAsync("http://www.random.cat/meow").ConfigureAwait(false));
+            var res = JObject.Parse(await _service.Http.GetStringAsync("http://aws.random.cat/meow").ConfigureAwait(false));
             await Context.Channel.EmbedAsync(new EmbedBuilder()
                 .WithOkColor()
                 .WithImageUrl(Uri.EscapeUriString(res["file"].ToString())))
@@ -751,7 +751,7 @@ namespace NadekoBot.Modules.Searches
             await Context.Channel.SendConfirmAsync($"https://images.google.com/searchbyimage?image_url={imageLink}").ConfigureAwait(false);
         }
 
-        [NadekoCommand, Usage, Description, Aliases("Safe")]
+        [NadekoCommand, Usage, Description, Aliases]
         public Task Safebooru([Remainder] string tag = null)
             => InternalDapiCommand(Context.Message, tag, DapiSearchType.Safebooru);
 
