@@ -965,7 +965,7 @@
   },
   "connect4": {
     "Cmd": "connect4 con4",
-    "Desc": "Creates or joins an existing connect4 game. 2 players are required for the game. Objective of the game is to get 4 of your pieces next to each other in a vertical, horizontal or diagonal line.",
+    "Desc": "Creates or joins an existing connect4 game. 2 players are required for the game. Objective of the game is to get 4 of your pieces next to each other in a vertical, horizontal or diagonal line. You can specify a bet when you create a game and only users who bet the same amount will be able to join your game.",
     "Usage": [
       "{0}connect4"
     ]
@@ -1744,9 +1744,9 @@
   },
   "e621": {
     "Cmd": "e621",
-    "Desc": "Shows a random hentai image from e621.net with a given tag. Tag is optional but preferred. Use spaces for multiple tags.",
+    "Desc": "Shows a random hentai image from e621.net with a given tag. Tag is optional but preferred. (multiple tags are appended with +)",
     "Usage": [
-      "{0}e621 yuri kissing"
+      "{0}e621 yuri+kissing"
     ]
   },
   "boobs": {
