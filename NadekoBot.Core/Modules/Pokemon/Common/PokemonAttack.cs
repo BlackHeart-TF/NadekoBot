@@ -104,12 +104,12 @@ namespace NadekoBot.Modules.Pokemon.Common
             }
             else if (Effectiveness < 1)
             {
-                str += "It's ineffective...\n";
+                str += "It's not very effective...\n";
             }
-            else
-            {
-                str += "It's somewhat effective\n";
-            }
+            //else
+            //{
+            //    str += "It's somewhat effective\n";
+            //}
 
 
 

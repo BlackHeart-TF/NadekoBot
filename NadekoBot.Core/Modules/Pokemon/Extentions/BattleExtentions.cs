@@ -26,7 +26,6 @@ namespace NadekoBot.Modules.Pokemon.Extentions
         public static PokemonSprite Attack(this PokemonSprite sprite,PokemonSprite target)
         {
             throw (new NotImplementedException());
-            return sprite;
         }
 
         public static PokemonSprite Heal(this PokemonSprite sprite)

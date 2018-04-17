@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using NadekoBot.Core.Services.Database.Models;
 using Newtonsoft.Json;
 
 namespace NadekoBot.Modules.Pokemon.Common
@@ -50,5 +51,14 @@ namespace NadekoBot.Modules.Pokemon.Common
             types = types.TrimEnd('/');
             return types;
         }
+    }
+
+    public class PokemonTrainer
+    {
+        public int Rank { get; set; }
+        public long ID { get; set; }
+        public long TotalExp { get; set; }
+        public PokemonSprite TopPokemon { get; set; }
+        public string RankString { get { return ": <@" + ID + "> **Total XP:** *" + TotalExp + "* **Top Pokemon:** *" + TopPokemon.NickName + "* " + TopPokemon.Level; } }
     }
 }
