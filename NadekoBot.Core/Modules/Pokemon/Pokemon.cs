@@ -37,11 +37,12 @@ namespace NadekoBot.Modules.Pokemon
                 .WithTitle("Pokemon Commands:")
                 .WithDescription(@"
 **.list** *Shows your current party*
-**.ml** *shows your pokemons moves*
-**.active** *gives details on the active pokemon (.active @user)*
+**.ml** *Shows your active pokemon's moves*
+**.allmoves** *DMs you a full list of your pokemon moves*
+**.active** *Gives details on the active pokemon (.active @user)*
 **.heal** *Heals a pokemon costs 1* " + _bc.BotConfig.CurrencySign + @"
 **.switch name** *Switches to the specified pokemon*
-**.rename newName** *renames your active pokemon to newName*"));
+**.rename newName** *Renames your active pokemon to newName*"));
         }
 
         [NadekoCommand, Usage, Description, Alias]
