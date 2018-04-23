@@ -172,6 +172,7 @@ namespace NadekoBot.Modules.Administration
 
             [NadekoCommand, Usage, Description, Aliases]
             [RequireContext(ContextType.Guild)]
+            [Alias("iplay")]
             public async Task Iam([Remainder] IRole role)
             {
                 var guildUser = (IGuildUser)Context.User;

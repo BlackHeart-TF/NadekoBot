@@ -84,8 +84,27 @@ namespace NadekoBot.Modules.Pokemon
         public async Task ML()
         {
             var target = (IGuildUser)Context.User;
+            var active = ActivePokemon(target);
+            await Context.Channel.EmbedAsync(new EmbedBuilder().WithOkColor()
+                .WithThumbnailUrl(active.GetSpecies().imageLink)
+                .AddField(efb => efb.WithName($"**{active.NickName.ToTitleCase()}'s moves**:").WithValue(active.PokemonMoves()).WithIsInline(true)));
+            
+        }
 
-            await ReplyAsync($"**{ActivePokemon(target).NickName}'s moves**:\n{ActivePokemon(target).PokemonMoves()}");
+        [NadekoCommand, Usage, Description, Alias("am")]
+        [RequireContext(ContextType.Guild)]
+        [Summary("Show the moves of the active pokemon")]
+        public async Task allmoves()
+        {
+            var target = (IGuildUser)Context.User;
+            var pokemon = PokemonList(target);
+            string output = "";
+            foreach (var pkm in pokemon)
+            {
+                output += $"**{pkm.NickName}'s moves**:\n{pkm.PokemonMoves()}\n\n";
+            }
+            await target.SendMessageAsync(output);
+            await ReplyAsync(target.Mention + " I sent you a list of all your pokemon and their moves.");
 
         }
 
@@ -113,9 +132,11 @@ namespace NadekoBot.Modules.Pokemon
         [NadekoCommand, Usage, Description, Alias]
         [RequireContext(ContextType.Guild)]
         [Summary("Show the moves of the active pokemon")]
-        public async Task healall()
+        public async Task healall(IGuildUser target = null)
         {
-            var toheal = PokemonList((IGuildUser)Context.User).Where(x => x.HP < x.MaxHP);
+            if (target == null)
+                target = (IGuildUser)Context.User;
+            var toheal = PokemonList(target).Where(x => x.HP < x.MaxHP);
             var count = toheal.Count();
                 if (_cs.RemoveAsync(Context.User.Id,"Healed all pokemon",count).Result)
                 foreach(var pkm in toheal)
@@ -219,7 +240,7 @@ namespace NadekoBot.Modules.Pokemon
                 var str = $"{defenderPokemon.NickName} fainted!\n{attackerPokemon.NickName}'s owner {Context.User.Mention} receives 1 point\n";
                 var lvl = attackerPokemon.Level;
                 var extraXP = attackerPokemon.Reward(defenderPokemon);
-                str += $"{attackerPokemon.NickName} gained {extraXP} from the battle\n";
+                str += $"{attackerPokemon.NickName} gained {extraXP} XP from the battle\n";
                 if (attackerPokemon.Level > lvl) //levled up
                 {
                     str += $"**{attackerPokemon.NickName}** leveled up!\n**{attackerPokemon.NickName}** is now level **{attackerPokemon.Level}**";
@@ -262,7 +283,7 @@ namespace NadekoBot.Modules.Pokemon
         [NadekoCommand, Usage, Description, Alias]
         [RequireContext(ContextType.Guild)]
         [Summary("Show the moves of the active pokemon")]
-        public async Task rename(string name)
+        public async Task rename([Remainder] string name)
         {
             var target = (IGuildUser)Context.User;
             var active = ActivePokemon(target);
