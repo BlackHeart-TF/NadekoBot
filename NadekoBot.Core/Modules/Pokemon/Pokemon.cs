@@ -41,19 +41,38 @@ namespace NadekoBot.Modules.Pokemon
 **.allmoves** *DMs you a full list of your pokemon moves*
 **.active** *Gives details on the active pokemon (.active @user)*
 **.heal** *Heals a pokemon costs 1* " + _bc.BotConfig.CurrencySign + @"
+**.healall** *Heals your party. Costs 1" + _bc.BotConfig.CurrencySign + @" per pokemon*
+**.nursejoy** *Heals your party once they have all fainted (free)*
 **.switch name** *Switches to the specified pokemon*
-**.rename newName** *Renames your active pokemon to newName*"));
+**.rename newName** *Renames your active pokemon to newName*
+**.elite4** *Shows the top 4 players and their best pokemon*
+**.rank** *Shows your pokemon ranking (.rank @user)*"));
         }
 
         [NadekoCommand, Usage, Description, Alias]
         [RequireContext(ContextType.Guild)]
         [Summary("Shows the top ranking")]
-        public async Task elite4(IGuildUser target = null)
+        public async Task elite4()
         {
             var top = GetTopPlayers();
             string output = "";
             for (int i = 1; i <= top.Count(); i++)
                 output += i + top[i-1].RankString + "\n";
+            await ReplyAsync(output);
+        }
+
+        [NadekoCommand, Usage, Description, Alias]
+        [RequireContext(ContextType.Guild)]
+        [Summary("Shows the top ranking")]
+        public async Task rank(IGuildUser target = null)
+        {
+            if (target == null)
+                target = (IGuildUser)Context.User;
+
+            var top = GetPlayerRank(target);
+            string output = "";
+            for (int i = 1; i <= top.Count(); i++)
+                output += top[i-1].Rank + top[i - 1].RankString + "\n";
             await ReplyAsync(output);
         }
 
@@ -139,13 +158,16 @@ namespace NadekoBot.Modules.Pokemon
                 target = (IGuildUser)Context.User;
             var toheal = PokemonList(target).Where(x => x.HP < x.MaxHP);
             var count = toheal.Count();
-                if (_cs.RemoveAsync(Context.User.Id,"Healed all pokemon",count).Result)
-                foreach(var pkm in toheal)
+            if (_cs.RemoveAsync(Context.User.Id, "Healed all pokemon", count).Result)
+            {
+                foreach (var pkm in toheal)
                 {
                     UpdatePokemon(pkm.Heal());
                 }
-            await ReplyAsync(count + " Pokemon healed for " + count + _bc.BotConfig.CurrencySign + "!");
-            
+                await ReplyAsync(count + " Pokemon healed for " + count + _bc.BotConfig.CurrencySign + "!");
+            }
+            else
+                await ReplyAsync(Context.User.Mention + ", you do not have enough " + _bc.BotConfig.CurrencySign + ". You need " + count);
         }
 
         [NadekoCommand, Usage, Description, Alias]
@@ -167,6 +189,26 @@ namespace NadekoBot.Modules.Pokemon
             else
                 await ReplyAsync("You need 1 point to heal");
         }
+        [NadekoCommand, Usage, Description, Alias]
+        [RequireContext(ContextType.Guild)]
+        [Summary("Show the moves of the active pokemon")]
+        public async Task nursejoy()
+        {
+                var target = (IGuildUser) Context.User;
+            var toheal = PokemonList(target).Where(x => x.HP == 0);
+            if (toheal.Count() == 6)
+            {
+                foreach (var pkm in toheal)
+                {
+                    UpdatePokemon(pkm.Heal());
+                }
+                await ReplyAsync(Context.User.Mention +",\n Your Pokémon are fighting fit!\nWe hope to see you again!");
+            }
+            else
+                await ReplyAsync(Context.User.Mention + ", you still have pokemon willing to fight! Get back in there!");
+
+        }
+
 
         [NadekoCommand, Usage, Description, Alias]
         [RequireContext(ContextType.Guild)]
@@ -182,11 +224,36 @@ namespace NadekoBot.Modules.Pokemon
                 await ReplyAsync("You can't do that right now.");
                 return;
             }
-            SwitchPokemon(target, newpkm);
-            trainer.MovesMade++;
-            target.UpdateTrainerStats(trainer);
-            await ReplyAsync($"Switched to **{newpkm.NickName}**");
+            switch (SwitchPokemon(target, newpkm)) { 
+                case SwitchResult.TargetFainted:
+                    await ReplyAsync(Context.User.Mention + ", " + newpkm.NickName + " has already fainted!");
+                    break;
+                case SwitchResult.Pass:
+                    trainer.MovesMade++;
+                    target.UpdateTrainerStats(trainer);
+                    await ReplyAsync($"{Context.User.Mention} switched to **{newpkm.NickName}**");
+                    break;
+                case SwitchResult.Failed:
+                    await ReplyAsync("Something went wrong!");
+                    break;
+            }
+            
 
+        }
+
+        [NadekoCommand, Usage, Description, Alias]
+        [RequireContext(ContextType.Guild)]
+        [Summary("attacks a target")]
+        public async Task Attack([Remainder] string moveString)
+        {
+            var user = ((IGuildUser)Context.User).GetTrainerStats().LastAttackedBy;
+            if (user == null)
+            {
+                await ReplyAsync("Target a user with `.attack @user move`");
+                return;
+            }
+             
+            await Attack(user, moveString);
         }
 
         [NadekoCommand, Usage, Description, Alias]
@@ -194,18 +261,24 @@ namespace NadekoBot.Modules.Pokemon
         [Summary("attacks a target")]
         public async Task Attack([Summary("The User to target")] IGuildUser target, [Remainder] string moveString)
         {
-            var attackerPokemon = ActivePokemon((IGuildUser)Context.User);
+            await doAttack((IGuildUser)Context.User, target, moveString);
+
+        }
+
+        public async Task doAttack(IGuildUser attacker, IGuildUser target, [Remainder] string moveString)
+        {
+            var attackerPokemon = ActivePokemon(attacker);
             var species = attackerPokemon.GetSpecies();
             if (!species.moves.Keys.Contains(moveString.Trim()))
             {
                 await ReplyAsync($"Cannot use \"{moveString}\", see `{Prefix}ML` for moves");
                 return;
             }
-            var attackerStats = ((IGuildUser)Context.User).GetTrainerStats();
+            var attackerStats = (attacker).GetTrainerStats();
             var defenderStats = target.GetTrainerStats();
             if (attackerStats.MovesMade > TrainerStats.MaxMoves || attackerStats.LastAttacked.Contains(target.Id))
             {
-                await ReplyAsync($"{Context.User.Mention} already attacked {target.Mention}!");
+                await ReplyAsync($"{attacker.Mention} already attacked {target.Mention}!");
                 return;
             }
             if (attackerPokemon.HP == 0)
@@ -213,7 +286,7 @@ namespace NadekoBot.Modules.Pokemon
                 await ReplyAsync($"{attackerPokemon.NickName} has fainted and can't attack!");
                 return;
             }
-            
+            defenderStats.LastAttackedBy = attacker;
             KeyValuePair<string, string> move = new KeyValuePair<string, string>(moveString, species.moves[moveString]);
             var defenderPokemon = ActivePokemon(target);
 
@@ -230,7 +303,7 @@ namespace NadekoBot.Modules.Pokemon
             msg += $"{defenderPokemon.NickName} has {defenderPokemon.HP} HP left!";
             await ReplyAsync(msg);
             //Update stats, you shall
-            ((IGuildUser)Context.User).UpdateTrainerStats(attackerStats.Attack(target));
+            attacker.UpdateTrainerStats(attackerStats.Attack(target));
             target.UpdateTrainerStats(defenderStats.Reset());
             UpdatePokemon(attackerPokemon);
             UpdatePokemon(defenderPokemon);
@@ -238,7 +311,7 @@ namespace NadekoBot.Modules.Pokemon
             if (defenderPokemon.HP <= 0)
             {
                 
-                var str = $"{defenderPokemon.NickName} fainted!\n{attackerPokemon.NickName}'s owner {Context.User.Mention} receives 1 point\n";
+                var str = $"{defenderPokemon.NickName} fainted!\n{attackerPokemon.NickName}'s owner {attacker.Mention} receives 1 point\n";
                 var lvl = attackerPokemon.Level;
                 var extraXP = attackerPokemon.Reward(defenderPokemon);
                 str += $"{attackerPokemon.NickName} gained {extraXP} XP from the battle\n";
@@ -255,13 +328,13 @@ namespace NadekoBot.Modules.Pokemon
                     var toSet = list.FirstOrDefault();
                     switch (SwitchPokemon(target, toSet))
                     {
-                        case 0:
+                        case SwitchResult.Pass:
                             {
                                 str += $"\n{target.Mention}'s active pokemon set to **{toSet.NickName}**";
                                 break;
                             }
-                        case 1:
-                        case 2:
+                        case SwitchResult.Failed:
+                        case SwitchResult.TargetFainted:
                             {
                                 str += $"\n **Error:** could not switch pokemon";
                                 break;
@@ -276,10 +349,36 @@ namespace NadekoBot.Modules.Pokemon
                 //UpdatePokemon(attackerPokemon);
                 //UpdatePokemon(defenderPokemon);
                 await ReplyAsync(str);
-                await _cs.AddAsync(Context.User.Id, "Victorious in pokemon", 1);
+                await _cs.AddAsync(attacker.Id, "Victorious in pokemon", 1);
+                
             }
-
+            if (target.Id == 174828625898635264)
+            {
+                await doAttack(target, attacker, "dragon-pulse");
+            }
         }
+
+        [NadekoCommand, Usage, Description, Alias]
+        [RequireContext(ContextType.Guild)]
+        [RequireOwner]
+        [Summary("Show the moves of the active pokemon")]
+        public async Task swappokemon(IGuildUser user, string oldpkm, string newpkm)
+        {
+            await ReplyAsync(swapPokemon(user, oldpkm, newpkm));
+        }
+
+        [NadekoCommand, Usage, Description, Alias]
+        [RequireContext(ContextType.Guild)]
+        [RequireOwner]
+        [Summary("Show the moves of the active pokemon")]
+        public async Task levelbot()
+        {
+            var oldpkm = _db.UnitOfWork.PokemonSprite.GetAll().Where(x => x.OwnerId == (long)174828625898635264 && x.NickName == "reshiram").First();
+            while (oldpkm.Level < 100)
+                oldpkm.LevelUp();
+            UpdatePokemon(oldpkm);
+        }
+
 
         [NadekoCommand, Usage, Description, Alias]
         [RequireContext(ContextType.Guild)]
@@ -321,29 +420,36 @@ namespace NadekoBot.Modules.Pokemon
             }
             await ReplyAsync(str);
         }
+
+        enum SwitchResult{
+            Pass,
+            Failed,
+            TargetFainted,
+
+        }
         /// <summary>
         /// Sets the active pokemon of the given user to the given Sprite
         /// </summary>
         /// <param name="u"></param>
         /// <param name="newActive"></param>
         /// <returns></returns>
-        int SwitchPokemon(IGuildUser u, PokemonSprite newActive)
+        SwitchResult SwitchPokemon(IGuildUser u, PokemonSprite newActive)
         {
             var toUnset = PokemonList(u).Where(x => x.IsActive).FirstOrDefault();
             if (toUnset == null)
             {
-                return 1;
+                return SwitchResult.Failed;
             }
             if (newActive.HP <= 0)
             {
-                return 2;
+                return SwitchResult.TargetFainted;
             }
             toUnset.IsActive = false;
             newActive.IsActive = true;
             UpdatePokemon(toUnset);
             UpdatePokemon(newActive);
             
-            return 0;
+            return SwitchResult.Pass;
         }
         public async void UpdatePokemon(PokemonSprite pokemon)
         {
@@ -355,6 +461,24 @@ namespace NadekoBot.Modules.Pokemon
         {
             var list = PokemonList(u);
             return list.Where(x => x.IsActive).FirstOrDefault();
+        }
+
+        string swapPokemon(IGuildUser user, string OldPokemon, string NewPokemon)
+        {
+            var service = new PokemonService();
+            var oldpkm = _db.UnitOfWork.PokemonSprite.GetAll().Where(x => x.OwnerId==(long)user.Id && x.NickName==OldPokemon).First();
+            var newspecies = service.pokemonClasses.Where(x => x.name == NewPokemon).DefaultIfEmpty(null).First();
+            oldpkm.SpeciesId = newspecies.number;
+            oldpkm.NickName = newspecies.name;
+            oldpkm.Level = 0;
+            oldpkm.XP = 0;
+            while (oldpkm.Level <= 4)
+            {
+                oldpkm.LevelUp();
+            }
+            oldpkm.HP = oldpkm.MaxHP;
+            UpdatePokemon(oldpkm);
+            return "Probably worked. idk, theres no error checking, do `.list` to be sure";
         }
 
         List<PokemonSprite> PokemonList(IGuildUser u)
@@ -410,6 +534,34 @@ namespace NadekoBot.Modules.Pokemon
                 output.Add(trainer);
             }
             output = output.OrderByDescending(x => x.TotalExp).Take(4).ToList();
+            return output;
+        }
+
+        List<PokemonTrainer> GetPlayerRank(IGuildUser player)
+        {
+            var db = _db.UnitOfWork.PokemonSprite.GetAll();
+            var users = db.DistinctBy(x => x.OwnerId);
+            var output = new List<PokemonTrainer>();
+            //int player 
+            foreach (var user in users)
+            {
+                var usrpkm = db.Where(x => x.OwnerId == user.OwnerId);
+                long exp = 0;
+                foreach (var pkm in usrpkm)
+                    exp += pkm.XP;
+                var trainer = new PokemonTrainer()
+                {
+                    ID = user.OwnerId,
+                    TotalExp = exp,
+                    TopPokemon = usrpkm.OrderByDescending(x => x.Level).First()
+                };
+                output.Add(trainer);
+            }
+            output = output.OrderByDescending(x => x.TotalExp).ToList();
+            for (int i = 0; i < output.Count; i++)
+                output[i].Rank = i+1;
+            var playerRank = output.Where(x => x.ID == (long)player.Id).First().Rank;
+            output=output.Skip(playerRank - 3).Take(5).ToList();
             return output;
         }
 

@@ -92,7 +92,7 @@ namespace NadekoBot.Modules.Pokemon.Common
 
         public string AttackString()
         {
-            var str = $"**{Attacker.NickName}** attacked **{Defender.NickName}**\n" +
+            var str = $"**{Attacker.NickName}** attacked **{Defender.NickName}** with **{move.Key}**\n" +
                 $"{Defender.NickName} received {Damage} damage!\n";
             if (IsCritical)
             {

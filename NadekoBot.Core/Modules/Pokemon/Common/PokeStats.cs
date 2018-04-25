@@ -17,7 +17,7 @@ namespace NadekoBot.Modules.Pokemon.Common
     }
     public class TrainerStats
     {
-
+        public IGuildUser LastAttackedBy { get; set; } = null;
         public static int MaxMoves { get; } = 5;
         /// <summary>
         /// Amount of moves made since last time attacked

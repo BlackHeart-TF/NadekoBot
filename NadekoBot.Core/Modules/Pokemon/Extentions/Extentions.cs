@@ -14,7 +14,7 @@ namespace NadekoBot.Modules.Pokemon.Extentions
     {
 
         public static ConcurrentDictionary<ulong, TrainerStats> UserStats = new ConcurrentDictionary<ulong, TrainerStats>();
-        private static readonly PokemonService service = new PokemonService();
+        public static readonly PokemonService service = new PokemonService();
         public static PokemonSpecies GetSpecies(this PokemonSprite pkm)
         {
             return  service.pokemonClasses.Where(x => x.number == pkm.SpeciesId).DefaultIfEmpty(null).First();
@@ -123,14 +123,14 @@ namespace NadekoBot.Modules.Pokemon.Extentions
             var species = pkm.GetSpecies();
             var baseStats = species.baseStats;
             pkm.Level += 1;
-
+            var oldhp = pkm.MaxHP;
             //Up them stats
             pkm.MaxHP = (int)Math.Ceiling((((baseStats["hp"] + rng.Next(0, 12)) + (Math.Sqrt((655535 / 100) * pkm.Level) / 4) * pkm.Level) / 100 + pkm.Level + 10));
             pkm.Attack = CalcStat(baseStats["attack"], pkm.Level);
             pkm.Defense = CalcStat(baseStats["defense"], pkm.Level);
             pkm.SpecialAttack = CalcStat(baseStats["special-attack"], pkm.Level);
             pkm.SpecialDefense = CalcStat(baseStats["special-defense"], pkm.Level);
-            pkm.HP = pkm.MaxHP;
+            pkm.HP += pkm.MaxHP-oldhp;
             pkm.Speed = CalcStat(baseStats["speed"], pkm.Level);
 
             //Will it evolve!?
