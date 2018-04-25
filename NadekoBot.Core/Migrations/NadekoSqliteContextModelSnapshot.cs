@@ -577,6 +577,8 @@ namespace NadekoBot.Migrations
 
                     b.Property<ulong>("GuildId");
 
+                    b.Property<string>("Message");
+
                     b.Property<int>("Type");
 
                     b.Property<string>("Username");
@@ -659,6 +661,8 @@ namespace NadekoBot.Migrations
 
                     b.Property<string>("MuteRoleName");
 
+                    b.Property<bool>("NotifyStreamOffline");
+
                     b.Property<string>("PermissionRole");
 
                     b.Property<string>("Prefix");
@@ -709,6 +713,8 @@ namespace NadekoBot.Migrations
                     b.Property<TimeSpan>("Interval");
 
                     b.Property<string>("Message");
+
+                    b.Property<bool>("NoRedundant");
 
                     b.Property<TimeSpan?>("StartTimeOfDay");
 
@@ -1021,47 +1027,6 @@ namespace NadekoBot.Migrations
                     b.HasIndex("MusicPlaylistId");
 
                     b.ToTable("PlaylistSong");
-                });
-
-            modelBuilder.Entity("NadekoBot.Core.Services.Database.Models.PokemonSprite", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("Attack");
-
-                    b.Property<DateTime?>("DateAdded");
-
-                    b.Property<int>("Defense");
-
-                    b.Property<int>("HP");
-
-                    b.Property<bool>("IsActive");
-
-                    b.Property<int>("Level");
-
-                    b.Property<int>("MaxHP");
-
-                    b.Property<string>("NickName");
-
-                    b.Property<long>("OwnerId");
-
-                    b.Property<int>("SpecialAttack");
-
-                    b.Property<int>("SpecialDefense");
-
-                    b.Property<int>("SpeciesId");
-
-                    b.Property<int>("Speed");
-
-                    b.Property<long>("XP");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Id")
-                        .IsUnique();
-
-                    b.ToTable("PokeSprite");
                 });
 
             modelBuilder.Entity("NadekoBot.Core.Services.Database.Models.Poll", b =>
@@ -1414,6 +1379,8 @@ namespace NadekoBot.Migrations
                     b.Property<string>("GuildName");
 
                     b.Property<int>("Index");
+
+                    b.Property<int>("Interval");
 
                     b.Property<ulong?>("VoiceChannelId");
 
