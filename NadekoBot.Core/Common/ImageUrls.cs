@@ -13,6 +13,7 @@ namespace NadekoBot.Core.Common
         public string[] Dice { get; set; }
         public RategirlData Rategirl { get; set; }
         public XpData Xp { get; set; }
+        public string[] PokemonUrls { get; set; }
 
         public class CoinData
         {

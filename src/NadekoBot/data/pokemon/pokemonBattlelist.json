@@ -607,7 +607,7 @@
       "rage": "normal",
       "helping-hand": "normal",
       "detect": "fighting",
-      "signal-beam": "bug"
+      "electro-ball": "electric"
     },
     "imageLink": "http://pokeapi.co/media/sprites/pokemon/25.png"
   },

@@ -14,7 +14,9 @@ namespace NadekoBot.Modules.Pokemon.Extentions
     {
 
         public static ConcurrentDictionary<ulong, TrainerStats> UserStats = new ConcurrentDictionary<ulong, TrainerStats>();
-        public static readonly PokemonService service = new PokemonService();
+        public static readonly PokemonService service = PokemonService.pokemonInstance;
+
+
         public static PokemonSpecies GetSpecies(this PokemonSprite pkm)
         {
             return  service.pokemonClasses.Where(x => x.number == pkm.SpeciesId).DefaultIfEmpty(null).First();
@@ -142,7 +144,10 @@ namespace NadekoBot.Modules.Pokemon.Extentions
                     //*GASP* IT'S GONNA EVOLVE
                     //Play an animation?
                     int newSpecies = int.Parse(species.evolveTo);
+                    if (pkm.NickName == pkm.GetSpecies().name)
+                        pkm.NickName = service.pokemonClasses.Where(x => x.number == newSpecies).DefaultIfEmpty(null).First().name;
                     pkm.SpeciesId = newSpecies;
+                    
                 }
             }
 

@@ -7,7 +7,7 @@ using NadekoBot.Modules.Pokemon.Common;
 using NadekoBot.Modules.Pokemon.Extentions;
 using NadekoBot.Modules.Pokemon.Services;
 
-namespace NadekoBot.Modules.Pokemon2.Common
+namespace NadekoBot.Modules.Pokemon.Common
 {
     class PokemonFunctions
     {

@@ -30,5 +30,10 @@
     },
     "xp": {
         "bg": "https://i.imgur.com/ozgFffJ.png"
-    }
+    },
+    "PokemonUrls": [
+	"https://i.imgur.com/7tOkFAf.png",
+	"https://i.imgur.com/Vwsd6SC.png",
+	"https://i.imgur.com/XclmaVO.png"
+    ]
 }
