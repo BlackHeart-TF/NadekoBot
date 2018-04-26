@@ -19,14 +19,14 @@ namespace NadekoBot.Modules.Pokemon.Extentions
 
         public static PokemonSpecies GetSpecies(this PokemonSprite pkm)
         {
-            return  service.pokemonClasses.Where(x => x.number == pkm.SpeciesId).DefaultIfEmpty(null).First();
+            return  service.pokemonClasses.Where(x => x.Number == pkm.SpeciesId).DefaultIfEmpty(null).First();
         }
 
         public static string PokemonString(this PokemonSprite pkm)
         {
             var species = pkm.GetSpecies();
             var str = $"**Name**: {pkm.NickName}\n" +
-                $"**Species**: {species.name}\n" +
+                $"**Species**: {species.Name}\n" +
                 $"**HP**: {pkm.HP}/{pkm.MaxHP}\n" +
                 $"**Level**: {pkm.Level}\n" +
                 $"**XP**: {pkm.XP}/{pkm.XPRequired()}\n" +
@@ -36,7 +36,7 @@ namespace NadekoBot.Modules.Pokemon.Extentions
                 $"**Defense:** {pkm.Defense}\n" +
                 $"**Speed:** {pkm.Speed}\n" +
                 "**Moves**:\n";
-            foreach (var move in species.moves)
+            foreach (var move in species.Moves)
             {
                 str += $"**{move.Key}** *{move.Value}*\n";
             }
@@ -47,7 +47,7 @@ namespace NadekoBot.Modules.Pokemon.Extentions
         {
             var species = pkm.GetSpecies();
             string str = "";
-            foreach (var move in species.moves)
+            foreach (var move in species.Moves)
             {
                 str += $"**{move.Key}** *{move.Value}*\n";
             }
@@ -76,7 +76,7 @@ namespace NadekoBot.Modules.Pokemon.Extentions
         private static int CalcXPReward(PokemonSprite winner, PokemonSprite loser)
         {
             var a = 1;
-            var b = loser.GetSpecies().baseExperience;
+            var b = loser.GetSpecies().BaseExperience;
             var L = loser.Level;
             var s = 1;
             var L_p = winner.Level;
@@ -91,7 +91,7 @@ namespace NadekoBot.Modules.Pokemon.Extentions
         public static List<PokemonType> GetPokemonTypes(this PokemonSpecies spe)
         {
             var list = new List<PokemonType>();
-            foreach (var typeString in spe.types)
+            foreach (var typeString in spe.Types)
             {
                 var t = typeString.ToUpperInvariant();
                 list.Add(service.pokemonTypes.Where(x => x.Name == t).FirstOrDefault());
@@ -123,7 +123,7 @@ namespace NadekoBot.Modules.Pokemon.Extentions
         {
             Random rng = new Random();
             var species = pkm.GetSpecies();
-            var baseStats = species.baseStats;
+            var baseStats = species.BaseStats;
             pkm.Level += 1;
             var oldhp = pkm.MaxHP;
             //Up them stats
@@ -136,16 +136,16 @@ namespace NadekoBot.Modules.Pokemon.Extentions
             pkm.Speed = CalcStat(baseStats["speed"], pkm.Level);
 
             //Will it evolve!?
-            var evolveLevel = species.evolveLevel;
+            var evolveLevel = species.EvolveLevel;
             if (evolveLevel > 0)
             {
                 if (evolveLevel == pkm.Level)
                 {
                     //*GASP* IT'S GONNA EVOLVE
                     //Play an animation?
-                    int newSpecies = int.Parse(species.evolveTo);
-                    if (pkm.NickName == pkm.GetSpecies().name)
-                        pkm.NickName = service.pokemonClasses.Where(x => x.number == newSpecies).DefaultIfEmpty(null).First().name;
+                    int newSpecies = int.Parse(species.EvolveTo);
+                    if (pkm.NickName == pkm.GetSpecies().Name)
+                        pkm.NickName = service.pokemonClasses.Where(x => x.Number == newSpecies).DefaultIfEmpty(null).First().Name;
                     pkm.SpeciesId = newSpecies;
                     
                 }

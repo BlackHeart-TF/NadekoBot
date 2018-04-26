@@ -33,20 +33,20 @@ namespace NadekoBot.Modules.Pokemon.Common
     
     public class PokemonSpecies
     {
-        public int number { get; set; }
-        public string name { get; set; }
-        public int baseExperience { get; set; }
-        public Dictionary<string, int> baseStats { get; set; }
-        public int evolveLevel { get; set; }
-        public string evolveTo { get; set; }
-        public string[] types { get; set; }
-        public Dictionary<string, string> moves { get; set; }
-        public string imageLink { get; set; }
+        public int Number { get; set; }
+        public string Name { get; set; }
+        public int BaseExperience { get; set; }
+        public Dictionary<string, int> BaseStats { get; set; }
+        public int EvolveLevel { get; set; }
+        public string EvolveTo { get; set; }
+        public string[] Types { get; set; }
+        public Dictionary<string, string> Moves { get; set; }
+        public string ImageLink { get; set; }
 
         public string GetTypeString()
         {
             string types = "";
-            foreach (var type in this.types)
+            foreach (var type in this.Types)
                 types += type + "/";
             types = types.TrimEnd('/');
             return types;
