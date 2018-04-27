@@ -546,7 +546,15 @@ namespace NadekoBot.Modules.Pokemon
         public PokemonSprite ActivePokemon(IGuildUser u)
         {
             var list = PokemonList(u);
-            return list.Where(x => x.IsActive).FirstOrDefault();
+            var active = list.Where(x => x.IsActive).FirstOrDefault();
+            if (active == null)
+            {
+                var pkm = list.Where(x => x.HP > 0).First() ?? list.First();
+                pkm.IsActive = true;
+                UpdatePokemon(pkm);
+                active = pkm;
+            }
+            return active;
         }
 
         string swapPokemon(IGuildUser user, string OldPokemon, string NewPokemon, int Level = 5)
