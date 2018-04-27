@@ -161,6 +161,7 @@ namespace NadekoBot.Modules.Pokemon
             DeletePokemon(targetPkm);
             targetPkm.Id = replacedPkm.Id;
             targetPkm.OwnerId = replacedPkm.OwnerId;
+            targetPkm.IsActive = replacedPkm.IsActive;
             UpdatePokemon(targetPkm);
             var uow = _db.UnitOfWork;
             uow.PokemonSprite.Add(GeneratePokemon(target));
