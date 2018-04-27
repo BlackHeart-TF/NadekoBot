@@ -116,7 +116,14 @@ namespace NadekoBot.Modules.Pokemon
         public async Task CatchPkm(IGuildUser target, string pokemon)
         {
             var pkmList = PokemonList((IGuildUser)Context.User);
-            var pokemonNumber = pkmList.IndexOf(pkmList.Where(x => x.NickName == pokemon).DefaultIfEmpty(null).FirstOrDefault()) +1;
+            var pkm = pkmList.Where(x => x.NickName == pokemon).DefaultIfEmpty(null).FirstOrDefault();
+            if (pkm == null)
+            {
+                await ReplyAsync($"You dont have a pokemon named {pokemon}!");
+                return;
+            }
+
+            var pokemonNumber = pkmList.IndexOf(pkm)+1;
             await CatchPkm(target, pokemonNumber);
         }
 
@@ -125,6 +132,11 @@ namespace NadekoBot.Modules.Pokemon
         [Summary("replaces your selected pokemon with a wild")]
         public async Task CatchPkm(IGuildUser target, int slot)
         {
+            int shakeDelay = 500;
+            Task delayTask;
+            var msg = await ReplyAsync("<:adball:439353539253239808>");
+            delayTask = Task.Delay(shakeDelay * 2);
+
             if (!target.IsBot)
             {
                 var embed = new EmbedBuilder().WithColor(Color.Purple)
@@ -138,24 +150,40 @@ namespace NadekoBot.Modules.Pokemon
                 await ReplyAsync($"Not enough {_bc.BotConfig.CurrencySign}!");
                 return;
             }
-
+            await delayTask;
+            await msg.ModifyAsync(x => x.Content = "<:adball2:439353559696408576>");
+            await Task.Delay(shakeDelay);
+            await msg.ModifyAsync(x => x.Content = "<:adball:439353539253239808>");
+            delayTask = Task.Delay(shakeDelay*2); 
 
             var targetPkm = ActivePokemon(target);
             var replacedPkm = PokemonList((IGuildUser)Context.User)[slot - 1];
 
             int ballchanceN =  rng.Next(0, 255);
             int catchRate = 195;
+            await delayTask;
+            await msg.ModifyAsync(x => x.Content = "<:adball2:439353559696408576>");
+            await Task.Delay(shakeDelay);
+            await msg.ModifyAsync(x => x.Content = "<:adball:439353539253239808>");
+            delayTask = Task.Delay(shakeDelay * 2);
+
             if (ballchanceN > catchRate)
             {
-                await ReplyAsync(Context.User.Mention + "The Pokemon broke free!");
+                
+                await msg.ModifyAsync(x => x.Content = Context.User.Mention + "The Pokemon broke free!");
                 return;
             }
             int M = rng.Next(0, 255);
             var catchChance = Math.Round((decimal)((targetPkm.MaxHP * 255 * 4) / (targetPkm.HP * 12)));
+            await delayTask;
+            await msg.ModifyAsync(x => x.Content = "<:adball2:439353559696408576>");
+            await Task.Delay(shakeDelay);
+            await msg.ModifyAsync(x => x.Content = "<:adball:439353539253239808>");
+            
 
             if (catchChance < M)
             {
-                await ReplyAsync(Context.User.Mention + "The Pokemon broke free!");
+                await msg.ModifyAsync(x => x.Content = Context.User.Mention + "The Pokemon broke free!");
                 return;
             }
             DeletePokemon(targetPkm);
@@ -168,7 +196,7 @@ namespace NadekoBot.Modules.Pokemon
             await uow.CompleteAsync();
 
 
-            await ReplyAsync($"**{replacedPkm.NickName}** released!\n Caught **{targetPkm.NickName}**!");
+            await msg.ModifyAsync(x => x.Content = $"**{replacedPkm.NickName}** released!\n Caught **{targetPkm.NickName}**! ✨ <:adball:439353539253239808> ✨");
         }
 
         [NadekoCommand, Usage, Description, Alias("am")]
@@ -549,7 +577,7 @@ namespace NadekoBot.Modules.Pokemon
             var active = list.Where(x => x.IsActive).FirstOrDefault();
             if (active == null)
             {
-                var pkm = list.Where(x => x.HP > 0).First() ?? list.First();
+                var pkm = list.Where(x => x.HP > 0).FirstOrDefault() ?? list.First();
                 pkm.IsActive = true;
                 UpdatePokemon(pkm);
                 active = pkm;
