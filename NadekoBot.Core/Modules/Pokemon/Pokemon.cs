@@ -44,7 +44,8 @@ namespace NadekoBot.Modules.Pokemon
 **.switch name** *Switches to the specified pokemon*
 **.rename newName** *Renames your active pokemon to newName*
 **.elite4** *Shows the top 4 players and their best pokemon*
-**.rank** *Shows your pokemon ranking (.rank @user)*"));
+**.rank** *Shows your pokemon ranking (.rank @user)*
+**.catch @botName pokemonToReplace** *replaces the specified pokemon with one of the bots pokemon*"));
         }
 
         [NadekoCommand, Usage, Description, Alias]
@@ -112,6 +113,16 @@ namespace NadekoBot.Modules.Pokemon
         [NadekoCommand, Usage, Description, Alias("catch")]
         [RequireContext(ContextType.Guild)]
         [Summary("replaces your selected pokemon with a wild")]
+        public async Task CatchPkm(IGuildUser target, string pokemon)
+        {
+            var pkmList = PokemonList((IGuildUser)Context.User);
+            var pokemonNumber = pkmList.IndexOf(pkmList.Where(x => x.NickName == pokemon).DefaultIfEmpty(null).FirstOrDefault()) +1;
+            await CatchPkm(target, pokemonNumber);
+        }
+
+        [NadekoCommand, Usage, Description, Alias("catch")]
+        [RequireContext(ContextType.Guild)]
+        [Summary("replaces your selected pokemon with a wild")]
         public async Task CatchPkm(IGuildUser target, int slot)
         {
             if (!target.IsBot)
@@ -120,7 +131,43 @@ namespace NadekoBot.Modules.Pokemon
                     .WithDescription("That's not a wild pokemon!")
                     .WithImageUrl(_service.GetRandomTrainerImage()).Build();
                 await ReplyAsync("", false, embed);
+                return;
             }
+            if (!_cs.RemoveAsync(Context.User.Id, "Dropped a ball", 1).Result)
+            {
+                await ReplyAsync($"Not enough {_bc.BotConfig.CurrencySign}!");
+                return;
+            }
+
+
+            var targetPkm = ActivePokemon(target);
+            var replacedPkm = PokemonList((IGuildUser)Context.User)[slot - 1];
+
+            int ballchanceN =  rng.Next(0, 255);
+            int catchRate = 195;
+            if (ballchanceN > catchRate)
+            {
+                await ReplyAsync(Context.User.Mention + "The Pokemon broke free!");
+                return;
+            }
+            int M = rng.Next(0, 255);
+            var catchChance = Math.Round((decimal)((targetPkm.MaxHP * 255 * 4) / (targetPkm.HP * 12)));
+
+            if (catchChance < M)
+            {
+                await ReplyAsync(Context.User.Mention + "The Pokemon broke free!");
+                return;
+            }
+            DeletePokemon(targetPkm);
+            targetPkm.Id = replacedPkm.Id;
+            targetPkm.OwnerId = replacedPkm.OwnerId;
+            UpdatePokemon(targetPkm);
+            var uow = _db.UnitOfWork;
+            uow.PokemonSprite.Add(GeneratePokemon(target));
+            await uow.CompleteAsync();
+
+
+            await ReplyAsync($"**{replacedPkm.NickName}** released!\n Caught **{targetPkm.NickName}**!");
         }
 
         [NadekoCommand, Usage, Description, Alias("am")]
@@ -343,8 +390,11 @@ namespace NadekoBot.Modules.Pokemon
                 
                 var str = $"{defenderPokemon.NickName} fainted!\n{attackerPokemon.NickName}'s owner {attacker.Mention} receives 1 point\n";
                 var lvl = attackerPokemon.Level;
-                var extraXP = attackerPokemon.Reward(defenderPokemon);
-                str += $"{attackerPokemon.NickName} gained {extraXP} XP from the battle\n";
+                if (!target.IsBot)
+                {
+                    var extraXP = attackerPokemon.Reward(defenderPokemon);
+                    str += $"{attackerPokemon.NickName} gained {extraXP} XP from the battle\n";
+                }
                 if (attackerPokemon.Level > lvl) //levled up
                 {
                     str += $"**{attackerPokemon.NickName}** leveled up!\n**{attackerPokemon.NickName}** is now level **{attackerPokemon.Level}**";
@@ -484,6 +534,14 @@ namespace NadekoBot.Modules.Pokemon
             uow.PokemonSprite.Update(pokemon);
             await uow.CompleteAsync();
         }
+
+        public async void DeletePokemon(PokemonSprite pokemon)
+        {
+            var uow = _db.UnitOfWork;
+            uow.PokemonSprite.Remove(pokemon);
+            await uow.CompleteAsync();
+        }
+
         public PokemonSprite ActivePokemon(IGuildUser u)
         {
             var list = PokemonList(u);
@@ -519,7 +577,7 @@ namespace NadekoBot.Modules.Pokemon
             {
 
                 var list = new List<PokemonSprite>();
-                while (list.Count < 6)
+                while (row.Count() + list.Count < 6)
                 {
                     var pkm = GeneratePokemon(u);
                     if (!list.Where(x => x.IsActive).Any())
