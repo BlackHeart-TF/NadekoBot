@@ -7,7 +7,7 @@ namespace NadekoBot.Modules.Pokemon.Common
 {
     public class TrainerStats
     {
-        public Dictionary<ulong,IGuildUser> LastAttackedBy { get; set; } = new Dictionary<ulong,IGuildUser>();
+        public Dictionary<ulong,IUser> LastAttackedBy { get; set; } = new Dictionary<ulong,IUser>();
         public static int MaxMoves { get; } = 5;
         /// <summary>
         /// Amount of moves made since last time attacked
@@ -18,7 +18,7 @@ namespace NadekoBot.Modules.Pokemon.Common
         /// </summary>
         public List<ulong> LastAttacked { get; set; } = new List<ulong>();
 
-        public TrainerStats Attack(IGuildUser user)
+        public TrainerStats Attack(IUser user)
         {
             LastAttacked.Add(user.Id);
             MovesMade++;

@@ -357,35 +357,35 @@ namespace NadekoBot.Modules.Pokemon
         [Summary("attacks a target")]
         public async Task Attack([Remainder] string moveString)
         {
-            IGuildUser user;
-            if (!((IGuildUser)Context.User).GetTrainerStats().LastAttackedBy.TryGetValue(Context.Guild.Id,out user))
+            IUser user;
+            if (!Context.User.GetTrainerStats().LastAttackedBy.TryGetValue(Context.Guild.Id,out user))
             { 
                 await ReplyAsync("Target a user with `.attack @user move`");
                 return;
             }
 
-            await DoAttack((IGuildUser)Context.User, user, moveString);
+            await DoAttack(Context.User, user, moveString);
         }
 
         [NadekoCommand, Usage, Description, Alias]
         [RequireContext(ContextType.Guild)]
         [Summary("attacks a target")]
-        public async Task Attack([Summary("The User to target")] IGuildUser target, [Remainder] string moveString)
+        public async Task Attack([Summary("The User to target")] IUser target, [Remainder] string moveString)
         {
-            await DoAttack((IGuildUser)Context.User, target, moveString);
+            await DoAttack(Context.User, target, moveString);
 
         }
 
-        public async Task DoAttack(IGuildUser attacker, IGuildUser target, [Remainder] string moveString)
+        public async Task DoAttack(IUser attacker, IUser target, [Remainder] string moveString)
         {
-            var attackerPokemon = target.ActivePokemon();
+            var attackerPokemon = attacker.ActivePokemon();
             var species = attackerPokemon.GetSpecies();
             if (!species.Moves.Keys.Contains(moveString.Trim()))
             {
                 await ReplyAsync($"Cannot use \"{moveString}\", see `{Prefix}ML` for moves");
                 return;
             }
-            var attackerStats = (attacker).GetTrainerStats();
+            var attackerStats = attacker.GetTrainerStats();
             var defenderStats = target.GetTrainerStats();
             if (attackerStats.MovesMade > TrainerStats.MaxMoves || attackerStats.LastAttacked.Contains(target.Id))
             {
