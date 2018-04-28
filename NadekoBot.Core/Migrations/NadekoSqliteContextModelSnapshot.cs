@@ -1458,6 +1458,26 @@ namespace NadekoBot.Migrations
                     b.ToTable("StreamRoleWhitelistedUser");
                 });
 
+            modelBuilder.Entity("NadekoBot.Core.Services.Database.Models.UnbanTimer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime?>("DateAdded");
+
+                    b.Property<int?>("GuildConfigId");
+
+                    b.Property<DateTime>("UnbanAt");
+
+                    b.Property<ulong>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GuildConfigId");
+
+                    b.ToTable("UnbanTimer");
+                });
+
             modelBuilder.Entity("NadekoBot.Core.Services.Database.Models.UnmuteTimer", b =>
                 {
                     b.Property<int>("Id")
@@ -2092,6 +2112,13 @@ namespace NadekoBot.Migrations
                     b.HasOne("NadekoBot.Core.Services.Database.Models.StreamRoleSettings")
                         .WithMany("Whitelist")
                         .HasForeignKey("StreamRoleSettingsId");
+                });
+
+            modelBuilder.Entity("NadekoBot.Core.Services.Database.Models.UnbanTimer", b =>
+                {
+                    b.HasOne("NadekoBot.Core.Services.Database.Models.GuildConfig")
+                        .WithMany("UnbanTimer")
+                        .HasForeignKey("GuildConfigId");
                 });
 
             modelBuilder.Entity("NadekoBot.Core.Services.Database.Models.UnmuteTimer", b =>
