@@ -133,9 +133,8 @@ namespace NadekoBot.Modules.Pokemon
         {
             int shakeDelay = 500;
             Task delayTask;
-            var msg = await ReplyAsync("<:adball:439353539253239808>");
-            delayTask = Task.Delay(shakeDelay * 2);
-
+            var msg = await ReplyAsync("<:pokeshake:439680842525310987>");
+            delayTask = Task.Delay(shakeDelay * 3);
             if (!target.IsBot)
             {
                 var embed = new EmbedBuilder().WithColor(Color.Purple)
@@ -149,11 +148,11 @@ namespace NadekoBot.Modules.Pokemon
                 await ReplyAsync($"Not enough {_bc.BotConfig.CurrencySign}!");
                 return;
             }
+
             await delayTask;
-            await msg.ModifyAsync(x => x.Content = "<:adball2:439353559696408576>");
-            await Task.Delay(shakeDelay);
-            await msg.ModifyAsync(x => x.Content = "<:adball:439353539253239808>");
-            delayTask = Task.Delay(shakeDelay*2); 
+            await msg.ModifyAsync(x => x.Content = "<:pokeshake:439680842525310987>");
+            await msg.ModifyAsync(x => x.Content = "<a:pokeshake:439674400933937152>");
+            delayTask = Task.Delay(shakeDelay*6); 
 
             var targetPkm = ActivePokemon(target);
             var replacedPkm = PokemonList((IGuildUser)Context.User)[slot - 1];
@@ -161,11 +160,10 @@ namespace NadekoBot.Modules.Pokemon
             int ballchanceN =  rng.Next(0, 255);
             int catchRate = 195;
             await delayTask;
-            await msg.ModifyAsync(x => x.Content = "<:adball2:439353559696408576>");
-            await Task.Delay(shakeDelay);
-            await msg.ModifyAsync(x => x.Content = "<:adball:439353539253239808>");
-            delayTask = Task.Delay(shakeDelay * 2);
-
+            await msg.ModifyAsync(x => x.Content = "<:pokeshake:439680842525310987>");
+            await msg.ModifyAsync(x => x.Content = "<a:pokeshake:439674400933937152>");
+            delayTask = Task.Delay(shakeDelay * 6);
+            await delayTask;
             if (ballchanceN > catchRate)
             {
                 
@@ -175,12 +173,11 @@ namespace NadekoBot.Modules.Pokemon
             int M = rng.Next(0, 255);
             var catchChance = Math.Round((decimal)((targetPkm.MaxHP * 255 * 4) / (targetPkm.HP * 12)));
             await delayTask;
-            await msg.ModifyAsync(x => x.Content = "<:adball2:439353559696408576>");
-            await Task.Delay(shakeDelay);
-            await msg.ModifyAsync(x => x.Content = "<:adball:439353539253239808>");
-            delayTask = Task.Delay(shakeDelay * 2);
+            await msg.ModifyAsync(x => x.Content = "<:pokeshake:439680842525310987>");
+            await msg.ModifyAsync(x => x.Content = "<a:pokeshake:439674400933937152>");
+            await Task.Delay(shakeDelay * 6);
 
-            
+
             if (catchChance < M)
             {
                 await msg.ModifyAsync(x => x.Content = Context.User.Mention + "The Pokemon broke free!");
@@ -195,8 +192,8 @@ namespace NadekoBot.Modules.Pokemon
             uow.PokemonSprite.Add(GeneratePokemon(target));
             await uow.CompleteAsync();
 
-            await delayTask;
-            await msg.ModifyAsync(x => x.Content = $"**{replacedPkm.NickName}** released!\n Caught **{targetPkm.NickName}**! ✨ <:adball:439353539253239808> ✨");
+            
+            await msg.ModifyAsync(x => x.Content = $"**{replacedPkm.NickName}** released!\n Caught **{targetPkm.NickName}**! ✨ <:pokeshake:439680842525310987> ✨");
         }
 
         [NadekoCommand, Usage, Description, Alias("am")]
