@@ -5,19 +5,9 @@ using System.Text;
 
 namespace NadekoBot.Modules.Pokemon.Common
 {
-    public class PokeStats
-    {
-        //Health left
-        public int Hp { get; set; } = 500;
-        public int MaxHp { get; } = 500;
-        //Amount of moves made since last time attacked
-        public int MovesMade { get; set; } = 0;
-        //Last people attacked
-        public List<ulong> LastAttacked { get; set; } = new List<ulong>();
-    }
     public class TrainerStats
     {
-        public IGuildUser LastAttackedBy { get; set; } = null;
+        public Dictionary<ulong,IGuildUser> LastAttackedBy { get; set; } = new Dictionary<ulong,IGuildUser>();
         public static int MaxMoves { get; } = 5;
         /// <summary>
         /// Amount of moves made since last time attacked
@@ -42,4 +32,5 @@ namespace NadekoBot.Modules.Pokemon.Common
             return this;
         }
     }
+
 }

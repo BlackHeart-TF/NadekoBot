@@ -27,7 +27,6 @@ namespace NadekoBot.Modules.Pokemon
         }
 
         [NadekoCommand, Usage, Description, Alias]
-        [RequireContext(ContextType.Guild)]
         [Summary("Show Pokemon QuickHelp")]
         public async Task Phelp()
         {
@@ -179,8 +178,9 @@ namespace NadekoBot.Modules.Pokemon
             await msg.ModifyAsync(x => x.Content = "<:adball2:439353559696408576>");
             await Task.Delay(shakeDelay);
             await msg.ModifyAsync(x => x.Content = "<:adball:439353539253239808>");
-            
+            delayTask = Task.Delay(shakeDelay * 2);
 
+            
             if (catchChance < M)
             {
                 await msg.ModifyAsync(x => x.Content = Context.User.Mention + "The Pokemon broke free!");
@@ -195,7 +195,7 @@ namespace NadekoBot.Modules.Pokemon
             uow.PokemonSprite.Add(GeneratePokemon(target));
             await uow.CompleteAsync();
 
-
+            await delayTask;
             await msg.ModifyAsync(x => x.Content = $"**{replacedPkm.NickName}** released!\n Caught **{targetPkm.NickName}**! ✨ <:adball:439353539253239808> ✨");
         }
 
@@ -352,9 +352,9 @@ namespace NadekoBot.Modules.Pokemon
         [Summary("attacks a target")]
         public async Task Attack([Remainder] string moveString)
         {
-            var user = ((IGuildUser)Context.User).GetTrainerStats().LastAttackedBy;
-            if (user == null)
-            {
+            IGuildUser user;
+            if (!((IGuildUser)Context.User).GetTrainerStats().LastAttackedBy.TryGetValue(Context.Guild.Id,out user))
+            { 
                 await ReplyAsync("Target a user with `.attack @user move`");
                 return;
             }
@@ -392,7 +392,9 @@ namespace NadekoBot.Modules.Pokemon
                 await ReplyAsync($"{attackerPokemon.NickName} has fainted and can't attack!");
                 return;
             }
-            defenderStats.LastAttackedBy = attacker;
+            if (defenderStats.LastAttackedBy.ContainsKey(Context.Guild.Id))
+                defenderStats.LastAttackedBy.Remove(Context.Guild.Id);
+            defenderStats.LastAttackedBy.Add(Context.Guild.Id, attacker);
             KeyValuePair<string, string> move = new KeyValuePair<string, string>(moveString, species.Moves[moveString]);
             var defenderPokemon = ActivePokemon(target);
 
@@ -417,7 +419,7 @@ namespace NadekoBot.Modules.Pokemon
             if (defenderPokemon.HP <= 0)
             {
                 
-                var str = $"{defenderPokemon.NickName} fainted!\n{attackerPokemon.NickName}'s owner {attacker.Mention} receives 1 point\n";
+                var str = $"{defenderPokemon.NickName} fainted!\n" + (!target.IsBot ? "${attackerPokemon.NickName}'s owner {attacker.Mention} receives 1 point\n": "");
                 var lvl = attackerPokemon.Level;
                 if (!target.IsBot)
                 {
@@ -464,7 +466,8 @@ namespace NadekoBot.Modules.Pokemon
                 //UpdatePokemon(attackerPokemon);
                 //UpdatePokemon(defenderPokemon);
                 await ReplyAsync(str);
-                await _cs.AddAsync(attacker.Id, "Victorious in pokemon", 1);
+                if (!target.IsBot)
+                    await _cs.AddAsync(attacker.Id, "Victorious in pokemon", 1);
                 
             }
             if (target.IsBot)
