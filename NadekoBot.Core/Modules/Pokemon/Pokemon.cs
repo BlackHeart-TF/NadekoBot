@@ -82,12 +82,11 @@ namespace NadekoBot.Modules.Pokemon
         }
 
         [NadekoCommand, Usage, Description, Alias]
-        [RequireContext(ContextType.Guild)]
         [Summary("Get the pokemon of someone|yourself")]
         public async Task Active(IUser target = null)
         {
             if (target == null)
-                target = (IUser)Context.User;
+                target = Context.User;
             var active = target.ActivePokemon();
 
             //await ReplyAsync($"**{target.Mention}**:\n{active.PokemonString()}");
