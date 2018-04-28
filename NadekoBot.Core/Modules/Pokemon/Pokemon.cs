@@ -12,13 +12,21 @@ using NadekoBot.Modules.Pokemon.Extentions;
 using NadekoBot.Modules.Pokemon.Common;
 using System.Collections.Concurrent;
 using NadekoBot.Extensions;
+using NadekoBot.Common;
+using Discord.WebSocket;
 
 namespace NadekoBot.Modules.Pokemon
 {
     public class PokemonNew : NadekoTopLevelModule<PokemonService>
     {
-        private readonly DbService _db;
+        private static DbService _db;
         private readonly ICurrencyService _cs;
+        private NadekoRandom rng = new NadekoRandom();
+
+        public static DbService GetDb()
+        {
+            return _db;
+        }
 
         public PokemonNew(DbService db, ICurrencyService cs)
         {
@@ -48,11 +56,10 @@ namespace NadekoBot.Modules.Pokemon
         }
 
         [NadekoCommand, Usage, Description, Alias]
-        [RequireContext(ContextType.Guild)]
         [Summary("Shows the top ranking")]
         public async Task Elite4()
         {
-            var top = GetTopPlayers();
+            var top = await PokemonFunctions.GetTopPlayersAsync();
             string output = "";
             for (int i = 1; i <= top.Count(); i++)
                 output += i + top[i-1].RankString + "\n";
@@ -67,7 +74,7 @@ namespace NadekoBot.Modules.Pokemon
             if (target == null)
                 target = (IGuildUser)Context.User;
 
-            var top = GetPlayerRank(target);
+            var top = await PokemonFunctions.GetPlayerRankAsync(target);
             string output = "";
             for (int i = 1; i <= top.Count(); i++)
                 output += top[i-1].Rank + top[i - 1].RankString + "\n";
@@ -77,11 +84,11 @@ namespace NadekoBot.Modules.Pokemon
         [NadekoCommand, Usage, Description, Alias]
         [RequireContext(ContextType.Guild)]
         [Summary("Get the pokemon of someone|yourself")]
-        public async Task Active(IGuildUser target = null)
+        public async Task Active(IUser target = null)
         {
             if (target == null)
-                target = (IGuildUser)Context.User;
-            var active = ActivePokemon(target);
+                target = (IUser)Context.User;
+            var active = target.ActivePokemon();
 
             //await ReplyAsync($"**{target.Mention}**:\n{active.PokemonString()}");
             await Context.Channel.EmbedAsync(new EmbedBuilder().WithOkColor()
@@ -97,16 +104,13 @@ namespace NadekoBot.Modules.Pokemon
         }
 
         [NadekoCommand, Usage, Description, Alias]
-        [RequireContext(ContextType.Guild)]
         [Summary("Show the moves of the active pokemon")]
         public async Task ML()
         {
-            var target = (IGuildUser)Context.User;
-            var active = ActivePokemon(target);
+            var active = Context.User.ActivePokemon();
             await Context.Channel.EmbedAsync(new EmbedBuilder().WithOkColor()
                 .WithThumbnailUrl(active.GetSpecies().ImageLink)
-                .AddField(efb => efb.WithName($"**{active.NickName.ToTitleCase()}'s moves**:").WithValue(active.PokemonMoves()).WithIsInline(true)));
-            
+                .AddField(efb => efb.WithName($"**{active.NickName.ToTitleCase()}'s moves**:").WithValue(active.PokemonMoves()).WithIsInline(true))); 
         }
 
         [NadekoCommand, Usage, Description, Alias("catch")]
@@ -114,7 +118,7 @@ namespace NadekoBot.Modules.Pokemon
         [Summary("replaces your selected pokemon with a wild")]
         public async Task CatchPkm(IGuildUser target, string pokemon)
         {
-            var pkmList = PokemonList((IGuildUser)Context.User);
+            var pkmList = Context.User.GetPokemon();
             var pkm = pkmList.Where(x => x.NickName == pokemon).DefaultIfEmpty(null).FirstOrDefault();
             if (pkm == null)
             {
@@ -129,7 +133,7 @@ namespace NadekoBot.Modules.Pokemon
         [NadekoCommand, Usage, Description, Alias("catch")]
         [RequireContext(ContextType.Guild)]
         [Summary("replaces your selected pokemon with a wild")]
-        public async Task CatchPkm(IGuildUser target, int slot)
+        public async Task CatchPkm(IUser target, int slot)
         {
             int shakeDelay = 500;
             Task delayTask;
@@ -154,8 +158,8 @@ namespace NadekoBot.Modules.Pokemon
             await msg.ModifyAsync(x => x.Content = "<a:pokeshake:439674400933937152>");
             delayTask = Task.Delay(shakeDelay*6); 
 
-            var targetPkm = ActivePokemon(target);
-            var replacedPkm = PokemonList((IGuildUser)Context.User)[slot - 1];
+            var targetPkm = target.ActivePokemon();
+            var replacedPkm = Context.User.GetPokemon()[slot - 1];
 
             int ballchanceN =  rng.Next(0, 255);
             int catchRate = 195;
@@ -183,13 +187,13 @@ namespace NadekoBot.Modules.Pokemon
                 await msg.ModifyAsync(x => x.Content = Context.User.Mention + "The Pokemon broke free!");
                 return;
             }
-            DeletePokemon(targetPkm);
+            targetPkm.Delete();
             targetPkm.Id = replacedPkm.Id;
             targetPkm.OwnerId = replacedPkm.OwnerId;
             targetPkm.IsActive = replacedPkm.IsActive;
-            UpdatePokemon(targetPkm);
+            targetPkm.Update();
             var uow = _db.UnitOfWork;
-            uow.PokemonSprite.Add(GeneratePokemon(target));
+            uow.PokemonSprite.Add(PokemonFunctions.GeneratePokemon(target));
             await uow.CompleteAsync();
 
             
@@ -197,30 +201,29 @@ namespace NadekoBot.Modules.Pokemon
         }
 
         [NadekoCommand, Usage, Description, Alias("am")]
-        [RequireContext(ContextType.Guild)]
         [Summary("Show the moves of all your pokemon")]
         public async Task AllMoves()
         {
-            var target = (IGuildUser)Context.User;
-            var pokemon = PokemonList(target);
+            var pokemon = Context.User.GetPokemon();
             string output = "";
             foreach (var pkm in pokemon)
             {
                 output += $"**{pkm.NickName}'s moves**:\n{pkm.PokemonMoves()}\n\n";
             }
-            await target.SendMessageAsync(output);
-            await ReplyAsync(target.Mention + " I sent you a list of all your pokemon and their moves.");
+            await Context.User.SendMessageAsync(output);
+            if (Context.Channel.GetType() != typeof(SocketDMChannel))//best way to determin dm?!?
+                await ReplyAsync(Context.User.Mention + " I sent you a list of all your pokemon and their moves.");
 
         }
 
         [NadekoCommand, Usage, Description, Alias]
         [RequireContext(ContextType.Guild)]
         [Summary("Heals the specified users active pokemon (default self)")]
-        public async Task Heal(IGuildUser target = null)
+        public async Task Heal(IUser target = null)
         {
             if (target == null)
-                target = (IGuildUser)Context.User;
-            var pkm = ActivePokemon(target);
+                target = Context.User;
+            var pkm = target.ActivePokemon();
             if (pkm.HP == pkm.MaxHP)
             {
                 await ReplyAsync($"{ pkm.NickName} is already at full health!");
@@ -228,8 +231,8 @@ namespace NadekoBot.Modules.Pokemon
             }
             if (_cs.RemoveAsync(Context.User.Id, "Healed a pokemon", 1).Result)
             {
-                UpdatePokemon(pkm.Heal());
-                await ReplyAsync($"**{ActivePokemon(target).NickName}** has been healed for 1 {_bc.BotConfig.CurrencySign}!");
+                pkm.Heal();
+                await ReplyAsync($"**{target.ActivePokemon().NickName}** has been healed for 1 {_bc.BotConfig.CurrencySign}!");
             }
             else
                 await ReplyAsync("You need 1 point to heal");
@@ -237,18 +240,16 @@ namespace NadekoBot.Modules.Pokemon
         [NadekoCommand, Usage, Description, Alias]
         [RequireContext(ContextType.Guild)]
         [Summary("Heals all pokemon of the specified user (default self)")]
-        public async Task Healall(IGuildUser target = null)
+        public async Task Healall(IUser target = null)
         {
             if (target == null)
-                target = (IGuildUser)Context.User;
-            var toheal = PokemonList(target).Where(x => x.HP < x.MaxHP);
+                target = Context.User;
+            var toheal = target.GetPokemon().Where(x => x.HP < x.MaxHP);
             var count = toheal.Count();
             if (_cs.RemoveAsync(Context.User.Id, "Healed all pokemon", count).Result)
             {
                 foreach (var pkm in toheal)
-                {
-                    UpdatePokemon(pkm.Heal());
-                }
+                    pkm.Heal();
                 await ReplyAsync(count + " Pokemon healed for " + count + _bc.BotConfig.CurrencySign + "!");
             }
             else
@@ -260,7 +261,7 @@ namespace NadekoBot.Modules.Pokemon
         [Summary("Show the moves of the active pokemon")]
         public async Task Heal(string target = null)
         {
-            var pkm = PokemonList((IGuildUser)Context.User).Where(x => x.NickName == target).DefaultIfEmpty(null).FirstOrDefault();
+            var pkm = Context.User.GetPokemon().Where(x => x.NickName == target).DefaultIfEmpty(null).FirstOrDefault();
             if (pkm.HP == pkm.MaxHP)
             {
                 await ReplyAsync($"{ pkm.NickName} is already at full health!");
@@ -268,7 +269,7 @@ namespace NadekoBot.Modules.Pokemon
             }
             if (_cs.RemoveAsync(Context.User.Id, "Healed a pokemon", 1).Result)
             {
-                UpdatePokemon(pkm.Heal());
+                pkm.Heal();
                 await ReplyAsync($"**{pkm.NickName}** has been healed for 1 {_bc.BotConfig.CurrencySign}!");
             }
             else
@@ -286,7 +287,7 @@ namespace NadekoBot.Modules.Pokemon
                  currency = uow.DiscordUsers.GetOrCreate(Context.User).CurrencyAmount;
             }
            
-            var toheal = PokemonList(target).Where(x => x.HP == 0);
+            var toheal = target.GetPokemon().Where(x => x.HP == 0);
             if (toheal.Count() == 6)
             {
                 if (currency >= 6)
@@ -298,9 +299,8 @@ namespace NadekoBot.Modules.Pokemon
                     return;
                 }
                 foreach (var pkm in toheal)
-                {
-                    UpdatePokemon(pkm.Heal());
-                }
+                    pkm.Heal();
+                
                 var embed = new EmbedBuilder().WithColor(Color.Magenta)
                    .WithDescription(Context.User.Mention + ",\n Your Pokémon are fighting fit!\nWe hope to see you again!")
                    .WithThumbnailUrl(_service.GetRandomNurseImage()).Build();
@@ -322,8 +322,7 @@ namespace NadekoBot.Modules.Pokemon
         [Summary("Switches the active pokemon")]
         public async Task Switch(string name, string move = null)
         {
-            var target = (IGuildUser)Context.User;
-            var list = PokemonList(target);
+            var list = Context.User.GetPokemon();
             var newpkm = list.Where(x => x.NickName == name.Trim()).DefaultIfEmpty(null).FirstOrDefault();
             var trainer = ((IGuildUser)Context.User).GetTrainerStats();
             if (trainer.MovesMade > 0)
@@ -331,13 +330,13 @@ namespace NadekoBot.Modules.Pokemon
                 await ReplyAsync("You can't do that right now.");
                 return;
             }
-            switch (SwitchPokemon(target, newpkm)) { 
+            switch (SwitchPokemon(Context.User, newpkm)) { 
                 case SwitchResult.TargetFainted:
                     await ReplyAsync(Context.User.Mention + ", " + newpkm.NickName + " has already fainted!");
                     return;
                 case SwitchResult.Pass:
                     trainer.MovesMade++;
-                    target.UpdateTrainerStats(trainer);
+                    Context.User.UpdateTrainerStats(trainer);
                     await ReplyAsync($"{Context.User.Mention} switched to **{newpkm.NickName}**");
                     break;
                 case SwitchResult.Failed:
@@ -346,7 +345,7 @@ namespace NadekoBot.Modules.Pokemon
             }
             if (move != null)
             {
-                if (target.GetTrainerStats().LastAttackedBy == null)
+                if (Context.User.GetTrainerStats().LastAttackedBy == null)
                 {
                     await ReplyAsync("Can't attack. Use `.attack @target move`");
                     return;
@@ -366,8 +365,8 @@ namespace NadekoBot.Modules.Pokemon
                 await ReplyAsync("Target a user with `.attack @user move`");
                 return;
             }
-             
-            await Attack(user, moveString);
+
+            await DoAttack((IGuildUser)Context.User, user, moveString);
         }
 
         [NadekoCommand, Usage, Description, Alias]
@@ -381,7 +380,7 @@ namespace NadekoBot.Modules.Pokemon
 
         public async Task DoAttack(IGuildUser attacker, IGuildUser target, [Remainder] string moveString)
         {
-            var attackerPokemon = ActivePokemon(attacker);
+            var attackerPokemon = target.ActivePokemon();
             var species = attackerPokemon.GetSpecies();
             if (!species.Moves.Keys.Contains(moveString.Trim()))
             {
@@ -404,7 +403,7 @@ namespace NadekoBot.Modules.Pokemon
                 defenderStats.LastAttackedBy.Remove(Context.Guild.Id);
             defenderStats.LastAttackedBy.Add(Context.Guild.Id, attacker);
             KeyValuePair<string, string> move = new KeyValuePair<string, string>(moveString, species.Moves[moveString]);
-            var defenderPokemon = ActivePokemon(target);
+            var defenderPokemon = target.ActivePokemon();
 
             if (defenderPokemon.HP == 0)
             {
@@ -421,8 +420,8 @@ namespace NadekoBot.Modules.Pokemon
             //Update stats, you shall
             attacker.UpdateTrainerStats(attackerStats.Attack(target));
             target.UpdateTrainerStats(defenderStats.Reset());
-            UpdatePokemon(attackerPokemon);
-            UpdatePokemon(defenderPokemon);
+            attackerPokemon.Update();
+            defenderPokemon.Update();
 
             if (defenderPokemon.HP <= 0)
             {
@@ -439,9 +438,9 @@ namespace NadekoBot.Modules.Pokemon
                     str += $"**{attackerPokemon.NickName}** leveled up!\n**{attackerPokemon.NickName}** is now level **{attackerPokemon.Level}**";
                     //Check evostatus
                 }
-                UpdatePokemon(attackerPokemon);
-                UpdatePokemon(defenderPokemon);
-                var list = PokemonList(target).Where(s => (s.HP > 0 && s != defenderPokemon));
+                attackerPokemon.Update();
+                defenderPokemon.Update();
+                var list = target.GetPokemon().Where(s => (s.HP > 0 && s != defenderPokemon));
                 if (list.Any())
                 {
                     var toSet = list.FirstOrDefault();
@@ -465,9 +464,9 @@ namespace NadekoBot.Modules.Pokemon
                     str += $"\n{target.Mention} has no pokemon left!";
                     if (target.IsBot)
                     {
-                        var pkmlist = PokemonList(target);
+                        var pkmlist = target.GetPokemon();
                         foreach (var pkm in pkmlist)
-                            UpdatePokemon(pkm.Heal());
+                            pkm.Heal();
                     }
                     //do something?
                 }
@@ -480,7 +479,7 @@ namespace NadekoBot.Modules.Pokemon
             }
             if (target.IsBot)
             {
-                await DoAttack(target, attacker, ActivePokemon(target).GetSpecies().Moves.Keys.ElementAt((new Random().Next(3))));
+                await DoAttack(target, attacker, target.ActivePokemon().GetSpecies().Moves.Keys.ElementAt((new Random().Next(3))));
                 
             }
         }
@@ -500,11 +499,10 @@ namespace NadekoBot.Modules.Pokemon
         [Summary("Show the moves of the active pokemon")]
         public async Task Rename([Remainder] string name)
         {
-            var target = (IGuildUser)Context.User;
-            var active = ActivePokemon(target);
+            var active = Context.User.ActivePokemon();
             var output = "**" + active.NickName + "** renamed to **";
             active.Rename(name);
-            UpdatePokemon(active);
+            active.Update();
             
             await ReplyAsync(output + active.NickName + "**");
 
@@ -515,7 +513,7 @@ namespace NadekoBot.Modules.Pokemon
         [Summary("Shows your current party")]
         public async Task List()
         {
-            var list = PokemonList((IGuildUser)Context.User);
+            var list = Context.User.GetPokemon();
             string str = $"{Context.User.Mention}'s pokemon are:\n";
             foreach (var pkm in list)
             {
@@ -548,9 +546,9 @@ namespace NadekoBot.Modules.Pokemon
         /// <param name="u"></param>
         /// <param name="newActive"></param>
         /// <returns></returns>
-        SwitchResult SwitchPokemon(IGuildUser u, PokemonSprite newActive)
+        SwitchResult SwitchPokemon(IUser user, PokemonSprite newActive)
         {
-            var toUnset = PokemonList(u).Where(x => x.IsActive).FirstOrDefault();
+            var toUnset = user.GetPokemon().Where(x => x.IsActive).FirstOrDefault();
             if (toUnset == null)
             {
                 return SwitchResult.Failed;
@@ -561,40 +559,12 @@ namespace NadekoBot.Modules.Pokemon
             }
             toUnset.IsActive = false;
             newActive.IsActive = true;
-            UpdatePokemon(toUnset);
-            UpdatePokemon(newActive);
+            toUnset.Update();
+            newActive.Update();
             
             return SwitchResult.Pass;
         }
         
-
-        public async void UpdatePokemon(PokemonSprite pokemon)
-        {
-            var uow = _db.UnitOfWork;
-            uow.PokemonSprite.Update(pokemon);
-            await uow.CompleteAsync();
-        }
-
-        public async void DeletePokemon(PokemonSprite pokemon)
-        {
-            var uow = _db.UnitOfWork;
-            uow.PokemonSprite.Remove(pokemon);
-            await uow.CompleteAsync();
-        }
-
-        public PokemonSprite ActivePokemon(IGuildUser u)
-        {
-            var list = PokemonList(u);
-            var active = list.Where(x => x.IsActive).FirstOrDefault();
-            if (active == null)
-            {
-                var pkm = list.Where(x => x.HP > 0).FirstOrDefault() ?? list.First();
-                pkm.IsActive = true;
-                UpdatePokemon(pkm);
-                active = pkm;
-            }
-            return active;
-        }
 
         string swapPokemon(IGuildUser user, string OldPokemon, string NewPokemon, int Level = 5)
         {
@@ -609,126 +579,14 @@ namespace NadekoBot.Modules.Pokemon
                 oldpkm.LevelUp();
             }
             oldpkm.HP = oldpkm.MaxHP;
-            UpdatePokemon(oldpkm);
+            oldpkm.Update();
             return "Probably worked. idk, theres no error checking, do `.list` to be sure";
         }
 
-        List<PokemonSprite> PokemonList(IGuildUser u)
-        {
-            var db = _db.UnitOfWork.PokemonSprite.GetAll();
-            var row = db.Where(x => x.OwnerId == (long)u.Id);
-            if (row.Count() >= 6)
-            {
-                return row.ToList();
-            }
-            else
-            {
+        
 
-                var list = new List<PokemonSprite>();
-                while (row.Count() + list.Count < 6)
-                {
-                    var pkm = GeneratePokemon(u);
-                    if (!list.Where(x => x.IsActive).Any())
-                    {
-                        pkm.IsActive = true;
-                    }
+        
 
-                    list.Add(pkm);
-                    
-                    
-                }
-                //Set an active pokemon
-                var uow = _db.UnitOfWork;
-                uow.PokemonSprite.AddRange(list.ToArray());
-                uow.CompleteAsync();
-
-                return list;
-            }
-        }
-
-        List<PokemonTrainer> GetTopPlayers()
-        {
-            var db = _db.UnitOfWork.PokemonSprite.GetAll();
-            var users = db.DistinctBy(x => x.OwnerId);
-            var output = new List<PokemonTrainer>();
-            foreach (var user in users)
-            {
-                var usrpkm = db.Where(x => x.OwnerId == user.OwnerId);
-                long exp = 0;
-                foreach (var pkm in usrpkm)
-                    exp += pkm.XP;
-                var trainer = new PokemonTrainer()
-                {
-                    ID = user.OwnerId,
-                    TotalExp = exp,
-                    TopPokemon = usrpkm.OrderByDescending(x => x.Level).First()
-                };
-                output.Add(trainer);
-            }
-            output = output.OrderByDescending(x => x.TotalExp).Take(4).ToList();
-            return output;
-        }
-
-        List<PokemonTrainer> GetPlayerRank(IGuildUser player)
-        {
-            var db = _db.UnitOfWork.PokemonSprite.GetAll();
-            var users = db.DistinctBy(x => x.OwnerId);
-            var output = new List<PokemonTrainer>();
-            //int player 
-            foreach (var user in users)
-            {
-                var usrpkm = db.Where(x => x.OwnerId == user.OwnerId);
-                long exp = 0;
-                foreach (var pkm in usrpkm)
-                    exp += pkm.XP;
-                var trainer = new PokemonTrainer()
-                {
-                    ID = user.OwnerId,
-                    TotalExp = exp,
-                    TopPokemon = usrpkm.OrderByDescending(x => x.Level).First()
-                };
-                output.Add(trainer);
-            }
-            output = output.OrderByDescending(x => x.TotalExp).ToList();
-            for (int i = 0; i < output.Count; i++)
-                output[i].Rank = i+1;
-            var playerRank = output.Where(x => x.ID == (long)player.Id).First().Rank;
-            output=output.Skip(playerRank - 3).Take(5).ToList();
-            return output;
-        }
-
-        Random rng = new Random();
-        private PokemonSprite GeneratePokemon(IGuildUser u)
-        {
-
-            var list =_service.pokemonClasses.Where(x => x.EvolveLevel != -1).ToList();
-            var speciesIndex = rng.Next(0, list.Count() - 1);
-            rng.Next();
-            var species = list[speciesIndex];
-
-            PokemonSprite sprite = new PokemonSprite
-            {
-                SpeciesId = species.Number,
-                HP = species.BaseStats["hp"],
-                Level = 1,
-                NickName = species.Name,
-                OwnerId = (long)u.Id,
-                XP = 0,
-                Attack = species.BaseStats["attack"],
-                Defense = species.BaseStats["defense"],
-                SpecialAttack = species.BaseStats["special-attack"],
-                SpecialDefense = species.BaseStats["special-defense"],
-                Speed = species.BaseStats["speed"],
-                MaxHP = species.BaseStats["hp"]
-            };
-
-            while (sprite.Level < 4)
-            {
-                sprite.LevelUp();
-            }
-            sprite.XP = sprite.XPRequired();
-            sprite.LevelUp();
-            return sprite;
-        }
+        
     }
 }

@@ -28,10 +28,10 @@ namespace NadekoBot.Modules.Pokemon.Extentions
             throw (new NotImplementedException());
         }
 
-        public static PokemonSprite Heal(this PokemonSprite sprite)
+        public static void Heal(this PokemonSprite sprite)
         {
             sprite.HP = sprite.MaxHP;
-            return sprite;
+            sprite.Update();
         }
     }
 }

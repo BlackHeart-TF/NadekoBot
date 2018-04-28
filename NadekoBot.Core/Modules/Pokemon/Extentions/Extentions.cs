@@ -22,6 +22,27 @@ namespace NadekoBot.Modules.Pokemon.Extentions
             return  service.pokemonClasses.Where(x => x.Number == pkm.SpeciesId).DefaultIfEmpty(null).First();
         }
 
+        public static PokemonSprite ActivePokemon(this IUser user)
+        {
+            return PokemonFunctions.GetActivePokemon(user);
+        }
+
+        public static List<PokemonSprite> GetPokemon(this IUser user)
+        {
+            return PokemonFunctions.PokemonList(user);
+        }
+
+
+        public static void Update (this PokemonSprite pkm)
+        {
+            PokemonFunctions.UpdatePokemon(pkm);
+        }
+
+        public static void Delete(this PokemonSprite pkm)
+        {
+            PokemonFunctions.DeletePokemon(pkm);
+        }
+
         public static string PokemonString(this PokemonSprite pkm)
         {
             var species = pkm.GetSpecies();
@@ -105,12 +126,12 @@ namespace NadekoBot.Modules.Pokemon.Extentions
             return service.pokemonTypes.Where(x => x.Name == str).DefaultIfEmpty(null).FirstOrDefault();
 
         }
-        public static TrainerStats GetTrainerStats(this IGuildUser user)
+        public static TrainerStats GetTrainerStats(this IUser user)
         {
            var stats = UserStats.GetOrAdd(user.Id, new TrainerStats());
             return stats;
         }
-        public static void UpdateTrainerStats(this IGuildUser user, TrainerStats stats)
+        public static void UpdateTrainerStats(this IUser user, TrainerStats stats)
         {
             UserStats.AddOrUpdate(user.Id, x => stats, (s, t) => stats);
         }
