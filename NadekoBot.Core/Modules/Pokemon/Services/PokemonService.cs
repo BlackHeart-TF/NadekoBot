@@ -78,5 +78,12 @@ namespace NadekoBot.Modules.Pokemon.Services
             var cur = _images.ImageUrls.PokemonUrls;
             return cur[rng.Next(0, cur.Length)];
         }
+        public string GetRandomNurseImage()
+        {
+
+            var rng = new NadekoRandom();
+            var cur = _images.ImageUrls.NurseJoy;
+            return cur[rng.Next(0, cur.Length)];
+        }
     }
 }

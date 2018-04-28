@@ -31,9 +31,15 @@
     "xp": {
         "bg": "https://i.imgur.com/ozgFffJ.png"
     },
-    "PokemonUrls": [
-	"https://i.imgur.com/7tOkFAf.png",
-	"https://i.imgur.com/Vwsd6SC.png",
-	"https://i.imgur.com/XclmaVO.png"
-    ]
+  "PokemonUrls": [
+    "https://i.imgur.com/7tOkFAf.png",
+    "https://i.imgur.com/Vwsd6SC.png",
+    "https://i.imgur.com/XclmaVO.png"
+  ],
+  "NurseJoy": [
+    "https://i.imgur.com/tQV51BI.png",
+    "https://i.imgur.com/NS3LOkg.png",
+    "https://i.imgur.com/mrK5ClX.png",
+    "https://i.imgur.com/moRXuEM.png"
+  ]
 }

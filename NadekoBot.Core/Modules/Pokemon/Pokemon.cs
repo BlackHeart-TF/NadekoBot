@@ -294,17 +294,28 @@ namespace NadekoBot.Modules.Pokemon
             {
                 if (currency >= 6)
                 {
-                    await ReplyAsync($"You have enough {_bc.BotConfig.CurrencyName} {_bc.BotConfig.CurrencySign} to heal yourself. Use `.healall`");
+                    var embedtxt = new EmbedBuilder().WithColor(Color.Magenta)
+                   .WithDescription($"You have enough {_bc.BotConfig.CurrencyName} {_bc.BotConfig.CurrencySign} to heal yourself. Use `.healall`")
+                   .WithThumbnailUrl(_service.GetRandomNurseImage()).Build();
+                    await ReplyAsync("", false, embedtxt);
                     return;
                 }
                 foreach (var pkm in toheal)
                 {
                     UpdatePokemon(pkm.Heal());
                 }
-                await ReplyAsync(Context.User.Mention +",\n Your Pokémon are fighting fit!\nWe hope to see you again!");
+                var embed = new EmbedBuilder().WithColor(Color.Magenta)
+                   .WithDescription(Context.User.Mention + ",\n Your Pokémon are fighting fit!\nWe hope to see you again!")
+                   .WithThumbnailUrl(_service.GetRandomNurseImage()).Build();
+                await ReplyAsync("", false, embed);
             }
             else
-                await ReplyAsync(Context.User.Mention + ", you still have pokemon willing to fight! Get back in there!");
+            {
+                var embed = new EmbedBuilder().WithColor(Color.Red)
+                   .WithDescription(Context.User.Mention + ", you still have pokemon willing to fight! Get back in there!")
+                   .WithThumbnailUrl(_service.GetRandomNurseImage()).Build();
+                await ReplyAsync("", false, embed);
+            }
 
         }
 
@@ -419,7 +430,7 @@ namespace NadekoBot.Modules.Pokemon
             if (defenderPokemon.HP <= 0)
             {
                 
-                var str = $"{defenderPokemon.NickName} fainted!\n" + (!target.IsBot ? "${attackerPokemon.NickName}'s owner {attacker.Mention} receives 1 point\n": "");
+                var str = $"{defenderPokemon.NickName} fainted!\n" + (!target.IsBot ? $"{attackerPokemon.NickName}'s owner {attacker.Mention} receives 1 {_bc.BotConfig.CurrencySign}\n": "");
                 var lvl = attackerPokemon.Level;
                 if (!target.IsBot)
                 {
