@@ -125,10 +125,10 @@ namespace NadekoBot.Modules.Pokemon.Common
             return output;
         }
 
-        public static Task<List<PokemonTrainer>> GetPlayerRankAsync(IGuildUser player) =>
+        public static Task<List<PokemonTrainer>> GetPlayerRankAsync(IUser player) =>
             Task.Run(() => { return GetPlayerRank(player); });
 
-        public static List<PokemonTrainer> GetPlayerRank(IGuildUser player)
+        public static List<PokemonTrainer> GetPlayerRank(IUser player)
         {
             var db = _db.UnitOfWork.PokemonSprite.GetAll();
             var users = db.DistinctBy(x => x.OwnerId);

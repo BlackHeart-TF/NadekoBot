@@ -67,12 +67,11 @@ namespace NadekoBot.Modules.Pokemon
         }
 
         [NadekoCommand, Usage, Description, Alias]
-        [RequireContext(ContextType.Guild)]
         [Summary("Shows the top ranking")]
-        public async Task Rank(IGuildUser target = null)
+        public async Task Rank(IUser target = null)
         {
             if (target == null)
-                target = (IGuildUser)Context.User;
+                target = Context.User;
 
             var top = await PokemonFunctions.GetPlayerRankAsync(target);
             string output = "";
@@ -508,7 +507,6 @@ namespace NadekoBot.Modules.Pokemon
         }
 
         [NadekoCommand, Usage, Description, Alias]
-        [RequireContext(ContextType.Guild)]
         [Summary("Shows your current party")]
         public async Task List()
         {
