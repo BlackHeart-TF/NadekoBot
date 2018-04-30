@@ -43,7 +43,10 @@ namespace PokemonJsonBuilder
             try
             {
                 species = DataFetcher.GetApiObject<PokemonSpecies>(pkmNumber).Result;
-                evolution = DataFetcher.GetApiObject<EvolutionChain>(pkmNumber).Result;
+                if (new[] { 210, 222, 225, 226, 227, 231, 238, 251 }.Contains(pkmNumber))
+                    evolution = DataFetcher.GetApiObject<EvolutionChain>(pkmNumber - 1).Result;
+                else
+                    evolution = DataFetcher.GetApiObject<EvolutionChain>(pkmNumber).Result;
                 pokemon = DataFetcher.GetApiObject<Pokemon>(pkmNumber).Result;
             }
             catch (Exception e)
