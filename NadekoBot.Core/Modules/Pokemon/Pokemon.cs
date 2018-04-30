@@ -134,9 +134,7 @@ namespace NadekoBot.Modules.Pokemon
         public async Task CatchPkm(IUser target, int slot)
         {
             int shakeDelay = 500;
-            Task delayTask;
-            var msg = await ReplyAsync("<:pokeshake:439680842525310987>");
-            delayTask = Task.Delay(shakeDelay * 3);
+           
             if (!target.IsBot)
             {
                 var embed = new EmbedBuilder().WithColor(Color.Purple)
@@ -145,6 +143,9 @@ namespace NadekoBot.Modules.Pokemon
                 await ReplyAsync("", false, embed);
                 return;
             }
+            Task delayTask;
+            var msg = await ReplyAsync("<:pokeshake:439680842525310987>");
+            delayTask = Task.Delay(shakeDelay * 3);
             if (!_cs.RemoveAsync(Context.User.Id, "Dropped a ball", 1).Result)
             {
                 await ReplyAsync($"Not enough {_bc.BotConfig.CurrencySign}!");
@@ -321,11 +322,17 @@ namespace NadekoBot.Modules.Pokemon
         public async Task Switch(string name, string move = null)
         {
             var list = Context.User.GetPokemon();
-            var newpkm = list.Where(x => x.NickName == name.Trim()).DefaultIfEmpty(null).FirstOrDefault();
+            var newpkm = list.Where(x => x.NickName == name.Trim()).DefaultIfEmpty(null).FirstOrDefault() ?? new PokemonSprite();
             var trainer = ((IGuildUser)Context.User).GetTrainerStats();
             if (trainer.MovesMade > 0)
             {
                 await ReplyAsync("You can't do that right now.");
+                return;
+            }
+
+            if (newpkm.NickName == null)
+            {
+                await ReplyAsync(Context.User.Mention + $", you dont have a pokemon named {name}!");
                 return;
             }
             switch (SwitchPokemon(Context.User, newpkm)) { 
@@ -357,9 +364,8 @@ namespace NadekoBot.Modules.Pokemon
         [Summary("attacks a target")]
         public async Task Attack([Remainder] string moveString)
         {
-            IUser user;
-            if (!Context.User.GetTrainerStats().LastAttackedBy.TryGetValue(Context.Guild.Id,out user))
-            { 
+            if (!Context.User.GetTrainerStats().LastAttackedBy.TryGetValue(Context.Guild.Id, out IUser user))
+            {
                 await ReplyAsync("Target a user with `.attack @user move`");
                 return;
             }
@@ -371,6 +377,15 @@ namespace NadekoBot.Modules.Pokemon
         [RequireContext(ContextType.Guild)]
         [Summary("attacks a target")]
         public async Task Attack([Summary("The User to target")] IUser target, [Remainder] string moveString)
+        {
+            await DoAttack(Context.User, target, moveString);
+
+        }
+
+        [NadekoCommand, Usage, Description, Alias]
+        [RequireContext(ContextType.Guild)]
+        [Summary("attacks a target")]
+        public async Task Attack([Remainder] string moveString, [Summary("The User to target")] IUser target)
         {
             await DoAttack(Context.User, target, moveString);
 
@@ -516,15 +531,15 @@ namespace NadekoBot.Modules.Pokemon
             {
                 if (pkm.IsActive)
                 {
-                    str += $"__**{pkm.NickName}** : *{pkm.GetSpecies().Name}*  HP: {pkm.HP}/{pkm.MaxHP}__\n";
+                    str += $"__**{pkm.NickName}** : *{pkm.GetSpecies().Name}* Level: {pkm.Level} HP: {pkm.HP}/{pkm.MaxHP}__\n";
                 }
                 else if (pkm.HP == 0)
                 {
-                    str += $"~~**{pkm.NickName}** : *{pkm.GetSpecies().Name}*  HP: {pkm.HP}/{pkm.MaxHP}~~☠\n";
+                    str += $"⚰️~~**{pkm.NickName}** : *{pkm.GetSpecies().Name}* Level: {pkm.Level} HP: {pkm.HP}/{pkm.MaxHP}~~\n";
                 }
                 else
                 {
-                    str += $"**{pkm.NickName}** : *{pkm.GetSpecies().Name}*  HP: {pkm.HP}/{pkm.MaxHP}\n";
+                    str += $"**{pkm.NickName}** : *{pkm.GetSpecies().Name}* Level: {pkm.Level} HP: {pkm.HP}/{pkm.MaxHP}\n";
                 }
 
             }

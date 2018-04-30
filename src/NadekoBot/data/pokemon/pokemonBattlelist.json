@@ -6282,10 +6282,10 @@
       "grass"
     ],
     "moves": {
-      "double-team": "normal",
-      "false-swipe": "normal",
-      "attract": "normal",
-      "round": "normal"
+      "counter": "fighting",
+      "seismic-toss": "fighting",
+      "mud-slap": "ground",
+      "seed-bomb": "grass"
     },
     "imageLink": "http://pokeapi.co/media/sprites/pokemon/253.png"
   },

@@ -16,6 +16,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NadekoBot.Core", "NadekoBot
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NadekoBot.Tests", "NadekoBot.Tests\NadekoBot.Tests.csproj", "{97121653-8571-4CD4-8529-9FFE9C9AABAA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonJsonBuilder", "PokemonJsonBuilder\PokemonJsonBuilder.csproj", "{9ADB82C1-0454-4E01-8A8E-6ED988DB6129}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,12 @@ Global
 		{97121653-8571-4CD4-8529-9FFE9C9AABAA}.GlobalNadeko|Any CPU.Build.0 = Debug|Any CPU
 		{97121653-8571-4CD4-8529-9FFE9C9AABAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97121653-8571-4CD4-8529-9FFE9C9AABAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9ADB82C1-0454-4E01-8A8E-6ED988DB6129}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ADB82C1-0454-4E01-8A8E-6ED988DB6129}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ADB82C1-0454-4E01-8A8E-6ED988DB6129}.GlobalNadeko|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ADB82C1-0454-4E01-8A8E-6ED988DB6129}.GlobalNadeko|Any CPU.Build.0 = Debug|Any CPU
+		{9ADB82C1-0454-4E01-8A8E-6ED988DB6129}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ADB82C1-0454-4E01-8A8E-6ED988DB6129}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
