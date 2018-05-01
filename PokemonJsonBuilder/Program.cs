@@ -27,7 +27,7 @@ namespace PokemonJsonBuilder
                 {
                     Console.WriteLine($"Writing pokemon {i} out of 949..");
                     sw.WriteLine(JsonConvert.SerializeObject(SpeciesMeCapn(i), Formatting.Indented));
-                    System.Threading.Thread.Sleep(30000);
+                    System.Threading.Thread.Sleep(20000);
                 }
             }
             Console.WriteLine("Finished.");
@@ -51,7 +51,7 @@ namespace PokemonJsonBuilder
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Exception  thrown {e.Message}. Retrying in 60s..");
+                Console.WriteLine($"Exception thrown {e.InnerException.Message}. Retrying in 60s..");
                 System.Threading.Thread.Sleep(60000);
                 goto retry;
             }

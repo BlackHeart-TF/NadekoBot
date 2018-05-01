@@ -385,7 +385,7 @@ namespace NadekoBot.Modules.Pokemon
         [NadekoCommand, Usage, Description, Alias]
         [RequireContext(ContextType.Guild)]
         [Summary("attacks a target")]
-        public async Task Attack([Remainder] string moveString, [Summary("The User to target")] IUser target)
+        public async Task Attack(string moveString, [Summary("The User to target")] IUser target)
         {
             await DoAttack(Context.User, target, moveString);
 
