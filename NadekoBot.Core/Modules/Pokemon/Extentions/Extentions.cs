@@ -27,6 +27,11 @@ namespace NadekoBot.Modules.Pokemon.Extentions
             return PokemonFunctions.GetActivePokemon(user);
         }
 
+        public static IUser GetOwner(this PokemonSprite pkm)
+        {
+            return service.GetUserByID(pkm.OwnerId);
+        }
+
         public static List<PokemonSprite> GetPokemon(this IUser user)
         {
             return PokemonFunctions.PokemonList(user);
@@ -83,6 +88,12 @@ namespace NadekoBot.Modules.Pokemon.Extentions
         public static int Reward(this PokemonSprite pkm, PokemonSprite defeated)
         {
             var reward = CalcXPReward(pkm, defeated);
+            return pkm.GiveReward(reward);
+            
+        }
+
+        public static int GiveReward(this PokemonSprite pkm, int reward)
+        {
             pkm.XP += reward;
             if (pkm.XP > pkm.XPRequired())
             {
@@ -128,7 +139,7 @@ namespace NadekoBot.Modules.Pokemon.Extentions
         }
         public static TrainerStats GetTrainerStats(this IUser user)
         {
-           var stats = UserStats.GetOrAdd(user.Id, new TrainerStats());
+           var stats = UserStats.GetOrAdd(user.Id, new TrainerStats(user));
             return stats;
         }
         public static void UpdateTrainerStats(this IUser user, TrainerStats stats)

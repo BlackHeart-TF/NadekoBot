@@ -169,5 +169,146 @@ namespace NadekoBot.Modules.Pokemon.Common
             }
             return active;
         }
+
+        public enum AttackResult
+        {
+            InvalidMove,
+            AlreadyAttacked,
+            AttackerIsDead,
+            DefenderIsDead,
+
+        }
+
+        public static AttackResult DoAttack(PokemonSprite Attacker, PokemonSprite Defender, String moveString)
+        {
+            throw (new NotImplementedException());
+
+            //var species = Attacker.GetSpecies();
+            //if (!species.Moves.Keys.Contains(moveString.Trim()))
+            //{
+            //    return AttackResult.InvalidMove;
+            //}
+
+            //var target = Defender.GetOwner();
+            //var attackerStats = Attacker.GetOwner().GetTrainerStats();
+            //var defenderStats = target.GetTrainerStats();
+            //if (attackerStats.MovesMade > TrainerStats.MaxMoves || attackerStats.LastAttacked.Contains(target.Id))
+            //    return AttackResult.AlreadyAttacked;
+            
+            //if (Attacker.HP == 0)
+            //    return AttackResult.AttackerIsDead;
+            
+            //if (defenderStats.LastAttackedBy.ContainsKey(Context.Guild.Id))
+            //    defenderStats.LastAttackedBy.Remove(Context.Guild.Id);
+            //defenderStats.LastAttackedBy.Add(Context.Guild.Id, attacker);
+            //KeyValuePair<string, string> move = new KeyValuePair<string, string>(moveString, species.Moves[moveString]);
+
+            //if (Defender.HP == 0)
+            //    return AttackResult.DefenderIsDead;
+
+            //PokemonAttack attack = new PokemonAttack(Attacker, Defender, move);
+            //var msg = attack.AttackString();
+
+            //Defender.HP -= attack.Damage;
+            //msg += $"{Defender.NickName} has {Defender.HP} HP left!";
+            //await ReplyAsync(msg);
+            ////Update stats, you shall
+            //Attacker.GetOwner().UpdateTrainerStats(attackerStats.Attack(target));
+            //target.UpdateTrainerStats(defenderStats.Reset());
+            //Attacker.Update();
+            //Defender.Update();
+
+            //if (Defender.HP <= 0)
+            //{
+
+            //    var str = $"{Defender.NickName} fainted!\n" + (!target.IsBot ? $"{Attacker.NickName}'s owner {Attacker.GetOwner().Mention} receives 1 {_bc.BotConfig.CurrencySign}\n" : "");
+            //    var lvl = Attacker.Level;
+            //    if (!target.IsBot)
+            //    {
+            //        var extraXP = Attacker.Reward(Defender);
+            //        str += $"{Attacker.NickName} gained {extraXP} XP from the battle\n";
+            //    }
+            //    if (Attacker.Level > lvl) //levled up
+            //    {
+            //        str += $"**{Attacker.NickName}** leveled up!\n**{Attacker.NickName}** is now level **{Attacker.Level}**";
+            //        //Check evostatus
+            //    }
+            //    Attacker.Update();
+            //    Defender.Update();
+            //    var list = target.GetPokemon().Where(s => (s.HP > 0 && s != Defender));
+            //    if (list.Any())
+            //    {
+            //        var toSet = list.FirstOrDefault();
+            //        switch (SwitchPokemon(target, toSet))
+            //        {
+            //            case SwitchResult.Pass:
+            //                {
+            //                    str += $"\n{target.Mention}'s active pokemon set to **{toSet.NickName}**";
+            //                    break;
+            //                }
+            //            case SwitchResult.Failed:
+            //            case SwitchResult.TargetFainted:
+            //                {
+            //                    str += $"\n **Error:** could not switch pokemon";
+            //                    break;
+            //                }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        str += $"\n{target.Mention} has no pokemon left!";
+            //        if (target.IsBot)
+            //        {
+            //            var pkmlist = target.GetPokemon();
+            //            foreach (var pkm in pkmlist)
+            //                pkm.Heal();
+            //        }
+            //        //do something?
+            //    }
+            //    //UpdatePokemon(attackerPokemon);
+            //    //UpdatePokemon(defenderPokemon);
+            //    await ReplyAsync(str);
+            //    if (!target.IsBot)
+            //        await _cs.AddAsync(attacker.Id, "Victorious in pokemon", 1);
+
+            //}
+            //if (target.IsBot)
+            //{
+            //    await DoAttack(target, attacker, target.ActivePokemon().GetSpecies().Moves.Keys.ElementAt((new Random().Next(3))));
+
+            //}
+        }
+
+        public enum SwitchResult
+        {
+            Pass,
+            Failed,
+            TargetFainted,
+
+        }
+        /// <summary>
+        /// Sets the active pokemon of the given user to the given Sprite
+        /// </summary>
+        /// <param name="u"></param>
+        /// <param name="newActive"></param>
+        /// <returns></returns>
+        public static SwitchResult SwitchPokemon(IUser user, PokemonSprite newActive)
+        {
+            var toUnset = user.GetPokemon().Where(x => x.IsActive).FirstOrDefault();
+            if (toUnset == null)
+            {
+                return SwitchResult.Failed;
+            }
+            if (newActive.HP <= 0)
+            {
+                return SwitchResult.TargetFainted;
+            }
+            toUnset.IsActive = false;
+            newActive.IsActive = true;
+            toUnset.Update();
+            newActive.Update();
+
+            return SwitchResult.Pass;
+        }
     }
 }

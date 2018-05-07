@@ -2,12 +2,17 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net452</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="PokeApi.NET" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="PokeApi.NET">
+      <HintPath>..\..\..\..\..\Downloads\PokeApi.NET-v2\PokeApi.NET-v2\PokeApi.NET\bin\Debug\net45\PokeApi.NET.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

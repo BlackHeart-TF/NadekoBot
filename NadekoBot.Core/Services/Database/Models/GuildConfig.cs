@@ -28,6 +28,9 @@ namespace NadekoBot.Core.Services.Database.Models
         public bool SendChannelGreetMessage { get; set; }
         public string ChannelGreetMessageText { get; set; } = "Welcome to the %server% server, %user%!";
 
+        public bool RequireAcceptance { get; set; }
+        public string AcceptanceRole { get; set; }
+
         public bool SendChannelByeMessage { get; set; }
         public string ChannelByeMessageText { get; set; } = "%user% has left!";
 
