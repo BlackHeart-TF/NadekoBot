@@ -322,7 +322,7 @@ namespace NadekoBot.Modules.Pokemon
         public async Task Switch(string name, string move = null)
         {
             var list = Context.User.GetPokemon();
-            var newpkm = list.Where(x => x.NickName == name.Trim()).DefaultIfEmpty(null).FirstOrDefault() ?? new PokemonSprite();
+            var newpkm = list.Where(x => x.NickName.ToLowerInvariant() == name.ToLowerInvariant().Trim()).DefaultIfEmpty(null).FirstOrDefault() ?? new PokemonSprite();
             var trainer = ((IGuildUser)Context.User).GetTrainerStats();
             if (trainer.MovesMade > 0)
             {
@@ -335,16 +335,16 @@ namespace NadekoBot.Modules.Pokemon
                 await ReplyAsync(Context.User.Mention + $", you dont have a pokemon named {name}!");
                 return;
             }
-            switch (SwitchPokemon(Context.User, newpkm)) { 
-                case SwitchResult.TargetFainted:
+            switch (PokemonFunctions.SwitchPokemon(Context.User, newpkm)) { 
+                case PokemonFunctions.SwitchResult.TargetFainted:
                     await ReplyAsync(Context.User.Mention + ", " + newpkm.NickName + " has already fainted!");
                     return;
-                case SwitchResult.Pass:
+                case PokemonFunctions.SwitchResult.Pass:
                     trainer.MovesMade++;
                     Context.User.UpdateTrainerStats(trainer);
                     await ReplyAsync($"{Context.User.Mention} switched to **{newpkm.NickName}**");
                     break;
-                case SwitchResult.Failed:
+                case PokemonFunctions.SwitchResult.Failed:
                     await ReplyAsync("Something went wrong!");
                     return;
             }
@@ -376,20 +376,17 @@ namespace NadekoBot.Modules.Pokemon
         [NadekoCommand, Usage, Description, Alias]
         [RequireContext(ContextType.Guild)]
         [Summary("attacks a target")]
-        public async Task Attack([Summary("The User to target")] IUser target, [Remainder] string moveString)
-        {
-            await DoAttack(Context.User, target, moveString);
-
-        }
+        public Task Attack([Summary("The User to target")] IUser target, [Remainder] string moveString) =>
+            DoAttack(Context.User, target, moveString);
+        
 
         [NadekoCommand, Usage, Description, Alias]
         [RequireContext(ContextType.Guild)]
         [Summary("attacks a target")]
-        public async Task Attack(string moveString, [Summary("The User to target")] IUser target)
-        {
-            await DoAttack(Context.User, target, moveString);
+        public Task Attack(string moveString, [Summary("The User to target")] IUser target) =>
+            DoAttack(Context.User, target, moveString);
 
-        }
+        
 
         public async Task DoAttack(IUser attacker, IUser target, [Remainder] string moveString)
         {
@@ -426,12 +423,13 @@ namespace NadekoBot.Modules.Pokemon
 
             PokemonAttack attack = new PokemonAttack(attackerPokemon, defenderPokemon, move);
             var msg = attack.AttackString();
-            
-            defenderPokemon.HP -= attack.Damage;
+
+            var damageDone = attack.Damage;
+            defenderPokemon.HP -= damageDone;
             msg += $"{defenderPokemon.NickName} has {defenderPokemon.HP} HP left!";
             await ReplyAsync(msg);
             //Update stats, you shall
-            attacker.UpdateTrainerStats(attackerStats.Attack(target));
+            attacker.UpdateTrainerStats(attackerStats.Attack(target, damageDone));
             target.UpdateTrainerStats(defenderStats.Reset());
             attackerPokemon.Update();
             defenderPokemon.Update();
@@ -457,15 +455,16 @@ namespace NadekoBot.Modules.Pokemon
                 if (list.Any())
                 {
                     var toSet = list.FirstOrDefault();
-                    switch (SwitchPokemon(target, toSet))
+
+                    switch (PokemonFunctions.SwitchPokemon(target, toSet))
                     {
-                        case SwitchResult.Pass:
+                        case PokemonFunctions.SwitchResult.Pass:
                             {
                                 str += $"\n{target.Mention}'s active pokemon set to **{toSet.NickName}**";
                                 break;
                             }
-                        case SwitchResult.Failed:
-                        case SwitchResult.TargetFainted:
+                        case PokemonFunctions.SwitchResult.Failed:
+                        case PokemonFunctions.SwitchResult.TargetFainted:
                             {
                                 str += $"\n **Error:** could not switch pokemon";
                                 break;
@@ -546,36 +545,7 @@ namespace NadekoBot.Modules.Pokemon
             await ReplyAsync(str);
         }
 
-        enum SwitchResult{
-            Pass,
-            Failed,
-            TargetFainted,
-
-        }
-        /// <summary>
-        /// Sets the active pokemon of the given user to the given Sprite
-        /// </summary>
-        /// <param name="u"></param>
-        /// <param name="newActive"></param>
-        /// <returns></returns>
-        SwitchResult SwitchPokemon(IUser user, PokemonSprite newActive)
-        {
-            var toUnset = user.GetPokemon().Where(x => x.IsActive).FirstOrDefault();
-            if (toUnset == null)
-            {
-                return SwitchResult.Failed;
-            }
-            if (newActive.HP <= 0)
-            {
-                return SwitchResult.TargetFainted;
-            }
-            toUnset.IsActive = false;
-            newActive.IsActive = true;
-            toUnset.Update();
-            newActive.Update();
-            
-            return SwitchResult.Pass;
-        }
+        
         
 
         string swapPokemon(IGuildUser user, string OldPokemon, string NewPokemon, int Level = 5)

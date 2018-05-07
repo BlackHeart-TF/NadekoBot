@@ -61,4 +61,10 @@ namespace NadekoBot.Modules.Pokemon.Common
         public PokemonSprite TopPokemon { get; set; }
         public string RankString { get { return ": <@" + ID + "> **Total XP:** *" + TotalExp + "* **Top Pokemon:** *" + TopPokemon.NickName + "* " + TopPokemon.Level; } }
     }
+
+    public class PkmExpClass
+    {
+        public int AttackerId;
+        public int DamageDone;
+    }
 }

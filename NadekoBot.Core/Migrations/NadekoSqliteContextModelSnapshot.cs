@@ -613,6 +613,8 @@ namespace NadekoBot.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("AcceptanceRole");
+
                     b.Property<ulong>("AutoAssignRoleId");
 
                     b.Property<bool>("AutoDcFromVc");
@@ -666,6 +668,8 @@ namespace NadekoBot.Migrations
                     b.Property<string>("PermissionRole");
 
                     b.Property<string>("Prefix");
+
+                    b.Property<bool>("RequireAcceptance");
 
                     b.Property<int?>("RootPermissionId");
 
@@ -1027,6 +1031,47 @@ namespace NadekoBot.Migrations
                     b.HasIndex("MusicPlaylistId");
 
                     b.ToTable("PlaylistSong");
+                });
+
+            modelBuilder.Entity("NadekoBot.Core.Services.Database.Models.PokemonSprite", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Attack");
+
+                    b.Property<DateTime?>("DateAdded");
+
+                    b.Property<int>("Defense");
+
+                    b.Property<int>("HP");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<int>("Level");
+
+                    b.Property<int>("MaxHP");
+
+                    b.Property<string>("NickName");
+
+                    b.Property<long>("OwnerId");
+
+                    b.Property<int>("SpecialAttack");
+
+                    b.Property<int>("SpecialDefense");
+
+                    b.Property<int>("SpeciesId");
+
+                    b.Property<int>("Speed");
+
+                    b.Property<long>("XP");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Id")
+                        .IsUnique();
+
+                    b.ToTable("PokeSprite");
                 });
 
             modelBuilder.Entity("NadekoBot.Core.Services.Database.Models.Poll", b =>

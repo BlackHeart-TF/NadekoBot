@@ -8,6 +8,8 @@ using NadekoBot.Modules.Pokemon.Common;
 using Newtonsoft.Json;
 using NadekoBot.Core.Services.Impl;
 using NadekoBot.Common;
+using Discord.WebSocket;
+using Discord;
 
 namespace NadekoBot.Modules.Pokemon.Services
 {
@@ -19,6 +21,7 @@ namespace NadekoBot.Modules.Pokemon.Services
         public const string PokemonClassesFile = "data/pokemon/pokemonBattlelist.json";
         public const string PokemonTypesFile = "data/pokemon_types.json";
 
+        private readonly DiscordSocketClient _client;
         private readonly IBotConfigProvider _bc;
         private readonly CommandHandler _cmd;
         private readonly IImageCache _images;
@@ -29,10 +32,11 @@ namespace NadekoBot.Modules.Pokemon.Services
         private readonly CommandHandler _cmdHandler;
         public static PokemonService pokemonInstance;
 
-        public PokemonService(CommandHandler cmd, IBotConfigProvider bc, NadekoBot bot,
+        public PokemonService(DiscordSocketClient client, CommandHandler cmd, IBotConfigProvider bc, NadekoBot bot,
             NadekoStrings strings, IDataCache data, CommandHandler cmdHandler,
             ICurrencyService cs)
         {
+            _client = client;
             _bc = bc;
             _cmd = cmd;
             _images = data.LocalImages;
@@ -84,6 +88,11 @@ namespace NadekoBot.Modules.Pokemon.Services
             var rng = new NadekoRandom();
             var cur = _images.ImageUrls.NurseJoy;
             return cur[rng.Next(0, cur.Length)];
+        }
+
+        public IUser GetUserByID(long UserID)
+        {
+            return _client.GetUser((ulong)UserID);
         }
     }
 }

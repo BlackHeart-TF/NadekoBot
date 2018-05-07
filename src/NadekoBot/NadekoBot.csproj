@@ -7,7 +7,7 @@
     <ApplicationIcon>Uni.ico</ApplicationIcon>
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <AssemblyName>Uni</AssemblyName>
+    <AssemblyName>NadekoBot</AssemblyName>
     </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Version)' == '' ">
@@ -50,6 +50,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\NadekoBot.Core\NadekoBot.Core.csproj" />
+    <ProjectReference Include="..\..\NadekoBot.Tests\NadekoBot.Tests.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Discord.WebSocket;
 using NadekoBot.Core.Services.Database.Models;
+using NadekoBot.Modules.Pokemon.Common;
 using NadekoBot.Modules.Pokemon;
 
 namespace NadekoBot.Modules.Pokemon.Extentions
@@ -23,9 +24,10 @@ namespace NadekoBot.Modules.Pokemon.Extentions
             return sprite;
         }
 
-        public static PokemonSprite Attack(this PokemonSprite sprite,PokemonSprite target)
+        public static PokemonSprite Attack(this PokemonSprite Sprite,PokemonSprite Target, string Move)
         {
-            throw (new NotImplementedException());
+            PokemonFunctions.DoAttack(Sprite, Target, Move);
+            return new PokemonSprite();
         }
 
         public static void Heal(this PokemonSprite sprite)

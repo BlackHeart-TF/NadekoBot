@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using NadekoBot.Common;
 using NadekoBot.Common.Replacements;
+using NadekoBot.Modules;
 
 namespace NadekoBot.Core.Services
 {
@@ -110,47 +111,71 @@ namespace NadekoBot.Core.Services
         {
             var _ = Task.Run(async () =>
             {
-                try
+            try
+            {
+                var conf = GetOrAddSettingsForGuild(user.GuildId);
+
+                if (conf.SendChannelGreetMessage)
                 {
-                    var conf = GetOrAddSettingsForGuild(user.GuildId);
-
-                    if (conf.SendChannelGreetMessage)
+                    var channel = (await user.Guild.GetTextChannelsAsync()).SingleOrDefault(c => c.Id == conf.GreetMessageChannelId);
+                    if (channel != null) //maybe warn the server owner that the channel is missing
                     {
-                        var channel = (await user.Guild.GetTextChannelsAsync()).SingleOrDefault(c => c.Id == conf.GreetMessageChannelId);
-                        if (channel != null) //maybe warn the server owner that the channel is missing
-                        {
-                            var rep = new ReplacementBuilder()
-                                .WithDefault(user, channel, (SocketGuild)user.Guild, _client)
-                                .Build();
+                        var rep = new ReplacementBuilder()
+                            .WithDefault(user, channel, (SocketGuild)user.Guild, _client)
+                            .Build();
 
-                            if (CREmbed.TryParse(conf.ChannelGreetMessageText, out var embedData))
+                        if (CREmbed.TryParse(conf.ChannelGreetMessageText, out var embedData))
+                        {
+                            rep.Replace(embedData);
+                            try
                             {
-                                rep.Replace(embedData);
-                                try
+                                var toDelete = await channel.EmbedAsync(embedData.ToEmbed(), embedData.PlainText?.SanitizeMentions() ?? "").ConfigureAwait(false);
+                                if (conf.AutoDeleteGreetMessagesTimer > 0)
                                 {
-                                    var toDelete = await channel.EmbedAsync(embedData.ToEmbed(), embedData.PlainText?.SanitizeMentions() ?? "").ConfigureAwait(false);
-                                    if (conf.AutoDeleteGreetMessagesTimer > 0)
-                                    {
-                                        toDelete.DeleteAfter(conf.AutoDeleteGreetMessagesTimer);
-                                    }
+                                    toDelete.DeleteAfter(conf.AutoDeleteGreetMessagesTimer);
                                 }
-                                catch (Exception ex) { _log.Warn(ex); }
                             }
-                            else
-                            {
-                                var msg = rep.Replace(conf.ChannelGreetMessageText);
-                                if (!string.IsNullOrWhiteSpace(msg))
+                            catch (Exception ex) { _log.Warn(ex); }
+                        }
+                        else
+                        {
+                            var embed = new CREmbed();
+                            embed.Description = conf.ChannelGreetMessageText;
+                            
+                                if (conf.SendAcceptanceMessage && conf.AcceptanceMessageRole != null)
                                 {
+                                    //var footer = new CREmbedFooter();
+                                    //footer.Text = "Type '.accept' to Agree.";
+                                    //embed.Footer = footer;
                                     try
                                     {
-                                        var toDelete = await channel.SendMessageAsync(msg.SanitizeMentions()).ConfigureAwait(false);
-                                        if (conf.AutoDeleteGreetMessagesTimer > 0)
+                                        var input = await NadekoTopLevelModule.GetUserInputAsync(user.Id, conf.GreetMessageChannelId);
+                                        input = input?.ToLowerInvariant().ToString();
+
+                                        if (input != "yes" && input != "y")
+                                        {
+                                            return false;
+                                        }
+
+                                        return true;
+                                    }
+                                    finally
+                                    {
+                                        var _ = Task.Run(() => msg.DeleteAsync());
+                                    }
+                                }
+                                
+                                rep.Replace(embed);
+                                    try
+                                    {
+                                        var toDelete = await channel.EmbedAsync(embed.ToEmbed(), embed.PlainText?.SanitizeMentions() ?? "").ConfigureAwait(false);
+                                    if (conf.AutoDeleteGreetMessagesTimer > 0)
                                         {
                                             toDelete.DeleteAfter(conf.AutoDeleteGreetMessagesTimer);
                                         }
                                     }
                                     catch (Exception ex) { _log.Warn(ex); }
-                                }
+                                
                             }
                         }
                     }
@@ -415,6 +440,9 @@ namespace NadekoBot.Core.Services
         public bool SendChannelGreetMessage { get; set; }
         public string ChannelGreetMessageText { get; set; }
 
+        public bool SendAcceptanceMessage { get; set; }
+        public string AcceptanceMessageRole { get; set; }
+
         public bool SendChannelByeMessage { get; set; }
         public string ChannelByeMessageText { get; set; }
 
@@ -428,6 +456,8 @@ namespace NadekoBot.Core.Services
             DmGreetMessageText = g.DmGreetMessageText,
             SendChannelGreetMessage = g.SendChannelGreetMessage,
             ChannelGreetMessageText = g.ChannelGreetMessageText,
+            SendAcceptanceMessage = g.RequireAcceptance,
+            AcceptanceMessageRole = g.AcceptanceRole,
             SendChannelByeMessage = g.SendChannelByeMessage,
             ChannelByeMessageText = g.ChannelByeMessageText,
         };
