@@ -1052,6 +1052,14 @@ namespace NadekoBot.Migrations
 
                     b.Property<int>("MaxHP");
 
+                    b.Property<string>("Move1");
+
+                    b.Property<string>("Move2");
+
+                    b.Property<string>("Move3");
+
+                    b.Property<string>("Move4");
+
                     b.Property<string>("NickName");
 
                     b.Property<long>("OwnerId");

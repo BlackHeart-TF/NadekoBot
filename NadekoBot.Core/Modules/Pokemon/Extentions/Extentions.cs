@@ -7,6 +7,7 @@ using System.Linq;
 using NadekoBot.Core.Services.Database.Models;
 using Discord;
 using System.Collections.Concurrent;
+using System.Threading.Tasks;
 
 namespace NadekoBot.Modules.Pokemon.Extentions
 {
@@ -19,7 +20,7 @@ namespace NadekoBot.Modules.Pokemon.Extentions
 
         public static PokemonSpecies GetSpecies(this PokemonSprite pkm)
         {
-            return  service.pokemonClasses.Where(x => x.Number == pkm.SpeciesId).DefaultIfEmpty(null).First();
+            return  service.pokemonClasses.Where(x => x.ID == pkm.SpeciesId).DefaultIfEmpty(null).First();
         }
 
         public static PokemonSprite ActivePokemon(this IUser user)
@@ -69,15 +70,20 @@ namespace NadekoBot.Modules.Pokemon.Extentions
             return str;
         }
         
-        public static string PokemonMoves(this PokemonSprite pkm)
+        public static async Task<string> PokemonMoves(this PokemonSprite pkm)
         {
-            var species = pkm.GetSpecies();
+            var moves = await pkm.GetMoves();
             string str = "";
-            foreach (var move in species.Moves)
+            foreach (var move in moves)
             {
-                str += $"**{move.Key}** *{move.Value}*\n";
+                str += $"**{move.Name}** *{move.Type}*\n";
             }
             return str;
+        }
+
+        public static async Task<List<PokemonMove>> GetMoves(this PokemonSprite pkm)
+        {
+            return await PokemonFunctions.GetMovesAsync(pkm);
         }
         public static int XPRequired(this PokemonSprite pkm)
         {
@@ -177,7 +183,7 @@ namespace NadekoBot.Modules.Pokemon.Extentions
                     //Play an animation?
                     int newSpecies = int.Parse(species.EvolveTo);
                     if (pkm.NickName == pkm.GetSpecies().Name)
-                        pkm.NickName = service.pokemonClasses.Where(x => x.Number == newSpecies).DefaultIfEmpty(null).First().Name;
+                        pkm.NickName = service.pokemonClasses.Where(x => x.ID == newSpecies).DefaultIfEmpty(null).First().Name;
                     pkm.SpeciesId = newSpecies;
                     
                 }

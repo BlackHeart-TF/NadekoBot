@@ -63,7 +63,7 @@ namespace NadekoBot.Modules.Pokemon.Common
 
             PokemonSprite sprite = new PokemonSprite
             {
-                SpeciesId = species.Number,
+                SpeciesId = species.ID,
                 HP = species.BaseStats["hp"],
                 Level = 1,
                 NickName = species.Name,
@@ -92,6 +92,14 @@ namespace NadekoBot.Modules.Pokemon.Common
             await uow.CompleteAsync();
         }
 
+        public static async Task<List<PokemonMove>> GetMovesAsync(PokemonSprite pokemon) =>
+            await Task.Run(() => GetMoves(pokemon));
+
+        public static List<PokemonMove> GetMoves(PokemonSprite pokemon)
+        {
+            return service.pokemonMoves.Where(x => new[] { pokemon.Move1, pokemon.Move2, pokemon.Move3, pokemon.Move4 }.Contains(x.Name)).ToList();
+        }
+
         public static async void DeletePokemon(PokemonSprite pokemon)
         {
             var uow = _db.UnitOfWork;
@@ -99,8 +107,8 @@ namespace NadekoBot.Modules.Pokemon.Common
             await uow.CompleteAsync();
         }
 
-        public static Task<List<PokemonTrainer>> GetTopPlayersAsync() =>
-            Task.Run(() => { return GetTopPlayers(); });
+        public static async Task<List<PokemonTrainer>> GetTopPlayersAsync() =>
+            await Task.Run(() => { return GetTopPlayers(); });
 
         public static List<PokemonTrainer> GetTopPlayers()
         {
@@ -125,8 +133,8 @@ namespace NadekoBot.Modules.Pokemon.Common
             return output;
         }
 
-        public static Task<List<PokemonTrainer>> GetPlayerRankAsync(IUser player) =>
-            Task.Run(() => { return GetPlayerRank(player); });
+        public static async Task<List<PokemonTrainer>> GetPlayerRankAsync(IUser player) =>
+            await Task.Run(() => { return GetPlayerRank(player); });
 
         public static List<PokemonTrainer> GetPlayerRank(IUser player)
         {

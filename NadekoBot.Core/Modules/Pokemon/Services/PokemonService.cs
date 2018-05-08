@@ -17,9 +17,12 @@ namespace NadekoBot.Modules.Pokemon.Services
     { 
         public readonly List<PokemonSpecies> pokemonClasses = new List<PokemonSpecies>();
         public readonly List<PokemonType> pokemonTypes = new List<PokemonType>();
+        public readonly List<PokemonMove> pokemonMoves = new List<PokemonMove>();
 
-        public const string PokemonClassesFile = "data/pokemon/pokemonBattlelist.json";
+        //public const string PokemonClassesFile = "data/pokemon/pokemonBattlelist.json";
         public const string PokemonTypesFile = "data/pokemon_types.json";
+        public const string PokemonMovesFile = "data/PokemonMoves.json";
+        public const string PokemonSpeciesFile = "data/PokemonSpecies.json";
 
         private readonly DiscordSocketClient _client;
         private readonly IBotConfigProvider _bc;
@@ -46,25 +49,25 @@ namespace NadekoBot.Modules.Pokemon.Services
             _cs = cs;
             pokemonInstance = this;  
 
-            if (File.Exists(PokemonClassesFile))
-            {
-                var settings = new JsonSerializerSettings
-                {
-                    Error = (sender, args) =>
-                            {
-                                if (System.Diagnostics.Debugger.IsAttached)
-                                {
-                                    System.Diagnostics.Debugger.Break();
-                                }
-                            }
-                };
-                pokemonClasses = JsonConvert.DeserializeObject<List<PokemonSpecies>>(File.ReadAllText(PokemonClassesFile),settings);
-            }
-            else
-            {
-                pokemonClasses = new List<PokemonSpecies>();
-                _log.Warn(PokemonClassesFile + " is missing. Pokemon Classes not loaded.");
-            }
+            //if (File.Exists(PokemonClassesFile))
+            //{
+            //    var settings = new JsonSerializerSettings
+            //    {
+            //        Error = (sender, args) =>
+            //                {
+            //                    if (System.Diagnostics.Debugger.IsAttached)
+            //                    {
+            //                        System.Diagnostics.Debugger.Break();
+            //                    }
+            //                }
+            //    };
+            //    pokemonClasses = JsonConvert.DeserializeObject<List<PokemonSpecies>>(File.ReadAllText(PokemonClassesFile),settings);
+            //}
+            //else
+            //{
+            //    pokemonClasses = new List<PokemonSpecies>();
+            //    _log.Warn(PokemonClassesFile + " is missing. Pokemon Classes not loaded.");
+            //}
             if (File.Exists(PokemonTypesFile))
             {
                 pokemonTypes = JsonConvert.DeserializeObject<List<PokemonType>>(File.ReadAllText(PokemonTypesFile));
@@ -72,7 +75,25 @@ namespace NadekoBot.Modules.Pokemon.Services
             else
             {
                 pokemonTypes = new List<PokemonType>();
-                _log.Warn(PokemonClassesFile + " is missing. Pokemon types not loaded.");
+                _log.Warn(PokemonTypesFile + " is missing. Pokemon types not loaded.");
+            }
+            if (File.Exists(PokemonMovesFile))
+            {
+                pokemonMoves = JsonConvert.DeserializeObject<List<PokemonMove>>(File.ReadAllText(PokemonMovesFile));
+            }
+            else
+            {
+                pokemonMoves = new List<PokemonMove>();
+                _log.Warn(PokemonMovesFile + " is missing. Pokemon types not loaded.");
+            }
+            if (File.Exists(PokemonSpeciesFile))
+            {
+                pokemonClasses = JsonConvert.DeserializeObject<List<PokemonSpecies>>(File.ReadAllText(PokemonSpeciesFile));
+            }
+            else
+            {
+                pokemonClasses = new List<PokemonSpecies>();
+                _log.Warn(PokemonSpeciesFile + " is missing. Pokemon types not loaded.");
             }
         }
         public string GetRandomTrainerImage()

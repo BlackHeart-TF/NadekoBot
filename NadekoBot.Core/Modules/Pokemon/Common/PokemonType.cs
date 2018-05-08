@@ -33,7 +33,7 @@ namespace NadekoBot.Modules.Pokemon.Common
     
     public class PokemonSpecies
     {
-        public int Number { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public int BaseExperience { get; set; }
         public Dictionary<string, int> BaseStats { get; set; }
@@ -53,7 +53,19 @@ namespace NadekoBot.Modules.Pokemon.Common
         }
     }
 
-    public class PokemonTrainer
+    public class PokemonMove
+    {
+        public int ID;
+        public string Name;
+        public int? PP;
+        public string Type;
+        public int Accuracy;
+        public int Power;
+        public string DamageType;
+    }
+}
+
+public class PokemonTrainer
     {
         public int Rank { get; set; }
         public long ID { get; set; }
@@ -62,9 +74,26 @@ namespace NadekoBot.Modules.Pokemon.Common
         public string RankString { get { return ": <@" + ID + "> **Total XP:** *" + TotalExp + "* **Top Pokemon:** *" + TopPokemon.NickName + "* " + TopPokemon.Level; } }
     }
 
-    public class PkmExpClass
+public class PokemonLearnMoves
+{
+    [JsonProperty("ID")]
+    int ID;
+    [JsonProperty("Name")]
+    string Name;
+    [JsonProperty("LearnLevel")]
+    int LearnLevel;
+
+    public PokemonLearnMoves(int id, string name, int learnlevel)
+    {
+        ID = id;
+        Name = name;
+        LearnLevel = learnlevel;
+    }
+}
+
+public class PkmExpClass
     {
         public int AttackerId;
         public int DamageDone;
     }
-}
+

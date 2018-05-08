@@ -94,7 +94,7 @@ namespace NadekoBot.Modules.Pokemon
                             .WithDescription("**Species:** " + active.GetSpecies().Name + " **Owner:** " + target.Mention)
                             .AddField(efb => efb.WithName("**Stats**").WithValue("\n**Level:** " + active.Level + "\n**HP:** " + active.HP + "/" + 
                                 active.MaxHP + "\n**XP:** " + active.XP + "/" + active.XPRequired() + "\n**Type:** "+ active.GetSpecies().GetTypeString()).WithIsInline(true))
-                            .AddField(efb => efb.WithName("**Moves**").WithValue(string.Join('\n', active.PokemonMoves())).WithIsInline(true))
+                            .AddField(efb => efb.WithName("**Moves**").WithValue(string.Join('\n', active.PokemonMoves().Result)).WithIsInline(true))
                             .WithImageUrl(active.GetSpecies().ImageLink));
                             //.AddField(efb => efb.WithName(GetText("height_weight")).WithValue(GetText("height_weight_val", p.HeightM, p.WeightKg)).WithIsInline(true))
                             //.AddField(efb => efb.WithName(GetText("abilities")).WithValue(string.Join(",\n", p.Abilities.Select(a => a.Value))).WithIsInline(true)));
@@ -108,7 +108,7 @@ namespace NadekoBot.Modules.Pokemon
             var active = Context.User.ActivePokemon();
             await Context.Channel.EmbedAsync(new EmbedBuilder().WithOkColor()
                 .WithThumbnailUrl(active.GetSpecies().ImageLink)
-                .AddField(efb => efb.WithName($"**{active.NickName.ToTitleCase()}'s moves**:").WithValue(active.PokemonMoves()).WithIsInline(true))); 
+                .AddField(efb => efb.WithName($"**{active.NickName.ToTitleCase()}'s moves**:").WithValue(active.PokemonMoves().Result).WithIsInline(true))); 
         }
 
         [NadekoCommand, Usage, Description, Alias("catch")]
@@ -207,7 +207,7 @@ namespace NadekoBot.Modules.Pokemon
             string output = "";
             foreach (var pkm in pokemon)
             {
-                output += $"**{pkm.NickName}'s moves**:\n{pkm.PokemonMoves()}\n\n";
+                output += $"**{pkm.NickName}'s moves**:\n{pkm.PokemonMoves().Result}\n\n";
             }
             await Context.User.SendMessageAsync(output);
             if (Context.Channel.GetType() != typeof(SocketDMChannel))//best way to determin dm?!?
@@ -391,12 +391,15 @@ namespace NadekoBot.Modules.Pokemon
         public async Task DoAttack(IUser attacker, IUser target, [Remainder] string moveString)
         {
             var attackerPokemon = attacker.ActivePokemon();
-            var species = attackerPokemon.GetSpecies();
-            if (!species.Moves.Keys.Contains(moveString.Trim()))
+            var moveList = attackerPokemon.GetMoves().Result.Where(x => x.Name == moveString.Trim());
+            PokemonMove Move;
+            if (moveList.Count() == 0)
             {
                 await ReplyAsync($"Cannot use \"{moveString}\", see `{Prefix}ML` for moves");
                 return;
             }
+            else
+                Move = moveList.First();
             var attackerStats = attacker.GetTrainerStats();
             var defenderStats = target.GetTrainerStats();
             if (attackerStats.MovesMade > TrainerStats.MaxMoves || attackerStats.LastAttacked.Contains(target.Id))
@@ -412,7 +415,7 @@ namespace NadekoBot.Modules.Pokemon
             if (defenderStats.LastAttackedBy.ContainsKey(Context.Guild.Id))
                 defenderStats.LastAttackedBy.Remove(Context.Guild.Id);
             defenderStats.LastAttackedBy.Add(Context.Guild.Id, attacker);
-            KeyValuePair<string, string> move = new KeyValuePair<string, string>(moveString, species.Moves[moveString]);
+            KeyValuePair<string, string> move = new KeyValuePair<string, string>(Move.Name, Move.Type);
             var defenderPokemon = target.ActivePokemon();
 
             if (defenderPokemon.HP == 0)
@@ -552,7 +555,7 @@ namespace NadekoBot.Modules.Pokemon
         {
             var oldpkm = _db.UnitOfWork.PokemonSprite.GetAll().Where(x => x.OwnerId==(long)user.Id && x.NickName==OldPokemon).First();
             var newspecies = _service.pokemonClasses.Where(x => x.Name == NewPokemon).DefaultIfEmpty(null).First();
-            oldpkm.SpeciesId = newspecies.Number;
+            oldpkm.SpeciesId = newspecies.ID;
             oldpkm.NickName = newspecies.Name;
             oldpkm.Level = 0;
             oldpkm.XP = 0;
