@@ -39,6 +39,7 @@ namespace NadekoBot.Modules.Pokemon.Common
         public string Name { get; set; }
         public int BaseExperience { get; set; }
         public Dictionary<string, int> BaseStats { get; set; }
+        public int EvolveStage { get; set; }
         public int EvolveLevel { get; set; }
         public string EvolveTo { get; set; }
         public string[] Types { get; set; }
@@ -119,4 +120,9 @@ namespace NadekoBot.Modules.Pokemon.Common
         public int DamageDone;
     }
 
+    public class RewardType
+    {
+        public string RewardValue { get; set; }
+        public string EvolutionText { get; set; }
+    }
 }

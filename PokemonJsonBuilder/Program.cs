@@ -156,9 +156,9 @@ namespace PokemonJsonBuilder
                 Name = species.Name,
                 CatchRate = species.CaptureRate,
                 BaseExperience = pokemon.BaseExperience,
-                baseStats = stats,
+                BaseStats = stats,
                 ImageLink = $"http://pokeapi.co/media/sprites/pokemon/{species.ID}.png"
-                
+
             };
             //evolveto
             //if (new[] { 210, 222, 225, 226, 227, 231, 238, 251 }.Contains(pkmNumber))
@@ -171,17 +171,33 @@ namespace PokemonJsonBuilder
                     if (evolution.Chain.EvolvesTo[0].Details[0].Trigger.Name == "level-up")
                         sprite.EvolveLevel = evolution.Chain.EvolvesTo[0].Details[0].MinLevel;
                 }
-                else if (DataFetcher.GetAny<PokemonSpecies>(evolution.Chain.EvolvesTo[0].Species.Url).Result.ID == pkmNumber && evolution.Chain.EvolvesTo[0].EvolvesTo.Count()>0)
+                else if (DataFetcher.GetAny<PokemonSpecies>(evolution.Chain.EvolvesTo[0].Species.Url).Result.ID == pkmNumber && evolution.Chain.EvolvesTo[0].EvolvesTo.Count() > 0)
                 {
                     sprite.EvolveTo = DataFetcher.GetAny<PokemonSpecies>(evolution.Chain.EvolvesTo[0].EvolvesTo[0].Species.Url).Result.ID;
                     if (evolution.Chain.EvolvesTo[0].EvolvesTo[0].Details[0].Trigger.Name == "level-up")
                         sprite.EvolveLevel = evolution.Chain.EvolvesTo[0].EvolvesTo[0].Details[0].MinLevel;
                 }
-                else sprite.EvolveLevel = 0;
-               
+                else
+                {
+                    sprite.EvolveLevel = 0;
+                }
+
             }
             else sprite.EvolveTo = 0;
-
+            if (evolution.Chain.Species.Name == sprite.Name || new[] { 489 }.Contains(sprite.ID))
+                sprite.EvolveLevel = 0;
+            else if (evolution.Chain.EvolvesTo.Count() > 0)
+            {
+                if (evolution.Chain.EvolvesTo[0].Species.Name == sprite.Name)
+                    sprite.EvolveLevel = 1;
+            }
+            else if (evolution.Chain.EvolvesTo[0].EvolvesTo.Count() > 0)
+            {
+                if (evolution.Chain.EvolvesTo[0].EvolvesTo[0].Species.Name == species.Name)
+                    sprite.EvolveLevel = 2;
+            }
+            else
+                sprite.EvolveLevel = 3;
             //moves
             sprite.LearnSet = GetLearnSet(pokemon.Moves);
 
@@ -221,7 +237,8 @@ namespace PokemonJsonBuilder
         public string Name { get; set; }
         public float CatchRate { get; set; }
         public int BaseExperience { get; set; }
-        public BaseStats baseStats { get; set; }
+        public BaseStats BaseStats { get; set; }
+        public int EvolveStage { get; set; }
         public int? EvolveLevel { get; set; }
         public int EvolveTo { get; set; }
         public string[] Types { get; set; }

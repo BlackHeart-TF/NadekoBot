@@ -57,7 +57,7 @@ namespace NadekoBot.Modules.Pokemon.Common
         public static  PokemonSprite GeneratePokemon(IUser u)
         {
 
-            var list = service.pokemonClasses.Where(x => x.EvolveLevel != -1).ToList();
+            var list = service.pokemonClasses.Where(x => x.EvolveStage == 0).ToList();
             var speciesIndex = rng.Next(0, list.Count() - 1);
             rng.Next();
             var species = list[speciesIndex];

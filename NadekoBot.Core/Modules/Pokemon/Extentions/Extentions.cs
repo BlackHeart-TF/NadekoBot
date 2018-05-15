@@ -70,24 +70,29 @@ namespace NadekoBot.Modules.Pokemon.Extentions
             return (int)Math.Floor((4 * Math.Pow(pkm.Level, 3)) / 5);
         }
 
-        public static int Reward(this PokemonSprite pkm, PokemonSprite defeated)
+        public static RewardType Reward(this PokemonSprite pkm, PokemonSprite defeated)
         {
             var reward = CalcXPReward(pkm, defeated);
             return pkm.GiveReward(reward);
             
         }
 
-        public static int GiveReward(this PokemonSprite pkm, int reward)
+        public static RewardType GiveReward(this PokemonSprite pkm, int reward)
         {
+            var retReward = new RewardType();
+            retReward.RewardValue = reward.ToString();
             pkm.XP += reward;
             if (pkm.XP > pkm.XPRequired())
             {
-                pkm.LevelUp();
+                retReward.EvolutionText = pkm.LevelUp();
             }
-            return reward;
+            return retReward;
         }
 
-
+        public static PokemonLearnMoves GetLearnableMove(this PokemonSprite pkm)
+        {
+            return pkm.GetSpecies().LearnSet.Where(x => x.LearnLevel == pkm.Level).FirstOrDefault();
+        }
 
 
         private static int CalcXPReward(PokemonSprite winner, PokemonSprite loser)
@@ -136,8 +141,9 @@ namespace NadekoBot.Modules.Pokemon.Extentions
         /// </summary>
         /// <param name="pkm"></param>
         /// <returns></returns>
-        public static void LevelUp(this PokemonSprite pkm)
+        public static string LevelUp(this PokemonSprite pkm)
         {
+            string retString = "";
             Random rng = new Random();
             var species = pkm.GetSpecies();
             var baseStats = species.BaseStats;
@@ -160,14 +166,37 @@ namespace NadekoBot.Modules.Pokemon.Extentions
                 {
                     //*GASP* IT'S GONNA EVOLVE
                     //Play an animation?
-                    int newSpecies = int.Parse(species.EvolveTo);
+                    var newSpecies = service.pokemonClasses.Where(x => x.ID == int.Parse(species.EvolveTo)).DefaultIfEmpty(null).First();
+                    retString += $"**{pkm.NickName}** is Evolving!\n **{pkm.NickName}** evolved to **{newSpecies.Name}**\n";
                     if (pkm.NickName == pkm.GetSpecies().Name)
-                        pkm.NickName = service.pokemonClasses.Where(x => x.ID == newSpecies).DefaultIfEmpty(null).First().Name;
-                    pkm.SpeciesId = newSpecies;
+                        pkm.NickName = newSpecies.Name;
+                    pkm.SpeciesId = newSpecies.ID;
+                    species = newSpecies;
                     
                 }
             }
 
+            //learn a move?
+            var learnableMove = pkm.GetLearnableMove();
+            if (learnableMove != null)
+            {
+                if (pkm.GetMoves().Result.Count() >= 4)
+                {
+                    retString += $"**{pkm.NickName}** wants to learn **{learnableMove.Name}**!\n Use `.learn <move to replace>` to learn {learnableMove.Name}.";
+                    return retString;
+                }
+                for (int i = 1;i <= 4; i++)
+                {
+                    var move = (PokemonMove)typeof(PokemonSprite).GetProperty("Move" + i).GetValue(pkm);
+                    if (move != null)
+                        continue;
+                    
+                    typeof(PokemonSprite).GetProperty("Move" + i).SetValue(pkm, learnableMove.Name);
+                    retString += $"**{pkm.NickName}** learnt the move **{learnableMove.Name}**!";
+                    break;
+                }
+            }
+            return retString;
         }
 
         private static int CalcStat(int _base, int level)

@@ -52,7 +52,8 @@ namespace NadekoBot.Modules.Pokemon
 **.rename newName** *Renames your active pokemon to newName*
 **.elite4** *Shows the top 4 players and their best pokemon*
 **.rank** *Shows your pokemon ranking (.rank @user)*
-**.catch @botName pokemonToReplace** *replaces the specified pokemon with one of the bots pokemon*"));
+**.catch @botName pokemonToReplace** *replaces the specified pokemon with one of the bots pokemon*
+**.learn moveToReplace** *replaces the specified move with one your pokemon is trying to learn from levelling*"));
         }
 
         [NadekoCommand, Usage, Description, Alias]
@@ -220,8 +221,7 @@ namespace NadekoBot.Modules.Pokemon
         [Summary("Heals the specified users active pokemon (default self)")]
         public async Task Heal(IUser target = null)
         {
-            if (target == null)
-                target = Context.User;
+            target = target ?? Context.User;
             var pkm = target.ActivePokemon();
             if (pkm.HP == pkm.MaxHP)
             {
@@ -241,8 +241,7 @@ namespace NadekoBot.Modules.Pokemon
         [Summary("Heals all pokemon of the specified user (default self)")]
         public async Task Healall(IUser target = null)
         {
-            if (target == null)
-                target = Context.User;
+             target= target ?? Context.User;
             var toheal = target.GetPokemon().Where(x => x.HP < x.MaxHP);
             var count = toheal.Count();
             if (_cs.RemoveAsync(Context.User.Id, "Healed all pokemon", count).Result)
@@ -252,7 +251,7 @@ namespace NadekoBot.Modules.Pokemon
                 await ReplyAsync(count + " Pokemon healed for " + count + _bc.BotConfig.CurrencySign + "!");
             }
             else
-                await ReplyAsync(Context.User.Mention + ", you do not have enough " + _bc.BotConfig.CurrencySign + ". You need " + count);
+                await NurseJoy();
         }
 
         [NadekoCommand, Usage, Description, Alias]
@@ -361,6 +360,47 @@ namespace NadekoBot.Modules.Pokemon
 
         [NadekoCommand, Usage, Description, Alias]
         [RequireContext(ContextType.Guild)]
+        [Summary("learn a move from levelling")]
+        public async Task Learn(string move)
+        {
+            var pkm = Context.User.ActivePokemon();
+            var moves = await pkm.GetMoves();
+            var repMove = _service.pokemonMoves[move];
+            var intMove = moves.IndexOf(repMove) + 1;
+            await Learn(intMove);
+        }
+
+        [NadekoCommand, Usage, Description, Alias]
+        [RequireContext(ContextType.Guild)]
+        [Summary("learn a move from levelling")]
+        public async Task Learn(int move = 0)
+        {
+            var pkm = Context.User.ActivePokemon();
+            var moves = pkm.GetMoves();
+            var learnMove = pkm.GetLearnableMove();
+            if (learnMove == null)
+            {
+                await ReplyAsync($"**{pkm.NickName}** is not trying to learn any moves!");
+                return;
+            }
+            if (move == 0)
+            {
+                await ReplyAsync($"**{pkm.NickName}** is trying to learn **{learnMove.Name}**!");
+                return;
+            }
+            if ((await moves).Contains(_service.pokemonMoves[learnMove.Name]))
+            {
+                await ReplyAsync($"**{pkm.NickName}** already knows **{learnMove.Name}**!");
+                return;
+            }
+            var oldMove = (PokemonMove)typeof(PokemonSprite).GetProperty("Move" + move).GetValue(pkm);
+            typeof(PokemonSprite).GetProperty("Move" + move).SetValue(pkm, learnMove.Name);
+            PokemonFunctions.UpdatePokemon(pkm);
+            await ReplyAsync($"**{pkm.NickName}** has forgotten how to use **{oldMove.Name}**\n and has learned **{learnMove.Name}!");
+        }
+
+        [NadekoCommand, Usage, Description, Alias]
+        [RequireContext(ContextType.Guild)]
         [Summary("attacks a target")]
         public async Task Attack([Remainder] string moveString)
         {
@@ -442,15 +482,16 @@ namespace NadekoBot.Modules.Pokemon
                 
                 var str = $"{defenderPokemon.NickName} fainted!\n" + (!target.IsBot ? $"{attackerPokemon.NickName}'s owner {attacker.Mention} receives 1 {_bc.BotConfig.CurrencySign}\n": "");
                 var lvl = attackerPokemon.Level;
+                var reward = new RewardType();
                 if (!target.IsBot)
                 {
-                    var extraXP = attackerPokemon.Reward(defenderPokemon);
-                    str += $"{attackerPokemon.NickName} gained {extraXP} XP from the battle\n";
+                    reward = attackerPokemon.Reward(defenderPokemon);
+                    str += $"{attackerPokemon.NickName} gained {reward.RewardValue} XP from the battle\n";
                 }
                 if (attackerPokemon.Level > lvl) //levled up
                 {
                     str += $"**{attackerPokemon.NickName}** leveled up!\n**{attackerPokemon.NickName}** is now level **{attackerPokemon.Level}**";
-                    //Check evostatus
+                    str += reward.EvolutionText;
                 }
                 attackerPokemon.Update();
                 defenderPokemon.Update();
