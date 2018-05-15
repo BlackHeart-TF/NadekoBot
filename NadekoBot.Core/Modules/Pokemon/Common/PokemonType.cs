@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using NadekoBot.Core.Services.Database.Models;
 using Newtonsoft.Json;
@@ -30,7 +32,7 @@ namespace NadekoBot.Modules.Pokemon.Common
         public string Type { get; set; }
         public double Multiplication { get; set; }
     }
-    
+
     public class PokemonSpecies
     {
         public int ID { get; set; }
@@ -40,7 +42,7 @@ namespace NadekoBot.Modules.Pokemon.Common
         public int EvolveLevel { get; set; }
         public string EvolveTo { get; set; }
         public string[] Types { get; set; }
-        public Dictionary<string, string> Moves { get; set; }
+        public PokemonLearnMoves[] LearnSet { get; set; }
         public string ImageLink { get; set; }
 
         public string GetTypeString()
@@ -63,9 +65,9 @@ namespace NadekoBot.Modules.Pokemon.Common
         public int Power;
         public string DamageType;
     }
-}
 
-public class PokemonTrainer
+
+    public class PokemonTrainer
     {
         public int Rank { get; set; }
         public long ID { get; set; }
@@ -74,26 +76,47 @@ public class PokemonTrainer
         public string RankString { get { return ": <@" + ID + "> **Total XP:** *" + TotalExp + "* **Top Pokemon:** *" + TopPokemon.NickName + "* " + TopPokemon.Level; } }
     }
 
-public class PokemonLearnMoves
-{
-    [JsonProperty("ID")]
-    int ID;
-    [JsonProperty("Name")]
-    string Name;
-    [JsonProperty("LearnLevel")]
-    int LearnLevel;
-
-    public PokemonLearnMoves(int id, string name, int learnlevel)
+    public class MoveList : List<PokemonMove>
     {
-        ID = id;
-        Name = name;
-        LearnLevel = learnlevel;
+        public PokemonMove this[string Name]
+        {
+            get { return this.Where(x => x.Name == Name).ToList().FirstOrDefault(); }
+        }
+        public void AddIfNotNull(PokemonMove Move)
+        {
+            if (Move != null) this.Add(Move);
+        }
     }
-}
 
-public class PkmExpClass
+    public class SpeciesList : List<PokemonSpecies>
+    {
+        public PokemonSpecies this[int id]
+        {
+            get { return this.Where(x => x.ID == id).FirstOrDefault(); }
+        }
+    }
+
+    public class PokemonLearnMoves
+    {
+        [JsonProperty("ID")]
+        public int ID;
+        [JsonProperty("Name")]
+        public string Name;
+        [JsonProperty("LearnLevel")]
+        public int LearnLevel;
+
+        public PokemonLearnMoves(int id, string name, int learnlevel)
+        {
+            ID = id;
+            Name = name;
+            LearnLevel = learnlevel;
+        }
+    }
+
+    public class PkmExpClass
     {
         public int AttackerId;
         public int DamageDone;
     }
 
+}

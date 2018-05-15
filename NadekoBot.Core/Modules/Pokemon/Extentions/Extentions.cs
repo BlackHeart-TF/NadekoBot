@@ -48,27 +48,6 @@ namespace NadekoBot.Modules.Pokemon.Extentions
         {
             PokemonFunctions.DeletePokemon(pkm);
         }
-
-        public static string PokemonString(this PokemonSprite pkm)
-        {
-            var species = pkm.GetSpecies();
-            var str = $"**Name**: {pkm.NickName}\n" +
-                $"**Species**: {species.Name}\n" +
-                $"**HP**: {pkm.HP}/{pkm.MaxHP}\n" +
-                $"**Level**: {pkm.Level}\n" +
-                $"**XP**: {pkm.XP}/{pkm.XPRequired()}\n" +
-                $"**TYPE**:{species.GetTypeString()}\n" +
-                $"**Stats**\n" +
-                $"**Attack:** {pkm.Attack}\n" +
-                $"**Defense:** {pkm.Defense}\n" +
-                $"**Speed:** {pkm.Speed}\n" +
-                "**Moves**:\n";
-            foreach (var move in species.Moves)
-            {
-                str += $"**{move.Key}** *{move.Value}*\n";
-            }
-            return str;
-        }
         
         public static async Task<string> PokemonMoves(this PokemonSprite pkm)
         {
@@ -81,7 +60,7 @@ namespace NadekoBot.Modules.Pokemon.Extentions
             return str;
         }
 
-        public static async Task<List<PokemonMove>> GetMoves(this PokemonSprite pkm)
+        public static async Task<MoveList> GetMoves(this PokemonSprite pkm)
         {
             return await PokemonFunctions.GetMovesAsync(pkm);
         }

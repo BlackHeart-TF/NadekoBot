@@ -15,9 +15,9 @@ namespace NadekoBot.Modules.Pokemon.Services
 {
     public class PokemonService : INService
     { 
-        public readonly List<PokemonSpecies> pokemonClasses = new List<PokemonSpecies>();
+        public readonly SpeciesList pokemonClasses = new SpeciesList();
         public readonly List<PokemonType> pokemonTypes = new List<PokemonType>();
-        public readonly List<PokemonMove> pokemonMoves = new List<PokemonMove>();
+        public readonly MoveList pokemonMoves = new MoveList();
 
         //public const string PokemonClassesFile = "data/pokemon/pokemonBattlelist.json";
         public const string PokemonTypesFile = "data/pokemon_types.json";
@@ -79,20 +79,20 @@ namespace NadekoBot.Modules.Pokemon.Services
             }
             if (File.Exists(PokemonMovesFile))
             {
-                pokemonMoves = JsonConvert.DeserializeObject<List<PokemonMove>>(File.ReadAllText(PokemonMovesFile));
+                pokemonMoves = JsonConvert.DeserializeObject<MoveList>(File.ReadAllText(PokemonMovesFile));
             }
             else
             {
-                pokemonMoves = new List<PokemonMove>();
+                pokemonMoves = new MoveList();
                 _log.Warn(PokemonMovesFile + " is missing. Pokemon types not loaded.");
             }
             if (File.Exists(PokemonSpeciesFile))
             {
-                pokemonClasses = JsonConvert.DeserializeObject<List<PokemonSpecies>>(File.ReadAllText(PokemonSpeciesFile));
+                pokemonClasses = JsonConvert.DeserializeObject<SpeciesList>(File.ReadAllText(PokemonSpeciesFile));
             }
             else
             {
-                pokemonClasses = new List<PokemonSpecies>();
+                pokemonClasses = new SpeciesList();
                 _log.Warn(PokemonSpeciesFile + " is missing. Pokemon types not loaded.");
             }
         }

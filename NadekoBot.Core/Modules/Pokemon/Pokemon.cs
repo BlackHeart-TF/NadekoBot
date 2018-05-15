@@ -494,7 +494,8 @@ namespace NadekoBot.Modules.Pokemon
             }
             if (target.IsBot)
             {
-                await DoAttack(target, attacker, target.ActivePokemon().GetSpecies().Moves.Keys.ElementAt((new Random().Next(3))));
+                var cpuMoves = target.ActivePokemon().GetMoves().Result;
+                await DoAttack(target, attacker, cpuMoves[new Random().Next(0,cpuMoves.Count()-1)].Name);
                 
             }
         }

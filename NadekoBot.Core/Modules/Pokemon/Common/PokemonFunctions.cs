@@ -8,6 +8,7 @@ using Discord.WebSocket;
 using NadekoBot.Common;
 using NadekoBot.Core.Services;
 using NadekoBot.Core.Services.Database.Models;
+using NadekoBot.Extensions;
 using NadekoBot.Modules.Pokemon.Common;
 using NadekoBot.Modules.Pokemon.Extentions;
 using NadekoBot.Modules.Pokemon.Services;
@@ -83,7 +84,36 @@ namespace NadekoBot.Modules.Pokemon.Common
             }
             sprite.XP = sprite.XPRequired();
             sprite.LevelUp();
+            var moves = GetNewPkmMoves(sprite.SpeciesId);
+            switch (moves.Count())
+            {
+                case 4:
+                    sprite.Move4 = moves[3].Name;
+                    goto case 3;
+                case 3:
+                    sprite.Move3 = moves[2].Name;
+                    goto case 2;
+                case 2:
+                    sprite.Move2 = moves[1].Name;
+                    goto case 1;
+                case 1:
+                    sprite.Move1 = moves[0].Name;
+                    break;
+            }
             return sprite;
+        }
+
+        public static MoveList GetNewPkmMoves(int id)
+        {
+            var pkm = service.pokemonClasses[id];
+            var learnmoves = service.pokemonClasses[id].LearnSet.Where(x => x.LearnLevel <= 5).Shuffle().Take(4).ToList();
+            var moveList = new MoveList();
+            foreach (var move in learnmoves)
+            {
+                var pkmMove = service.pokemonMoves.Where(x => x.ID == move.ID).First();
+                moveList.AddIfNotNull(pkmMove);
+            }
+            return moveList;
         }
         public static async void UpdatePokemon(PokemonSprite pokemon)
         {
@@ -92,12 +122,18 @@ namespace NadekoBot.Modules.Pokemon.Common
             await uow.CompleteAsync();
         }
 
-        public static async Task<List<PokemonMove>> GetMovesAsync(PokemonSprite pokemon) =>
+        public static async Task<MoveList> GetMovesAsync(PokemonSprite pokemon) =>
             await Task.Run(() => GetMoves(pokemon));
 
-        public static List<PokemonMove> GetMoves(PokemonSprite pokemon)
+        public static MoveList GetMoves(PokemonSprite pokemon)
         {
-            return service.pokemonMoves.Where(x => new[] { pokemon.Move1, pokemon.Move2, pokemon.Move3, pokemon.Move4 }.Contains(x.Name)).ToList();
+            var moves = new MoveList();
+            moves.AddIfNotNull(service.pokemonMoves[pokemon.Move1]);
+            moves.AddIfNotNull(service.pokemonMoves[pokemon.Move2]);
+            moves.AddIfNotNull(service.pokemonMoves[pokemon.Move3]);
+            moves.AddIfNotNull(service.pokemonMoves[pokemon.Move4]);
+            
+            return moves;
         }
 
         public static async void DeletePokemon(PokemonSprite pokemon)
