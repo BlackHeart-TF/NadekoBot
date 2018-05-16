@@ -49,25 +49,7 @@ namespace NadekoBot.Modules.Pokemon.Services
             _cs = cs;
             pokemonInstance = this;  
 
-            //if (File.Exists(PokemonClassesFile))
-            //{
-            //    var settings = new JsonSerializerSettings
-            //    {
-            //        Error = (sender, args) =>
-            //                {
-            //                    if (System.Diagnostics.Debugger.IsAttached)
-            //                    {
-            //                        System.Diagnostics.Debugger.Break();
-            //                    }
-            //                }
-            //    };
-            //    pokemonClasses = JsonConvert.DeserializeObject<List<PokemonSpecies>>(File.ReadAllText(PokemonClassesFile),settings);
-            //}
-            //else
-            //{
-            //    pokemonClasses = new List<PokemonSpecies>();
-            //    _log.Warn(PokemonClassesFile + " is missing. Pokemon Classes not loaded.");
-            //}
+
             if (File.Exists(PokemonTypesFile))
             {
                 pokemonTypes = JsonConvert.DeserializeObject<List<PokemonType>>(File.ReadAllText(PokemonTypesFile));

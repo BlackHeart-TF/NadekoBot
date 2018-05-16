@@ -18,8 +18,8 @@ namespace NadekoBot.Modules.Pokemon.Common
         public List<PokemonType> AttackerTypes { get; set; }
         public List<PokemonType> DefenseTypes { get; set; }
         public int Damage { get; }
-        public KeyValuePair<string, string> move { get; }
-        Random rng { get; set; } = new Random();
+        public PokemonMove Move { get; }
+        Random Rng { get; set; } = new Random();
         public bool IsCritical { get; set; } = false;
         /// <summary>
         /// How effective the move is;
@@ -28,7 +28,7 @@ namespace NadekoBot.Modules.Pokemon.Common
         /// more than 1: super effective
         /// </summary>
         public double Effectiveness { get; set; } = 1;
-        public PokemonAttack(PokemonSprite attacker, PokemonSprite defender, KeyValuePair<string, string> move)
+        public PokemonAttack(PokemonSprite attacker, PokemonSprite defender, PokemonMove move)
         {
             Attacker = attacker;
             Defender = defender;
@@ -36,7 +36,7 @@ namespace NadekoBot.Modules.Pokemon.Common
             DefendSpecies = defender.GetSpecies();
             AttackerTypes = AttackSpecies.GetPokemonTypes();
             DefenseTypes = DefendSpecies.GetPokemonTypes();
-            this.move = move;
+            this.Move = move;
             Damage = CalculateDamage();
 
         }
@@ -45,39 +45,48 @@ namespace NadekoBot.Modules.Pokemon.Common
         private int CalculateDamage()
         {
             //use formula in http://bulbapedia.bulbagarden.net/wiki/Damage
-            double attack = Attacker.Attack;
-            double defense = Defender.Defense;
-
-            double basePower = rng.Next(40, 120);
-            double toReturn = ((2 * (double)Attacker.Level + 10) / 250) * (attack / defense) * basePower + 2;
+            double attack;
+            double defense;
+            if (Move.Type == "physical")
+            {
+                attack = Attacker.Attack;
+                defense = Defender.SpecialDefense;
+            }
+            else
+            {
+                attack = Attacker.SpecialAttack;
+                defense = Defender.Defense;
+            }
+            double toReturn = (((((2 * (double)Attacker.Level)/5) + 2) *Move.Power * (attack / defense))/50) + 2;
             toReturn = toReturn * GetModifier();
             return (int)Math.Floor(toReturn);
         }
 
         private double GetModifier()
         {
-            var stablist = AttackerTypes.Where(x => x.Name == move.Value);
+            var stablist = AttackerTypes.Where(x => x.Name == Move.Type);
             double stab = 1;
             if (stablist.Any())
                 stab = 1.5;
-            var typeEffectiveness = setEffectiveness();
+            var typeEffectiveness = SetEffectiveness();
             double critical = 1;
-            if (rng.Next(0, 100) < 10)
+            if (Rng.Next(0, 100) < 6.25)
             {
                 IsCritical = true;
-                critical = 2;
+                critical = 1.5;
             }
             double other = /*rng.NextDouble() * 2*/1;
-            double random = (double)rng.Next(85, 100) / 100;
+            double random = (double)Rng.Next(85, 100) / 100;
             double mod = stab * typeEffectiveness * critical * other * random;
             return mod;
         }
+        
 
-        private double setEffectiveness()
+        private double SetEffectiveness()
         {
 
 
-            var moveTypeString = move.Value.ToUpperInvariant();
+            var moveTypeString = Move.Type.ToUpperInvariant();
             var moveType = moveTypeString.StringToPokemonType();
             var dTypeStrings = DefenseTypes.Select(x => x.Name);
             var mpliers = moveType.Multipliers.Where(x => dTypeStrings.Contains(x.Type));
@@ -92,7 +101,7 @@ namespace NadekoBot.Modules.Pokemon.Common
 
         public string AttackString()
         {
-            var str = $"**{Attacker.NickName}** attacked **{Defender.NickName}** with **{move.Key}**\n" +
+            var str = $"**{Attacker.NickName}** attacked **{Defender.NickName}** with **{Move.Name}**\n" +
                 $"{Defender.NickName} received {Damage} damage!\n";
             if (IsCritical)
             {

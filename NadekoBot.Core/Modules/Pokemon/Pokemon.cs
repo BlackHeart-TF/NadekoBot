@@ -393,10 +393,10 @@ namespace NadekoBot.Modules.Pokemon
                 await ReplyAsync($"**{pkm.NickName}** already knows **{learnMove.Name}**!");
                 return;
             }
-            var oldMove = (PokemonMove)typeof(PokemonSprite).GetProperty("Move" + move).GetValue(pkm);
+            var oldMove = (string)typeof(PokemonSprite).GetProperty("Move" + move).GetValue(pkm);
             typeof(PokemonSprite).GetProperty("Move" + move).SetValue(pkm, learnMove.Name);
             PokemonFunctions.UpdatePokemon(pkm);
-            await ReplyAsync($"**{pkm.NickName}** has forgotten how to use **{oldMove.Name}**\n and has learned **{learnMove.Name}!");
+            await ReplyAsync($"**{pkm.NickName}** has forgotten how to use **{oldMove}**\n and has learned **{learnMove.Name}**!");
         }
 
         [NadekoCommand, Usage, Description, Alias]
@@ -455,7 +455,6 @@ namespace NadekoBot.Modules.Pokemon
             if (defenderStats.LastAttackedBy.ContainsKey(Context.Guild.Id))
                 defenderStats.LastAttackedBy.Remove(Context.Guild.Id);
             defenderStats.LastAttackedBy.Add(Context.Guild.Id, attacker);
-            KeyValuePair<string, string> move = new KeyValuePair<string, string>(Move.Name, Move.Type);
             var defenderPokemon = target.ActivePokemon();
 
             if (defenderPokemon.HP == 0)
@@ -464,7 +463,7 @@ namespace NadekoBot.Modules.Pokemon
                 return;
             }
 
-            PokemonAttack attack = new PokemonAttack(attackerPokemon, defenderPokemon, move);
+            PokemonAttack attack = new PokemonAttack(attackerPokemon, defenderPokemon, Move);
             var msg = attack.AttackString();
 
             var damageDone = attack.Damage;
@@ -490,7 +489,7 @@ namespace NadekoBot.Modules.Pokemon
                 }
                 if (attackerPokemon.Level > lvl) //levled up
                 {
-                    str += $"**{attackerPokemon.NickName}** leveled up!\n**{attackerPokemon.NickName}** is now level **{attackerPokemon.Level}**";
+                    str += $"**{attackerPokemon.NickName}** leveled up!\n**{attackerPokemon.NickName}** is now level **{attackerPokemon.Level}**\n";
                     str += reward.EvolutionText;
                 }
                 attackerPokemon.Update();
@@ -590,10 +589,33 @@ namespace NadekoBot.Modules.Pokemon
             await ReplyAsync(str);
         }
 
-        
-        
+        [NadekoCommand, Usage, Description, Alias]
+        [RequireOwner]
+        [Summary("Shows your current party")]
+        public async Task Tm(int slot, string move, IUser user = null)
+        {
+            var target = user ?? Context.User;
+            var pkm = target.ActivePokemon();
+            PokemonMove newMove;
+            try
+            {
+                newMove = _service.pokemonMoves[move];
+            }
+            catch (Exception)
+            {
+                await ReplyAsync("Move not found");
+                return;
+            }
 
-        string swapPokemon(IGuildUser user, string OldPokemon, string NewPokemon, int Level = 5)
+
+            var oldMove = (string)typeof(PokemonSprite).GetProperty("Move" + slot).GetValue(pkm);
+            typeof(PokemonSprite).GetProperty("Move" + slot).SetValue(pkm, newMove.Name);
+            PokemonFunctions.UpdatePokemon(pkm);
+            await ReplyAsync($"**{pkm.NickName}** has forgotten how to use **{oldMove}**\n and has learned **{newMove.Name}**!");
+        }
+
+
+            string swapPokemon(IGuildUser user, string OldPokemon, string NewPokemon, int Level = 5)
         {
             var oldpkm = _db.UnitOfWork.PokemonSprite.GetAll().Where(x => x.OwnerId==(long)user.Id && x.NickName==OldPokemon).First();
             var newspecies = _service.pokemonClasses.Where(x => x.Name == NewPokemon).DefaultIfEmpty(null).First();

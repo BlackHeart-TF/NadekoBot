@@ -79,8 +79,10 @@ namespace NadekoBot.Modules.Pokemon.Extentions
 
         public static RewardType GiveReward(this PokemonSprite pkm, int reward)
         {
-            var retReward = new RewardType();
-            retReward.RewardValue = reward.ToString();
+            var retReward = new RewardType
+            {
+                RewardValue = reward.ToString()
+            };
             pkm.XP += reward;
             if (pkm.XP > pkm.XPRequired())
             {
@@ -182,7 +184,7 @@ namespace NadekoBot.Modules.Pokemon.Extentions
             {
                 if (pkm.GetMoves().Result.Count() >= 4)
                 {
-                    retString += $"**{pkm.NickName}** wants to learn **{learnableMove.Name}**!\n Use `.learn <move to replace>` to learn {learnableMove.Name}.";
+                    retString += $"**{pkm.NickName}** wants to learn **{learnableMove.Name}** *({service.pokemonMoves[learnableMove.Name].Type})*!\n Use `.learn <move to replace>` to learn {learnableMove.Name}.";
                     return retString;
                 }
                 for (int i = 1;i <= 4; i++)
