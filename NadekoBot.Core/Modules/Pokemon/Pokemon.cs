@@ -96,7 +96,7 @@ namespace NadekoBot.Modules.Pokemon
                             .AddField(efb => efb.WithName("**Stats**").WithValue("\n**Level:** " + active.Level + "\n**HP:** " + active.HP + "/" + 
                                 active.MaxHP + "\n**XP:** " + active.XP + "/" + active.XPRequired() + "\n**Type:** "+ active.GetSpecies().GetTypeString()).WithIsInline(true))
                             .AddField(efb => efb.WithName("**Moves**").WithValue(string.Join('\n', active.PokemonMoves().Result)).WithIsInline(true))
-                            .WithImageUrl(active.GetSpecies().ImageLink));
+                            .WithImageUrl(active.IsShiny? active.GetSpecies().Sprites.FrontShiny:active.GetSpecies().Sprites.Front));
                             //.AddField(efb => efb.WithName(GetText("height_weight")).WithValue(GetText("height_weight_val", p.HeightM, p.WeightKg)).WithIsInline(true))
                             //.AddField(efb => efb.WithName(GetText("abilities")).WithValue(string.Join(",\n", p.Abilities.Select(a => a.Value))).WithIsInline(true)));
             return;
@@ -108,10 +108,19 @@ namespace NadekoBot.Modules.Pokemon
         {
             var active = Context.User.ActivePokemon();
             await Context.Channel.EmbedAsync(new EmbedBuilder().WithOkColor()
-                .WithThumbnailUrl(active.GetSpecies().ImageLink)
+                .WithThumbnailUrl(active.IsShiny ? active.GetSpecies().Sprites.FrontShiny : active.GetSpecies().Sprites.Front)
                 .AddField(efb => efb.WithName($"**{active.NickName.ToTitleCase()}'s moves**:").WithValue(active.PokemonMoves().Result).WithIsInline(true))); 
         }
 
+        [NadekoCommand, Usage, Description, Alias]
+        public async Task BattleTest()
+        {
+            await Context.Channel.EmbedAsync(new EmbedBuilder().WithOkColor()
+                .WithThumbnailUrl(_service.pokemonClasses[6].Sprites.FrontShiny)
+                .WithDescription("Charmander Attacked Squirtle with Imagination!")
+                .WithImageUrl(_service.pokemonClasses[197].Sprites.BackShiny));
+                
+        }
         [NadekoCommand, Usage, Description, Alias("catch")]
         [RequireContext(ContextType.Guild)]
         [Summary("replaces your selected pokemon with a wild")]
@@ -260,6 +269,11 @@ namespace NadekoBot.Modules.Pokemon
         public async Task Heal(string target = null)
         {
             var pkm = Context.User.GetPokemon().Where(x => x.NickName == target).DefaultIfEmpty(null).FirstOrDefault();
+            if (pkm == null)
+            {
+                await ReplyAsync($"{Context.User.Mention} You dont have a pokemon named **{target}**!");
+                return;
+            }
             if (pkm.HP == pkm.MaxHP)
             {
                 await ReplyAsync($"{ pkm.NickName} is already at full health!");
@@ -435,7 +449,7 @@ namespace NadekoBot.Modules.Pokemon
             PokemonMove Move;
             if (moveList.Count() == 0)
             {
-                await ReplyAsync($"Cannot use \"{moveString}\", see `{Prefix}ML` for moves");
+                await Context.Channel.EmbedAsync(new EmbedBuilder().WithErrorColor().WithDescription($"Cannot use \"{moveString}\", see `{Prefix}ML` for moves"));
                 return;
             }
             else
@@ -444,12 +458,12 @@ namespace NadekoBot.Modules.Pokemon
             var defenderStats = target.GetTrainerStats();
             if (attackerStats.MovesMade > TrainerStats.MaxMoves || attackerStats.LastAttacked.Contains(target.Id))
             {
-                await ReplyAsync($"{attacker.Mention} already attacked {target.Mention}!");
+                await Context.Channel.EmbedAsync(new EmbedBuilder().WithErrorColor().WithDescription($"{attacker.Mention} already attacked {target.Mention}!"));
                 return;
             }
             if (attackerPokemon.HP == 0)
             {
-                await ReplyAsync($"{attackerPokemon.NickName} has fainted and can't attack!");
+                await Context.Channel.EmbedAsync(new EmbedBuilder().WithErrorColor().WithDescription($"{attackerPokemon.NickName} has fainted and can't attack!"));
                 return;
             }
             if (defenderStats.LastAttackedBy.ContainsKey(Context.Guild.Id))
@@ -459,7 +473,7 @@ namespace NadekoBot.Modules.Pokemon
 
             if (defenderPokemon.HP == 0)
             {
-                await ReplyAsync($"{defenderPokemon.NickName} has already fainted!");
+                await Context.Channel.EmbedAsync(new EmbedBuilder().WithErrorColor().WithDescription($"{defenderPokemon.NickName} has already fainted!"));
                 return;
             }
 
@@ -469,7 +483,14 @@ namespace NadekoBot.Modules.Pokemon
             var damageDone = attack.Damage;
             defenderPokemon.HP -= damageDone;
             msg += $"{defenderPokemon.NickName} has {defenderPokemon.HP} HP left!";
-            await ReplyAsync(msg);
+            await Context.Channel.EmbedAsync(new EmbedBuilder().WithColor(_service.TypeColors[Move.Type])
+                .WithThumbnailUrl(defenderPokemon.IsShiny? 
+                defenderPokemon.GetSpecies().Sprites.FrontShiny: 
+                defenderPokemon.GetSpecies().Sprites.Front)
+                .WithDescription(msg)
+                .WithImageUrl(attackerPokemon.IsShiny ?
+                attackerPokemon.GetSpecies().Sprites.BackShiny :
+                attackerPokemon.GetSpecies().Sprites.Back));
             //Update stats, you shall
             attacker.UpdateTrainerStats(attackerStats.Attack(target, damageDone));
             target.UpdateTrainerStats(defenderStats.Reset());
@@ -482,11 +503,9 @@ namespace NadekoBot.Modules.Pokemon
                 var str = $"{defenderPokemon.NickName} fainted!\n" + (!target.IsBot ? $"{attackerPokemon.NickName}'s owner {attacker.Mention} receives 1 {_bc.BotConfig.CurrencySign}\n": "");
                 var lvl = attackerPokemon.Level;
                 var reward = new RewardType();
-                if (!target.IsBot)
-                {
+
                     reward = attackerPokemon.Reward(defenderPokemon);
                     str += $"{attackerPokemon.NickName} gained {reward.RewardValue} XP from the battle\n";
-                }
                 if (attackerPokemon.Level > lvl) //levled up
                 {
                     str += $"**{attackerPokemon.NickName}** leveled up!\n**{attackerPokemon.NickName}** is now level **{attackerPokemon.Level}**\n";
@@ -527,7 +546,7 @@ namespace NadekoBot.Modules.Pokemon
                 }
                 //UpdatePokemon(attackerPokemon);
                 //UpdatePokemon(defenderPokemon);
-                await ReplyAsync(str);
+                await Context.Channel.EmbedAsync(new EmbedBuilder().WithErrorColor().WithDescription(str));
                 if (!target.IsBot)
                     await _cs.AddAsync(attacker.Id, "Victorious in pokemon", 1);
                 
@@ -564,6 +583,13 @@ namespace NadekoBot.Modules.Pokemon
 
         }
 
+        [NadekoCommand, Usage, Description, Alias]
+        [Summary("Shows your current party")]
+        public async Task List(IUser user)
+        {
+            var count = user.GetPokemon().Where(x => x.HP > 0).Count();
+            await ReplyAsync($"{user.Username} has {count} pokemon left!");
+        }
         [NadekoCommand, Usage, Description, Alias]
         [Summary("Shows your current party")]
         public async Task List()

@@ -1048,6 +1048,8 @@ namespace NadekoBot.Migrations
 
                     b.Property<bool>("IsActive");
 
+                    b.Property<bool>("IsShiny");
+
                     b.Property<int>("Level");
 
                     b.Property<int>("MaxHP");

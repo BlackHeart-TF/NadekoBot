@@ -61,7 +61,6 @@ namespace NadekoBot.Modules.Pokemon.Common
             var speciesIndex = rng.Next(0, list.Count() - 1);
             rng.Next();
             var species = list[speciesIndex];
-
             PokemonSprite sprite = new PokemonSprite
             {
                 SpeciesId = species.ID,
@@ -70,6 +69,7 @@ namespace NadekoBot.Modules.Pokemon.Common
                 NickName = species.Name,
                 OwnerId = (long)u.Id,
                 XP = 0,
+                IsShiny = rng.Next(0, 65536) < 8,
                 Attack = species.BaseStats["attack"],
                 Defense = species.BaseStats["defense"],
                 SpecialAttack = species.BaseStats["special-attack"],

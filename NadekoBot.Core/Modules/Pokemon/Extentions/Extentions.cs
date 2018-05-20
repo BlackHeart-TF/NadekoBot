@@ -72,7 +72,11 @@ namespace NadekoBot.Modules.Pokemon.Extentions
 
         public static RewardType Reward(this PokemonSprite pkm, PokemonSprite defeated)
         {
-            var reward = CalcXPReward(pkm, defeated);
+            int reward;
+            if (defeated.GetOwner().IsBot)
+                reward = 1;
+            else
+                reward = CalcXPReward(pkm, defeated);
             return pkm.GiveReward(reward);
             
         }
@@ -189,7 +193,7 @@ namespace NadekoBot.Modules.Pokemon.Extentions
                 }
                 for (int i = 1;i <= 4; i++)
                 {
-                    var move = (PokemonMove)typeof(PokemonSprite).GetProperty("Move" + i).GetValue(pkm);
+                    var move = service.pokemonMoves[(string)typeof(PokemonSprite).GetProperty("Move" + i).GetValue(pkm)];
                     if (move != null)
                         continue;
                     

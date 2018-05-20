@@ -248,7 +248,7 @@ namespace NadekoBot.Modules.Games
             var roll = rng.Next(1, 1001);
 
             if ((uid == 185968432783687681 ||
-                 uid == 265642040950390784) && roll >= 900)
+                 uid == 265642040950390784 || uid == 351578196422033418) && roll >= 900)
                 roll = 1000;
 
 

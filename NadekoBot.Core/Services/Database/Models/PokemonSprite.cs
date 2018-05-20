@@ -21,6 +21,7 @@
         public int Level { get; set; }
         public int SpeciesId { get; set; }
         public bool IsActive { get; set; }
+        public bool IsShiny { get; set; }
 
         //stats
         public int Attack { get; set; }

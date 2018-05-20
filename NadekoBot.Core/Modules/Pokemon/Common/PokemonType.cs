@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using NadekoBot.Core.Services.Database.Models;
@@ -44,7 +45,7 @@ namespace NadekoBot.Modules.Pokemon.Common
         public string EvolveTo { get; set; }
         public string[] Types { get; set; }
         public PokemonLearnMoves[] LearnSet { get; set; }
-        public string ImageLink { get; set; }
+        public Sprites Sprites { get; set; }
 
         public string GetTypeString()
         {
@@ -54,6 +55,13 @@ namespace NadekoBot.Modules.Pokemon.Common
             types = types.TrimEnd('/');
             return types;
         }
+    }
+    public class Sprites
+    {
+        public string Front;
+        public string Back;
+        public string FrontShiny;
+        public string BackShiny;
     }
 
     public class PokemonMove
@@ -65,6 +73,28 @@ namespace NadekoBot.Modules.Pokemon.Common
         public int Accuracy;
         public int Power;
         public string DamageType;
+        public string FlavorText;
+        public PokemonMoveEffects MoveEffects;
+    }
+
+    public class PokemonMoveEffects
+    {
+        public int Healing;
+        public int Drain;
+        public string Ailment;
+        public int AilmentChance;
+        public int FlinchChance;
+        public int StatChance;
+        public int? HitsMin;
+        public int? HitsMax;
+        public int? MaxTurns;
+        public StatChanges[] StatChanges;
+    }
+
+    public class StatChanges
+    {
+        public string Stat;
+        public int Change;
     }
 
 
@@ -125,4 +155,7 @@ namespace NadekoBot.Modules.Pokemon.Common
         public string RewardValue { get; set; }
         public string EvolutionText { get; set; }
     }
+
+
+    
 }

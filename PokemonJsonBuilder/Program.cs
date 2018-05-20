@@ -116,10 +116,27 @@ namespace PokemonJsonBuilder
                 Accuracy = Convert.ToInt32(Moves.Accuracy),
                 Power = Moves.Power ?? 0,
                 DamageType = Moves.DamageClass.Name,
+                FlavorText = Moves.FlavorTextEntries.Where(x => x.Language.Name == "en" && x.VersionGroup.Name == "sun-moon").First().FlavorText,
+                MoveEffects = new PokemonMoveEffects()
+                {
+                    Healing = Moves.Meta.Value.Healing,
+                    Drain = Moves.Meta.Value.DrainRecoil,
+                    Ailment = Moves.Meta.Value.Ailment.Name,
+                    AilmentChance = Convert.ToInt32(Moves.Meta.Value.AilmentChance),
+                    FlinchChance = Convert.ToInt32(Moves.Meta.Value.FlinchChance),
+                    StatChance = Moves.Meta.Value.StatChance,
+                    HitsMin = Moves.Meta.Value.MinHits,
+                    HitsMax = Moves.Meta.Value.MaxHits,
+                    MaxTurns = Moves.Meta.Value.MaxTurns,
+                }
 
             };
-            
-
+            var changes = new List<StatChanges>();
+            foreach(var statchange in Moves.StatChanges)
+            {
+                changes.Add(new StatChanges() { Stat = statchange.Stat.Name, Change = statchange.Change });
+            }
+            move.MoveEffects.StatChanges = changes.ToArray();
             return move;
         }
 
@@ -156,9 +173,15 @@ namespace PokemonJsonBuilder
                 Name = species.Name,
                 CatchRate = species.CaptureRate,
                 BaseExperience = pokemon.BaseExperience,
-                BaseStats = stats,
-                ImageLink = $"http://pokeapi.co/media/sprites/pokemon/{species.ID}.png"
+                BaseStats = stats
+            };
 
+            sprite.Sprites = new Sprites()
+            {
+                Front = pokemon.Sprites.FrontMale,
+                Back = pokemon.Sprites.BackMale,
+                FrontShiny = pokemon.Sprites.FrontShinyMale,
+                BackShiny = pokemon.Sprites.BackShinyMale
             };
             //evolveto
             //if (new[] { 210, 222, 225, 226, 227, 231, 238, 251 }.Contains(pkmNumber))
@@ -206,7 +229,6 @@ namespace PokemonJsonBuilder
             foreach (var type in pokemon.Types)
                 TypeList.Add(type.Type.Name);
             sprite.Types = TypeList.ToArray();
-
             //done
             return sprite;
         }
@@ -243,7 +265,7 @@ namespace PokemonJsonBuilder
         public int EvolveTo { get; set; }
         public string[] Types { get; set; }
         public PokemonLearnMoves[] LearnSet { get; set; }
-        public string ImageLink { get; set; }
+        public Sprites Sprites { get; set; }
     }
     public class BaseStats
     {
@@ -275,6 +297,13 @@ namespace PokemonJsonBuilder
             HP = hp;
         }
     }
+    public class Sprites
+    {
+        public string Front;
+        public string Back;
+        public string FrontShiny;
+        public string BackShiny;
+    }
     public class PokemonLearnMoves
     {
         [JsonProperty("ID")]
@@ -300,5 +329,25 @@ namespace PokemonJsonBuilder
         public int Accuracy;
         public int Power;
         public string DamageType;
+        public string FlavorText;
+        public PokemonMoveEffects MoveEffects;
+    }
+    public class PokemonMoveEffects
+    {
+        public int Healing;
+        public int Drain;
+        public string Ailment;
+        public int AilmentChance;
+        public int FlinchChance;
+        public int StatChance;
+        public int? HitsMin;
+        public int? HitsMax;
+        public int? MaxTurns;
+        public StatChanges[] StatChanges;
+    }
+    public class StatChanges
+    {
+        public string Stat;
+        public int Change;
     }
 }

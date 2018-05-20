@@ -21,6 +21,7 @@ namespace NadekoBot.Modules.Pokemon.Common
         public PokemonMove Move { get; }
         Random Rng { get; set; } = new Random();
         public bool IsCritical { get; set; } = false;
+        public bool MoveHits { get; } 
         /// <summary>
         /// How effective the move is;
         /// 1: somewhat effective,
@@ -37,13 +38,16 @@ namespace NadekoBot.Modules.Pokemon.Common
             AttackerTypes = AttackSpecies.GetPokemonTypes();
             DefenseTypes = DefendSpecies.GetPokemonTypes();
             this.Move = move;
+            MoveHits = DoesItHit();
             Damage = CalculateDamage();
-
+            
         }
 
 
         private int CalculateDamage()
         {
+            if (!MoveHits)
+                return 0;
             //use formula in http://bulbapedia.bulbagarden.net/wiki/Damage
             double attack;
             double defense;
@@ -81,6 +85,13 @@ namespace NadekoBot.Modules.Pokemon.Common
             return mod;
         }
         
+        private bool DoesItHit()
+        {
+            if (Move.Accuracy == 0)
+                return true;
+            else
+                return Rng.Next(1, 100) <= Move.Accuracy;
+        }
 
         private double SetEffectiveness()
         {
@@ -101,8 +112,13 @@ namespace NadekoBot.Modules.Pokemon.Common
 
         public string AttackString()
         {
-            var str = $"**{Attacker.NickName}** attacked **{Defender.NickName}** with **{Move.Name}**\n" +
-                $"{Defender.NickName} received {Damage} damage!\n";
+            string str = $"**{Attacker.NickName}** attacked **{Defender.NickName}** with **{Move.Name}**\n";
+            if (!MoveHits)
+            {
+                str += "But it missed!\n";
+                return str;
+            }
+            str += $"{Defender.NickName} received {Damage} damage!\n";
             if (IsCritical)
             {
                 str += "It's a critical hit!\n";
@@ -115,12 +131,6 @@ namespace NadekoBot.Modules.Pokemon.Common
             {
                 str += "It's not very effective...\n";
             }
-            //else
-            //{
-            //    str += "It's somewhat effective\n";
-            //}
-
-
 
             return str;
         }
