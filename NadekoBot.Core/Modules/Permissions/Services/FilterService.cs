@@ -9,12 +9,14 @@ using NadekoBot.Common.ModuleBehaviors;
 using NadekoBot.Extensions;
 using NadekoBot.Core.Services;
 using NLog;
+using Microsoft.EntityFrameworkCore;
 
 namespace NadekoBot.Modules.Permissions.Services
 {
     public class FilterService : IEarlyBlocker, INService
     {
         private readonly Logger _log;
+        private readonly DbService _db;
 
         public ConcurrentHashSet<ulong> InviteFilteringChannels { get; }
         public ConcurrentHashSet<ulong> InviteFilteringServers { get; }
@@ -25,15 +27,36 @@ namespace NadekoBot.Modules.Permissions.Services
         public ConcurrentHashSet<ulong> WordFilteringChannels { get; }
         public ConcurrentHashSet<ulong> WordFilteringServers { get; }
 
-        //public ConcurrentHashSet<ulong> LinkFilteringServers { get; }
-        //public ConcurrentDictionary<ulong, bool> LinkFilteringChannelSettings { get; }
-
         public ConcurrentHashSet<string> FilteredWordsForChannel(ulong channelId, ulong guildId)
         {
             ConcurrentHashSet<string> words = new ConcurrentHashSet<string>();
             if (WordFilteringChannels.Contains(channelId))
                 ServerFilteredWords.TryGetValue(guildId, out words);
             return words;
+        }
+
+        public void ClearFilteredWords(ulong guildId)
+        {
+            using (var uow = _db.UnitOfWork)
+            {
+                var gc = uow.GuildConfigs.For(guildId,
+                    set => set.Include(x => x.FilteredWords)
+                        .Include(x => x.FilterWordsChannelIds));
+
+                WordFilteringServers.TryRemove(guildId);
+                ServerFilteredWords.TryRemove(guildId, out _);
+
+                foreach (var c in gc.FilterWordsChannelIds)
+                {
+                    WordFilteringChannels.TryRemove(c.ChannelId);
+                }
+
+                gc.FilterWords = false;
+                gc.FilteredWords.Clear();
+                gc.FilterWordsChannelIds.Clear();
+
+                uow.Complete();
+            }
         }
 
         public ConcurrentHashSet<string> FilteredWordsForServer(ulong guildId)
@@ -44,9 +67,10 @@ namespace NadekoBot.Modules.Permissions.Services
             return words;
         }
 
-        public FilterService(DiscordSocketClient _client, NadekoBot bot)
+        public FilterService(DiscordSocketClient _client, NadekoBot bot, DbService db)
         {
             _log = LogManager.GetCurrentClassLogger();
+            _db = db;
 
             InviteFilteringServers = new ConcurrentHashSet<ulong>(bot.AllGuildConfigs.Where(gc => gc.FilterInvites).Select(gc => gc.GuildId));
             InviteFilteringChannels = new ConcurrentHashSet<ulong>(bot.AllGuildConfigs.SelectMany(gc => gc.FilterInvitesChannelIds.Select(fci => fci.ChannelId)));
@@ -78,7 +102,7 @@ namespace NadekoBot.Modules.Permissions.Services
         }
 
         public async Task<bool> TryBlockEarly(IGuild guild, IUserMessage msg)
-            =>  !(msg.Author is IGuildUser gu) //it's never filtered outside of guilds, and never block administrators
+            => !(msg.Author is IGuildUser gu) //it's never filtered outside of guilds, and never block administrators
                 ? false
                 : !gu.GuildPermissions.Administrator && (await FilterInvites(guild, msg) || await FilterWords(guild, msg));
 
@@ -121,8 +145,8 @@ namespace NadekoBot.Modules.Permissions.Services
             if (usrMsg is null)
                 return false;
 
-            if ((InviteFilteringChannels.Contains(usrMsg.Channel.Id) 
-                || InviteFilteringServers.Contains(guild.Id)) 
+            if ((InviteFilteringChannels.Contains(usrMsg.Channel.Id)
+                || InviteFilteringServers.Contains(guild.Id))
                 && usrMsg.Content.IsDiscordInvite())
             {
                 try

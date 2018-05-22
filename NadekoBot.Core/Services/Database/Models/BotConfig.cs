@@ -37,6 +37,8 @@ namespace NadekoBot.Core.Services.Database.Models
         public float Betroll100Multiplier { get; set; } = 10;
         public int TimelyCurrency { get; set; } = 0;
         public int TimelyCurrencyPeriod { get; set; } = 0;
+        public float DailyCurrencyDecay { get; set; } = 0;
+        public DateTime LastCurrencyDecay { get; set; } = DateTime.MinValue;
         public int MinWaifuPrice { get; set; } = 50;
         //public HashSet<CommandCost> CommandCosts { get; set; } = new HashSet<CommandCost>();
 
@@ -82,6 +84,15 @@ Nadeko Support Server: https://discord.gg/nadekobot";
         public int MinBet { get; set; } = 0;
         public int MaxBet { get; set; } = 0;
         public ConsoleOutputType ConsoleOutputType { get; set; } = ConsoleOutputType.Normal;
+
+        public string UpdateString { get; set; } = "New update has been released.";
+        public UpdateCheckType CheckForUpdates { get; set; } = UpdateCheckType.Release;
+        public DateTime LastUpdate { get; set; } = new DateTime(2018, 5, 5, 0, 0, 0, DateTimeKind.Utc);
+    }
+
+    public enum UpdateCheckType
+    {
+        Release, Commit, None
     }
 
     public class BlockedCmdOrMdl : DbEntity

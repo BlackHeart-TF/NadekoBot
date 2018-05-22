@@ -217,8 +217,9 @@ namespace NadekoBot.Modules.Games
                 return;
 
             await Context.Channel.EmbedAsync(new EmbedBuilder().WithColor(NadekoBot.OkColor)
-                               .AddField(efb => efb.WithName("❓ " + GetText("question")).WithValue(question).WithIsInline(false))
-                               .AddField(efb => efb.WithName("🎱 " + GetText("8ball")).WithValue(_service.EightBallResponses[new NadekoRandom().Next(0, _service.EightBallResponses.Length)]).WithIsInline(false)));
+                .WithDescription(Context.User.ToString())
+                .AddField(efb => efb.WithName("❓ " + GetText("question")).WithValue(question).WithIsInline(false))
+                .AddField(efb => efb.WithName("🎱 " + GetText("8ball")).WithValue(_service.EightBallResponses[new NadekoRandom().Next(0, _service.EightBallResponses.Length)]).WithIsInline(false)));
         }
 
         [NadekoCommand, Usage, Description, Aliases]
@@ -248,7 +249,7 @@ namespace NadekoBot.Modules.Games
             var roll = rng.Next(1, 1001);
 
             if ((uid == 185968432783687681 ||
-                 uid == 265642040950390784 || uid == 351578196422033418) && roll >= 900)
+                 uid == 265642040950390784) && roll >= 900)
                 roll = 1000;
 
 

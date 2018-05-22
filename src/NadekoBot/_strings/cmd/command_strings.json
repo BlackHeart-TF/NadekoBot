@@ -285,6 +285,34 @@
       "{0}dcr 5"
     ]
   },
+  "crclear": {
+    "cmd": "crclear",
+    "desc": "Deletes all custom reactions on this server.",
+    "Usage": [
+      "{0}crclear"
+    ]
+  },
+  "fwclear": {
+    "cmd": "fwclear",
+    "desc": "Deletes all filtered words on this server.",
+    "Usage": [
+      "{0}fwclear"
+    ]
+  },
+  "aliasesclear": {
+    "cmd": "aliasesclear aliasclear",
+    "desc": "Deletes all aliases on this server.",
+    "Usage": [
+      "{0}aliasclear"
+    ]
+  },
+  "streamsclear": {
+    "cmd": "streamsclear",
+    "desc": "Deletes all followed streams on this server.",
+    "Usage": [
+      "{0}streamsclear"
+    ]
+  },
   "autoassignrole": {
     "Cmd": "autoassignrole aar",
     "Desc": "Automaticaly assigns a specified role to every user who joins the server. Provide no parameters to disable.",
@@ -391,10 +419,10 @@
   },
   "mute": {
     "Cmd": "mute",
-    "Desc": "Mutes a mentioned user both from speaking and chatting. You can also specify time in minutes (up to 1440) for how long the user should be muted.",
+    "Desc": "Mutes a mentioned user both from speaking and chatting. You can also specify time string for how long the user should be muted.",
     "Usage": [
       "{0}mute @Someone",
-      "{0}mute 30 @Someone"
+      "{0}mute 1h30m @Someone"
     ]
   },
   "voiceunmute": {
@@ -1721,11 +1749,11 @@
       "{0}danbooru yuri+kissing"
     ]
   },
-  "atfbooru": {
-    "Cmd": "atfbooru atf",
-    "Desc": "Shows a random hentai image from atfbooru with a given tag. Tag is optional but preferred.",
+  "derpibooru": {
+    "Cmd": "derpibooru derpi",
+    "Desc": "Shows a random image from derpibooru with a given tag. Tag is optional but preferred.",
     "Usage": [
-      "{0}atfbooru yuri+kissing"
+      "{0}derpi yuri+kissing"
     ]
   },
   "gelbooru": {
@@ -2691,10 +2719,11 @@
   },
   "warnpunish": {
     "Cmd": "warnpunish warnp",
-    "Desc": "Sets a punishment for a certain number of warnings. Provide no punishment to remove.",
+    "Desc": "Sets a punishment for a certain number of warnings. You can specify a time string after 'Ban' or 'Mute' punishment to make it a temporary mute/ban. Provide no punishment to remove.",
     "Usage": [
-      "{0}warnpunish 5 Ban",
-      "{0}warnpunish 3"
+      "{0}warnp 5 Ban",
+      "{0}warnp 3",
+      "{0}warnp 5 Mute 2d12h"
     ]
   },
   "claimpatreonrewards": {
@@ -3284,7 +3313,7 @@
     "cmd": "reactionrolesremove rerorm",
     "desc": "Removed a ReactionRole message on the specified index.",
     "usage": [
-      "{0}reactionrolesrm 1"
+      "{0}rerorm 1"
     ]
   },
   "blackjack": {
@@ -3356,6 +3385,14 @@
     "desc": "Specify an url of a stream you're already following, and a message in order to set a stream notification message which will show up every time stream comes online.",
     "usage": [
       "{0}streammsg https://www.twitch.tv/trolhamonas/ Hello world"
+    ]
+  },
+  "updatescheck": {
+    "cmd": "updatescheck",
+    "desc": "Select which kind of updates you want to be notified of every 8 hours. You can specify 'release' to check only for new windows releases, 'commit' to be notified of new commits, or 'none' to not get notified.",
+    "usage": [
+      "{0}updatescheck commit",
+      "{0}updatescheck release"
     ]
   }
 }

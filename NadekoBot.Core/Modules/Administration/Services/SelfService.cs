@@ -17,6 +17,8 @@ using Microsoft.EntityFrameworkCore;
 using NadekoBot.Core.Services.Database.Models;
 using System.Threading;
 using System.Collections.Concurrent;
+using System;
+using Octokit;
 
 namespace NadekoBot.Modules.Administration.Services
 {
@@ -33,12 +35,14 @@ namespace NadekoBot.Modules.Administration.Services
         private readonly ILocalization _localization;
         private readonly NadekoStrings _strings;
         private readonly DiscordSocketClient _client;
+
         private readonly IBotCredentials _creds;
         private ImmutableDictionary<ulong, IDMChannel> ownerChannels = new Dictionary<ulong, IDMChannel>().ToImmutableDictionary();
         private ConcurrentDictionary<ulong?, ConcurrentDictionary<int, Timer>> _autoCommands = new ConcurrentDictionary<ulong?, ConcurrentDictionary<int, Timer>>();
         private readonly IBotConfigProvider _bc;
         private readonly IDataCache _cache;
         private readonly IImageCache _imgs;
+        private readonly Timer _updateTimer;
 
         public SelfService(DiscordSocketClient client, NadekoBot bot, CommandHandler cmdHandler, DbService db,
             IBotConfigProvider bc, ILocalization localization, NadekoStrings strings, IBotCredentials creds,
@@ -56,6 +60,34 @@ namespace NadekoBot.Modules.Administration.Services
             _bc = bc;
             _cache = cache;
             _imgs = cache.LocalImages;
+            if (_client.ShardId == 0)
+            {
+                _updateTimer = new Timer(async _ =>
+                {
+                    try
+                    {
+                        var ch = ownerChannels?.Values.FirstOrDefault();
+
+                        if (ch == null) // no owner channels
+                        return;
+
+                        var cfo = _bc.BotConfig.CheckForUpdates;
+                        if (cfo == UpdateCheckType.None)
+                            return;
+
+                        string data;
+                        if ((cfo == UpdateCheckType.Commit && (data = await GetNewCommit()) != null)
+                            || (cfo == UpdateCheckType.Release && (data = await GetNewRelease()) != null))
+                        {
+                            await ch.SendConfirmAsync("New Bot Update", data).ConfigureAwait(false);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _log.Warn(ex);
+                    }
+                }, null, TimeSpan.FromHours(8), TimeSpan.FromHours(8));
+            }
 
             var sub = _redis.GetSubscriber();
             sub.Subscribe(_creds.RedisKey() + "_reload_images",
@@ -66,11 +98,6 @@ namespace NadekoBot.Modules.Administration.Services
             Task.Run(async () =>
             {
                 await bot.Ready.Task.ConfigureAwait(false);
-
-                foreach (var cmd in bc.BotConfig.StartupCommands.Where(x => x.Interval <= 0))
-                {
-                    await ExecuteCommand(cmd);
-                }
 
                 _autoCommands = bc.BotConfig
                     .StartupCommands
@@ -83,6 +110,10 @@ namespace NadekoBot.Modules.Administration.Services
                     .ToConcurrent())
                     .ToConcurrent();
 
+                foreach (var cmd in bc.BotConfig.StartupCommands.Where(x => x.Interval <= 0))
+                {
+                    try { await ExecuteCommand(cmd); } catch { }
+                }
             });
 
             Task.Run(async () =>
@@ -96,6 +127,73 @@ namespace NadekoBot.Modules.Administration.Services
             });
         }
 
+        private async Task<string> GetNewCommit()
+        {
+            var client = new GitHubClient(new ProductHeaderValue("nadekobot"));
+            var lu = _bc.BotConfig.LastUpdate;
+            var commits = await client.Repository.Commit.GetAll("Kwoth", "NadekoBot", new CommitRequest()
+            {
+                Since = lu,
+            });
+
+            commits = commits.Where(x => x.Commit.Committer.Date.UtcDateTime > lu)
+                .Take(10)
+                .ToList();
+
+            if (!commits.Any())
+                return null;
+
+            SetNewLastUpdate(commits.First().Commit.Committer.Date.UtcDateTime);
+
+            var newCommits = commits
+                .Select(x => $"[{x.Sha.TrimTo(6, true)}]({x.HtmlUrl})  {x.Commit.Message.TrimTo(50)}");
+
+            return string.Join('\n', newCommits);
+        }
+
+        private void SetNewLastUpdate(DateTime dt)
+        {
+            using (var uow = _db.UnitOfWork)
+            {
+                var bc = uow.BotConfig.GetOrCreate(set => set);
+                bc.LastUpdate = dt;
+                uow.Complete();
+            }
+
+            _bc.Reload();
+        }
+
+        private async Task<string> GetNewRelease()
+        {
+            var client = new GitHubClient(new ProductHeaderValue("nadekobot"));
+            var lu = _bc.BotConfig.LastUpdate;
+            var release = (await client.Repository.Release.GetAll("Kwoth", "NadekoBot")).FirstOrDefault();
+
+            if (release == null || release.CreatedAt.UtcDateTime <= lu)
+                return null;
+
+            SetNewLastUpdate(release.CreatedAt.UtcDateTime);
+
+            return Format.Bold(release.Name) + "\n\n" + release.Body.TrimTo(1500);
+        }
+
+        public void SetUpdateCheck(UpdateCheckType type)
+        {
+            using (var uow = _db.UnitOfWork)
+            {
+                var bc = uow.BotConfig.GetOrCreate(set => set);
+                bc.CheckForUpdates = type;
+                uow.Complete();
+            }
+
+            if (type == UpdateCheckType.None)
+            {
+                _updateTimer.Change(Timeout.Infinite, Timeout.Infinite);
+            }
+
+            _bc.Reload();
+        }
+
         private Timer TimerFromStartupCommand(StartupCommand x)
         {
             return new Timer(async (obj) => await ExecuteCommand((StartupCommand)obj),
@@ -106,12 +204,19 @@ namespace NadekoBot.Modules.Administration.Services
 
         private async Task ExecuteCommand(StartupCommand cmd)
         {
-            var prefix = _cmdHandler.GetPrefix(cmd.GuildId);
-            //if someone already has .die as their startup command, ignore it
-            if (cmd.CommandText.StartsWith(prefix + "die"))
-                return;
-            await _cmdHandler.ExecuteExternal(cmd.GuildId, cmd.ChannelId, cmd.CommandText);
-            await Task.Delay(400).ConfigureAwait(false);
+            try
+            {
+                var prefix = _cmdHandler.GetPrefix(cmd.GuildId);
+                //if someone already has .die as their startup command, ignore it
+                if (cmd.CommandText.StartsWith(prefix + "die"))
+                    return;
+                await _cmdHandler.ExecuteExternal(cmd.GuildId, cmd.ChannelId, cmd.CommandText);
+                await Task.Delay(400).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                _log.Warn(ex);
+            }
         }
 
         public void AddNewAutoCommand(StartupCommand cmd)
@@ -122,15 +227,15 @@ namespace NadekoBot.Modules.Administration.Services
                    .GetOrCreate(set => set.Include(x => x.StartupCommands))
                    .StartupCommands
                    .Add(cmd);
-
-                var autos = _autoCommands.GetOrAdd(cmd.GuildId, new ConcurrentDictionary<int, Timer>());
-                autos.AddOrUpdate(cmd.Id, key => TimerFromStartupCommand(cmd), (key, old) =>
-                {
-                    old.Change(Timeout.Infinite, Timeout.Infinite);
-                    return TimerFromStartupCommand(cmd);
-                });
                 uow.Complete();
             }
+
+            var autos = _autoCommands.GetOrAdd(cmd.GuildId, new ConcurrentDictionary<int, Timer>());
+            autos.AddOrUpdate(cmd.Id, key => TimerFromStartupCommand(cmd), (key, old) =>
+            {
+                old.Change(Timeout.Infinite, Timeout.Infinite);
+                return TimerFromStartupCommand(cmd);
+            });
         }
 
         public IEnumerable<StartupCommand> GetStartupCommands()

@@ -142,6 +142,8 @@ namespace NadekoBot.Migrations
 
                     b.Property<ulong>("BufferSize");
 
+                    b.Property<int>("CheckForUpdates");
+
                     b.Property<int>("ConsoleOutputType");
 
                     b.Property<int>("CurrencyDropAmount");
@@ -162,6 +164,8 @@ namespace NadekoBot.Migrations
 
                     b.Property<string>("DMHelpString");
 
+                    b.Property<float>("DailyCurrencyDecay");
+
                     b.Property<DateTime?>("DateAdded");
 
                     b.Property<string>("DefaultPrefix");
@@ -177,6 +181,12 @@ namespace NadekoBot.Migrations
                     b.Property<bool>("ForwardToAllOwners");
 
                     b.Property<string>("HelpString");
+
+                    b.Property<DateTime>("LastCurrencyDecay");
+
+                    b.Property<DateTime>("LastUpdate")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(new DateTime(2018, 5, 5, 0, 0, 0, 0, DateTimeKind.Utc));
 
                     b.Property<string>("Locale");
 
@@ -211,6 +221,8 @@ namespace NadekoBot.Migrations
                     b.Property<int>("TimelyCurrencyPeriod");
 
                     b.Property<int>("TriviaCurrencyReward");
+
+                    b.Property<string>("UpdateString");
 
                     b.Property<int>("WaifuGiftMultiplier")
                         .ValueGeneratedOnAdd()

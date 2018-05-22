@@ -12,6 +12,10 @@
   "customreactions_stats_cleared": "Stats cleared for {0} custom reaction.",
   "customreactions_stats_not_found": "No stats for that trigger found, no action taken.",
   "customreactions_trigger": "Trigger",
+  "customreactions_cleared": "All {0} custom reactions on this server have been removed.",
+  "permissions_fw_cleared": "Removed all filtered words and filtered words channel settings.",
+  "utility_aliases_cleared": "All {0} aliases on this server have been removed.",
+  "searches_streams_cleared": "All {0} followed streams on this server have been removed.",
   "nsfw_autohentai_stopped": "Autohentai stopped.",
   "nsfw_not_found": "No results found.",
   "pokemon_already_fainted": "{0} has already fainted.",
@@ -991,5 +995,6 @@
   "xp_reset_user": "User with id {0} has had their XP reset on this server.",
   "xp_reset_server": "XP of all users on the server has been reset.",
   "searches_distance": "Distance between {0} and {1} is {2}km",
-  "gambling_bot_list_awarded": "Awarded {0} to {1} users!"
+  "gambling_bot_list_awarded": "Awarded {0} to {1} users!",
+  "administration_updates_check_set": "Checking for updates have been set to {0}."
 }

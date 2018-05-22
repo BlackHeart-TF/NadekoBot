@@ -119,6 +119,12 @@ namespace NadekoBot.Core.Services.Impl
                         else
                             return false;
                         break;
+                    case BotConfigEditType.DailyCurrencyDecay:
+                        if (float.TryParse(newValue, out var decay) && decay > 0)
+                            bc.DailyCurrencyDecay = decay;
+                        else
+                            return false;
+                        break;
                     case BotConfigEditType.XpPerMessage:
                         if (int.TryParse(newValue, out var xp) && xp > 0)
                             bc.XpPerMessage = xp;
@@ -197,6 +203,11 @@ namespace NadekoBot.Core.Services.Impl
                         if (!Enum.TryParse<ConsoleOutputType>(newValue, true, out var val))
                             return false;
                         bc.ConsoleOutputType = val;
+                        break;
+                    case BotConfigEditType.CheckForUpdates:
+                        if (!Enum.TryParse<UpdateCheckType>(newValue, true, out var up))
+                            return false;
+                        bc.CheckForUpdates = up;
                         break;
                     default:
                         return false;

@@ -26,12 +26,21 @@ namespace NadekoBot.Modules.Administration
             private readonly NadekoBot _bot;
             private readonly IBotCredentials _creds;
 
-            public SelfCommands(DbService db, NadekoBot bot, DiscordSocketClient client,
-                IBotCredentials creds, IDataCache cache)
+            public SelfCommands(NadekoBot bot, DiscordSocketClient client,
+                IBotCredentials creds)
             {
                 _client = client;
                 _bot = bot;
                 _creds = creds;
+            }
+
+            [NadekoCommand, Usage, Description, Aliases]
+            [RequireContext(ContextType.DM)]
+            [OwnerOnly]
+            public async Task UpdatesCheck(UpdateCheckType type)
+            {
+                _service.SetUpdateCheck(type);
+                await ReplyConfirmLocalized("updates_check_set", type.ToString()).ConfigureAwait(false);
             }
 
             [NadekoCommand, Usage, Description, Aliases]
@@ -414,7 +423,11 @@ namespace NadekoBot.Modules.Administration
             [OwnerOnly]
             public async Task SetGame(ActivityType type, [Remainder] string game = null)
             {
-                await _bot.SetGameAsync(game, type).ConfigureAwait(false);
+                var rep = new ReplacementBuilder()
+                    .WithDefault(Context)
+                    .Build();
+
+                await _bot.SetGameAsync(game == null ? game : rep.Replace(game), type).ConfigureAwait(false);
 
                 await ReplyConfirmLocalized("set_game").ConfigureAwait(false);
             }
