@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using NadekoBot.Core.Services.Database.Models;
+using NadekoBot.Extensions;
 using Newtonsoft.Json;
 
 namespace NadekoBot.Modules.Pokemon.Common
@@ -51,7 +52,7 @@ namespace NadekoBot.Modules.Pokemon.Common
         {
             string types = "";
             foreach (var type in this.Types)
-                types += type + "/";
+                types += type.ToTitleCase() + "/";
             types = types.TrimEnd('/');
             return types;
         }

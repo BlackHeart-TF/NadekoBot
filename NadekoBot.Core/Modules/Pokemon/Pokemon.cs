@@ -57,6 +57,16 @@ namespace NadekoBot.Modules.Pokemon
         }
 
         [NadekoCommand, Usage, Description, Alias]
+        [Summary("Shows information on a move")]
+        public async Task move(string move)
+        {
+           var moveInfo = _service.pokemonMoves[move];
+            await Context.Channel.EmbedAsync(new EmbedBuilder().WithTitle(moveInfo.Name.Replace('-',' ').ToTitleCase()).WithDescription(moveInfo.FlavorText.Replace('\n', ' '))
+                .AddField(efb => efb.WithName("Stats").WithValue($"Power: {moveInfo.Power}\nAcc: {moveInfo.Accuracy}\nType: {moveInfo.Type.ToTitleCase()}/{moveInfo.DamageType.ToTitleCase()}")).WithColor(_service.TypeColors[moveInfo.Type]));
+
+        }
+
+        [NadekoCommand, Usage, Description, Alias]
         [Summary("Shows the top ranking")]
         public async Task Elite4()
         {
@@ -92,10 +102,10 @@ namespace NadekoBot.Modules.Pokemon
             //await ReplyAsync($"**{target.Mention}**:\n{active.PokemonString()}");
             await Context.Channel.EmbedAsync(new EmbedBuilder().WithOkColor()
                             .WithTitle(active.NickName.ToTitleCase())
-                            .WithDescription("**Species:** " + active.GetSpecies().Name + " **Owner:** " + target.Mention)
-                            .AddField(efb => efb.WithName("**Stats**").WithValue("\n**Level:** " + active.Level + "\n**HP:** " + active.HP + "/" + 
+                            .WithDescription("**Species:** " + active.GetSpecies().Name.ToTitleCase() + " **Owner:** " + target.Mention)
+                            .AddField(efb => efb.WithName("**State**").WithValue("\n**Level:** " + active.Level + "\n**HP:** " + active.HP + "/" + 
                                 active.MaxHP + "\n**XP:** " + active.XP + "/" + active.XPRequired() + "\n**Type:** "+ active.GetSpecies().GetTypeString()).WithIsInline(true))
-                            .AddField(efb => efb.WithName("**Moves**").WithValue(string.Join('\n', active.PokemonMoves().Result)).WithIsInline(true))
+                            .AddField(efb => efb.WithName("**Stats**").WithValue(active.GetStats()).WithIsInline(true))
                             .WithImageUrl(active.IsShiny? active.GetSpecies().Sprites.FrontShiny:active.GetSpecies().Sprites.Front));
                             //.AddField(efb => efb.WithName(GetText("height_weight")).WithValue(GetText("height_weight_val", p.HeightM, p.WeightKg)).WithIsInline(true))
                             //.AddField(efb => efb.WithName(GetText("abilities")).WithValue(string.Join(",\n", p.Abilities.Select(a => a.Value))).WithIsInline(true)));
@@ -109,7 +119,7 @@ namespace NadekoBot.Modules.Pokemon
             var active = Context.User.ActivePokemon();
             await Context.Channel.EmbedAsync(new EmbedBuilder().WithOkColor()
                 .WithThumbnailUrl(active.IsShiny ? active.GetSpecies().Sprites.FrontShiny : active.GetSpecies().Sprites.Front)
-                .AddField(efb => efb.WithName($"**{active.NickName.ToTitleCase()}'s moves**:").WithValue(active.PokemonMoves().Result).WithIsInline(true))); 
+                .AddField(efb => efb.WithName($"**{active.NickName.ToTitleCase()}'s Moves**:").WithValue(active.PokemonMoves().Result).WithIsInline(true))); 
         }
 
         [NadekoCommand, Usage, Description, Alias]
@@ -548,7 +558,7 @@ namespace NadekoBot.Modules.Pokemon
                 //UpdatePokemon(defenderPokemon);
                 await Context.Channel.EmbedAsync(new EmbedBuilder().WithErrorColor().WithDescription(str));
                 if (!target.IsBot)
-                    await _cs.AddAsync(attacker.Id, "Victorious in pokemon", 1);
+                    await _cs.AddAsync(attacker.Id, $"Defeated {target.Username}'s pokemon {defenderPokemon.NickName}!", 1);
                 
             }
             if (target.IsBot)

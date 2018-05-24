@@ -8,6 +8,7 @@ using NadekoBot.Core.Services.Database.Models;
 using Discord;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
+using NadekoBot.Extensions;
 
 namespace NadekoBot.Modules.Pokemon.Extentions
 {
@@ -55,9 +56,20 @@ namespace NadekoBot.Modules.Pokemon.Extentions
             string str = "";
             foreach (var move in moves)
             {
-                str += $"**{move.Name}** *{move.Type}*\n";
+                str += $"**{move.Name}** *{move.Type.ToTitleCase()}*\n";
             }
             return str;
+        }
+
+        public static string GetStats(this PokemonSprite pkm)
+        {
+            string x;
+            x = "**Attack:** " + pkm.Attack;
+            x += "\n**Defense:** " + pkm.Defense;
+            x += "\n**SpecialAttack:** " + pkm.SpecialAttack;
+            x += "\n**SpecialDefense:** " + pkm.SpecialDefense;
+            x += "\n**Speed:** " + pkm.Speed;
+            return x;
         }
 
         public static async Task<MoveList> GetMoves(this PokemonSprite pkm)
