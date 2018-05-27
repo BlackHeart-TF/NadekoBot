@@ -21,7 +21,7 @@ namespace NadekoBot.Modules.Pokemon.Common
         /// </summary>
         public List<ulong> LastAttacked { get; set; } = new List<ulong>();
 
-        public Dictionary<int, Dictionary<int, int>> AttackerDamage = new Dictionary<int, Dictionary<int, int>>(); //<YourPkmId,<theirpkmId,damageDone>>
+        public Dictionary<int, Dictionary<ulong, int>> AttackerDamage = new Dictionary<int, Dictionary<ulong, int>>(); //<YourPkmId,<theirUserId,damageDone>>
 
         public TrainerStats(IUser user)
         {
@@ -30,12 +30,12 @@ namespace NadekoBot.Modules.Pokemon.Common
 
         public TrainerStats Attack(IUser user, int damage)
         {
-            var userID = Trainer.ActivePokemon().Id;
+            var pkmID = Trainer.ActivePokemon().Id;
             LastAttacked.Add(user.Id);
-            AttackerDamage.TryAdd(userID, new Dictionary<int, int>());
+            AttackerDamage.TryAdd(pkmID, new Dictionary<ulong, int>());
 
-            if (!AttackerDamage[userID].TryAdd(user.ActivePokemon().Id, damage))
-                AttackerDamage[userID][user.ActivePokemon().Id] += damage;
+            if (!AttackerDamage[pkmID].TryAdd(user.Id, damage))
+                AttackerDamage[pkmID][user.Id] += damage;
             MovesMade++;
             return this;
         }
@@ -47,12 +47,12 @@ namespace NadekoBot.Modules.Pokemon.Common
             return this;
         }
 
-        public Dictionary<int,int> ExpPercentage(PokemonSprite Sprite)
+        public Dictionary<ulong,int> ExpPercentage(PokemonSprite Sprite)
         {
-            var attackers = new Dictionary<int, int>();
+            var attackers = new Dictionary<ulong, int>();
             AttackerDamage.TryGetValue(Sprite.Id, out attackers);
 
-            var DamagePercentage = new Dictionary<int, int>();
+            var DamagePercentage = new Dictionary<ulong, int>();
             foreach (var enemy in attackers)
             {
                 var percentage = enemy.Value / Sprite.MaxHP;
