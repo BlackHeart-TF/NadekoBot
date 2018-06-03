@@ -23,8 +23,8 @@ namespace NadekoBot.Modules.Pokemon.Services
 
         //public const string PokemonClassesFile = "data/pokemon/pokemonBattlelist.json";
         public const string PokemonTypesFile = "data/pokemon_types.json";
-        public const string PokemonMovesFile = "data/PokemonMoves.json";
-        public const string PokemonSpeciesFile = "data/PokemonSpecies.json";
+        public const string PokemonMovesFile = "data/pokemon/PokemonMoves.json";
+        public const string PokemonSpeciesFile = "data/pokemon/PokemonSpecies.json";
 
         private readonly DiscordSocketClient _client;
         private readonly IBotConfigProvider _bc;

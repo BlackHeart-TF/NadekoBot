@@ -14,6 +14,7 @@ using System.Collections.Concurrent;
 using NadekoBot.Extensions;
 using NadekoBot.Common;
 using Discord.WebSocket;
+using System.Text.RegularExpressions;
 
 namespace NadekoBot.Modules.Pokemon
 {
@@ -60,9 +61,15 @@ namespace NadekoBot.Modules.Pokemon
         [Summary("Shows information on a move")]
         public async Task move(string move)
         {
-           var moveInfo = _service.pokemonMoves[move];
-            await Context.Channel.EmbedAsync(new EmbedBuilder().WithTitle(moveInfo.Name.Replace('-',' ').ToTitleCase()).WithDescription(moveInfo.FlavorText.Replace('\n', ' '))
-                .AddField(efb => efb.WithName("Stats").WithValue($"Power: {moveInfo.Power}\nAcc: {moveInfo.Accuracy}\nType: {moveInfo.Type.ToTitleCase()}/{moveInfo.DamageType.ToTitleCase()}")).WithColor(_service.TypeColors[moveInfo.Type]));
+            move = move.ToLowerInvariant();
+            var r = new Regex("[th]m\\d{1,2}");
+            PokemonMove moveInfo;
+            if (r.Match(move).Success)
+                moveInfo = _service.pokemonMoves.Where(x => x.TMName == move).First();
+            else
+                moveInfo = _service.pokemonMoves[move];
+            await Context.Channel.EmbedAsync(new EmbedBuilder().WithTitle(moveInfo.Name.Replace('-',' ').ToTitleCase() + (moveInfo.TMName != null ? $" ({moveInfo.TMName.ToUpperInvariant()})" : "")).WithDescription(moveInfo.FlavorText.Replace('\n', ' '))
+                .AddField(efb => efb.WithName("Stats").WithValue($"Power: {(moveInfo.Power == 0 ? "--" : moveInfo.Power.ToString())}\nAcc: {moveInfo.Accuracy}\nType: {moveInfo.Type.ToTitleCase()}/{moveInfo.DamageType.ToTitleCase()}")).WithColor(_service.TypeColors[moveInfo.Type]));
 
         }
 
@@ -454,16 +461,15 @@ namespace NadekoBot.Modules.Pokemon
 
         public async Task DoAttack(IUser attacker, IUser target, [Remainder] string moveString)
         {
+            var moveStringLower = moveString.ToLowerInvariant().Trim();
             var attackerPokemon = attacker.ActivePokemon();
-            var moveList = attackerPokemon.GetMoves().Result.Where(x => x.Name == moveString.Trim());
-            PokemonMove Move;
-            if (moveList.Count() == 0)
+            var move = await attackerPokemon.GetMove(moveStringLower);
+            if (move == null)
             {
                 await Context.Channel.EmbedAsync(new EmbedBuilder().WithErrorColor().WithDescription($"Cannot use \"{moveString}\", see `{Prefix}ML` for moves"));
                 return;
             }
-            else
-                Move = moveList.First();
+
             var attackerStats = attacker.GetTrainerStats();
             var defenderStats = target.GetTrainerStats();
             if (attackerStats.MovesMade > TrainerStats.MaxMoves || attackerStats.LastAttacked.Contains(target.Id))
@@ -487,13 +493,13 @@ namespace NadekoBot.Modules.Pokemon
                 return;
             }
 
-            PokemonAttack attack = new PokemonAttack(attackerPokemon, defenderPokemon, Move);
+            PokemonAttack attack = new PokemonAttack(attackerPokemon, defenderPokemon, move);
             var msg = attack.AttackString();
 
             var damageDone = attack.Damage;
             defenderPokemon.HP -= damageDone;
             msg += $"{defenderPokemon.NickName} has {defenderPokemon.HP} HP left!";
-            await Context.Channel.EmbedAsync(new EmbedBuilder().WithColor(_service.TypeColors[Move.Type])
+            await Context.Channel.EmbedAsync(new EmbedBuilder().WithColor(_service.TypeColors[move.Type])
                 .WithThumbnailUrl(defenderPokemon.IsShiny? 
                 defenderPokemon.GetSpecies().Sprites.FrontShiny: 
                 defenderPokemon.GetSpecies().Sprites.Front)

@@ -60,7 +60,7 @@ namespace PokemonJsonBuilder
                 goto noSpecies;
             using (StreamWriter sw = new StreamWriter("PokemonSpecies.json"))
             {
-
+                sw.Write("[");
                 for (int i = 1; i <= 802; i++)
                 {
                     Console.Write($"Fetching pokemon {i} out of 802.. ");
@@ -69,6 +69,7 @@ namespace PokemonJsonBuilder
                     sw.WriteLine(pkminfo + ",");
                     Console.WriteLine("Done.");
                 }
+                sw.Write("]");
                 sw.Flush();
             }
             noSpecies:
@@ -76,7 +77,7 @@ namespace PokemonJsonBuilder
                 goto noMoves;
             using (StreamWriter sw = new StreamWriter("PokemonMoves.json"))
             {
-
+                sw.Write("[");
                 for (int i = 1; i <= 719; i++)
                 {
                     Console.Write($"Fetching move {i} out of 719.. ");
@@ -85,6 +86,7 @@ namespace PokemonJsonBuilder
                     sw.WriteLine(pkminfo + ",");
                     Console.WriteLine("Done.");
                 }
+                sw.Write("]");
                 sw.Flush();
             }
             noMoves:
@@ -131,6 +133,10 @@ namespace PokemonJsonBuilder
                 }
 
             };
+            if (Moves.Machines.Count() > 0)
+                move.TMName = DataFetcher.GetAny<Machine>(Moves.Machines[Moves.Machines.Count() - 1].Machine.Url).Result.Item.Name;
+            else
+                move.TMName = null;
             var changes = new List<StatChanges>();
             foreach(var statchange in Moves.StatChanges)
             {
@@ -199,30 +205,31 @@ namespace PokemonJsonBuilder
                     sprite.EvolveTo = DataFetcher.GetAny<PokemonSpecies>(evolution.Chain.EvolvesTo[0].EvolvesTo[0].Species.Url).Result.ID;
                     if (evolution.Chain.EvolvesTo[0].EvolvesTo[0].Details[0].Trigger.Name == "level-up")
                         sprite.EvolveLevel = evolution.Chain.EvolvesTo[0].EvolvesTo[0].Details[0].MinLevel;
-                }
-                else
-                {
-                    sprite.EvolveLevel = 0;
+
                 }
 
             }
             else sprite.EvolveTo = 0;
+
             if (evolution.Chain.Species.Name == sprite.Name || new[] { 489 }.Contains(sprite.ID))
-                sprite.EvolveLevel = 0;
+                sprite.EvolveStage = 0;
             else if (evolution.Chain.EvolvesTo.Count() > 0)
             {
                 if (evolution.Chain.EvolvesTo[0].Species.Name == sprite.Name)
-                    sprite.EvolveLevel = 1;
+                    sprite.EvolveStage = 1;
             }
             else if (evolution.Chain.EvolvesTo[0].EvolvesTo.Count() > 0)
             {
                 if (evolution.Chain.EvolvesTo[0].EvolvesTo[0].Species.Name == species.Name)
-                    sprite.EvolveLevel = 2;
+                    sprite.EvolveStage = 2;
             }
             else
-                sprite.EvolveLevel = 3;
+                sprite.EvolveStage = 3;
             //moves
             sprite.LearnSet = GetLearnSet(pokemon.Moves);
+
+            //tms
+            sprite.TMs = GetTms(pokemon.Moves);
 
             //Types
             var TypeList = new List<string>();
@@ -232,6 +239,25 @@ namespace PokemonJsonBuilder
             //done
             return sprite;
         }
+
+        private static TM[] GetTms(PokemonMove[] moves)
+        {
+            var moveList = new List<TM>();
+            foreach (var move in moves)
+            {
+                try
+                {
+                    var llg = move.VersionGroupDetails.Where(y => y.VersionGroup.Name == "sun-moon" && y.LearnMethod.Name == "machine").First();
+                    var moveData = DataFetcher.GetAny<Move>(move.Move.Url).Result;
+                    var Move = new TM(moveData.ID, move.Move.Name);
+                    moveList.Add(Move);
+                }
+                catch (InvalidOperationException) { }
+            }
+
+            return moveList.ToArray();
+        }
+
         private static PokemonLearnMoves[] GetLearnSet(PokemonMove[] moves)
         {
             var moveList = new List<PokemonLearnMoves>();
@@ -247,7 +273,6 @@ namespace PokemonJsonBuilder
                 catch (InvalidOperationException) { }
             }
             
-
             return moveList.ToArray();
         }
     }
@@ -265,6 +290,7 @@ namespace PokemonJsonBuilder
         public int EvolveTo { get; set; }
         public string[] Types { get; set; }
         public PokemonLearnMoves[] LearnSet { get; set; }
+        public TM[] TMs { get; set; }
         public Sprites Sprites { get; set; }
     }
     public class BaseStats
@@ -324,6 +350,7 @@ namespace PokemonJsonBuilder
     {
         public int ID;
         public string Name;
+        public string TMName;
         public int? PP;
         public string Type;
         public int Accuracy;
@@ -349,5 +376,19 @@ namespace PokemonJsonBuilder
     {
         public string Stat;
         public int Change;
+    }
+    public class TM
+    {
+        [JsonProperty("ID")]
+        public int ID;
+        
+        [JsonProperty("Name")]
+        public string Name;
+
+        public TM(int id, string name)
+        {
+            ID = id;
+            Name = name;
+        }
     }
 }

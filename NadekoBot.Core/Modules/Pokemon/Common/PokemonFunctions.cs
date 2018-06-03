@@ -122,6 +122,15 @@ namespace NadekoBot.Modules.Pokemon.Common
             await uow.CompleteAsync();
         }
 
+        public static async Task<PokemonMove> GetMoveAsync(PokemonSprite pokemon, string move) =>
+            await Task.Run(() => {
+                var moves = GetMoves(pokemon).Where(x => x.Name == move);
+                if (moves.Count() > 0)
+                    return moves.First();
+                else
+                    return null;
+            });
+
         public static async Task<MoveList> GetMovesAsync(PokemonSprite pokemon) =>
             await Task.Run(() => GetMoves(pokemon));
 

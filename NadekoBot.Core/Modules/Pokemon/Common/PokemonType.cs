@@ -42,10 +42,11 @@ namespace NadekoBot.Modules.Pokemon.Common
         public int BaseExperience { get; set; }
         public Dictionary<string, int> BaseStats { get; set; }
         public int EvolveStage { get; set; }
-        public int EvolveLevel { get; set; }
+        public int? EvolveLevel { get; set; }
         public string EvolveTo { get; set; }
         public string[] Types { get; set; }
         public PokemonLearnMoves[] LearnSet { get; set; }
+        public TM[] TMs { get; set; }
         public Sprites Sprites { get; set; }
 
         public string GetTypeString()
@@ -64,11 +65,11 @@ namespace NadekoBot.Modules.Pokemon.Common
         public string FrontShiny;
         public string BackShiny;
     }
-
     public class PokemonMove
     {
         public int ID;
         public string Name;
+        public string TMName;
         public int? PP;
         public string Type;
         public int Accuracy;
@@ -77,7 +78,20 @@ namespace NadekoBot.Modules.Pokemon.Common
         public string FlavorText;
         public PokemonMoveEffects MoveEffects;
     }
+    public class TM
+    {
+        [JsonProperty("ID")]
+        public int ID;
 
+        [JsonProperty("Name")]
+        public string Name;
+
+        public TM(int id, string name)
+        {
+            ID = id;
+            Name = name;
+        }
+    }
     public class PokemonMoveEffects
     {
         public int Healing;
@@ -91,14 +105,11 @@ namespace NadekoBot.Modules.Pokemon.Common
         public int? MaxTurns;
         public StatChanges[] StatChanges;
     }
-
     public class StatChanges
     {
         public string Stat;
         public int Change;
     }
-
-
     public class PokemonTrainer
     {
         public int Rank { get; set; }
@@ -107,7 +118,6 @@ namespace NadekoBot.Modules.Pokemon.Common
         public PokemonSprite TopPokemon { get; set; }
         public string RankString { get { return ": <@" + ID + "> **Total XP:** *" + TotalExp + "* **Top Pokemon:** *" + TopPokemon.NickName + "* " + TopPokemon.Level; } }
     }
-
     public class MoveList : List<PokemonMove>
     {
         public PokemonMove this[string Name]
@@ -119,7 +129,6 @@ namespace NadekoBot.Modules.Pokemon.Common
             if (Move != null) this.Add(Move);
         }
     }
-
     public class SpeciesList : List<PokemonSpecies>
     {
         public PokemonSpecies this[int id]
@@ -127,7 +136,6 @@ namespace NadekoBot.Modules.Pokemon.Common
             get { return this.Where(x => x.ID == id).FirstOrDefault(); }
         }
     }
-
     public class PokemonLearnMoves
     {
         [JsonProperty("ID")]
@@ -144,19 +152,15 @@ namespace NadekoBot.Modules.Pokemon.Common
             LearnLevel = learnlevel;
         }
     }
-
     public class PkmExpClass
     {
         public int AttackerId;
         public int DamageDone;
     }
-
     public class RewardType
     {
         public string RewardValue { get; set; }
         public string EvolutionText { get; set; }
     }
-
-
     
 }

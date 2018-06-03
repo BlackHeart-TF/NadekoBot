@@ -76,6 +76,10 @@ namespace NadekoBot.Modules.Pokemon.Extentions
         {
             return await PokemonFunctions.GetMovesAsync(pkm);
         }
+        public static async Task<PokemonMove> GetMove(this PokemonSprite pkm, string move)
+        {
+            return await PokemonFunctions.GetMoveAsync(pkm,move);
+        }
         public static int XPRequired(this PokemonSprite pkm)
         {
             //Using fast (http://bulbapedia.bulbagarden.net/wiki/Experience)
@@ -177,7 +181,7 @@ namespace NadekoBot.Modules.Pokemon.Extentions
             pkm.Speed = CalcStat(baseStats["speed"], pkm.Level);
 
             //Will it evolve!?
-            var evolveLevel = species.EvolveLevel;
+            var evolveLevel = species.EvolveLevel ?? 0;
             if (evolveLevel > 0)
             {
                 if (evolveLevel == pkm.Level)

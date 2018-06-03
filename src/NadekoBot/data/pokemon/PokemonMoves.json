@@ -1,6 +1,7 @@
-{
+[{
   "ID": 1,
   "Name": "pound",
+  "TMName": null,
   "PP": 35,
   "Type": "normal",
   "Accuracy": 100,
@@ -23,6 +24,7 @@
 {
   "ID": 2,
   "Name": "karate-chop",
+  "TMName": null,
   "PP": 25,
   "Type": "fighting",
   "Accuracy": 100,
@@ -45,6 +47,7 @@
 {
   "ID": 3,
   "Name": "double-slap",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 85,
@@ -67,6 +70,7 @@
 {
   "ID": 4,
   "Name": "comet-punch",
+  "TMName": null,
   "PP": 15,
   "Type": "normal",
   "Accuracy": 85,
@@ -89,6 +93,7 @@
 {
   "ID": 5,
   "Name": "mega-punch",
+  "TMName": "tm01",
   "PP": 20,
   "Type": "normal",
   "Accuracy": 85,
@@ -111,6 +116,7 @@
 {
   "ID": 6,
   "Name": "pay-day",
+  "TMName": "tm16",
   "PP": 20,
   "Type": "normal",
   "Accuracy": 100,
@@ -133,6 +139,7 @@
 {
   "ID": 7,
   "Name": "fire-punch",
+  "TMName": "tm48",
   "PP": 15,
   "Type": "fire",
   "Accuracy": 100,
@@ -155,6 +162,7 @@
 {
   "ID": 8,
   "Name": "ice-punch",
+  "TMName": "tm33",
   "PP": 15,
   "Type": "ice",
   "Accuracy": 100,
@@ -177,6 +185,7 @@
 {
   "ID": 9,
   "Name": "thunder-punch",
+  "TMName": "tm41",
   "PP": 15,
   "Type": "electric",
   "Accuracy": 100,
@@ -199,6 +208,7 @@
 {
   "ID": 10,
   "Name": "scratch",
+  "TMName": null,
   "PP": 35,
   "Type": "normal",
   "Accuracy": 100,
@@ -221,6 +231,7 @@
 {
   "ID": 11,
   "Name": "vice-grip",
+  "TMName": null,
   "PP": 30,
   "Type": "normal",
   "Accuracy": 100,
@@ -243,6 +254,7 @@
 {
   "ID": 12,
   "Name": "guillotine",
+  "TMName": null,
   "PP": 5,
   "Type": "normal",
   "Accuracy": 30,
@@ -265,6 +277,7 @@
 {
   "ID": 13,
   "Name": "razor-wind",
+  "TMName": "tm02",
   "PP": 10,
   "Type": "normal",
   "Accuracy": 100,
@@ -287,6 +300,7 @@
 {
   "ID": 14,
   "Name": "swords-dance",
+  "TMName": "tm75",
   "PP": 20,
   "Type": "normal",
   "Accuracy": 0,
@@ -314,6 +328,7 @@
 {
   "ID": 15,
   "Name": "cut",
+  "TMName": "hm01",
   "PP": 30,
   "Type": "normal",
   "Accuracy": 95,
@@ -336,6 +351,7 @@
 {
   "ID": 16,
   "Name": "gust",
+  "TMName": null,
   "PP": 35,
   "Type": "flying",
   "Accuracy": 100,
@@ -358,6 +374,7 @@
 {
   "ID": 17,
   "Name": "wing-attack",
+  "TMName": null,
   "PP": 35,
   "Type": "flying",
   "Accuracy": 100,
@@ -380,6 +397,7 @@
 {
   "ID": 18,
   "Name": "whirlwind",
+  "TMName": "tm04",
   "PP": 20,
   "Type": "normal",
   "Accuracy": 0,
@@ -402,6 +420,7 @@
 {
   "ID": 19,
   "Name": "fly",
+  "TMName": "hm02",
   "PP": 15,
   "Type": "flying",
   "Accuracy": 95,
@@ -424,6 +443,7 @@
 {
   "ID": 20,
   "Name": "bind",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 85,
@@ -446,6 +466,7 @@
 {
   "ID": 21,
   "Name": "slam",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 75,
@@ -468,6 +489,7 @@
 {
   "ID": 22,
   "Name": "vine-whip",
+  "TMName": null,
   "PP": 25,
   "Type": "grass",
   "Accuracy": 100,
@@ -490,6 +512,7 @@
 {
   "ID": 23,
   "Name": "stomp",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 100,
@@ -512,6 +535,7 @@
 {
   "ID": 24,
   "Name": "double-kick",
+  "TMName": null,
   "PP": 30,
   "Type": "fighting",
   "Accuracy": 100,
@@ -534,6 +558,7 @@
 {
   "ID": 25,
   "Name": "mega-kick",
+  "TMName": "tm05",
   "PP": 5,
   "Type": "normal",
   "Accuracy": 75,
@@ -556,6 +581,7 @@
 {
   "ID": 26,
   "Name": "jump-kick",
+  "TMName": null,
   "PP": 10,
   "Type": "fighting",
   "Accuracy": 95,
@@ -578,6 +604,7 @@
 {
   "ID": 27,
   "Name": "rolling-kick",
+  "TMName": null,
   "PP": 15,
   "Type": "fighting",
   "Accuracy": 85,
@@ -600,6 +627,7 @@
 {
   "ID": 28,
   "Name": "sand-attack",
+  "TMName": null,
   "PP": 15,
   "Type": "ground",
   "Accuracy": 100,
@@ -627,6 +655,7 @@
 {
   "ID": 29,
   "Name": "headbutt",
+  "TMName": "tm02",
   "PP": 15,
   "Type": "normal",
   "Accuracy": 100,
@@ -649,6 +678,7 @@
 {
   "ID": 30,
   "Name": "horn-attack",
+  "TMName": null,
   "PP": 25,
   "Type": "normal",
   "Accuracy": 100,
@@ -671,6 +701,7 @@
 {
   "ID": 31,
   "Name": "fury-attack",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 85,
@@ -693,6 +724,7 @@
 {
   "ID": 32,
   "Name": "horn-drill",
+  "TMName": "tm07",
   "PP": 5,
   "Type": "normal",
   "Accuracy": 30,
@@ -715,6 +747,7 @@
 {
   "ID": 33,
   "Name": "tackle",
+  "TMName": null,
   "PP": 35,
   "Type": "normal",
   "Accuracy": 100,
@@ -737,6 +770,7 @@
 {
   "ID": 34,
   "Name": "body-slam",
+  "TMName": "tm08",
   "PP": 15,
   "Type": "normal",
   "Accuracy": 100,
@@ -759,6 +793,7 @@
 {
   "ID": 35,
   "Name": "wrap",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 90,
@@ -781,6 +816,7 @@
 {
   "ID": 36,
   "Name": "take-down",
+  "TMName": "tm09",
   "PP": 20,
   "Type": "normal",
   "Accuracy": 85,
@@ -803,6 +839,7 @@
 {
   "ID": 37,
   "Name": "thrash",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 100,
@@ -825,6 +862,7 @@
 {
   "ID": 38,
   "Name": "double-edge",
+  "TMName": "tm10",
   "PP": 15,
   "Type": "normal",
   "Accuracy": 100,
@@ -847,6 +885,7 @@
 {
   "ID": 39,
   "Name": "tail-whip",
+  "TMName": null,
   "PP": 30,
   "Type": "normal",
   "Accuracy": 100,
@@ -874,6 +913,7 @@
 {
   "ID": 40,
   "Name": "poison-sting",
+  "TMName": null,
   "PP": 35,
   "Type": "poison",
   "Accuracy": 100,
@@ -896,6 +936,7 @@
 {
   "ID": 41,
   "Name": "twineedle",
+  "TMName": null,
   "PP": 20,
   "Type": "bug",
   "Accuracy": 100,
@@ -918,6 +959,7 @@
 {
   "ID": 42,
   "Name": "pin-missile",
+  "TMName": null,
   "PP": 20,
   "Type": "bug",
   "Accuracy": 95,
@@ -940,6 +982,7 @@
 {
   "ID": 43,
   "Name": "leer",
+  "TMName": null,
   "PP": 30,
   "Type": "normal",
   "Accuracy": 100,
@@ -967,6 +1010,7 @@
 {
   "ID": 44,
   "Name": "bite",
+  "TMName": null,
   "PP": 25,
   "Type": "dark",
   "Accuracy": 100,
@@ -989,6 +1033,7 @@
 {
   "ID": 45,
   "Name": "growl",
+  "TMName": null,
   "PP": 40,
   "Type": "normal",
   "Accuracy": 100,
@@ -1016,6 +1061,7 @@
 {
   "ID": 46,
   "Name": "roar",
+  "TMName": "tm05",
   "PP": 20,
   "Type": "normal",
   "Accuracy": 0,
@@ -1038,6 +1084,7 @@
 {
   "ID": 47,
   "Name": "sing",
+  "TMName": null,
   "PP": 15,
   "Type": "normal",
   "Accuracy": 55,
@@ -1060,6 +1107,7 @@
 {
   "ID": 48,
   "Name": "supersonic",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 55,
@@ -1082,6 +1130,7 @@
 {
   "ID": 49,
   "Name": "sonic-boom",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 90,
@@ -1104,6 +1153,7 @@
 {
   "ID": 50,
   "Name": "disable",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 100,
@@ -1126,6 +1176,7 @@
 {
   "ID": 51,
   "Name": "acid",
+  "TMName": null,
   "PP": 30,
   "Type": "poison",
   "Accuracy": 100,
@@ -1153,6 +1204,7 @@
 {
   "ID": 52,
   "Name": "ember",
+  "TMName": null,
   "PP": 25,
   "Type": "fire",
   "Accuracy": 100,
@@ -1175,6 +1227,7 @@
 {
   "ID": 53,
   "Name": "flamethrower",
+  "TMName": "tm35",
   "PP": 15,
   "Type": "fire",
   "Accuracy": 100,
@@ -1197,6 +1250,7 @@
 {
   "ID": 54,
   "Name": "mist",
+  "TMName": null,
   "PP": 30,
   "Type": "ice",
   "Accuracy": 0,
@@ -1219,6 +1273,7 @@
 {
   "ID": 55,
   "Name": "water-gun",
+  "TMName": "tm12",
   "PP": 25,
   "Type": "water",
   "Accuracy": 100,
@@ -1241,6 +1296,7 @@
 {
   "ID": 56,
   "Name": "hydro-pump",
+  "TMName": null,
   "PP": 5,
   "Type": "water",
   "Accuracy": 80,
@@ -1263,6 +1319,7 @@
 {
   "ID": 57,
   "Name": "surf",
+  "TMName": "hm03",
   "PP": 15,
   "Type": "water",
   "Accuracy": 100,
@@ -1285,6 +1342,7 @@
 {
   "ID": 58,
   "Name": "ice-beam",
+  "TMName": "tm13",
   "PP": 10,
   "Type": "ice",
   "Accuracy": 100,
@@ -1307,6 +1365,7 @@
 {
   "ID": 59,
   "Name": "blizzard",
+  "TMName": "tm14",
   "PP": 5,
   "Type": "ice",
   "Accuracy": 70,
@@ -1329,6 +1388,7 @@
 {
   "ID": 60,
   "Name": "psybeam",
+  "TMName": null,
   "PP": 20,
   "Type": "psychic",
   "Accuracy": 100,
@@ -1351,6 +1411,7 @@
 {
   "ID": 61,
   "Name": "bubble-beam",
+  "TMName": "tm11",
   "PP": 20,
   "Type": "water",
   "Accuracy": 100,
@@ -1378,6 +1439,7 @@
 {
   "ID": 62,
   "Name": "aurora-beam",
+  "TMName": null,
   "PP": 20,
   "Type": "ice",
   "Accuracy": 100,
@@ -1405,6 +1467,7 @@
 {
   "ID": 63,
   "Name": "hyper-beam",
+  "TMName": "tm15",
   "PP": 5,
   "Type": "normal",
   "Accuracy": 90,
@@ -1427,6 +1490,7 @@
 {
   "ID": 64,
   "Name": "peck",
+  "TMName": null,
   "PP": 35,
   "Type": "flying",
   "Accuracy": 100,
@@ -1449,6 +1513,7 @@
 {
   "ID": 65,
   "Name": "drill-peck",
+  "TMName": null,
   "PP": 20,
   "Type": "flying",
   "Accuracy": 100,
@@ -1471,6 +1536,7 @@
 {
   "ID": 66,
   "Name": "submission",
+  "TMName": "tm17",
   "PP": 20,
   "Type": "fighting",
   "Accuracy": 80,
@@ -1493,6 +1559,7 @@
 {
   "ID": 67,
   "Name": "low-kick",
+  "TMName": null,
   "PP": 20,
   "Type": "fighting",
   "Accuracy": 100,
@@ -1515,6 +1582,7 @@
 {
   "ID": 68,
   "Name": "counter",
+  "TMName": "tm18",
   "PP": 20,
   "Type": "fighting",
   "Accuracy": 100,
@@ -1537,6 +1605,7 @@
 {
   "ID": 69,
   "Name": "seismic-toss",
+  "TMName": "tm19",
   "PP": 20,
   "Type": "fighting",
   "Accuracy": 100,
@@ -1559,6 +1628,7 @@
 {
   "ID": 70,
   "Name": "strength",
+  "TMName": "hm04",
   "PP": 15,
   "Type": "normal",
   "Accuracy": 100,
@@ -1581,6 +1651,7 @@
 {
   "ID": 71,
   "Name": "absorb",
+  "TMName": null,
   "PP": 25,
   "Type": "grass",
   "Accuracy": 100,
@@ -1603,6 +1674,7 @@
 {
   "ID": 72,
   "Name": "mega-drain",
+  "TMName": "tm21",
   "PP": 15,
   "Type": "grass",
   "Accuracy": 100,
@@ -1625,6 +1697,7 @@
 {
   "ID": 73,
   "Name": "leech-seed",
+  "TMName": null,
   "PP": 10,
   "Type": "grass",
   "Accuracy": 90,
@@ -1647,6 +1720,7 @@
 {
   "ID": 74,
   "Name": "growth",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 0,
@@ -1678,6 +1752,7 @@
 {
   "ID": 75,
   "Name": "razor-leaf",
+  "TMName": null,
   "PP": 25,
   "Type": "grass",
   "Accuracy": 95,
@@ -1700,6 +1775,7 @@
 {
   "ID": 76,
   "Name": "solar-beam",
+  "TMName": "tm22",
   "PP": 10,
   "Type": "grass",
   "Accuracy": 100,
@@ -1722,6 +1798,7 @@
 {
   "ID": 77,
   "Name": "poison-powder",
+  "TMName": null,
   "PP": 35,
   "Type": "poison",
   "Accuracy": 75,
@@ -1744,6 +1821,7 @@
 {
   "ID": 78,
   "Name": "stun-spore",
+  "TMName": null,
   "PP": 30,
   "Type": "grass",
   "Accuracy": 75,
@@ -1766,6 +1844,7 @@
 {
   "ID": 79,
   "Name": "sleep-powder",
+  "TMName": null,
   "PP": 15,
   "Type": "grass",
   "Accuracy": 75,
@@ -1788,6 +1867,7 @@
 {
   "ID": 80,
   "Name": "petal-dance",
+  "TMName": null,
   "PP": 10,
   "Type": "grass",
   "Accuracy": 100,
@@ -1810,6 +1890,7 @@
 {
   "ID": 81,
   "Name": "string-shot",
+  "TMName": null,
   "PP": 40,
   "Type": "bug",
   "Accuracy": 95,
@@ -1837,6 +1918,7 @@
 {
   "ID": 82,
   "Name": "dragon-rage",
+  "TMName": "tm23",
   "PP": 10,
   "Type": "dragon",
   "Accuracy": 100,
@@ -1859,6 +1941,7 @@
 {
   "ID": 83,
   "Name": "fire-spin",
+  "TMName": null,
   "PP": 15,
   "Type": "fire",
   "Accuracy": 85,
@@ -1881,6 +1964,7 @@
 {
   "ID": 84,
   "Name": "thunder-shock",
+  "TMName": null,
   "PP": 30,
   "Type": "electric",
   "Accuracy": 100,
@@ -1903,6 +1987,7 @@
 {
   "ID": 85,
   "Name": "thunderbolt",
+  "TMName": "tm24",
   "PP": 15,
   "Type": "electric",
   "Accuracy": 100,
@@ -1925,6 +2010,7 @@
 {
   "ID": 86,
   "Name": "thunder-wave",
+  "TMName": "tm73",
   "PP": 20,
   "Type": "electric",
   "Accuracy": 90,
@@ -1947,6 +2033,7 @@
 {
   "ID": 87,
   "Name": "thunder",
+  "TMName": "tm25",
   "PP": 10,
   "Type": "electric",
   "Accuracy": 70,
@@ -1969,6 +2056,7 @@
 {
   "ID": 88,
   "Name": "rock-throw",
+  "TMName": null,
   "PP": 15,
   "Type": "rock",
   "Accuracy": 90,
@@ -1991,6 +2079,7 @@
 {
   "ID": 89,
   "Name": "earthquake",
+  "TMName": "tm26",
   "PP": 10,
   "Type": "ground",
   "Accuracy": 100,
@@ -2013,6 +2102,7 @@
 {
   "ID": 90,
   "Name": "fissure",
+  "TMName": "tm27",
   "PP": 5,
   "Type": "ground",
   "Accuracy": 30,
@@ -2035,6 +2125,7 @@
 {
   "ID": 91,
   "Name": "dig",
+  "TMName": "tm28",
   "PP": 10,
   "Type": "ground",
   "Accuracy": 100,
@@ -2057,6 +2148,7 @@
 {
   "ID": 92,
   "Name": "toxic",
+  "TMName": "tm06",
   "PP": 10,
   "Type": "poison",
   "Accuracy": 90,
@@ -2079,6 +2171,7 @@
 {
   "ID": 93,
   "Name": "confusion",
+  "TMName": null,
   "PP": 25,
   "Type": "psychic",
   "Accuracy": 100,
@@ -2101,6 +2194,7 @@
 {
   "ID": 94,
   "Name": "psychic",
+  "TMName": "tm29",
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 100,
@@ -2128,6 +2222,7 @@
 {
   "ID": 95,
   "Name": "hypnosis",
+  "TMName": null,
   "PP": 20,
   "Type": "psychic",
   "Accuracy": 60,
@@ -2150,6 +2245,7 @@
 {
   "ID": 96,
   "Name": "meditate",
+  "TMName": null,
   "PP": 40,
   "Type": "psychic",
   "Accuracy": 0,
@@ -2177,6 +2273,7 @@
 {
   "ID": 97,
   "Name": "agility",
+  "TMName": null,
   "PP": 30,
   "Type": "psychic",
   "Accuracy": 0,
@@ -2204,6 +2301,7 @@
 {
   "ID": 98,
   "Name": "quick-attack",
+  "TMName": null,
   "PP": 30,
   "Type": "normal",
   "Accuracy": 100,
@@ -2226,6 +2324,7 @@
 {
   "ID": 99,
   "Name": "rage",
+  "TMName": "tm20",
   "PP": 20,
   "Type": "normal",
   "Accuracy": 100,
@@ -2248,6 +2347,7 @@
 {
   "ID": 100,
   "Name": "teleport",
+  "TMName": "tm30",
   "PP": 20,
   "Type": "psychic",
   "Accuracy": 0,
@@ -2270,6 +2370,7 @@
 {
   "ID": 101,
   "Name": "night-shade",
+  "TMName": null,
   "PP": 15,
   "Type": "ghost",
   "Accuracy": 100,
@@ -2292,6 +2393,7 @@
 {
   "ID": 102,
   "Name": "mimic",
+  "TMName": "tm31",
   "PP": 10,
   "Type": "normal",
   "Accuracy": 0,
@@ -2314,6 +2416,7 @@
 {
   "ID": 103,
   "Name": "screech",
+  "TMName": null,
   "PP": 40,
   "Type": "normal",
   "Accuracy": 85,
@@ -2341,6 +2444,7 @@
 {
   "ID": 104,
   "Name": "double-team",
+  "TMName": "tm32",
   "PP": 15,
   "Type": "normal",
   "Accuracy": 0,
@@ -2368,6 +2472,7 @@
 {
   "ID": 105,
   "Name": "recover",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 0,
@@ -2390,6 +2495,7 @@
 {
   "ID": 106,
   "Name": "harden",
+  "TMName": null,
   "PP": 30,
   "Type": "normal",
   "Accuracy": 0,
@@ -2417,6 +2523,7 @@
 {
   "ID": 107,
   "Name": "minimize",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 0,
@@ -2444,6 +2551,7 @@
 {
   "ID": 108,
   "Name": "smokescreen",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 100,
@@ -2471,6 +2579,7 @@
 {
   "ID": 109,
   "Name": "confuse-ray",
+  "TMName": null,
   "PP": 10,
   "Type": "ghost",
   "Accuracy": 100,
@@ -2493,6 +2602,7 @@
 {
   "ID": 110,
   "Name": "withdraw",
+  "TMName": null,
   "PP": 40,
   "Type": "water",
   "Accuracy": 0,
@@ -2520,6 +2630,7 @@
 {
   "ID": 111,
   "Name": "defense-curl",
+  "TMName": "tm40",
   "PP": 40,
   "Type": "normal",
   "Accuracy": 0,
@@ -2547,6 +2658,7 @@
 {
   "ID": 112,
   "Name": "barrier",
+  "TMName": null,
   "PP": 20,
   "Type": "psychic",
   "Accuracy": 0,
@@ -2574,6 +2686,7 @@
 {
   "ID": 113,
   "Name": "light-screen",
+  "TMName": "tm16",
   "PP": 30,
   "Type": "psychic",
   "Accuracy": 0,
@@ -2596,6 +2709,7 @@
 {
   "ID": 114,
   "Name": "haze",
+  "TMName": null,
   "PP": 30,
   "Type": "ice",
   "Accuracy": 0,
@@ -2618,6 +2732,7 @@
 {
   "ID": 115,
   "Name": "reflect",
+  "TMName": "tm33",
   "PP": 20,
   "Type": "psychic",
   "Accuracy": 0,
@@ -2640,6 +2755,7 @@
 {
   "ID": 116,
   "Name": "focus-energy",
+  "TMName": null,
   "PP": 30,
   "Type": "normal",
   "Accuracy": 0,
@@ -2662,6 +2778,7 @@
 {
   "ID": 117,
   "Name": "bide",
+  "TMName": "tm34",
   "PP": 10,
   "Type": "normal",
   "Accuracy": 0,
@@ -2684,6 +2801,7 @@
 {
   "ID": 118,
   "Name": "metronome",
+  "TMName": "tm35",
   "PP": 10,
   "Type": "normal",
   "Accuracy": 0,
@@ -2706,6 +2824,7 @@
 {
   "ID": 119,
   "Name": "mirror-move",
+  "TMName": null,
   "PP": 20,
   "Type": "flying",
   "Accuracy": 0,
@@ -2728,6 +2847,7 @@
 {
   "ID": 120,
   "Name": "self-destruct",
+  "TMName": "tm36",
   "PP": 5,
   "Type": "normal",
   "Accuracy": 100,
@@ -2750,6 +2870,7 @@
 {
   "ID": 121,
   "Name": "egg-bomb",
+  "TMName": "tm37",
   "PP": 10,
   "Type": "normal",
   "Accuracy": 75,
@@ -2772,6 +2893,7 @@
 {
   "ID": 122,
   "Name": "lick",
+  "TMName": null,
   "PP": 30,
   "Type": "ghost",
   "Accuracy": 100,
@@ -2794,6 +2916,7 @@
 {
   "ID": 123,
   "Name": "smog",
+  "TMName": null,
   "PP": 20,
   "Type": "poison",
   "Accuracy": 70,
@@ -2816,6 +2939,7 @@
 {
   "ID": 124,
   "Name": "sludge",
+  "TMName": null,
   "PP": 20,
   "Type": "poison",
   "Accuracy": 100,
@@ -2838,6 +2962,7 @@
 {
   "ID": 125,
   "Name": "bone-club",
+  "TMName": null,
   "PP": 20,
   "Type": "ground",
   "Accuracy": 85,
@@ -2860,6 +2985,7 @@
 {
   "ID": 126,
   "Name": "fire-blast",
+  "TMName": "tm38",
   "PP": 5,
   "Type": "fire",
   "Accuracy": 85,
@@ -2882,6 +3008,7 @@
 {
   "ID": 127,
   "Name": "waterfall",
+  "TMName": "hm07",
   "PP": 15,
   "Type": "water",
   "Accuracy": 100,
@@ -2904,6 +3031,7 @@
 {
   "ID": 128,
   "Name": "clamp",
+  "TMName": null,
   "PP": 15,
   "Type": "water",
   "Accuracy": 85,
@@ -2926,6 +3054,7 @@
 {
   "ID": 129,
   "Name": "swift",
+  "TMName": "tm39",
   "PP": 20,
   "Type": "normal",
   "Accuracy": 0,
@@ -2948,6 +3077,7 @@
 {
   "ID": 130,
   "Name": "skull-bash",
+  "TMName": "tm40",
   "PP": 10,
   "Type": "normal",
   "Accuracy": 100,
@@ -2970,6 +3100,7 @@
 {
   "ID": 131,
   "Name": "spike-cannon",
+  "TMName": null,
   "PP": 15,
   "Type": "normal",
   "Accuracy": 100,
@@ -2992,6 +3123,7 @@
 {
   "ID": 132,
   "Name": "constrict",
+  "TMName": null,
   "PP": 35,
   "Type": "normal",
   "Accuracy": 100,
@@ -3019,6 +3151,7 @@
 {
   "ID": 133,
   "Name": "amnesia",
+  "TMName": null,
   "PP": 20,
   "Type": "psychic",
   "Accuracy": 0,
@@ -3046,6 +3179,7 @@
 {
   "ID": 134,
   "Name": "kinesis",
+  "TMName": null,
   "PP": 15,
   "Type": "psychic",
   "Accuracy": 80,
@@ -3073,6 +3207,7 @@
 {
   "ID": 135,
   "Name": "soft-boiled",
+  "TMName": "tm41",
   "PP": 10,
   "Type": "normal",
   "Accuracy": 0,
@@ -3095,6 +3230,7 @@
 {
   "ID": 136,
   "Name": "high-jump-kick",
+  "TMName": null,
   "PP": 10,
   "Type": "fighting",
   "Accuracy": 90,
@@ -3117,6 +3253,7 @@
 {
   "ID": 137,
   "Name": "glare",
+  "TMName": null,
   "PP": 30,
   "Type": "normal",
   "Accuracy": 100,
@@ -3139,6 +3276,7 @@
 {
   "ID": 138,
   "Name": "dream-eater",
+  "TMName": "tm85",
   "PP": 15,
   "Type": "psychic",
   "Accuracy": 100,
@@ -3161,6 +3299,7 @@
 {
   "ID": 139,
   "Name": "poison-gas",
+  "TMName": null,
   "PP": 40,
   "Type": "poison",
   "Accuracy": 90,
@@ -3183,6 +3322,7 @@
 {
   "ID": 140,
   "Name": "barrage",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 85,
@@ -3205,6 +3345,7 @@
 {
   "ID": 141,
   "Name": "leech-life",
+  "TMName": "tm28",
   "PP": 10,
   "Type": "bug",
   "Accuracy": 100,
@@ -3227,6 +3368,7 @@
 {
   "ID": 142,
   "Name": "lovely-kiss",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 75,
@@ -3249,6 +3391,7 @@
 {
   "ID": 143,
   "Name": "sky-attack",
+  "TMName": "tm43",
   "PP": 5,
   "Type": "flying",
   "Accuracy": 90,
@@ -3271,6 +3414,7 @@
 {
   "ID": 144,
   "Name": "transform",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 0,
@@ -3293,6 +3437,7 @@
 {
   "ID": 145,
   "Name": "bubble",
+  "TMName": null,
   "PP": 30,
   "Type": "water",
   "Accuracy": 100,
@@ -3320,6 +3465,7 @@
 {
   "ID": 146,
   "Name": "dizzy-punch",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 100,
@@ -3342,6 +3488,7 @@
 {
   "ID": 147,
   "Name": "spore",
+  "TMName": null,
   "PP": 15,
   "Type": "grass",
   "Accuracy": 100,
@@ -3364,6 +3511,7 @@
 {
   "ID": 148,
   "Name": "flash",
+  "TMName": "hm05",
   "PP": 20,
   "Type": "normal",
   "Accuracy": 100,
@@ -3391,6 +3539,7 @@
 {
   "ID": 149,
   "Name": "psywave",
+  "TMName": "tm46",
   "PP": 15,
   "Type": "psychic",
   "Accuracy": 100,
@@ -3413,6 +3562,7 @@
 {
   "ID": 150,
   "Name": "splash",
+  "TMName": null,
   "PP": 40,
   "Type": "normal",
   "Accuracy": 0,
@@ -3435,6 +3585,7 @@
 {
   "ID": 151,
   "Name": "acid-armor",
+  "TMName": null,
   "PP": 20,
   "Type": "poison",
   "Accuracy": 0,
@@ -3462,6 +3613,7 @@
 {
   "ID": 152,
   "Name": "crabhammer",
+  "TMName": null,
   "PP": 10,
   "Type": "water",
   "Accuracy": 90,
@@ -3484,6 +3636,7 @@
 {
   "ID": 153,
   "Name": "explosion",
+  "TMName": "tm64",
   "PP": 5,
   "Type": "normal",
   "Accuracy": 100,
@@ -3506,6 +3659,7 @@
 {
   "ID": 154,
   "Name": "fury-swipes",
+  "TMName": null,
   "PP": 15,
   "Type": "normal",
   "Accuracy": 80,
@@ -3528,6 +3682,7 @@
 {
   "ID": 155,
   "Name": "bonemerang",
+  "TMName": null,
   "PP": 10,
   "Type": "ground",
   "Accuracy": 90,
@@ -3550,6 +3705,7 @@
 {
   "ID": 156,
   "Name": "rest",
+  "TMName": "tm44",
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 0,
@@ -3572,6 +3728,7 @@
 {
   "ID": 157,
   "Name": "rock-slide",
+  "TMName": "tm80",
   "PP": 10,
   "Type": "rock",
   "Accuracy": 90,
@@ -3594,6 +3751,7 @@
 {
   "ID": 158,
   "Name": "hyper-fang",
+  "TMName": null,
   "PP": 15,
   "Type": "normal",
   "Accuracy": 90,
@@ -3616,6 +3774,7 @@
 {
   "ID": 159,
   "Name": "sharpen",
+  "TMName": null,
   "PP": 30,
   "Type": "normal",
   "Accuracy": 0,
@@ -3643,6 +3802,7 @@
 {
   "ID": 160,
   "Name": "conversion",
+  "TMName": null,
   "PP": 30,
   "Type": "normal",
   "Accuracy": 0,
@@ -3665,6 +3825,7 @@
 {
   "ID": 161,
   "Name": "tri-attack",
+  "TMName": "tm49",
   "PP": 10,
   "Type": "normal",
   "Accuracy": 100,
@@ -3687,6 +3848,7 @@
 {
   "ID": 162,
   "Name": "super-fang",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 90,
@@ -3709,6 +3871,7 @@
 {
   "ID": 163,
   "Name": "slash",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 100,
@@ -3731,6 +3894,7 @@
 {
   "ID": 164,
   "Name": "substitute",
+  "TMName": "tm90",
   "PP": 10,
   "Type": "normal",
   "Accuracy": 0,
@@ -3753,6 +3917,7 @@
 {
   "ID": 165,
   "Name": "struggle",
+  "TMName": null,
   "PP": 1,
   "Type": "normal",
   "Accuracy": 0,
@@ -3775,6 +3940,7 @@
 {
   "ID": 166,
   "Name": "sketch",
+  "TMName": null,
   "PP": 1,
   "Type": "normal",
   "Accuracy": 0,
@@ -3797,6 +3963,7 @@
 {
   "ID": 167,
   "Name": "triple-kick",
+  "TMName": null,
   "PP": 10,
   "Type": "fighting",
   "Accuracy": 90,
@@ -3819,6 +3986,7 @@
 {
   "ID": 168,
   "Name": "thief",
+  "TMName": "tm46",
   "PP": 25,
   "Type": "dark",
   "Accuracy": 100,
@@ -3841,6 +4009,7 @@
 {
   "ID": 169,
   "Name": "spider-web",
+  "TMName": null,
   "PP": 10,
   "Type": "bug",
   "Accuracy": 0,
@@ -3863,6 +4032,7 @@
 {
   "ID": 170,
   "Name": "mind-reader",
+  "TMName": null,
   "PP": 5,
   "Type": "normal",
   "Accuracy": 0,
@@ -3885,6 +4055,7 @@
 {
   "ID": 171,
   "Name": "nightmare",
+  "TMName": "tm50",
   "PP": 15,
   "Type": "ghost",
   "Accuracy": 100,
@@ -3907,6 +4078,7 @@
 {
   "ID": 172,
   "Name": "flame-wheel",
+  "TMName": null,
   "PP": 25,
   "Type": "fire",
   "Accuracy": 100,
@@ -3929,6 +4101,7 @@
 {
   "ID": 173,
   "Name": "snore",
+  "TMName": "tm13",
   "PP": 15,
   "Type": "normal",
   "Accuracy": 100,
@@ -3951,6 +4124,7 @@
 {
   "ID": 174,
   "Name": "curse",
+  "TMName": "tm03",
   "PP": 10,
   "Type": "ghost",
   "Accuracy": 0,
@@ -3973,6 +4147,7 @@
 {
   "ID": 175,
   "Name": "flail",
+  "TMName": null,
   "PP": 15,
   "Type": "normal",
   "Accuracy": 100,
@@ -3995,6 +4170,7 @@
 {
   "ID": 176,
   "Name": "conversion-2",
+  "TMName": null,
   "PP": 30,
   "Type": "normal",
   "Accuracy": 0,
@@ -4017,6 +4193,7 @@
 {
   "ID": 177,
   "Name": "aeroblast",
+  "TMName": null,
   "PP": 5,
   "Type": "flying",
   "Accuracy": 95,
@@ -4039,6 +4216,7 @@
 {
   "ID": 178,
   "Name": "cotton-spore",
+  "TMName": null,
   "PP": 40,
   "Type": "grass",
   "Accuracy": 100,
@@ -4066,6 +4244,7 @@
 {
   "ID": 179,
   "Name": "reversal",
+  "TMName": null,
   "PP": 15,
   "Type": "fighting",
   "Accuracy": 100,
@@ -4088,6 +4267,7 @@
 {
   "ID": 180,
   "Name": "spite",
+  "TMName": null,
   "PP": 10,
   "Type": "ghost",
   "Accuracy": 100,
@@ -4110,6 +4290,7 @@
 {
   "ID": 181,
   "Name": "powder-snow",
+  "TMName": null,
   "PP": 25,
   "Type": "ice",
   "Accuracy": 100,
@@ -4132,6 +4313,7 @@
 {
   "ID": 182,
   "Name": "protect",
+  "TMName": "tm17",
   "PP": 10,
   "Type": "normal",
   "Accuracy": 0,
@@ -4154,6 +4336,7 @@
 {
   "ID": 183,
   "Name": "mach-punch",
+  "TMName": null,
   "PP": 30,
   "Type": "fighting",
   "Accuracy": 100,
@@ -4176,6 +4359,7 @@
 {
   "ID": 184,
   "Name": "scary-face",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 100,
@@ -4203,6 +4387,7 @@
 {
   "ID": 185,
   "Name": "feint-attack",
+  "TMName": null,
   "PP": 20,
   "Type": "dark",
   "Accuracy": 0,
@@ -4225,6 +4410,7 @@
 {
   "ID": 186,
   "Name": "sweet-kiss",
+  "TMName": null,
   "PP": 10,
   "Type": "fairy",
   "Accuracy": 75,
@@ -4247,6 +4433,7 @@
 {
   "ID": 187,
   "Name": "belly-drum",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 0,
@@ -4269,6 +4456,7 @@
 {
   "ID": 188,
   "Name": "sludge-bomb",
+  "TMName": "tm36",
   "PP": 10,
   "Type": "poison",
   "Accuracy": 100,
@@ -4291,6 +4479,7 @@
 {
   "ID": 189,
   "Name": "mud-slap",
+  "TMName": "tm31",
   "PP": 10,
   "Type": "ground",
   "Accuracy": 100,
@@ -4318,6 +4507,7 @@
 {
   "ID": 190,
   "Name": "octazooka",
+  "TMName": null,
   "PP": 10,
   "Type": "water",
   "Accuracy": 85,
@@ -4345,6 +4535,7 @@
 {
   "ID": 191,
   "Name": "spikes",
+  "TMName": null,
   "PP": 20,
   "Type": "ground",
   "Accuracy": 0,
@@ -4367,6 +4558,7 @@
 {
   "ID": 192,
   "Name": "zap-cannon",
+  "TMName": "tm07",
   "PP": 5,
   "Type": "electric",
   "Accuracy": 50,
@@ -4389,6 +4581,7 @@
 {
   "ID": 193,
   "Name": "foresight",
+  "TMName": null,
   "PP": 40,
   "Type": "normal",
   "Accuracy": 0,
@@ -4411,6 +4604,7 @@
 {
   "ID": 194,
   "Name": "destiny-bond",
+  "TMName": null,
   "PP": 5,
   "Type": "ghost",
   "Accuracy": 0,
@@ -4433,6 +4627,7 @@
 {
   "ID": 195,
   "Name": "perish-song",
+  "TMName": null,
   "PP": 5,
   "Type": "normal",
   "Accuracy": 0,
@@ -4455,6 +4650,7 @@
 {
   "ID": 196,
   "Name": "icy-wind",
+  "TMName": "tm16",
   "PP": 15,
   "Type": "ice",
   "Accuracy": 95,
@@ -4482,6 +4678,7 @@
 {
   "ID": 197,
   "Name": "detect",
+  "TMName": "tm43",
   "PP": 5,
   "Type": "fighting",
   "Accuracy": 0,
@@ -4504,6 +4701,7 @@
 {
   "ID": 198,
   "Name": "bone-rush",
+  "TMName": null,
   "PP": 10,
   "Type": "ground",
   "Accuracy": 90,
@@ -4526,6 +4724,7 @@
 {
   "ID": 199,
   "Name": "lock-on",
+  "TMName": null,
   "PP": 5,
   "Type": "normal",
   "Accuracy": 0,
@@ -4548,6 +4747,7 @@
 {
   "ID": 200,
   "Name": "outrage",
+  "TMName": null,
   "PP": 10,
   "Type": "dragon",
   "Accuracy": 100,
@@ -4570,6 +4770,7 @@
 {
   "ID": 201,
   "Name": "sandstorm",
+  "TMName": "tm37",
   "PP": 10,
   "Type": "rock",
   "Accuracy": 0,
@@ -4592,6 +4793,7 @@
 {
   "ID": 202,
   "Name": "giga-drain",
+  "TMName": "tm19",
   "PP": 10,
   "Type": "grass",
   "Accuracy": 100,
@@ -4614,6 +4816,7 @@
 {
   "ID": 203,
   "Name": "endure",
+  "TMName": "tm58",
   "PP": 10,
   "Type": "normal",
   "Accuracy": 0,
@@ -4636,6 +4839,7 @@
 {
   "ID": 204,
   "Name": "charm",
+  "TMName": null,
   "PP": 20,
   "Type": "fairy",
   "Accuracy": 100,
@@ -4663,6 +4867,7 @@
 {
   "ID": 205,
   "Name": "rollout",
+  "TMName": "tm04",
   "PP": 20,
   "Type": "rock",
   "Accuracy": 90,
@@ -4685,6 +4890,7 @@
 {
   "ID": 206,
   "Name": "false-swipe",
+  "TMName": "tm54",
   "PP": 40,
   "Type": "normal",
   "Accuracy": 100,
@@ -4707,6 +4913,7 @@
 {
   "ID": 207,
   "Name": "swagger",
+  "TMName": "tm87",
   "PP": 15,
   "Type": "normal",
   "Accuracy": 85,
@@ -4734,6 +4941,7 @@
 {
   "ID": 208,
   "Name": "milk-drink",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 0,
@@ -4756,6 +4964,7 @@
 {
   "ID": 209,
   "Name": "spark",
+  "TMName": null,
   "PP": 20,
   "Type": "electric",
   "Accuracy": 100,
@@ -4778,6 +4987,7 @@
 {
   "ID": 210,
   "Name": "fury-cutter",
+  "TMName": "tm49",
   "PP": 20,
   "Type": "bug",
   "Accuracy": 95,
@@ -4800,6 +5010,7 @@
 {
   "ID": 211,
   "Name": "steel-wing",
+  "TMName": "tm51",
   "PP": 25,
   "Type": "steel",
   "Accuracy": 90,
@@ -4827,6 +5038,7 @@
 {
   "ID": 212,
   "Name": "mean-look",
+  "TMName": null,
   "PP": 5,
   "Type": "normal",
   "Accuracy": 0,
@@ -4849,6 +5061,7 @@
 {
   "ID": 213,
   "Name": "attract",
+  "TMName": "tm45",
   "PP": 15,
   "Type": "normal",
   "Accuracy": 100,
@@ -4871,6 +5084,7 @@
 {
   "ID": 214,
   "Name": "sleep-talk",
+  "TMName": "tm88",
   "PP": 10,
   "Type": "normal",
   "Accuracy": 0,
@@ -4893,6 +5107,7 @@
 {
   "ID": 215,
   "Name": "heal-bell",
+  "TMName": null,
   "PP": 5,
   "Type": "normal",
   "Accuracy": 0,
@@ -4915,6 +5130,7 @@
 {
   "ID": 216,
   "Name": "return",
+  "TMName": "tm27",
   "PP": 20,
   "Type": "normal",
   "Accuracy": 100,
@@ -4937,6 +5153,7 @@
 {
   "ID": 217,
   "Name": "present",
+  "TMName": null,
   "PP": 15,
   "Type": "normal",
   "Accuracy": 90,
@@ -4959,6 +5176,7 @@
 {
   "ID": 218,
   "Name": "frustration",
+  "TMName": "tm21",
   "PP": 20,
   "Type": "normal",
   "Accuracy": 100,
@@ -4981,6 +5199,7 @@
 {
   "ID": 219,
   "Name": "safeguard",
+  "TMName": "tm20",
   "PP": 25,
   "Type": "normal",
   "Accuracy": 0,
@@ -5003,6 +5222,7 @@
 {
   "ID": 220,
   "Name": "pain-split",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 0,
@@ -5025,6 +5245,7 @@
 {
   "ID": 221,
   "Name": "sacred-fire",
+  "TMName": null,
   "PP": 5,
   "Type": "fire",
   "Accuracy": 95,
@@ -5047,6 +5268,7 @@
 {
   "ID": 222,
   "Name": "magnitude",
+  "TMName": null,
   "PP": 30,
   "Type": "ground",
   "Accuracy": 100,
@@ -5069,6 +5291,7 @@
 {
   "ID": 223,
   "Name": "dynamic-punch",
+  "TMName": "tm01",
   "PP": 5,
   "Type": "fighting",
   "Accuracy": 50,
@@ -5091,6 +5314,7 @@
 {
   "ID": 224,
   "Name": "megahorn",
+  "TMName": null,
   "PP": 10,
   "Type": "bug",
   "Accuracy": 85,
@@ -5113,6 +5337,7 @@
 {
   "ID": 225,
   "Name": "dragon-breath",
+  "TMName": "tm24",
   "PP": 20,
   "Type": "dragon",
   "Accuracy": 100,
@@ -5135,6 +5360,7 @@
 {
   "ID": 226,
   "Name": "baton-pass",
+  "TMName": null,
   "PP": 40,
   "Type": "normal",
   "Accuracy": 0,
@@ -5157,6 +5383,7 @@
 {
   "ID": 227,
   "Name": "encore",
+  "TMName": null,
   "PP": 5,
   "Type": "normal",
   "Accuracy": 100,
@@ -5179,6 +5406,7 @@
 {
   "ID": 228,
   "Name": "pursuit",
+  "TMName": null,
   "PP": 20,
   "Type": "dark",
   "Accuracy": 100,
@@ -5201,6 +5429,7 @@
 {
   "ID": 229,
   "Name": "rapid-spin",
+  "TMName": null,
   "PP": 40,
   "Type": "normal",
   "Accuracy": 100,
@@ -5223,6 +5452,7 @@
 {
   "ID": 230,
   "Name": "sweet-scent",
+  "TMName": "tm12",
   "PP": 20,
   "Type": "normal",
   "Accuracy": 100,
@@ -5250,6 +5480,7 @@
 {
   "ID": 231,
   "Name": "iron-tail",
+  "TMName": "tm23",
   "PP": 15,
   "Type": "steel",
   "Accuracy": 75,
@@ -5277,6 +5508,7 @@
 {
   "ID": 232,
   "Name": "metal-claw",
+  "TMName": null,
   "PP": 35,
   "Type": "steel",
   "Accuracy": 95,
@@ -5304,6 +5536,7 @@
 {
   "ID": 233,
   "Name": "vital-throw",
+  "TMName": null,
   "PP": 10,
   "Type": "fighting",
   "Accuracy": 0,
@@ -5326,6 +5559,7 @@
 {
   "ID": 234,
   "Name": "morning-sun",
+  "TMName": null,
   "PP": 5,
   "Type": "normal",
   "Accuracy": 0,
@@ -5348,6 +5582,7 @@
 {
   "ID": 235,
   "Name": "synthesis",
+  "TMName": null,
   "PP": 5,
   "Type": "grass",
   "Accuracy": 0,
@@ -5370,6 +5605,7 @@
 {
   "ID": 236,
   "Name": "moonlight",
+  "TMName": null,
   "PP": 5,
   "Type": "fairy",
   "Accuracy": 0,
@@ -5392,6 +5628,7 @@
 {
   "ID": 237,
   "Name": "hidden-power",
+  "TMName": "tm10",
   "PP": 15,
   "Type": "normal",
   "Accuracy": 100,
@@ -5414,6 +5651,7 @@
 {
   "ID": 238,
   "Name": "cross-chop",
+  "TMName": null,
   "PP": 5,
   "Type": "fighting",
   "Accuracy": 80,
@@ -5436,6 +5674,7 @@
 {
   "ID": 239,
   "Name": "twister",
+  "TMName": null,
   "PP": 20,
   "Type": "dragon",
   "Accuracy": 100,
@@ -5458,6 +5697,7 @@
 {
   "ID": 240,
   "Name": "rain-dance",
+  "TMName": "tm18",
   "PP": 5,
   "Type": "water",
   "Accuracy": 0,
@@ -5480,6 +5720,7 @@
 {
   "ID": 241,
   "Name": "sunny-day",
+  "TMName": "tm11",
   "PP": 5,
   "Type": "fire",
   "Accuracy": 0,
@@ -5502,6 +5743,7 @@
 {
   "ID": 242,
   "Name": "crunch",
+  "TMName": null,
   "PP": 15,
   "Type": "dark",
   "Accuracy": 100,
@@ -5529,6 +5771,7 @@
 {
   "ID": 243,
   "Name": "mirror-coat",
+  "TMName": null,
   "PP": 20,
   "Type": "psychic",
   "Accuracy": 100,
@@ -5551,6 +5794,7 @@
 {
   "ID": 244,
   "Name": "psych-up",
+  "TMName": "tm77",
   "PP": 10,
   "Type": "normal",
   "Accuracy": 0,
@@ -5573,6 +5817,7 @@
 {
   "ID": 245,
   "Name": "extreme-speed",
+  "TMName": null,
   "PP": 5,
   "Type": "normal",
   "Accuracy": 100,
@@ -5595,6 +5840,7 @@
 {
   "ID": 246,
   "Name": "ancient-power",
+  "TMName": null,
   "PP": 5,
   "Type": "rock",
   "Accuracy": 100,
@@ -5642,6 +5888,7 @@
 {
   "ID": 247,
   "Name": "shadow-ball",
+  "TMName": "tm30",
   "PP": 15,
   "Type": "ghost",
   "Accuracy": 100,
@@ -5669,6 +5916,7 @@
 {
   "ID": 248,
   "Name": "future-sight",
+  "TMName": null,
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 100,
@@ -5691,6 +5939,7 @@
 {
   "ID": 249,
   "Name": "rock-smash",
+  "TMName": "hm06",
   "PP": 15,
   "Type": "fighting",
   "Accuracy": 100,
@@ -5718,6 +5967,7 @@
 {
   "ID": 250,
   "Name": "whirlpool",
+  "TMName": "hm06",
   "PP": 15,
   "Type": "water",
   "Accuracy": 85,
@@ -5740,6 +5990,7 @@
 {
   "ID": 251,
   "Name": "beat-up",
+  "TMName": null,
   "PP": 10,
   "Type": "dark",
   "Accuracy": 100,
@@ -5762,6 +6013,7 @@
 {
   "ID": 252,
   "Name": "fake-out",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 100,
@@ -5784,6 +6036,7 @@
 {
   "ID": 253,
   "Name": "uproar",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 100,
@@ -5806,6 +6059,7 @@
 {
   "ID": 254,
   "Name": "stockpile",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 0,
@@ -5828,6 +6082,7 @@
 {
   "ID": 255,
   "Name": "spit-up",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 100,
@@ -5850,6 +6105,7 @@
 {
   "ID": 256,
   "Name": "swallow",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 0,
@@ -5872,6 +6128,7 @@
 {
   "ID": 257,
   "Name": "heat-wave",
+  "TMName": null,
   "PP": 10,
   "Type": "fire",
   "Accuracy": 90,
@@ -5894,6 +6151,7 @@
 {
   "ID": 258,
   "Name": "hail",
+  "TMName": "tm07",
   "PP": 10,
   "Type": "ice",
   "Accuracy": 0,
@@ -5916,6 +6174,7 @@
 {
   "ID": 259,
   "Name": "torment",
+  "TMName": "tm41",
   "PP": 15,
   "Type": "dark",
   "Accuracy": 100,
@@ -5938,6 +6197,7 @@
 {
   "ID": 260,
   "Name": "flatter",
+  "TMName": null,
   "PP": 15,
   "Type": "dark",
   "Accuracy": 100,
@@ -5965,6 +6225,7 @@
 {
   "ID": 261,
   "Name": "will-o-wisp",
+  "TMName": "tm61",
   "PP": 15,
   "Type": "fire",
   "Accuracy": 85,
@@ -5987,6 +6248,7 @@
 {
   "ID": 262,
   "Name": "memento",
+  "TMName": null,
   "PP": 10,
   "Type": "dark",
   "Accuracy": 100,
@@ -6009,6 +6271,7 @@
 {
   "ID": 263,
   "Name": "facade",
+  "TMName": "tm42",
   "PP": 20,
   "Type": "normal",
   "Accuracy": 100,
@@ -6031,6 +6294,7 @@
 {
   "ID": 264,
   "Name": "focus-punch",
+  "TMName": "tm01",
   "PP": 20,
   "Type": "fighting",
   "Accuracy": 100,
@@ -6053,6 +6317,7 @@
 {
   "ID": 265,
   "Name": "smelling-salts",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 100,
@@ -6075,6 +6340,7 @@
 {
   "ID": 266,
   "Name": "follow-me",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 0,
@@ -6097,6 +6363,7 @@
 {
   "ID": 267,
   "Name": "nature-power",
+  "TMName": "tm96",
   "PP": 20,
   "Type": "normal",
   "Accuracy": 0,
@@ -6119,6 +6386,7 @@
 {
   "ID": 268,
   "Name": "charge",
+  "TMName": null,
   "PP": 20,
   "Type": "electric",
   "Accuracy": 0,
@@ -6146,6 +6414,7 @@
 {
   "ID": 269,
   "Name": "taunt",
+  "TMName": "tm12",
   "PP": 20,
   "Type": "dark",
   "Accuracy": 100,
@@ -6168,6 +6437,7 @@
 {
   "ID": 270,
   "Name": "helping-hand",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 0,
@@ -6190,6 +6460,7 @@
 {
   "ID": 271,
   "Name": "trick",
+  "TMName": null,
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 100,
@@ -6212,6 +6483,7 @@
 {
   "ID": 272,
   "Name": "role-play",
+  "TMName": null,
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 0,
@@ -6234,6 +6506,7 @@
 {
   "ID": 273,
   "Name": "wish",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 0,
@@ -6256,6 +6529,7 @@
 {
   "ID": 274,
   "Name": "assist",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 0,
@@ -6278,6 +6552,7 @@
 {
   "ID": 275,
   "Name": "ingrain",
+  "TMName": null,
   "PP": 20,
   "Type": "grass",
   "Accuracy": 0,
@@ -6300,6 +6575,7 @@
 {
   "ID": 276,
   "Name": "superpower",
+  "TMName": null,
   "PP": 5,
   "Type": "fighting",
   "Accuracy": 100,
@@ -6331,6 +6607,7 @@
 {
   "ID": 277,
   "Name": "magic-coat",
+  "TMName": null,
   "PP": 15,
   "Type": "psychic",
   "Accuracy": 0,
@@ -6353,6 +6630,7 @@
 {
   "ID": 278,
   "Name": "recycle",
+  "TMName": "tm67",
   "PP": 10,
   "Type": "normal",
   "Accuracy": 0,
@@ -6375,6 +6653,7 @@
 {
   "ID": 279,
   "Name": "revenge",
+  "TMName": null,
   "PP": 10,
   "Type": "fighting",
   "Accuracy": 100,
@@ -6397,6 +6676,7 @@
 {
   "ID": 280,
   "Name": "brick-break",
+  "TMName": "tm31",
   "PP": 15,
   "Type": "fighting",
   "Accuracy": 100,
@@ -6419,6 +6699,7 @@
 {
   "ID": 281,
   "Name": "yawn",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 0,
@@ -6441,6 +6722,7 @@
 {
   "ID": 282,
   "Name": "knock-off",
+  "TMName": null,
   "PP": 20,
   "Type": "dark",
   "Accuracy": 100,
@@ -6463,6 +6745,7 @@
 {
   "ID": 283,
   "Name": "endeavor",
+  "TMName": null,
   "PP": 5,
   "Type": "normal",
   "Accuracy": 100,
@@ -6485,6 +6768,7 @@
 {
   "ID": 284,
   "Name": "eruption",
+  "TMName": null,
   "PP": 5,
   "Type": "fire",
   "Accuracy": 100,
@@ -6507,6 +6791,7 @@
 {
   "ID": 285,
   "Name": "skill-swap",
+  "TMName": "tm48",
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 0,
@@ -6529,6 +6814,7 @@
 {
   "ID": 286,
   "Name": "imprison",
+  "TMName": null,
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 0,
@@ -6551,6 +6837,7 @@
 {
   "ID": 287,
   "Name": "refresh",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 0,
@@ -6573,6 +6860,7 @@
 {
   "ID": 288,
   "Name": "grudge",
+  "TMName": null,
   "PP": 5,
   "Type": "ghost",
   "Accuracy": 0,
@@ -6595,6 +6883,7 @@
 {
   "ID": 289,
   "Name": "snatch",
+  "TMName": "tm49",
   "PP": 10,
   "Type": "dark",
   "Accuracy": 0,
@@ -6617,6 +6906,7 @@
 {
   "ID": 290,
   "Name": "secret-power",
+  "TMName": "hm02",
   "PP": 20,
   "Type": "normal",
   "Accuracy": 100,
@@ -6639,6 +6929,7 @@
 {
   "ID": 291,
   "Name": "dive",
+  "TMName": "hm08",
   "PP": 10,
   "Type": "water",
   "Accuracy": 100,
@@ -6661,6 +6952,7 @@
 {
   "ID": 292,
   "Name": "arm-thrust",
+  "TMName": null,
   "PP": 20,
   "Type": "fighting",
   "Accuracy": 100,
@@ -6683,6 +6975,7 @@
 {
   "ID": 293,
   "Name": "camouflage",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 0,
@@ -6705,6 +6998,7 @@
 {
   "ID": 294,
   "Name": "tail-glow",
+  "TMName": null,
   "PP": 20,
   "Type": "bug",
   "Accuracy": 0,
@@ -6732,6 +7026,7 @@
 {
   "ID": 295,
   "Name": "luster-purge",
+  "TMName": null,
   "PP": 5,
   "Type": "psychic",
   "Accuracy": 100,
@@ -6759,6 +7054,7 @@
 {
   "ID": 296,
   "Name": "mist-ball",
+  "TMName": null,
   "PP": 5,
   "Type": "psychic",
   "Accuracy": 100,
@@ -6786,6 +7082,7 @@
 {
   "ID": 297,
   "Name": "feather-dance",
+  "TMName": null,
   "PP": 15,
   "Type": "flying",
   "Accuracy": 100,
@@ -6813,6 +7110,7 @@
 {
   "ID": 298,
   "Name": "teeter-dance",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 100,
@@ -6835,6 +7133,7 @@
 {
   "ID": 299,
   "Name": "blaze-kick",
+  "TMName": null,
   "PP": 10,
   "Type": "fire",
   "Accuracy": 90,
@@ -6857,6 +7156,7 @@
 {
   "ID": 300,
   "Name": "mud-sport",
+  "TMName": null,
   "PP": 15,
   "Type": "ground",
   "Accuracy": 0,
@@ -6879,6 +7179,7 @@
 {
   "ID": 301,
   "Name": "ice-ball",
+  "TMName": null,
   "PP": 20,
   "Type": "ice",
   "Accuracy": 90,
@@ -6901,6 +7202,7 @@
 {
   "ID": 302,
   "Name": "needle-arm",
+  "TMName": null,
   "PP": 15,
   "Type": "grass",
   "Accuracy": 100,
@@ -6923,6 +7225,7 @@
 {
   "ID": 303,
   "Name": "slack-off",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 0,
@@ -6945,6 +7248,7 @@
 {
   "ID": 304,
   "Name": "hyper-voice",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 100,
@@ -6967,6 +7271,7 @@
 {
   "ID": 305,
   "Name": "poison-fang",
+  "TMName": null,
   "PP": 15,
   "Type": "poison",
   "Accuracy": 100,
@@ -6989,6 +7294,7 @@
 {
   "ID": 306,
   "Name": "crush-claw",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 95,
@@ -7016,6 +7322,7 @@
 {
   "ID": 307,
   "Name": "blast-burn",
+  "TMName": null,
   "PP": 5,
   "Type": "fire",
   "Accuracy": 90,
@@ -7038,6 +7345,7 @@
 {
   "ID": 308,
   "Name": "hydro-cannon",
+  "TMName": null,
   "PP": 5,
   "Type": "water",
   "Accuracy": 90,
@@ -7060,6 +7368,7 @@
 {
   "ID": 309,
   "Name": "meteor-mash",
+  "TMName": null,
   "PP": 10,
   "Type": "steel",
   "Accuracy": 90,
@@ -7087,6 +7396,7 @@
 {
   "ID": 310,
   "Name": "astonish",
+  "TMName": null,
   "PP": 15,
   "Type": "ghost",
   "Accuracy": 100,
@@ -7109,6 +7419,7 @@
 {
   "ID": 311,
   "Name": "weather-ball",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 100,
@@ -7131,6 +7442,7 @@
 {
   "ID": 312,
   "Name": "aromatherapy",
+  "TMName": null,
   "PP": 5,
   "Type": "grass",
   "Accuracy": 0,
@@ -7153,6 +7465,7 @@
 {
   "ID": 313,
   "Name": "fake-tears",
+  "TMName": null,
   "PP": 20,
   "Type": "dark",
   "Accuracy": 100,
@@ -7180,6 +7493,7 @@
 {
   "ID": 314,
   "Name": "air-cutter",
+  "TMName": null,
   "PP": 25,
   "Type": "flying",
   "Accuracy": 95,
@@ -7202,6 +7516,7 @@
 {
   "ID": 315,
   "Name": "overheat",
+  "TMName": "tm50",
   "PP": 5,
   "Type": "fire",
   "Accuracy": 90,
@@ -7229,6 +7544,7 @@
 {
   "ID": 316,
   "Name": "odor-sleuth",
+  "TMName": null,
   "PP": 40,
   "Type": "normal",
   "Accuracy": 0,
@@ -7251,6 +7567,7 @@
 {
   "ID": 317,
   "Name": "rock-tomb",
+  "TMName": "tm39",
   "PP": 15,
   "Type": "rock",
   "Accuracy": 95,
@@ -7278,6 +7595,7 @@
 {
   "ID": 318,
   "Name": "silver-wind",
+  "TMName": "tm62",
   "PP": 5,
   "Type": "bug",
   "Accuracy": 100,
@@ -7325,6 +7643,7 @@
 {
   "ID": 319,
   "Name": "metal-sound",
+  "TMName": null,
   "PP": 40,
   "Type": "steel",
   "Accuracy": 85,
@@ -7352,6 +7671,7 @@
 {
   "ID": 320,
   "Name": "grass-whistle",
+  "TMName": null,
   "PP": 15,
   "Type": "grass",
   "Accuracy": 55,
@@ -7374,6 +7694,7 @@
 {
   "ID": 321,
   "Name": "tickle",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 100,
@@ -7405,6 +7726,7 @@
 {
   "ID": 322,
   "Name": "cosmic-power",
+  "TMName": null,
   "PP": 20,
   "Type": "psychic",
   "Accuracy": 0,
@@ -7436,6 +7758,7 @@
 {
   "ID": 323,
   "Name": "water-spout",
+  "TMName": null,
   "PP": 5,
   "Type": "water",
   "Accuracy": 100,
@@ -7458,6 +7781,7 @@
 {
   "ID": 324,
   "Name": "signal-beam",
+  "TMName": null,
   "PP": 15,
   "Type": "bug",
   "Accuracy": 100,
@@ -7480,6 +7804,7 @@
 {
   "ID": 325,
   "Name": "shadow-punch",
+  "TMName": null,
   "PP": 20,
   "Type": "ghost",
   "Accuracy": 0,
@@ -7502,6 +7827,7 @@
 {
   "ID": 326,
   "Name": "extrasensory",
+  "TMName": null,
   "PP": 20,
   "Type": "psychic",
   "Accuracy": 100,
@@ -7524,6 +7850,7 @@
 {
   "ID": 327,
   "Name": "sky-uppercut",
+  "TMName": null,
   "PP": 15,
   "Type": "fighting",
   "Accuracy": 90,
@@ -7546,6 +7873,7 @@
 {
   "ID": 328,
   "Name": "sand-tomb",
+  "TMName": null,
   "PP": 15,
   "Type": "ground",
   "Accuracy": 85,
@@ -7568,6 +7896,7 @@
 {
   "ID": 329,
   "Name": "sheer-cold",
+  "TMName": null,
   "PP": 5,
   "Type": "ice",
   "Accuracy": 30,
@@ -7590,6 +7919,7 @@
 {
   "ID": 330,
   "Name": "muddy-water",
+  "TMName": null,
   "PP": 10,
   "Type": "water",
   "Accuracy": 85,
@@ -7617,6 +7947,7 @@
 {
   "ID": 331,
   "Name": "bullet-seed",
+  "TMName": "tm09",
   "PP": 30,
   "Type": "grass",
   "Accuracy": 100,
@@ -7639,6 +7970,7 @@
 {
   "ID": 332,
   "Name": "aerial-ace",
+  "TMName": "tm40",
   "PP": 20,
   "Type": "flying",
   "Accuracy": 0,
@@ -7661,6 +7993,7 @@
 {
   "ID": 333,
   "Name": "icicle-spear",
+  "TMName": null,
   "PP": 30,
   "Type": "ice",
   "Accuracy": 100,
@@ -7683,6 +8016,7 @@
 {
   "ID": 334,
   "Name": "iron-defense",
+  "TMName": null,
   "PP": 15,
   "Type": "steel",
   "Accuracy": 0,
@@ -7710,6 +8044,7 @@
 {
   "ID": 335,
   "Name": "block",
+  "TMName": null,
   "PP": 5,
   "Type": "normal",
   "Accuracy": 0,
@@ -7732,6 +8067,7 @@
 {
   "ID": 336,
   "Name": "howl",
+  "TMName": null,
   "PP": 40,
   "Type": "normal",
   "Accuracy": 0,
@@ -7759,6 +8095,7 @@
 {
   "ID": 337,
   "Name": "dragon-claw",
+  "TMName": "tm02",
   "PP": 15,
   "Type": "dragon",
   "Accuracy": 100,
@@ -7781,6 +8118,7 @@
 {
   "ID": 338,
   "Name": "frenzy-plant",
+  "TMName": null,
   "PP": 5,
   "Type": "grass",
   "Accuracy": 90,
@@ -7803,6 +8141,7 @@
 {
   "ID": 339,
   "Name": "bulk-up",
+  "TMName": "tm08",
   "PP": 20,
   "Type": "fighting",
   "Accuracy": 0,
@@ -7834,6 +8173,7 @@
 {
   "ID": 340,
   "Name": "bounce",
+  "TMName": null,
   "PP": 5,
   "Type": "flying",
   "Accuracy": 85,
@@ -7856,6 +8196,7 @@
 {
   "ID": 341,
   "Name": "mud-shot",
+  "TMName": null,
   "PP": 15,
   "Type": "ground",
   "Accuracy": 95,
@@ -7883,6 +8224,7 @@
 {
   "ID": 342,
   "Name": "poison-tail",
+  "TMName": null,
   "PP": 25,
   "Type": "poison",
   "Accuracy": 100,
@@ -7905,6 +8247,7 @@
 {
   "ID": 343,
   "Name": "covet",
+  "TMName": null,
   "PP": 25,
   "Type": "normal",
   "Accuracy": 100,
@@ -7927,6 +8270,7 @@
 {
   "ID": 344,
   "Name": "volt-tackle",
+  "TMName": null,
   "PP": 15,
   "Type": "electric",
   "Accuracy": 100,
@@ -7949,6 +8293,7 @@
 {
   "ID": 345,
   "Name": "magical-leaf",
+  "TMName": null,
   "PP": 20,
   "Type": "grass",
   "Accuracy": 0,
@@ -7971,6 +8316,7 @@
 {
   "ID": 346,
   "Name": "water-sport",
+  "TMName": null,
   "PP": 15,
   "Type": "water",
   "Accuracy": 0,
@@ -7993,6 +8339,7 @@
 {
   "ID": 347,
   "Name": "calm-mind",
+  "TMName": "tm04",
   "PP": 20,
   "Type": "psychic",
   "Accuracy": 0,
@@ -8024,6 +8371,7 @@
 {
   "ID": 348,
   "Name": "leaf-blade",
+  "TMName": null,
   "PP": 15,
   "Type": "grass",
   "Accuracy": 100,
@@ -8046,6 +8394,7 @@
 {
   "ID": 349,
   "Name": "dragon-dance",
+  "TMName": null,
   "PP": 20,
   "Type": "dragon",
   "Accuracy": 0,
@@ -8077,6 +8426,7 @@
 {
   "ID": 350,
   "Name": "rock-blast",
+  "TMName": null,
   "PP": 10,
   "Type": "rock",
   "Accuracy": 90,
@@ -8099,6 +8449,7 @@
 {
   "ID": 351,
   "Name": "shock-wave",
+  "TMName": "tm34",
   "PP": 20,
   "Type": "electric",
   "Accuracy": 0,
@@ -8121,6 +8472,7 @@
 {
   "ID": 352,
   "Name": "water-pulse",
+  "TMName": "tm03",
   "PP": 20,
   "Type": "water",
   "Accuracy": 100,
@@ -8143,6 +8495,7 @@
 {
   "ID": 353,
   "Name": "doom-desire",
+  "TMName": null,
   "PP": 5,
   "Type": "steel",
   "Accuracy": 100,
@@ -8165,6 +8518,7 @@
 {
   "ID": 354,
   "Name": "psycho-boost",
+  "TMName": null,
   "PP": 5,
   "Type": "psychic",
   "Accuracy": 90,
@@ -8192,6 +8546,7 @@
 {
   "ID": 355,
   "Name": "roost",
+  "TMName": "tm51",
   "PP": 10,
   "Type": "flying",
   "Accuracy": 0,
@@ -8214,6 +8569,7 @@
 {
   "ID": 356,
   "Name": "gravity",
+  "TMName": null,
   "PP": 5,
   "Type": "psychic",
   "Accuracy": 0,
@@ -8236,6 +8592,7 @@
 {
   "ID": 357,
   "Name": "miracle-eye",
+  "TMName": null,
   "PP": 40,
   "Type": "psychic",
   "Accuracy": 0,
@@ -8258,6 +8615,7 @@
 {
   "ID": 358,
   "Name": "wake-up-slap",
+  "TMName": null,
   "PP": 10,
   "Type": "fighting",
   "Accuracy": 100,
@@ -8280,6 +8638,7 @@
 {
   "ID": 359,
   "Name": "hammer-arm",
+  "TMName": null,
   "PP": 10,
   "Type": "fighting",
   "Accuracy": 90,
@@ -8307,6 +8666,7 @@
 {
   "ID": 360,
   "Name": "gyro-ball",
+  "TMName": "tm74",
   "PP": 5,
   "Type": "steel",
   "Accuracy": 100,
@@ -8329,6 +8689,7 @@
 {
   "ID": 361,
   "Name": "healing-wish",
+  "TMName": null,
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 0,
@@ -8351,6 +8712,7 @@
 {
   "ID": 362,
   "Name": "brine",
+  "TMName": "tm55",
   "PP": 10,
   "Type": "water",
   "Accuracy": 100,
@@ -8373,6 +8735,7 @@
 {
   "ID": 363,
   "Name": "natural-gift",
+  "TMName": "tm83",
   "PP": 15,
   "Type": "normal",
   "Accuracy": 100,
@@ -8395,6 +8758,7 @@
 {
   "ID": 364,
   "Name": "feint",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 100,
@@ -8417,6 +8781,7 @@
 {
   "ID": 365,
   "Name": "pluck",
+  "TMName": "tm88",
   "PP": 20,
   "Type": "flying",
   "Accuracy": 100,
@@ -8439,6 +8804,7 @@
 {
   "ID": 366,
   "Name": "tailwind",
+  "TMName": null,
   "PP": 15,
   "Type": "flying",
   "Accuracy": 0,
@@ -8461,6 +8827,7 @@
 {
   "ID": 367,
   "Name": "acupressure",
+  "TMName": null,
   "PP": 30,
   "Type": "normal",
   "Accuracy": 0,
@@ -8483,6 +8850,7 @@
 {
   "ID": 368,
   "Name": "metal-burst",
+  "TMName": null,
   "PP": 10,
   "Type": "steel",
   "Accuracy": 100,
@@ -8505,6 +8873,7 @@
 {
   "ID": 369,
   "Name": "u-turn",
+  "TMName": "tm89",
   "PP": 20,
   "Type": "bug",
   "Accuracy": 100,
@@ -8527,6 +8896,7 @@
 {
   "ID": 370,
   "Name": "close-combat",
+  "TMName": null,
   "PP": 5,
   "Type": "fighting",
   "Accuracy": 100,
@@ -8558,6 +8928,7 @@
 {
   "ID": 371,
   "Name": "payback",
+  "TMName": "tm66",
   "PP": 10,
   "Type": "dark",
   "Accuracy": 100,
@@ -8580,6 +8951,7 @@
 {
   "ID": 372,
   "Name": "assurance",
+  "TMName": null,
   "PP": 10,
   "Type": "dark",
   "Accuracy": 100,
@@ -8602,6 +8974,7 @@
 {
   "ID": 373,
   "Name": "embargo",
+  "TMName": "tm63",
   "PP": 15,
   "Type": "dark",
   "Accuracy": 100,
@@ -8624,6 +8997,7 @@
 {
   "ID": 374,
   "Name": "fling",
+  "TMName": "tm56",
   "PP": 10,
   "Type": "dark",
   "Accuracy": 100,
@@ -8646,6 +9020,7 @@
 {
   "ID": 375,
   "Name": "psycho-shift",
+  "TMName": null,
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 100,
@@ -8668,6 +9043,7 @@
 {
   "ID": 376,
   "Name": "trump-card",
+  "TMName": null,
   "PP": 5,
   "Type": "normal",
   "Accuracy": 0,
@@ -8690,6 +9066,7 @@
 {
   "ID": 377,
   "Name": "heal-block",
+  "TMName": null,
   "PP": 15,
   "Type": "psychic",
   "Accuracy": 100,
@@ -8712,6 +9089,7 @@
 {
   "ID": 378,
   "Name": "wring-out",
+  "TMName": null,
   "PP": 5,
   "Type": "normal",
   "Accuracy": 100,
@@ -8734,6 +9112,7 @@
 {
   "ID": 379,
   "Name": "power-trick",
+  "TMName": null,
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 0,
@@ -8756,6 +9135,7 @@
 {
   "ID": 380,
   "Name": "gastro-acid",
+  "TMName": null,
   "PP": 10,
   "Type": "poison",
   "Accuracy": 100,
@@ -8778,6 +9158,7 @@
 {
   "ID": 381,
   "Name": "lucky-chant",
+  "TMName": null,
   "PP": 30,
   "Type": "normal",
   "Accuracy": 0,
@@ -8800,6 +9181,7 @@
 {
   "ID": 382,
   "Name": "me-first",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 0,
@@ -8822,6 +9204,7 @@
 {
   "ID": 383,
   "Name": "copycat",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 0,
@@ -8844,6 +9227,7 @@
 {
   "ID": 384,
   "Name": "power-swap",
+  "TMName": null,
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 0,
@@ -8866,6 +9250,7 @@
 {
   "ID": 385,
   "Name": "guard-swap",
+  "TMName": null,
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 0,
@@ -8888,6 +9273,7 @@
 {
   "ID": 386,
   "Name": "punishment",
+  "TMName": null,
   "PP": 5,
   "Type": "dark",
   "Accuracy": 100,
@@ -8910,6 +9296,7 @@
 {
   "ID": 387,
   "Name": "last-resort",
+  "TMName": null,
   "PP": 5,
   "Type": "normal",
   "Accuracy": 100,
@@ -8932,6 +9319,7 @@
 {
   "ID": 388,
   "Name": "worry-seed",
+  "TMName": null,
   "PP": 10,
   "Type": "grass",
   "Accuracy": 100,
@@ -8954,6 +9342,7 @@
 {
   "ID": 389,
   "Name": "sucker-punch",
+  "TMName": null,
   "PP": 5,
   "Type": "dark",
   "Accuracy": 100,
@@ -8976,6 +9365,7 @@
 {
   "ID": 390,
   "Name": "toxic-spikes",
+  "TMName": null,
   "PP": 20,
   "Type": "poison",
   "Accuracy": 0,
@@ -8998,6 +9388,7 @@
 {
   "ID": 391,
   "Name": "heart-swap",
+  "TMName": null,
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 0,
@@ -9020,6 +9411,7 @@
 {
   "ID": 392,
   "Name": "aqua-ring",
+  "TMName": null,
   "PP": 20,
   "Type": "water",
   "Accuracy": 0,
@@ -9042,6 +9434,7 @@
 {
   "ID": 393,
   "Name": "magnet-rise",
+  "TMName": null,
   "PP": 10,
   "Type": "electric",
   "Accuracy": 0,
@@ -9064,6 +9457,7 @@
 {
   "ID": 394,
   "Name": "flare-blitz",
+  "TMName": null,
   "PP": 15,
   "Type": "fire",
   "Accuracy": 100,
@@ -9086,6 +9480,7 @@
 {
   "ID": 395,
   "Name": "force-palm",
+  "TMName": null,
   "PP": 10,
   "Type": "fighting",
   "Accuracy": 100,
@@ -9108,6 +9503,7 @@
 {
   "ID": 396,
   "Name": "aura-sphere",
+  "TMName": null,
   "PP": 20,
   "Type": "fighting",
   "Accuracy": 0,
@@ -9130,6 +9526,7 @@
 {
   "ID": 397,
   "Name": "rock-polish",
+  "TMName": "tm69",
   "PP": 20,
   "Type": "rock",
   "Accuracy": 0,
@@ -9157,6 +9554,7 @@
 {
   "ID": 398,
   "Name": "poison-jab",
+  "TMName": "tm84",
   "PP": 20,
   "Type": "poison",
   "Accuracy": 100,
@@ -9179,6 +9577,7 @@
 {
   "ID": 399,
   "Name": "dark-pulse",
+  "TMName": "tm97",
   "PP": 15,
   "Type": "dark",
   "Accuracy": 100,
@@ -9201,6 +9600,7 @@
 {
   "ID": 400,
   "Name": "night-slash",
+  "TMName": null,
   "PP": 15,
   "Type": "dark",
   "Accuracy": 100,
@@ -9223,6 +9623,7 @@
 {
   "ID": 401,
   "Name": "aqua-tail",
+  "TMName": null,
   "PP": 10,
   "Type": "water",
   "Accuracy": 90,
@@ -9245,6 +9646,7 @@
 {
   "ID": 402,
   "Name": "seed-bomb",
+  "TMName": null,
   "PP": 15,
   "Type": "grass",
   "Accuracy": 100,
@@ -9267,6 +9669,7 @@
 {
   "ID": 403,
   "Name": "air-slash",
+  "TMName": null,
   "PP": 15,
   "Type": "flying",
   "Accuracy": 95,
@@ -9289,6 +9692,7 @@
 {
   "ID": 404,
   "Name": "x-scissor",
+  "TMName": "tm81",
   "PP": 15,
   "Type": "bug",
   "Accuracy": 100,
@@ -9311,6 +9715,7 @@
 {
   "ID": 405,
   "Name": "bug-buzz",
+  "TMName": null,
   "PP": 10,
   "Type": "bug",
   "Accuracy": 100,
@@ -9338,6 +9743,7 @@
 {
   "ID": 406,
   "Name": "dragon-pulse",
+  "TMName": "tm59",
   "PP": 10,
   "Type": "dragon",
   "Accuracy": 100,
@@ -9360,6 +9766,7 @@
 {
   "ID": 407,
   "Name": "dragon-rush",
+  "TMName": null,
   "PP": 10,
   "Type": "dragon",
   "Accuracy": 75,
@@ -9382,6 +9789,7 @@
 {
   "ID": 408,
   "Name": "power-gem",
+  "TMName": null,
   "PP": 20,
   "Type": "rock",
   "Accuracy": 100,
@@ -9404,6 +9812,7 @@
 {
   "ID": 409,
   "Name": "drain-punch",
+  "TMName": "tm60",
   "PP": 10,
   "Type": "fighting",
   "Accuracy": 100,
@@ -9426,6 +9835,7 @@
 {
   "ID": 410,
   "Name": "vacuum-wave",
+  "TMName": null,
   "PP": 30,
   "Type": "fighting",
   "Accuracy": 100,
@@ -9448,6 +9858,7 @@
 {
   "ID": 411,
   "Name": "focus-blast",
+  "TMName": "tm52",
   "PP": 5,
   "Type": "fighting",
   "Accuracy": 70,
@@ -9475,6 +9886,7 @@
 {
   "ID": 412,
   "Name": "energy-ball",
+  "TMName": "tm53",
   "PP": 10,
   "Type": "grass",
   "Accuracy": 100,
@@ -9502,6 +9914,7 @@
 {
   "ID": 413,
   "Name": "brave-bird",
+  "TMName": null,
   "PP": 15,
   "Type": "flying",
   "Accuracy": 100,
@@ -9524,6 +9937,7 @@
 {
   "ID": 414,
   "Name": "earth-power",
+  "TMName": null,
   "PP": 10,
   "Type": "ground",
   "Accuracy": 100,
@@ -9551,6 +9965,7 @@
 {
   "ID": 415,
   "Name": "switcheroo",
+  "TMName": null,
   "PP": 10,
   "Type": "dark",
   "Accuracy": 100,
@@ -9573,6 +9988,7 @@
 {
   "ID": 416,
   "Name": "giga-impact",
+  "TMName": "tm68",
   "PP": 5,
   "Type": "normal",
   "Accuracy": 90,
@@ -9595,6 +10011,7 @@
 {
   "ID": 417,
   "Name": "nasty-plot",
+  "TMName": null,
   "PP": 20,
   "Type": "dark",
   "Accuracy": 0,
@@ -9622,6 +10039,7 @@
 {
   "ID": 418,
   "Name": "bullet-punch",
+  "TMName": null,
   "PP": 30,
   "Type": "steel",
   "Accuracy": 100,
@@ -9644,6 +10062,7 @@
 {
   "ID": 419,
   "Name": "avalanche",
+  "TMName": "tm72",
   "PP": 10,
   "Type": "ice",
   "Accuracy": 100,
@@ -9666,6 +10085,7 @@
 {
   "ID": 420,
   "Name": "ice-shard",
+  "TMName": null,
   "PP": 30,
   "Type": "ice",
   "Accuracy": 100,
@@ -9688,6 +10108,7 @@
 {
   "ID": 421,
   "Name": "shadow-claw",
+  "TMName": "tm65",
   "PP": 15,
   "Type": "ghost",
   "Accuracy": 100,
@@ -9710,6 +10131,7 @@
 {
   "ID": 422,
   "Name": "thunder-fang",
+  "TMName": null,
   "PP": 15,
   "Type": "electric",
   "Accuracy": 95,
@@ -9732,6 +10154,7 @@
 {
   "ID": 423,
   "Name": "ice-fang",
+  "TMName": null,
   "PP": 15,
   "Type": "ice",
   "Accuracy": 95,
@@ -9754,6 +10177,7 @@
 {
   "ID": 424,
   "Name": "fire-fang",
+  "TMName": null,
   "PP": 15,
   "Type": "fire",
   "Accuracy": 95,
@@ -9776,6 +10200,7 @@
 {
   "ID": 425,
   "Name": "shadow-sneak",
+  "TMName": null,
   "PP": 30,
   "Type": "ghost",
   "Accuracy": 100,
@@ -9798,6 +10223,7 @@
 {
   "ID": 426,
   "Name": "mud-bomb",
+  "TMName": null,
   "PP": 10,
   "Type": "ground",
   "Accuracy": 85,
@@ -9825,6 +10251,7 @@
 {
   "ID": 427,
   "Name": "psycho-cut",
+  "TMName": null,
   "PP": 20,
   "Type": "psychic",
   "Accuracy": 100,
@@ -9847,6 +10274,7 @@
 {
   "ID": 428,
   "Name": "zen-headbutt",
+  "TMName": null,
   "PP": 15,
   "Type": "psychic",
   "Accuracy": 90,
@@ -9869,6 +10297,7 @@
 {
   "ID": 429,
   "Name": "mirror-shot",
+  "TMName": null,
   "PP": 10,
   "Type": "steel",
   "Accuracy": 85,
@@ -9896,6 +10325,7 @@
 {
   "ID": 430,
   "Name": "flash-cannon",
+  "TMName": "tm91",
   "PP": 10,
   "Type": "steel",
   "Accuracy": 100,
@@ -9923,6 +10353,7 @@
 {
   "ID": 431,
   "Name": "rock-climb",
+  "TMName": "hm08",
   "PP": 20,
   "Type": "normal",
   "Accuracy": 85,
@@ -9945,6 +10376,7 @@
 {
   "ID": 432,
   "Name": "defog",
+  "TMName": "hm05",
   "PP": 15,
   "Type": "flying",
   "Accuracy": 0,
@@ -9967,6 +10399,7 @@
 {
   "ID": 433,
   "Name": "trick-room",
+  "TMName": "tm92",
   "PP": 5,
   "Type": "psychic",
   "Accuracy": 0,
@@ -9989,6 +10422,7 @@
 {
   "ID": 434,
   "Name": "draco-meteor",
+  "TMName": null,
   "PP": 5,
   "Type": "dragon",
   "Accuracy": 90,
@@ -10016,6 +10450,7 @@
 {
   "ID": 435,
   "Name": "discharge",
+  "TMName": null,
   "PP": 15,
   "Type": "electric",
   "Accuracy": 100,
@@ -10038,6 +10473,7 @@
 {
   "ID": 436,
   "Name": "lava-plume",
+  "TMName": null,
   "PP": 15,
   "Type": "fire",
   "Accuracy": 100,
@@ -10060,6 +10496,7 @@
 {
   "ID": 437,
   "Name": "leaf-storm",
+  "TMName": null,
   "PP": 5,
   "Type": "grass",
   "Accuracy": 90,
@@ -10087,6 +10524,7 @@
 {
   "ID": 438,
   "Name": "power-whip",
+  "TMName": null,
   "PP": 10,
   "Type": "grass",
   "Accuracy": 85,
@@ -10109,6 +10547,7 @@
 {
   "ID": 439,
   "Name": "rock-wrecker",
+  "TMName": null,
   "PP": 5,
   "Type": "rock",
   "Accuracy": 90,
@@ -10131,6 +10570,7 @@
 {
   "ID": 440,
   "Name": "cross-poison",
+  "TMName": null,
   "PP": 20,
   "Type": "poison",
   "Accuracy": 100,
@@ -10153,6 +10593,7 @@
 {
   "ID": 441,
   "Name": "gunk-shot",
+  "TMName": null,
   "PP": 5,
   "Type": "poison",
   "Accuracy": 80,
@@ -10175,6 +10616,7 @@
 {
   "ID": 442,
   "Name": "iron-head",
+  "TMName": null,
   "PP": 15,
   "Type": "steel",
   "Accuracy": 100,
@@ -10197,6 +10639,7 @@
 {
   "ID": 443,
   "Name": "magnet-bomb",
+  "TMName": null,
   "PP": 20,
   "Type": "steel",
   "Accuracy": 0,
@@ -10219,6 +10662,7 @@
 {
   "ID": 444,
   "Name": "stone-edge",
+  "TMName": "tm71",
   "PP": 5,
   "Type": "rock",
   "Accuracy": 80,
@@ -10241,6 +10685,7 @@
 {
   "ID": 445,
   "Name": "captivate",
+  "TMName": "tm78",
   "PP": 20,
   "Type": "normal",
   "Accuracy": 100,
@@ -10268,6 +10713,7 @@
 {
   "ID": 446,
   "Name": "stealth-rock",
+  "TMName": "tm76",
   "PP": 20,
   "Type": "rock",
   "Accuracy": 0,
@@ -10290,6 +10736,7 @@
 {
   "ID": 447,
   "Name": "grass-knot",
+  "TMName": "tm86",
   "PP": 20,
   "Type": "grass",
   "Accuracy": 100,
@@ -10312,6 +10759,7 @@
 {
   "ID": 448,
   "Name": "chatter",
+  "TMName": null,
   "PP": 20,
   "Type": "flying",
   "Accuracy": 100,
@@ -10334,6 +10782,7 @@
 {
   "ID": 449,
   "Name": "judgment",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 100,
@@ -10356,6 +10805,7 @@
 {
   "ID": 450,
   "Name": "bug-bite",
+  "TMName": null,
   "PP": 20,
   "Type": "bug",
   "Accuracy": 100,
@@ -10378,6 +10828,7 @@
 {
   "ID": 451,
   "Name": "charge-beam",
+  "TMName": "tm57",
   "PP": 10,
   "Type": "electric",
   "Accuracy": 90,
@@ -10405,6 +10856,7 @@
 {
   "ID": 452,
   "Name": "wood-hammer",
+  "TMName": null,
   "PP": 15,
   "Type": "grass",
   "Accuracy": 100,
@@ -10427,6 +10879,7 @@
 {
   "ID": 453,
   "Name": "aqua-jet",
+  "TMName": null,
   "PP": 20,
   "Type": "water",
   "Accuracy": 100,
@@ -10449,6 +10902,7 @@
 {
   "ID": 454,
   "Name": "attack-order",
+  "TMName": null,
   "PP": 15,
   "Type": "bug",
   "Accuracy": 100,
@@ -10471,6 +10925,7 @@
 {
   "ID": 455,
   "Name": "defend-order",
+  "TMName": null,
   "PP": 10,
   "Type": "bug",
   "Accuracy": 0,
@@ -10502,6 +10957,7 @@
 {
   "ID": 456,
   "Name": "heal-order",
+  "TMName": null,
   "PP": 10,
   "Type": "bug",
   "Accuracy": 0,
@@ -10524,6 +10980,7 @@
 {
   "ID": 457,
   "Name": "head-smash",
+  "TMName": null,
   "PP": 5,
   "Type": "rock",
   "Accuracy": 80,
@@ -10546,6 +11003,7 @@
 {
   "ID": 458,
   "Name": "double-hit",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 90,
@@ -10568,6 +11026,7 @@
 {
   "ID": 459,
   "Name": "roar-of-time",
+  "TMName": null,
   "PP": 5,
   "Type": "dragon",
   "Accuracy": 90,
@@ -10590,6 +11049,7 @@
 {
   "ID": 460,
   "Name": "spacial-rend",
+  "TMName": null,
   "PP": 5,
   "Type": "dragon",
   "Accuracy": 95,
@@ -10612,6 +11072,7 @@
 {
   "ID": 461,
   "Name": "lunar-dance",
+  "TMName": null,
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 0,
@@ -10634,6 +11095,7 @@
 {
   "ID": 462,
   "Name": "crush-grip",
+  "TMName": null,
   "PP": 5,
   "Type": "normal",
   "Accuracy": 100,
@@ -10656,6 +11118,7 @@
 {
   "ID": 463,
   "Name": "magma-storm",
+  "TMName": null,
   "PP": 5,
   "Type": "fire",
   "Accuracy": 75,
@@ -10678,6 +11141,7 @@
 {
   "ID": 464,
   "Name": "dark-void",
+  "TMName": null,
   "PP": 10,
   "Type": "dark",
   "Accuracy": 50,
@@ -10700,6 +11164,7 @@
 {
   "ID": 465,
   "Name": "seed-flare",
+  "TMName": null,
   "PP": 5,
   "Type": "grass",
   "Accuracy": 85,
@@ -10727,6 +11192,7 @@
 {
   "ID": 466,
   "Name": "ominous-wind",
+  "TMName": null,
   "PP": 5,
   "Type": "ghost",
   "Accuracy": 100,
@@ -10774,6 +11240,7 @@
 {
   "ID": 467,
   "Name": "shadow-force",
+  "TMName": null,
   "PP": 5,
   "Type": "ghost",
   "Accuracy": 100,
@@ -10796,6 +11263,7 @@
 {
   "ID": 468,
   "Name": "hone-claws",
+  "TMName": "tm01",
   "PP": 15,
   "Type": "dark",
   "Accuracy": 0,
@@ -10827,6 +11295,7 @@
 {
   "ID": 469,
   "Name": "wide-guard",
+  "TMName": null,
   "PP": 10,
   "Type": "rock",
   "Accuracy": 0,
@@ -10849,6 +11318,7 @@
 {
   "ID": 470,
   "Name": "guard-split",
+  "TMName": null,
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 0,
@@ -10871,6 +11341,7 @@
 {
   "ID": 471,
   "Name": "power-split",
+  "TMName": null,
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 0,
@@ -10893,6 +11364,7 @@
 {
   "ID": 472,
   "Name": "wonder-room",
+  "TMName": null,
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 0,
@@ -10915,6 +11387,7 @@
 {
   "ID": 473,
   "Name": "psyshock",
+  "TMName": "tm03",
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 100,
@@ -10937,6 +11410,7 @@
 {
   "ID": 474,
   "Name": "venoshock",
+  "TMName": "tm09",
   "PP": 10,
   "Type": "poison",
   "Accuracy": 100,
@@ -10959,6 +11433,7 @@
 {
   "ID": 475,
   "Name": "autotomize",
+  "TMName": null,
   "PP": 15,
   "Type": "steel",
   "Accuracy": 0,
@@ -10986,6 +11461,7 @@
 {
   "ID": 476,
   "Name": "rage-powder",
+  "TMName": null,
   "PP": 20,
   "Type": "bug",
   "Accuracy": 0,
@@ -11008,6 +11484,7 @@
 {
   "ID": 477,
   "Name": "telekinesis",
+  "TMName": "tm19",
   "PP": 15,
   "Type": "psychic",
   "Accuracy": 0,
@@ -11030,6 +11507,7 @@
 {
   "ID": 478,
   "Name": "magic-room",
+  "TMName": null,
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 0,
@@ -11052,6 +11530,7 @@
 {
   "ID": 479,
   "Name": "smack-down",
+  "TMName": "tm23",
   "PP": 15,
   "Type": "rock",
   "Accuracy": 100,
@@ -11074,6 +11553,7 @@
 {
   "ID": 480,
   "Name": "storm-throw",
+  "TMName": null,
   "PP": 10,
   "Type": "fighting",
   "Accuracy": 100,
@@ -11096,6 +11576,7 @@
 {
   "ID": 481,
   "Name": "flame-burst",
+  "TMName": null,
   "PP": 15,
   "Type": "fire",
   "Accuracy": 100,
@@ -11118,6 +11599,7 @@
 {
   "ID": 482,
   "Name": "sludge-wave",
+  "TMName": "tm34",
   "PP": 10,
   "Type": "poison",
   "Accuracy": 100,
@@ -11140,6 +11622,7 @@
 {
   "ID": 483,
   "Name": "quiver-dance",
+  "TMName": null,
   "PP": 20,
   "Type": "bug",
   "Accuracy": 0,
@@ -11175,6 +11658,7 @@
 {
   "ID": 484,
   "Name": "heavy-slam",
+  "TMName": null,
   "PP": 10,
   "Type": "steel",
   "Accuracy": 100,
@@ -11197,6 +11681,7 @@
 {
   "ID": 485,
   "Name": "synchronoise",
+  "TMName": null,
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 100,
@@ -11219,6 +11704,7 @@
 {
   "ID": 486,
   "Name": "electro-ball",
+  "TMName": null,
   "PP": 10,
   "Type": "electric",
   "Accuracy": 100,
@@ -11241,6 +11727,7 @@
 {
   "ID": 487,
   "Name": "soak",
+  "TMName": null,
   "PP": 20,
   "Type": "water",
   "Accuracy": 100,
@@ -11263,6 +11750,7 @@
 {
   "ID": 488,
   "Name": "flame-charge",
+  "TMName": "tm43",
   "PP": 20,
   "Type": "fire",
   "Accuracy": 100,
@@ -11290,6 +11778,7 @@
 {
   "ID": 489,
   "Name": "coil",
+  "TMName": null,
   "PP": 20,
   "Type": "poison",
   "Accuracy": 0,
@@ -11325,6 +11814,7 @@
 {
   "ID": 490,
   "Name": "low-sweep",
+  "TMName": "tm47",
   "PP": 20,
   "Type": "fighting",
   "Accuracy": 100,
@@ -11352,6 +11842,7 @@
 {
   "ID": 491,
   "Name": "acid-spray",
+  "TMName": null,
   "PP": 20,
   "Type": "poison",
   "Accuracy": 100,
@@ -11379,6 +11870,7 @@
 {
   "ID": 492,
   "Name": "foul-play",
+  "TMName": null,
   "PP": 15,
   "Type": "dark",
   "Accuracy": 100,
@@ -11401,6 +11893,7 @@
 {
   "ID": 493,
   "Name": "simple-beam",
+  "TMName": null,
   "PP": 15,
   "Type": "normal",
   "Accuracy": 100,
@@ -11423,6 +11916,7 @@
 {
   "ID": 494,
   "Name": "entrainment",
+  "TMName": null,
   "PP": 15,
   "Type": "normal",
   "Accuracy": 100,
@@ -11445,6 +11939,7 @@
 {
   "ID": 495,
   "Name": "after-you",
+  "TMName": null,
   "PP": 15,
   "Type": "normal",
   "Accuracy": 0,
@@ -11467,6 +11962,7 @@
 {
   "ID": 496,
   "Name": "round",
+  "TMName": "tm48",
   "PP": 15,
   "Type": "normal",
   "Accuracy": 100,
@@ -11489,6 +11985,7 @@
 {
   "ID": 497,
   "Name": "echoed-voice",
+  "TMName": "tm49",
   "PP": 15,
   "Type": "normal",
   "Accuracy": 100,
@@ -11511,6 +12008,7 @@
 {
   "ID": 498,
   "Name": "chip-away",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 100,
@@ -11533,6 +12031,7 @@
 {
   "ID": 499,
   "Name": "clear-smog",
+  "TMName": null,
   "PP": 15,
   "Type": "poison",
   "Accuracy": 0,
@@ -11555,6 +12054,7 @@
 {
   "ID": 500,
   "Name": "stored-power",
+  "TMName": null,
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 100,
@@ -11577,6 +12077,7 @@
 {
   "ID": 501,
   "Name": "quick-guard",
+  "TMName": null,
   "PP": 15,
   "Type": "fighting",
   "Accuracy": 0,
@@ -11599,6 +12100,7 @@
 {
   "ID": 502,
   "Name": "ally-switch",
+  "TMName": "tm51",
   "PP": 15,
   "Type": "psychic",
   "Accuracy": 0,
@@ -11621,6 +12123,7 @@
 {
   "ID": 503,
   "Name": "scald",
+  "TMName": "tm55",
   "PP": 15,
   "Type": "water",
   "Accuracy": 100,
@@ -11643,6 +12146,7 @@
 {
   "ID": 504,
   "Name": "shell-smash",
+  "TMName": null,
   "PP": 15,
   "Type": "normal",
   "Accuracy": 0,
@@ -11665,6 +12169,7 @@
 {
   "ID": 505,
   "Name": "heal-pulse",
+  "TMName": null,
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 0,
@@ -11687,6 +12192,7 @@
 {
   "ID": 506,
   "Name": "hex",
+  "TMName": null,
   "PP": 10,
   "Type": "ghost",
   "Accuracy": 100,
@@ -11709,6 +12215,7 @@
 {
   "ID": 507,
   "Name": "sky-drop",
+  "TMName": "tm58",
   "PP": 10,
   "Type": "flying",
   "Accuracy": 100,
@@ -11731,6 +12238,7 @@
 {
   "ID": 508,
   "Name": "shift-gear",
+  "TMName": null,
   "PP": 10,
   "Type": "steel",
   "Accuracy": 0,
@@ -11762,6 +12270,7 @@
 {
   "ID": 509,
   "Name": "circle-throw",
+  "TMName": null,
   "PP": 10,
   "Type": "fighting",
   "Accuracy": 90,
@@ -11784,6 +12293,7 @@
 {
   "ID": 510,
   "Name": "incinerate",
+  "TMName": "tm59",
   "PP": 15,
   "Type": "fire",
   "Accuracy": 100,
@@ -11806,6 +12316,7 @@
 {
   "ID": 511,
   "Name": "quash",
+  "TMName": "tm60",
   "PP": 15,
   "Type": "dark",
   "Accuracy": 100,
@@ -11828,6 +12339,7 @@
 {
   "ID": 512,
   "Name": "acrobatics",
+  "TMName": "tm62",
   "PP": 15,
   "Type": "flying",
   "Accuracy": 100,
@@ -11850,6 +12362,7 @@
 {
   "ID": 513,
   "Name": "reflect-type",
+  "TMName": null,
   "PP": 15,
   "Type": "normal",
   "Accuracy": 0,
@@ -11872,6 +12385,7 @@
 {
   "ID": 514,
   "Name": "retaliate",
+  "TMName": "tm67",
   "PP": 5,
   "Type": "normal",
   "Accuracy": 100,
@@ -11894,6 +12408,7 @@
 {
   "ID": 515,
   "Name": "final-gambit",
+  "TMName": null,
   "PP": 5,
   "Type": "fighting",
   "Accuracy": 100,
@@ -11916,6 +12431,7 @@
 {
   "ID": 516,
   "Name": "bestow",
+  "TMName": null,
   "PP": 15,
   "Type": "normal",
   "Accuracy": 0,
@@ -11938,6 +12454,7 @@
 {
   "ID": 517,
   "Name": "inferno",
+  "TMName": null,
   "PP": 5,
   "Type": "fire",
   "Accuracy": 50,
@@ -11960,6 +12477,7 @@
 {
   "ID": 518,
   "Name": "water-pledge",
+  "TMName": null,
   "PP": 10,
   "Type": "water",
   "Accuracy": 100,
@@ -11982,6 +12500,7 @@
 {
   "ID": 519,
   "Name": "fire-pledge",
+  "TMName": null,
   "PP": 10,
   "Type": "fire",
   "Accuracy": 100,
@@ -12004,6 +12523,7 @@
 {
   "ID": 520,
   "Name": "grass-pledge",
+  "TMName": null,
   "PP": 10,
   "Type": "grass",
   "Accuracy": 100,
@@ -12026,6 +12546,7 @@
 {
   "ID": 521,
   "Name": "volt-switch",
+  "TMName": "tm72",
   "PP": 20,
   "Type": "electric",
   "Accuracy": 100,
@@ -12048,6 +12569,7 @@
 {
   "ID": 522,
   "Name": "struggle-bug",
+  "TMName": "tm76",
   "PP": 20,
   "Type": "bug",
   "Accuracy": 100,
@@ -12075,6 +12597,7 @@
 {
   "ID": 523,
   "Name": "bulldoze",
+  "TMName": "tm78",
   "PP": 20,
   "Type": "ground",
   "Accuracy": 100,
@@ -12102,6 +12625,7 @@
 {
   "ID": 524,
   "Name": "frost-breath",
+  "TMName": "tm79",
   "PP": 10,
   "Type": "ice",
   "Accuracy": 90,
@@ -12124,6 +12648,7 @@
 {
   "ID": 525,
   "Name": "dragon-tail",
+  "TMName": "tm82",
   "PP": 10,
   "Type": "dragon",
   "Accuracy": 90,
@@ -12146,6 +12671,7 @@
 {
   "ID": 526,
   "Name": "work-up",
+  "TMName": "tm83",
   "PP": 30,
   "Type": "normal",
   "Accuracy": 0,
@@ -12177,6 +12703,7 @@
 {
   "ID": 527,
   "Name": "electroweb",
+  "TMName": null,
   "PP": 15,
   "Type": "electric",
   "Accuracy": 95,
@@ -12204,6 +12731,7 @@
 {
   "ID": 528,
   "Name": "wild-charge",
+  "TMName": "tm93",
   "PP": 15,
   "Type": "electric",
   "Accuracy": 100,
@@ -12226,6 +12754,7 @@
 {
   "ID": 529,
   "Name": "drill-run",
+  "TMName": null,
   "PP": 10,
   "Type": "ground",
   "Accuracy": 95,
@@ -12248,6 +12777,7 @@
 {
   "ID": 530,
   "Name": "dual-chop",
+  "TMName": null,
   "PP": 15,
   "Type": "dragon",
   "Accuracy": 90,
@@ -12270,6 +12800,7 @@
 {
   "ID": 531,
   "Name": "heart-stamp",
+  "TMName": null,
   "PP": 25,
   "Type": "psychic",
   "Accuracy": 100,
@@ -12292,6 +12823,7 @@
 {
   "ID": 532,
   "Name": "horn-leech",
+  "TMName": null,
   "PP": 10,
   "Type": "grass",
   "Accuracy": 100,
@@ -12314,6 +12846,7 @@
 {
   "ID": 533,
   "Name": "sacred-sword",
+  "TMName": null,
   "PP": 15,
   "Type": "fighting",
   "Accuracy": 100,
@@ -12336,6 +12869,7 @@
 {
   "ID": 534,
   "Name": "razor-shell",
+  "TMName": null,
   "PP": 10,
   "Type": "water",
   "Accuracy": 95,
@@ -12363,6 +12897,7 @@
 {
   "ID": 535,
   "Name": "heat-crash",
+  "TMName": null,
   "PP": 10,
   "Type": "fire",
   "Accuracy": 100,
@@ -12385,6 +12920,7 @@
 {
   "ID": 536,
   "Name": "leaf-tornado",
+  "TMName": null,
   "PP": 10,
   "Type": "grass",
   "Accuracy": 90,
@@ -12412,6 +12948,7 @@
 {
   "ID": 537,
   "Name": "steamroller",
+  "TMName": null,
   "PP": 20,
   "Type": "bug",
   "Accuracy": 100,
@@ -12434,6 +12971,7 @@
 {
   "ID": 538,
   "Name": "cotton-guard",
+  "TMName": null,
   "PP": 10,
   "Type": "grass",
   "Accuracy": 0,
@@ -12461,6 +12999,7 @@
 {
   "ID": 539,
   "Name": "night-daze",
+  "TMName": null,
   "PP": 10,
   "Type": "dark",
   "Accuracy": 95,
@@ -12488,6 +13027,7 @@
 {
   "ID": 540,
   "Name": "psystrike",
+  "TMName": null,
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 100,
@@ -12510,6 +13050,7 @@
 {
   "ID": 541,
   "Name": "tail-slap",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 85,
@@ -12532,6 +13073,7 @@
 {
   "ID": 542,
   "Name": "hurricane",
+  "TMName": null,
   "PP": 10,
   "Type": "flying",
   "Accuracy": 70,
@@ -12554,6 +13096,7 @@
 {
   "ID": 543,
   "Name": "head-charge",
+  "TMName": null,
   "PP": 15,
   "Type": "normal",
   "Accuracy": 100,
@@ -12576,6 +13119,7 @@
 {
   "ID": 544,
   "Name": "gear-grind",
+  "TMName": null,
   "PP": 15,
   "Type": "steel",
   "Accuracy": 85,
@@ -12598,6 +13142,7 @@
 {
   "ID": 545,
   "Name": "searing-shot",
+  "TMName": null,
   "PP": 5,
   "Type": "fire",
   "Accuracy": 100,
@@ -12620,6 +13165,7 @@
 {
   "ID": 546,
   "Name": "techno-blast",
+  "TMName": null,
   "PP": 5,
   "Type": "normal",
   "Accuracy": 100,
@@ -12642,6 +13188,7 @@
 {
   "ID": 547,
   "Name": "relic-song",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 100,
@@ -12664,6 +13211,7 @@
 {
   "ID": 548,
   "Name": "secret-sword",
+  "TMName": null,
   "PP": 10,
   "Type": "fighting",
   "Accuracy": 100,
@@ -12686,6 +13234,7 @@
 {
   "ID": 549,
   "Name": "glaciate",
+  "TMName": null,
   "PP": 10,
   "Type": "ice",
   "Accuracy": 95,
@@ -12713,6 +13262,7 @@
 {
   "ID": 550,
   "Name": "bolt-strike",
+  "TMName": null,
   "PP": 5,
   "Type": "electric",
   "Accuracy": 85,
@@ -12735,6 +13285,7 @@
 {
   "ID": 551,
   "Name": "blue-flare",
+  "TMName": null,
   "PP": 5,
   "Type": "fire",
   "Accuracy": 85,
@@ -12757,6 +13308,7 @@
 {
   "ID": 552,
   "Name": "fiery-dance",
+  "TMName": null,
   "PP": 10,
   "Type": "fire",
   "Accuracy": 100,
@@ -12784,6 +13336,7 @@
 {
   "ID": 553,
   "Name": "freeze-shock",
+  "TMName": null,
   "PP": 5,
   "Type": "ice",
   "Accuracy": 90,
@@ -12806,6 +13359,7 @@
 {
   "ID": 554,
   "Name": "ice-burn",
+  "TMName": null,
   "PP": 5,
   "Type": "ice",
   "Accuracy": 90,
@@ -12828,6 +13382,7 @@
 {
   "ID": 555,
   "Name": "snarl",
+  "TMName": "tm95",
   "PP": 15,
   "Type": "dark",
   "Accuracy": 95,
@@ -12855,6 +13410,7 @@
 {
   "ID": 556,
   "Name": "icicle-crash",
+  "TMName": null,
   "PP": 10,
   "Type": "ice",
   "Accuracy": 90,
@@ -12877,6 +13433,7 @@
 {
   "ID": 557,
   "Name": "v-create",
+  "TMName": null,
   "PP": 5,
   "Type": "fire",
   "Accuracy": 95,
@@ -12912,6 +13469,7 @@
 {
   "ID": 558,
   "Name": "fusion-flare",
+  "TMName": null,
   "PP": 5,
   "Type": "fire",
   "Accuracy": 100,
@@ -12934,6 +13492,7 @@
 {
   "ID": 559,
   "Name": "fusion-bolt",
+  "TMName": null,
   "PP": 5,
   "Type": "electric",
   "Accuracy": 100,
@@ -12956,6 +13515,7 @@
 {
   "ID": 560,
   "Name": "flying-press",
+  "TMName": null,
   "PP": 10,
   "Type": "fighting",
   "Accuracy": 95,
@@ -12978,6 +13538,7 @@
 {
   "ID": 561,
   "Name": "mat-block",
+  "TMName": null,
   "PP": 10,
   "Type": "fighting",
   "Accuracy": 0,
@@ -13000,6 +13561,7 @@
 {
   "ID": 562,
   "Name": "belch",
+  "TMName": null,
   "PP": 10,
   "Type": "poison",
   "Accuracy": 90,
@@ -13022,6 +13584,7 @@
 {
   "ID": 563,
   "Name": "rototiller",
+  "TMName": null,
   "PP": 10,
   "Type": "ground",
   "Accuracy": 0,
@@ -13053,6 +13616,7 @@
 {
   "ID": 564,
   "Name": "sticky-web",
+  "TMName": null,
   "PP": 20,
   "Type": "bug",
   "Accuracy": 0,
@@ -13075,6 +13639,7 @@
 {
   "ID": 565,
   "Name": "fell-stinger",
+  "TMName": null,
   "PP": 25,
   "Type": "bug",
   "Accuracy": 100,
@@ -13097,6 +13662,7 @@
 {
   "ID": 566,
   "Name": "phantom-force",
+  "TMName": null,
   "PP": 10,
   "Type": "ghost",
   "Accuracy": 100,
@@ -13119,6 +13685,7 @@
 {
   "ID": 567,
   "Name": "trick-or-treat",
+  "TMName": null,
   "PP": 20,
   "Type": "ghost",
   "Accuracy": 100,
@@ -13141,6 +13708,7 @@
 {
   "ID": 568,
   "Name": "noble-roar",
+  "TMName": null,
   "PP": 30,
   "Type": "normal",
   "Accuracy": 100,
@@ -13172,6 +13740,7 @@
 {
   "ID": 569,
   "Name": "ion-deluge",
+  "TMName": null,
   "PP": 25,
   "Type": "electric",
   "Accuracy": 0,
@@ -13194,6 +13763,7 @@
 {
   "ID": 570,
   "Name": "parabolic-charge",
+  "TMName": null,
   "PP": 20,
   "Type": "electric",
   "Accuracy": 100,
@@ -13216,6 +13786,7 @@
 {
   "ID": 571,
   "Name": "forests-curse",
+  "TMName": null,
   "PP": 20,
   "Type": "grass",
   "Accuracy": 100,
@@ -13238,6 +13809,7 @@
 {
   "ID": 572,
   "Name": "petal-blizzard",
+  "TMName": null,
   "PP": 15,
   "Type": "grass",
   "Accuracy": 100,
@@ -13260,6 +13832,7 @@
 {
   "ID": 573,
   "Name": "freeze-dry",
+  "TMName": null,
   "PP": 20,
   "Type": "ice",
   "Accuracy": 100,
@@ -13282,6 +13855,7 @@
 {
   "ID": 574,
   "Name": "disarming-voice",
+  "TMName": null,
   "PP": 15,
   "Type": "fairy",
   "Accuracy": 0,
@@ -13304,6 +13878,7 @@
 {
   "ID": 575,
   "Name": "parting-shot",
+  "TMName": null,
   "PP": 20,
   "Type": "dark",
   "Accuracy": 100,
@@ -13335,6 +13910,7 @@
 {
   "ID": 576,
   "Name": "topsy-turvy",
+  "TMName": null,
   "PP": 20,
   "Type": "dark",
   "Accuracy": 0,
@@ -13357,6 +13933,7 @@
 {
   "ID": 577,
   "Name": "draining-kiss",
+  "TMName": null,
   "PP": 10,
   "Type": "fairy",
   "Accuracy": 100,
@@ -13379,6 +13956,7 @@
 {
   "ID": 578,
   "Name": "crafty-shield",
+  "TMName": null,
   "PP": 10,
   "Type": "fairy",
   "Accuracy": 0,
@@ -13401,6 +13979,7 @@
 {
   "ID": 579,
   "Name": "flower-shield",
+  "TMName": null,
   "PP": 10,
   "Type": "fairy",
   "Accuracy": 0,
@@ -13428,6 +14007,7 @@
 {
   "ID": 580,
   "Name": "grassy-terrain",
+  "TMName": null,
   "PP": 10,
   "Type": "grass",
   "Accuracy": 0,
@@ -13450,6 +14030,7 @@
 {
   "ID": 581,
   "Name": "misty-terrain",
+  "TMName": null,
   "PP": 10,
   "Type": "fairy",
   "Accuracy": 0,
@@ -13472,6 +14053,7 @@
 {
   "ID": 582,
   "Name": "electrify",
+  "TMName": null,
   "PP": 20,
   "Type": "electric",
   "Accuracy": 0,
@@ -13494,6 +14076,7 @@
 {
   "ID": 583,
   "Name": "play-rough",
+  "TMName": null,
   "PP": 10,
   "Type": "fairy",
   "Accuracy": 90,
@@ -13521,6 +14104,7 @@
 {
   "ID": 584,
   "Name": "fairy-wind",
+  "TMName": null,
   "PP": 30,
   "Type": "fairy",
   "Accuracy": 100,
@@ -13543,6 +14127,7 @@
 {
   "ID": 585,
   "Name": "moonblast",
+  "TMName": null,
   "PP": 15,
   "Type": "fairy",
   "Accuracy": 100,
@@ -13570,6 +14155,7 @@
 {
   "ID": 586,
   "Name": "boomburst",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 100,
@@ -13592,6 +14178,7 @@
 {
   "ID": 587,
   "Name": "fairy-lock",
+  "TMName": null,
   "PP": 10,
   "Type": "fairy",
   "Accuracy": 0,
@@ -13614,6 +14201,7 @@
 {
   "ID": 588,
   "Name": "kings-shield",
+  "TMName": null,
   "PP": 10,
   "Type": "steel",
   "Accuracy": 0,
@@ -13636,6 +14224,7 @@
 {
   "ID": 589,
   "Name": "play-nice",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 0,
@@ -13663,6 +14252,7 @@
 {
   "ID": 590,
   "Name": "confide",
+  "TMName": "tm100",
   "PP": 20,
   "Type": "normal",
   "Accuracy": 0,
@@ -13690,6 +14280,7 @@
 {
   "ID": 591,
   "Name": "diamond-storm",
+  "TMName": null,
   "PP": 5,
   "Type": "rock",
   "Accuracy": 95,
@@ -13717,6 +14308,7 @@
 {
   "ID": 592,
   "Name": "steam-eruption",
+  "TMName": null,
   "PP": 5,
   "Type": "water",
   "Accuracy": 95,
@@ -13739,6 +14331,7 @@
 {
   "ID": 593,
   "Name": "hyperspace-hole",
+  "TMName": null,
   "PP": 5,
   "Type": "psychic",
   "Accuracy": 0,
@@ -13761,6 +14354,7 @@
 {
   "ID": 594,
   "Name": "water-shuriken",
+  "TMName": null,
   "PP": 20,
   "Type": "water",
   "Accuracy": 100,
@@ -13783,6 +14377,7 @@
 {
   "ID": 595,
   "Name": "mystical-fire",
+  "TMName": null,
   "PP": 10,
   "Type": "fire",
   "Accuracy": 100,
@@ -13810,6 +14405,7 @@
 {
   "ID": 596,
   "Name": "spiky-shield",
+  "TMName": null,
   "PP": 10,
   "Type": "grass",
   "Accuracy": 0,
@@ -13832,6 +14428,7 @@
 {
   "ID": 597,
   "Name": "aromatic-mist",
+  "TMName": null,
   "PP": 20,
   "Type": "fairy",
   "Accuracy": 0,
@@ -13859,6 +14456,7 @@
 {
   "ID": 598,
   "Name": "eerie-impulse",
+  "TMName": null,
   "PP": 15,
   "Type": "electric",
   "Accuracy": 100,
@@ -13886,6 +14484,7 @@
 {
   "ID": 599,
   "Name": "venom-drench",
+  "TMName": null,
   "PP": 20,
   "Type": "poison",
   "Accuracy": 100,
@@ -13921,6 +14520,7 @@
 {
   "ID": 600,
   "Name": "powder",
+  "TMName": null,
   "PP": 20,
   "Type": "bug",
   "Accuracy": 100,
@@ -13943,6 +14543,7 @@
 {
   "ID": 601,
   "Name": "geomancy",
+  "TMName": null,
   "PP": 10,
   "Type": "fairy",
   "Accuracy": 0,
@@ -13978,6 +14579,7 @@
 {
   "ID": 602,
   "Name": "magnetic-flux",
+  "TMName": null,
   "PP": 20,
   "Type": "electric",
   "Accuracy": 0,
@@ -14009,6 +14611,7 @@
 {
   "ID": 603,
   "Name": "happy-hour",
+  "TMName": null,
   "PP": 30,
   "Type": "normal",
   "Accuracy": 0,
@@ -14031,6 +14634,7 @@
 {
   "ID": 604,
   "Name": "electric-terrain",
+  "TMName": null,
   "PP": 10,
   "Type": "electric",
   "Accuracy": 0,
@@ -14053,6 +14657,7 @@
 {
   "ID": 605,
   "Name": "dazzling-gleam",
+  "TMName": "tm99",
   "PP": 10,
   "Type": "fairy",
   "Accuracy": 100,
@@ -14075,6 +14680,7 @@
 {
   "ID": 606,
   "Name": "celebrate",
+  "TMName": null,
   "PP": 40,
   "Type": "normal",
   "Accuracy": 0,
@@ -14097,6 +14703,7 @@
 {
   "ID": 607,
   "Name": "hold-hands",
+  "TMName": null,
   "PP": 40,
   "Type": "normal",
   "Accuracy": 0,
@@ -14119,6 +14726,7 @@
 {
   "ID": 608,
   "Name": "baby-doll-eyes",
+  "TMName": null,
   "PP": 30,
   "Type": "fairy",
   "Accuracy": 100,
@@ -14146,6 +14754,7 @@
 {
   "ID": 609,
   "Name": "nuzzle",
+  "TMName": null,
   "PP": 20,
   "Type": "electric",
   "Accuracy": 100,
@@ -14168,6 +14777,7 @@
 {
   "ID": 610,
   "Name": "hold-back",
+  "TMName": null,
   "PP": 40,
   "Type": "normal",
   "Accuracy": 100,
@@ -14190,6 +14800,7 @@
 {
   "ID": 611,
   "Name": "infestation",
+  "TMName": "tm83",
   "PP": 20,
   "Type": "bug",
   "Accuracy": 100,
@@ -14212,6 +14823,7 @@
 {
   "ID": 612,
   "Name": "power-up-punch",
+  "TMName": "hm06",
   "PP": 20,
   "Type": "fighting",
   "Accuracy": 100,
@@ -14239,6 +14851,7 @@
 {
   "ID": 613,
   "Name": "oblivion-wing",
+  "TMName": null,
   "PP": 10,
   "Type": "flying",
   "Accuracy": 100,
@@ -14261,6 +14874,7 @@
 {
   "ID": 614,
   "Name": "thousand-arrows",
+  "TMName": null,
   "PP": 10,
   "Type": "ground",
   "Accuracy": 100,
@@ -14283,6 +14897,7 @@
 {
   "ID": 615,
   "Name": "thousand-waves",
+  "TMName": null,
   "PP": 10,
   "Type": "ground",
   "Accuracy": 100,
@@ -14305,6 +14920,7 @@
 {
   "ID": 616,
   "Name": "lands-wrath",
+  "TMName": null,
   "PP": 10,
   "Type": "ground",
   "Accuracy": 100,
@@ -14327,6 +14943,7 @@
 {
   "ID": 617,
   "Name": "light-of-ruin",
+  "TMName": null,
   "PP": 5,
   "Type": "fairy",
   "Accuracy": 90,
@@ -14349,6 +14966,7 @@
 {
   "ID": 618,
   "Name": "origin-pulse",
+  "TMName": null,
   "PP": 10,
   "Type": "water",
   "Accuracy": 85,
@@ -14371,6 +14989,7 @@
 {
   "ID": 619,
   "Name": "precipice-blades",
+  "TMName": null,
   "PP": 10,
   "Type": "ground",
   "Accuracy": 85,
@@ -14393,6 +15012,7 @@
 {
   "ID": 620,
   "Name": "dragon-ascent",
+  "TMName": null,
   "PP": 5,
   "Type": "flying",
   "Accuracy": 100,
@@ -14415,6 +15035,7 @@
 {
   "ID": 621,
   "Name": "hyperspace-fury",
+  "TMName": null,
   "PP": 5,
   "Type": "dark",
   "Accuracy": 0,
@@ -14437,6 +15058,7 @@
 {
   "ID": 622,
   "Name": "breakneck-blitz--physical",
+  "TMName": null,
   "PP": 1,
   "Type": "normal",
   "Accuracy": 0,
@@ -14459,6 +15081,7 @@
 {
   "ID": 623,
   "Name": "breakneck-blitz--special",
+  "TMName": null,
   "PP": 1,
   "Type": "normal",
   "Accuracy": 0,
@@ -14481,6 +15104,7 @@
 {
   "ID": 624,
   "Name": "all-out-pummeling--physical",
+  "TMName": null,
   "PP": 1,
   "Type": "fighting",
   "Accuracy": 0,
@@ -14503,6 +15127,7 @@
 {
   "ID": 625,
   "Name": "all-out-pummeling--special",
+  "TMName": null,
   "PP": 1,
   "Type": "fighting",
   "Accuracy": 0,
@@ -14525,6 +15150,7 @@
 {
   "ID": 626,
   "Name": "supersonic-skystrike--physical",
+  "TMName": null,
   "PP": 1,
   "Type": "flying",
   "Accuracy": 0,
@@ -14547,6 +15173,7 @@
 {
   "ID": 627,
   "Name": "supersonic-skystrike--special",
+  "TMName": null,
   "PP": 1,
   "Type": "flying",
   "Accuracy": 0,
@@ -14569,6 +15196,7 @@
 {
   "ID": 628,
   "Name": "acid-downpour--physical",
+  "TMName": null,
   "PP": 1,
   "Type": "poison",
   "Accuracy": 0,
@@ -14591,6 +15219,7 @@
 {
   "ID": 629,
   "Name": "acid-downpour--special",
+  "TMName": null,
   "PP": 1,
   "Type": "poison",
   "Accuracy": 0,
@@ -14613,6 +15242,7 @@
 {
   "ID": 630,
   "Name": "tectonic-rage--physical",
+  "TMName": null,
   "PP": 1,
   "Type": "ground",
   "Accuracy": 0,
@@ -14635,6 +15265,7 @@
 {
   "ID": 631,
   "Name": "tectonic-rage--special",
+  "TMName": null,
   "PP": 1,
   "Type": "ground",
   "Accuracy": 0,
@@ -14657,6 +15288,7 @@
 {
   "ID": 632,
   "Name": "continental-crush--physical",
+  "TMName": null,
   "PP": 1,
   "Type": "rock",
   "Accuracy": 0,
@@ -14679,6 +15311,7 @@
 {
   "ID": 633,
   "Name": "continental-crush--special",
+  "TMName": null,
   "PP": 1,
   "Type": "rock",
   "Accuracy": 0,
@@ -14701,6 +15334,7 @@
 {
   "ID": 634,
   "Name": "savage-spin-out--physical",
+  "TMName": null,
   "PP": 1,
   "Type": "bug",
   "Accuracy": 0,
@@ -14723,6 +15357,7 @@
 {
   "ID": 635,
   "Name": "savage-spin-out--special",
+  "TMName": null,
   "PP": 1,
   "Type": "bug",
   "Accuracy": 0,
@@ -14745,6 +15380,7 @@
 {
   "ID": 636,
   "Name": "never-ending-nightmare--physical",
+  "TMName": null,
   "PP": 1,
   "Type": "ghost",
   "Accuracy": 0,
@@ -14767,6 +15403,7 @@
 {
   "ID": 637,
   "Name": "never-ending-nightmare--special",
+  "TMName": null,
   "PP": 1,
   "Type": "ghost",
   "Accuracy": 0,
@@ -14789,6 +15426,7 @@
 {
   "ID": 638,
   "Name": "corkscrew-crash--physical",
+  "TMName": null,
   "PP": 1,
   "Type": "steel",
   "Accuracy": 0,
@@ -14811,6 +15449,7 @@
 {
   "ID": 639,
   "Name": "corkscrew-crash--special",
+  "TMName": null,
   "PP": 1,
   "Type": "steel",
   "Accuracy": 0,
@@ -14833,6 +15472,7 @@
 {
   "ID": 640,
   "Name": "inferno-overdrive--physical",
+  "TMName": null,
   "PP": 1,
   "Type": "fire",
   "Accuracy": 0,
@@ -14855,6 +15495,7 @@
 {
   "ID": 641,
   "Name": "inferno-overdrive--special",
+  "TMName": null,
   "PP": 1,
   "Type": "fire",
   "Accuracy": 0,
@@ -14877,6 +15518,7 @@
 {
   "ID": 642,
   "Name": "hydro-vortex--physical",
+  "TMName": null,
   "PP": 1,
   "Type": "water",
   "Accuracy": 0,
@@ -14899,6 +15541,7 @@
 {
   "ID": 643,
   "Name": "hydro-vortex--special",
+  "TMName": null,
   "PP": 1,
   "Type": "water",
   "Accuracy": 0,
@@ -14921,6 +15564,7 @@
 {
   "ID": 644,
   "Name": "bloom-doom--physical",
+  "TMName": null,
   "PP": 1,
   "Type": "grass",
   "Accuracy": 0,
@@ -14943,6 +15587,7 @@
 {
   "ID": 645,
   "Name": "bloom-doom--special",
+  "TMName": null,
   "PP": 1,
   "Type": "grass",
   "Accuracy": 0,
@@ -14965,6 +15610,7 @@
 {
   "ID": 646,
   "Name": "gigavolt-havoc--physical",
+  "TMName": null,
   "PP": 1,
   "Type": "electric",
   "Accuracy": 0,
@@ -14987,6 +15633,7 @@
 {
   "ID": 647,
   "Name": "gigavolt-havoc--special",
+  "TMName": null,
   "PP": 1,
   "Type": "electric",
   "Accuracy": 0,
@@ -15009,6 +15656,7 @@
 {
   "ID": 648,
   "Name": "shattered-psyche--physical",
+  "TMName": null,
   "PP": 1,
   "Type": "psychic",
   "Accuracy": 0,
@@ -15031,6 +15679,7 @@
 {
   "ID": 649,
   "Name": "shattered-psyche--special",
+  "TMName": null,
   "PP": 1,
   "Type": "psychic",
   "Accuracy": 0,
@@ -15053,6 +15702,7 @@
 {
   "ID": 650,
   "Name": "subzero-slammer--physical",
+  "TMName": null,
   "PP": 1,
   "Type": "ice",
   "Accuracy": 0,
@@ -15075,6 +15725,7 @@
 {
   "ID": 651,
   "Name": "subzero-slammer--special",
+  "TMName": null,
   "PP": 1,
   "Type": "ice",
   "Accuracy": 0,
@@ -15097,6 +15748,7 @@
 {
   "ID": 652,
   "Name": "devastating-drake--physical",
+  "TMName": null,
   "PP": 1,
   "Type": "dragon",
   "Accuracy": 0,
@@ -15119,6 +15771,7 @@
 {
   "ID": 653,
   "Name": "devastating-drake--special",
+  "TMName": null,
   "PP": 1,
   "Type": "dragon",
   "Accuracy": 0,
@@ -15141,6 +15794,7 @@
 {
   "ID": 654,
   "Name": "black-hole-eclipse--physical",
+  "TMName": null,
   "PP": 1,
   "Type": "dark",
   "Accuracy": 0,
@@ -15163,6 +15817,7 @@
 {
   "ID": 655,
   "Name": "black-hole-eclipse--special",
+  "TMName": null,
   "PP": 1,
   "Type": "dark",
   "Accuracy": 0,
@@ -15185,6 +15840,7 @@
 {
   "ID": 656,
   "Name": "twinkle-tackle--physical",
+  "TMName": null,
   "PP": 1,
   "Type": "fairy",
   "Accuracy": 0,
@@ -15207,6 +15863,7 @@
 {
   "ID": 657,
   "Name": "twinkle-tackle--special",
+  "TMName": null,
   "PP": 1,
   "Type": "fairy",
   "Accuracy": 0,
@@ -15229,6 +15886,7 @@
 {
   "ID": 658,
   "Name": "catastropika",
+  "TMName": null,
   "PP": 1,
   "Type": "electric",
   "Accuracy": 0,
@@ -15251,6 +15909,7 @@
 {
   "ID": 659,
   "Name": "shore-up",
+  "TMName": null,
   "PP": 10,
   "Type": "ground",
   "Accuracy": 0,
@@ -15273,6 +15932,7 @@
 {
   "ID": 660,
   "Name": "first-impression",
+  "TMName": null,
   "PP": 10,
   "Type": "bug",
   "Accuracy": 100,
@@ -15295,6 +15955,7 @@
 {
   "ID": 661,
   "Name": "baneful-bunker",
+  "TMName": null,
   "PP": 10,
   "Type": "poison",
   "Accuracy": 0,
@@ -15317,6 +15978,7 @@
 {
   "ID": 662,
   "Name": "spirit-shackle",
+  "TMName": null,
   "PP": 10,
   "Type": "ghost",
   "Accuracy": 100,
@@ -15339,6 +16001,7 @@
 {
   "ID": 663,
   "Name": "darkest-lariat",
+  "TMName": null,
   "PP": 10,
   "Type": "dark",
   "Accuracy": 100,
@@ -15361,6 +16024,7 @@
 {
   "ID": 664,
   "Name": "sparkling-aria",
+  "TMName": null,
   "PP": 10,
   "Type": "water",
   "Accuracy": 100,
@@ -15383,6 +16047,7 @@
 {
   "ID": 665,
   "Name": "ice-hammer",
+  "TMName": null,
   "PP": 10,
   "Type": "ice",
   "Accuracy": 90,
@@ -15405,6 +16070,7 @@
 {
   "ID": 666,
   "Name": "floral-healing",
+  "TMName": null,
   "PP": 10,
   "Type": "fairy",
   "Accuracy": 0,
@@ -15427,6 +16093,7 @@
 {
   "ID": 667,
   "Name": "high-horsepower",
+  "TMName": null,
   "PP": 10,
   "Type": "ground",
   "Accuracy": 95,
@@ -15449,6 +16116,7 @@
 {
   "ID": 668,
   "Name": "strength-sap",
+  "TMName": null,
   "PP": 10,
   "Type": "grass",
   "Accuracy": 100,
@@ -15471,6 +16139,7 @@
 {
   "ID": 669,
   "Name": "solar-blade",
+  "TMName": null,
   "PP": 10,
   "Type": "grass",
   "Accuracy": 100,
@@ -15493,6 +16162,7 @@
 {
   "ID": 670,
   "Name": "leafage",
+  "TMName": null,
   "PP": 40,
   "Type": "grass",
   "Accuracy": 100,
@@ -15515,6 +16185,7 @@
 {
   "ID": 671,
   "Name": "spotlight",
+  "TMName": null,
   "PP": 15,
   "Type": "normal",
   "Accuracy": 0,
@@ -15537,6 +16208,7 @@
 {
   "ID": 672,
   "Name": "toxic-thread",
+  "TMName": null,
   "PP": 20,
   "Type": "poison",
   "Accuracy": 100,
@@ -15559,6 +16231,7 @@
 {
   "ID": 673,
   "Name": "laser-focus",
+  "TMName": null,
   "PP": 30,
   "Type": "normal",
   "Accuracy": 0,
@@ -15581,6 +16254,7 @@
 {
   "ID": 674,
   "Name": "gear-up",
+  "TMName": null,
   "PP": 20,
   "Type": "steel",
   "Accuracy": 0,
@@ -15603,6 +16277,7 @@
 {
   "ID": 675,
   "Name": "throat-chop",
+  "TMName": null,
   "PP": 15,
   "Type": "dark",
   "Accuracy": 100,
@@ -15625,6 +16300,7 @@
 {
   "ID": 676,
   "Name": "pollen-puff",
+  "TMName": null,
   "PP": 15,
   "Type": "bug",
   "Accuracy": 100,
@@ -15647,6 +16323,7 @@
 {
   "ID": 677,
   "Name": "anchor-shot",
+  "TMName": null,
   "PP": 20,
   "Type": "steel",
   "Accuracy": 100,
@@ -15669,6 +16346,7 @@
 {
   "ID": 678,
   "Name": "psychic-terrain",
+  "TMName": null,
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 0,
@@ -15691,6 +16369,7 @@
 {
   "ID": 679,
   "Name": "lunge",
+  "TMName": null,
   "PP": 15,
   "Type": "bug",
   "Accuracy": 100,
@@ -15713,6 +16392,7 @@
 {
   "ID": 680,
   "Name": "fire-lash",
+  "TMName": null,
   "PP": 15,
   "Type": "fire",
   "Accuracy": 100,
@@ -15735,6 +16415,7 @@
 {
   "ID": 681,
   "Name": "power-trip",
+  "TMName": null,
   "PP": 10,
   "Type": "dark",
   "Accuracy": 100,
@@ -15757,6 +16438,7 @@
 {
   "ID": 682,
   "Name": "burn-up",
+  "TMName": null,
   "PP": 5,
   "Type": "fire",
   "Accuracy": 100,
@@ -15779,6 +16461,7 @@
 {
   "ID": 683,
   "Name": "speed-swap",
+  "TMName": null,
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 0,
@@ -15801,6 +16484,7 @@
 {
   "ID": 684,
   "Name": "smart-strike",
+  "TMName": "tm67",
   "PP": 10,
   "Type": "steel",
   "Accuracy": 0,
@@ -15823,6 +16507,7 @@
 {
   "ID": 685,
   "Name": "purify",
+  "TMName": null,
   "PP": 20,
   "Type": "poison",
   "Accuracy": 0,
@@ -15845,6 +16530,7 @@
 {
   "ID": 686,
   "Name": "revelation-dance",
+  "TMName": null,
   "PP": 15,
   "Type": "normal",
   "Accuracy": 100,
@@ -15867,6 +16553,7 @@
 {
   "ID": 687,
   "Name": "core-enforcer",
+  "TMName": null,
   "PP": 10,
   "Type": "dragon",
   "Accuracy": 100,
@@ -15889,6 +16576,7 @@
 {
   "ID": 688,
   "Name": "trop-kick",
+  "TMName": null,
   "PP": 15,
   "Type": "grass",
   "Accuracy": 100,
@@ -15911,6 +16599,7 @@
 {
   "ID": 689,
   "Name": "instruct",
+  "TMName": null,
   "PP": 15,
   "Type": "psychic",
   "Accuracy": 0,
@@ -15933,6 +16622,7 @@
 {
   "ID": 690,
   "Name": "beak-blast",
+  "TMName": null,
   "PP": 15,
   "Type": "flying",
   "Accuracy": 100,
@@ -15955,6 +16645,7 @@
 {
   "ID": 691,
   "Name": "clanging-scales",
+  "TMName": null,
   "PP": 5,
   "Type": "dragon",
   "Accuracy": 100,
@@ -15977,6 +16668,7 @@
 {
   "ID": 692,
   "Name": "dragon-hammer",
+  "TMName": null,
   "PP": 15,
   "Type": "dragon",
   "Accuracy": 100,
@@ -15999,6 +16691,7 @@
 {
   "ID": 693,
   "Name": "brutal-swing",
+  "TMName": "tm59",
   "PP": 20,
   "Type": "dark",
   "Accuracy": 100,
@@ -16021,6 +16714,7 @@
 {
   "ID": 694,
   "Name": "aurora-veil",
+  "TMName": "tm70",
   "PP": 20,
   "Type": "ice",
   "Accuracy": 0,
@@ -16043,6 +16737,7 @@
 {
   "ID": 695,
   "Name": "sinister-arrow-raid",
+  "TMName": null,
   "PP": 1,
   "Type": "ghost",
   "Accuracy": 0,
@@ -16065,6 +16760,7 @@
 {
   "ID": 696,
   "Name": "malicious-moonsault",
+  "TMName": null,
   "PP": 1,
   "Type": "dark",
   "Accuracy": 0,
@@ -16087,6 +16783,7 @@
 {
   "ID": 697,
   "Name": "oceanic-operetta",
+  "TMName": null,
   "PP": 1,
   "Type": "water",
   "Accuracy": 0,
@@ -16109,6 +16806,7 @@
 {
   "ID": 698,
   "Name": "guardian-of-alola",
+  "TMName": null,
   "PP": 1,
   "Type": "fairy",
   "Accuracy": 0,
@@ -16131,6 +16829,7 @@
 {
   "ID": 699,
   "Name": "soul-stealing-7-star-strike",
+  "TMName": null,
   "PP": 1,
   "Type": "ghost",
   "Accuracy": 0,
@@ -16153,6 +16852,7 @@
 {
   "ID": 700,
   "Name": "stoked-sparksurfer",
+  "TMName": null,
   "PP": 1,
   "Type": "electric",
   "Accuracy": 0,
@@ -16175,6 +16875,7 @@
 {
   "ID": 701,
   "Name": "pulverizing-pancake",
+  "TMName": null,
   "PP": 1,
   "Type": "normal",
   "Accuracy": 0,
@@ -16197,6 +16898,7 @@
 {
   "ID": 702,
   "Name": "extreme-evoboost",
+  "TMName": null,
   "PP": 1,
   "Type": "normal",
   "Accuracy": 0,
@@ -16219,6 +16921,7 @@
 {
   "ID": 703,
   "Name": "genesis-supernova",
+  "TMName": null,
   "PP": 1,
   "Type": "psychic",
   "Accuracy": 0,
@@ -16241,6 +16944,7 @@
 {
   "ID": 704,
   "Name": "shell-trap",
+  "TMName": null,
   "PP": 5,
   "Type": "fire",
   "Accuracy": 100,
@@ -16263,6 +16967,7 @@
 {
   "ID": 705,
   "Name": "fleur-cannon",
+  "TMName": null,
   "PP": 5,
   "Type": "fairy",
   "Accuracy": 90,
@@ -16285,6 +16990,7 @@
 {
   "ID": 706,
   "Name": "psychic-fangs",
+  "TMName": null,
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 100,
@@ -16307,6 +17013,7 @@
 {
   "ID": 707,
   "Name": "stomping-tantrum",
+  "TMName": null,
   "PP": 10,
   "Type": "ground",
   "Accuracy": 100,
@@ -16329,6 +17036,7 @@
 {
   "ID": 708,
   "Name": "shadow-bone",
+  "TMName": null,
   "PP": 10,
   "Type": "ghost",
   "Accuracy": 100,
@@ -16351,6 +17059,7 @@
 {
   "ID": 709,
   "Name": "accelerock",
+  "TMName": null,
   "PP": 20,
   "Type": "rock",
   "Accuracy": 100,
@@ -16373,6 +17082,7 @@
 {
   "ID": 710,
   "Name": "liquidation",
+  "TMName": null,
   "PP": 10,
   "Type": "water",
   "Accuracy": 100,
@@ -16395,6 +17105,7 @@
 {
   "ID": 711,
   "Name": "prismatic-laser",
+  "TMName": null,
   "PP": 10,
   "Type": "psychic",
   "Accuracy": 100,
@@ -16417,6 +17128,7 @@
 {
   "ID": 712,
   "Name": "spectral-thief",
+  "TMName": null,
   "PP": 10,
   "Type": "ghost",
   "Accuracy": 100,
@@ -16439,6 +17151,7 @@
 {
   "ID": 713,
   "Name": "sunsteel-strike",
+  "TMName": null,
   "PP": 5,
   "Type": "steel",
   "Accuracy": 100,
@@ -16461,6 +17174,7 @@
 {
   "ID": 714,
   "Name": "moongeist-beam",
+  "TMName": null,
   "PP": 5,
   "Type": "ghost",
   "Accuracy": 100,
@@ -16483,6 +17197,7 @@
 {
   "ID": 715,
   "Name": "tearful-look",
+  "TMName": null,
   "PP": 20,
   "Type": "normal",
   "Accuracy": 0,
@@ -16505,6 +17220,7 @@
 {
   "ID": 716,
   "Name": "zing-zap",
+  "TMName": null,
   "PP": 10,
   "Type": "electric",
   "Accuracy": 100,
@@ -16527,6 +17243,7 @@
 {
   "ID": 717,
   "Name": "natures-madness",
+  "TMName": null,
   "PP": 10,
   "Type": "fairy",
   "Accuracy": 90,
@@ -16549,6 +17266,7 @@
 {
   "ID": 718,
   "Name": "multi-attack",
+  "TMName": null,
   "PP": 10,
   "Type": "normal",
   "Accuracy": 100,
@@ -16571,6 +17289,7 @@
 {
   "ID": 719,
   "Name": "10-000-000-volt-thunderbolt",
+  "TMName": null,
   "PP": 1,
   "Type": "electric",
   "Accuracy": 0,
@@ -16590,3 +17309,4 @@
     "StatChanges": []
   }
 },
+]
