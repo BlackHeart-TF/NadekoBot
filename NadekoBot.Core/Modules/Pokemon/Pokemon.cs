@@ -46,8 +46,8 @@ namespace NadekoBot.Modules.Pokemon
 **.ml** *Shows your active pokemon's moves*
 **.allmoves** *DMs you a full list of your pokemon moves*
 **.active** *Gives details on the active pokemon (.active @user)*
-**.heal** *Heals a pokemon costs 1* " + _bc.BotConfig.CurrencySign + @"
-**.healall** *Heals your party. Costs 1" + _bc.BotConfig.CurrencySign + @" per pokemon*
+**.heal** *Heals a pokemon costs 1* " + Bc.BotConfig.CurrencySign + @"
+**.healall** *Heals your party. Costs 1" + Bc.BotConfig.CurrencySign + @" per pokemon*
 **.nursejoy** *Heals your party once they have all fainted (only if you are too broke to .healall)*
 **.switch name** *Switches to the specified pokemon*
 **.rename newName** *Renames your active pokemon to newName*
@@ -166,7 +166,7 @@ namespace NadekoBot.Modules.Pokemon
             {
                 var embed = new EmbedBuilder().WithColor(Color.Purple)
                     .WithDescription("That's not a wild pokemon!")
-                    .WithImageUrl(_service.GetRandomTrainerImage()).Build();
+                    .WithImageUrl(_service.GetRandomTrainerImage().ToString()).Build();
                 await ReplyAsync("", false, embed);
                 return;
             }
@@ -175,7 +175,7 @@ namespace NadekoBot.Modules.Pokemon
             delayTask = Task.Delay(shakeDelay * 3);
             if (!_cs.RemoveAsync(Context.User.Id, "Dropped a ball", 1).Result)
             {
-                await ReplyAsync($"Not enough {_bc.BotConfig.CurrencySign}!");
+                await ReplyAsync($"Not enough {Bc.BotConfig.CurrencySign}!");
                 return;
             }
 
@@ -257,7 +257,7 @@ namespace NadekoBot.Modules.Pokemon
             if (_cs.RemoveAsync(Context.User.Id, "Healed a pokemon", 1).Result)
             {
                 pkm.Heal();
-                await ReplyAsync($"**{target.ActivePokemon().NickName}** has been healed for 1 {_bc.BotConfig.CurrencySign}!");
+                await ReplyAsync($"**{target.ActivePokemon().NickName}** has been healed for 1 {Bc.BotConfig.CurrencySign}!");
             }
             else
                 await ReplyAsync("You need 1 point to heal");
@@ -274,7 +274,7 @@ namespace NadekoBot.Modules.Pokemon
             {
                 foreach (var pkm in toheal)
                     pkm.Heal();
-                await ReplyAsync(count + " Pokemon healed for " + count + _bc.BotConfig.CurrencySign + "!");
+                await ReplyAsync(count + " Pokemon healed for " + count + Bc.BotConfig.CurrencySign + "!");
             }
             else
                 await NurseJoy();
@@ -299,7 +299,7 @@ namespace NadekoBot.Modules.Pokemon
             if (_cs.RemoveAsync(Context.User.Id, "Healed a pokemon", 1).Result)
             {
                 pkm.Heal();
-                await ReplyAsync($"**{pkm.NickName}** has been healed for 1 {_bc.BotConfig.CurrencySign}!");
+                await ReplyAsync($"**{pkm.NickName}** has been healed for 1 {Bc.BotConfig.CurrencySign}!");
             }
             else
                 await ReplyAsync("You need 1 point to heal");
@@ -322,8 +322,8 @@ namespace NadekoBot.Modules.Pokemon
                 if (currency >= 6)
                 {
                     var embedtxt = new EmbedBuilder().WithColor(Color.Magenta)
-                   .WithDescription($"You have enough {_bc.BotConfig.CurrencyName} {_bc.BotConfig.CurrencySign} to heal yourself. Use `.healall`")
-                   .WithThumbnailUrl(_service.GetRandomNurseImage()).Build();
+                   .WithDescription($"You have enough {Bc.BotConfig.CurrencyName} {Bc.BotConfig.CurrencySign} to heal yourself. Use `.healall`")
+                   .WithThumbnailUrl(_service.GetRandomNurseImage().ToString()).Build();
                     await ReplyAsync("", false, embedtxt);
                     return;
                 }
@@ -332,14 +332,14 @@ namespace NadekoBot.Modules.Pokemon
                 
                 var embed = new EmbedBuilder().WithColor(Color.Magenta)
                    .WithDescription(Context.User.Mention + ",\n Your Pokémon are fighting fit!\nWe hope to see you again!")
-                   .WithThumbnailUrl(_service.GetRandomNurseImage()).Build();
+                   .WithThumbnailUrl(_service.GetRandomNurseImage().ToString()).Build();
                 await ReplyAsync("", false, embed);
             }
             else
             {
                 var embed = new EmbedBuilder().WithColor(Color.Red)
                    .WithDescription(Context.User.Mention + ", you still have pokemon willing to fight! Get back in there!")
-                   .WithThumbnailUrl(_service.GetRandomNurseImage()).Build();
+                   .WithThumbnailUrl(_service.GetRandomNurseImage().ToString()).Build();
                 await ReplyAsync("", false, embed);
             }
 
@@ -516,7 +516,7 @@ namespace NadekoBot.Modules.Pokemon
             if (defenderPokemon.HP <= 0)
             {
                 
-                var str = $"{defenderPokemon.NickName} fainted!\n" + (!target.IsBot ? $"{attackerPokemon.NickName}'s owner {attacker.Mention} receives 1 {_bc.BotConfig.CurrencySign}\n": "");
+                var str = $"{defenderPokemon.NickName} fainted!\n" + (!target.IsBot ? $"{attackerPokemon.NickName}'s owner {attacker.Mention} receives 1 {Bc.BotConfig.CurrencySign}\n": "");
                 var lvl = attackerPokemon.Level;
                 var reward = new RewardType();
 

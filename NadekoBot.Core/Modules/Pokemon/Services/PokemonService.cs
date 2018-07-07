@@ -80,14 +80,14 @@ namespace NadekoBot.Modules.Pokemon.Services
                 _log.Warn(PokemonSpeciesFile + " is missing. Pokemon types not loaded.");
             }
         }
-        public string GetRandomTrainerImage()
+        public Uri GetRandomTrainerImage()
         {
             
             var rng = new NadekoRandom();
-            var cur = _images.ImageUrls.PokemonUrls;
+            var cur = _images.ImageUrls.PlayerCatch;
             return cur[rng.Next(0, cur.Length)];
         }
-        public string GetRandomNurseImage()
+        public Uri GetRandomNurseImage()
         {
 
             var rng = new NadekoRandom();

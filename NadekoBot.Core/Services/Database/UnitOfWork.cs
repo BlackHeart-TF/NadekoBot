@@ -36,6 +36,9 @@ namespace NadekoBot.Core.Services.Database
         private IPokeGameRepository _pokegame;
         public IPokeGameRepository PokeGame => _pokegame ?? (_pokegame = new PokeGameRepository(_context));
 
+        private IPokeSpriteRepository _pokesprite;
+        public IPokeSpriteRepository PokemonSprite => _pokesprite ?? (_pokesprite = new PokeSpriteRepository(_context));
+
         private IWaifuRepository _waifus;
         public IWaifuRepository Waifus => _waifus ?? (_waifus = new WaifuRepository(_context));
 
