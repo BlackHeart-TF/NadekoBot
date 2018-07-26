@@ -1018,6 +1018,57 @@ namespace NadekoBot.Migrations
                     b.ToTable("PlaylistSong");
                 });
 
+            modelBuilder.Entity("NadekoBot.Core.Services.Database.Models.PokemonSprite", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Attack");
+
+                    b.Property<DateTime?>("DateAdded");
+
+                    b.Property<int>("Defense");
+
+                    b.Property<int>("HP");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsShiny");
+
+                    b.Property<int>("Level");
+
+                    b.Property<int>("MaxHP");
+
+                    b.Property<string>("Move1");
+
+                    b.Property<string>("Move2");
+
+                    b.Property<string>("Move3");
+
+                    b.Property<string>("Move4");
+
+                    b.Property<string>("NickName");
+
+                    b.Property<long>("OwnerId");
+
+                    b.Property<int>("SpecialAttack");
+
+                    b.Property<int>("SpecialDefense");
+
+                    b.Property<int>("SpeciesId");
+
+                    b.Property<int>("Speed");
+
+                    b.Property<long>("XP");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Id")
+                        .IsUnique();
+
+                    b.ToTable("PokeSprite");
+                });
+
             modelBuilder.Entity("NadekoBot.Core.Services.Database.Models.Poll", b =>
                 {
                     b.Property<int>("Id")

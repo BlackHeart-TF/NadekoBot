@@ -1,0 +1,13 @@
+[Unit]
+Description=Aurora Discord Bot
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/NadekoBot
+ExecStart=/usr/bin/dotnet run -c Release --project src/NadekoBot/NadekoBot.csproj
+Restart=always # or always, on-abort, etc
+
+[Install]
+WantedBy=multi-user.target

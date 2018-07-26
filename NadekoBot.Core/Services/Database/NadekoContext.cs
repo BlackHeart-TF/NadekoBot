@@ -34,6 +34,7 @@ namespace NadekoBot.Core.Services.Database
         public DbSet<MusicPlaylist> MusicPlaylists { get; set; }
         public DbSet<CustomReaction> CustomReactions { get; set; }
         public DbSet<CurrencyTransaction> CurrencyTransactions { get; set; }
+        public DbSet<PokemonSprite> PokeSprite { get; set; }
         public DbSet<UserPokeTypes> PokeGame { get; set; }
         public DbSet<WaifuUpdate> WaifuUpdates { get; set; }
         public DbSet<Warning> Warnings { get; set; }
@@ -217,6 +218,15 @@ namespace NadekoBot.Core.Services.Database
                 .WithOne()
                 .OnDelete(DeleteBehavior.Cascade);
 
+
+            #endregion
+
+            #region PokeSprite
+            var pokeSpriteEntity = modelBuilder.Entity<PokemonSprite>();
+
+            pokeSpriteEntity
+                .HasIndex(pt => pt.Id)
+                .IsUnique();
 
             #endregion
 
