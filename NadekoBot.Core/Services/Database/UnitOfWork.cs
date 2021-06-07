@@ -48,6 +48,9 @@ namespace NadekoBot.Core.Services.Database
         private IPlantedCurrencyRepository _planted;
         public IPlantedCurrencyRepository PlantedCurrency => _planted ?? (_planted = new PlantedCurrencyRepository(_context));
 
+        private IPokeSpriteRepository _pokemonSprite;
+        public IPokeSpriteRepository PokemonSprite => _pokemonSprite ?? (_pokemonSprite = new PokeSpriteRepository(_context));
+
         public UnitOfWork(NadekoContext context)
         {
             _context = context;

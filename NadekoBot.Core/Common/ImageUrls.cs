@@ -11,6 +11,8 @@ namespace NadekoBot.Core.Common
         public Uri[] Dice { get; set; }
         public RategirlData Rategirl { get; set; }
         public XpData Xp { get; set; }
+        public Uri[] PlayerCatch { get; set; }
+        public Uri[] NurseJoy { get; set; }
 
         //new
         public RipData Rip { get; set; }

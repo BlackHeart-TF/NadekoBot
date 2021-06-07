@@ -60,7 +60,7 @@ namespace NadekoBot.Core.Services.Database
         public DbSet<DiscordUser> DiscordUser { get; set; }
         
         public DbSet<MusicPlayerSettings> MusicPlayerSettings { get; set; }
-
+        public DbSet<PokemonSprite> PokemonSprite { get; set; }
         public NadekoContext(DbContextOptions<NadekoContext> options) : base(options)
         {
         }

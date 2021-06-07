@@ -40,6 +40,8 @@ namespace NadekoBot.Core.Services.Impl
         public IReadOnlyList<byte[]> SlotNumbers => GetByteArrayData(ImageKey.Slots_Numbers);
 
         public IReadOnlyList<byte[]> Currency => GetByteArrayData(ImageKey.Currency);
+        public IReadOnlyList<byte[]> NurseJoy => GetByteArrayData(ImageKey.NurseJoy);
+        public IReadOnlyList<byte[]> PlayerCatch => GetByteArrayData(ImageKey.PlayerCatch);
 
         public byte[] SlotBackground => GetByteData(ImageKey.Slots_Bg);
 
@@ -72,6 +74,8 @@ namespace NadekoBot.Core.Services.Impl
             Rip_Bg,
             Rip_Overlay,
             Currency,
+            NurseJoy,
+            PlayerCatch
         }
 
         public RedisImagesCache(ConnectionMultiplexer con, IBotCredentials creds)

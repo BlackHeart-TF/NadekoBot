@@ -22,6 +22,8 @@ namespace NadekoBot.Core.Services.Database
         IPollsRepository Polls { get; }
         IPlantedCurrencyRepository PlantedCurrency { get; }
 
+        IPokeSpriteRepository PokemonSprite { get; }
+
         int SaveChanges();
         Task<int> SaveChangesAsync();
     }
