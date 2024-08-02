@@ -11,6 +11,8 @@ using NadekoBot.Core.Services.Database.Models;
 using NadekoBot.Common.Collections;
 using NadekoBot.Extensions;
 using Serilog;
+using Poll = NadekoBot.Core.Services.Database.Models.Poll;
+using PollAnswer = NadekoBot.Core.Services.Database.Models.PollAnswer;
 
 namespace NadekoBot.Modules.Games.Services
 {

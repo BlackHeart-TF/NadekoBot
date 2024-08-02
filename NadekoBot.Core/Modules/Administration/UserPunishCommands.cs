@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using NadekoBot.Modules.Permissions.Services;
 using Serilog;
+using System.Collections.Generic;
 
 namespace NadekoBot.Modules.Administration
 {
@@ -60,7 +61,7 @@ namespace NadekoBot.Modules.Administration
                 var dmFailed = false;
                 try
                 {
-                    await (await user.GetOrCreateDMChannelAsync().ConfigureAwait(false)).EmbedAsync(new EmbedBuilder().WithErrorColor()
+                    await (await user.CreateDMChannelAsync().ConfigureAwait(false)).EmbedAsync(new EmbedBuilder().WithErrorColor()
                                      .WithDescription(GetText("warned_on", ctx.Guild.ToString()))
                                      .AddField(efb => efb.WithName(GetText("moderator")).WithValue(ctx.User.ToString()))
                                      .AddField(efb => efb.WithName(GetText("reason")).WithValue(reason ?? "-")))
@@ -420,7 +421,7 @@ namespace NadekoBot.Modules.Administration
                         var embed = _service.GetBanUserDmEmbed(Context, guildUser, defaultMessage, msg, time.Time);
                         if (!(embed is null))
                         {
-                            var userChannel = await guildUser.GetOrCreateDMChannelAsync();
+                            var userChannel = await guildUser.CreateDMChannelAsync();
                             await userChannel.EmbedAsync(embed);
                         }
                     }
@@ -487,7 +488,7 @@ namespace NadekoBot.Modules.Administration
                     var embed = _service.GetBanUserDmEmbed(Context, user, defaultMessage, msg, null);
                     if (!(embed is null))
                     {
-                        var userChannel = await user.GetOrCreateDMChannelAsync();
+                        var userChannel = await user.CreateDMChannelAsync();
                         await userChannel.EmbedAsync(embed);
                     }
                 }
@@ -563,7 +564,7 @@ namespace NadekoBot.Modules.Administration
             
             private async Task InternalBanMessageTest(string reason, TimeSpan? duration)
             {
-                var dmChannel = await ctx.User.GetOrCreateDMChannelAsync();
+                var dmChannel = await ctx.User.CreateDMChannelAsync();
                 var defaultMessage = GetText("bandm", Format.Bold(ctx.Guild.Name), reason);
                 var crEmbed = _service.GetBanUserDmEmbed(Context,
                     (IGuildUser)Context.User,
@@ -597,9 +598,11 @@ namespace NadekoBot.Modules.Administration
             [BotPerm(GuildPerm.BanMembers)]
             public async Task Unban([Leftover] string user)
             {
-                var bans = await ctx.Guild.GetBansAsync().ConfigureAwait(false);
+                var bans = ctx.Guild.GetBansAsync();
 
-                var bun = bans.FirstOrDefault(x => x.User.ToString().ToLowerInvariant() == user.ToLowerInvariant());
+                var bun = await bans
+                   .SelectManyAwait(async (IReadOnlyCollection<IBan> banChunk) => banChunk.ToAsyncEnumerable())
+                   .FirstOrDefaultAsync(ban => ban.User.ToString().ToLowerInvariant() == user.ToLowerInvariant());
 
                 if (bun == null)
                 {
@@ -616,9 +619,11 @@ namespace NadekoBot.Modules.Administration
             [BotPerm(GuildPerm.BanMembers)]
             public async Task Unban(ulong userId)
             {
-                var bans = await ctx.Guild.GetBansAsync().ConfigureAwait(false);
+                var bans = ctx.Guild.GetBansAsync();
 
-                var bun = bans.FirstOrDefault(x => x.User.Id == userId);
+                var bun = await bans
+                   .SelectManyAwait(async (IReadOnlyCollection<IBan> banChunk) => banChunk.ToAsyncEnumerable())
+                   .FirstOrDefaultAsync(ban => ban.User.Id == userId);
 
                 if (bun == null)
                 {

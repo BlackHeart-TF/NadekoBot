@@ -52,7 +52,7 @@ namespace NadekoBot.Modules.Gambling
                     }
                     var currentCard = cards.Draw();
                     cardObjects.Add(currentCard);
-                    images.Add(Image.Load(_images.GetCard(currentCard.ToString().ToLowerInvariant().Replace(' ', '_'))));
+                    images.Add(Image.Load<Rgba32>(_images.GetCard(currentCard.ToString().ToLowerInvariant().Replace(' ', '_'))));
                 }
                 using (var img = images.Merge())
                 {

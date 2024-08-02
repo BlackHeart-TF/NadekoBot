@@ -23,6 +23,7 @@ using System.Threading.Tasks;
 using NadekoBot.Core.Modules.Gambling.Services;
 using Image = SixLabors.ImageSharp.Image;
 using Color = SixLabors.ImageSharp.Color;
+using SixLabors.ImageSharp.Advanced;
 
 namespace NadekoBot.Modules.Gambling.Services
 {
@@ -127,9 +128,9 @@ namespace NadekoBot.Modules.Gambling.Services
             if (string.IsNullOrWhiteSpace(pass))
             {
                 // determine the extension
-                using (var img = Image.Load(curImg, out var format))
+                using (var img = Image.Load(curImg))
                 {
-                    extension = format.FileExtensions.FirstOrDefault() ?? "png";
+                    extension = img.Metadata.DecodedImageFormat.FileExtensions.FirstOrDefault() ?? "png";
                 }
                 // return the image
                 return curImg.ToStream();
@@ -153,14 +154,14 @@ namespace NadekoBot.Modules.Gambling.Services
         {
             // draw lower, it looks better
             pass = pass.TrimTo(10, true).ToLowerInvariant();
-            using (var img = Image.Load<Rgba32>(curImg, out var format))
+            using (var img = Image.Load<Rgba32>(curImg))
             {
                 // choose font size based on the image height, so that it's visible
                 var font = _fonts.NotoSans.CreateFont(img.Height / 12, FontStyle.Bold);
                 img.Mutate(x =>
                 {
                     // measure the size of the text to be drawing
-                    var size = TextMeasurer.Measure(pass, new RendererOptions(font, new PointF(0, 0)));
+                    var size = TextMeasurer.MeasureSize(pass, new TextOptions(font));
 
                     // fill the background with black, add 5 pixels on each side to make it look better
                     x.FillPolygon(Color.ParseHex("00000080"),
@@ -175,8 +176,9 @@ namespace NadekoBot.Modules.Gambling.Services
                         SixLabors.ImageSharp.Color.White,
                         new PointF(0, 0));
                 });
+
                 // return image as a stream for easy sending
-                return (img.ToStream(format), format.FileExtensions.FirstOrDefault() ?? "png");
+                return (img.ToStream(img.Metadata.DecodedImageFormat), img.Metadata.DecodedImageFormat.FileExtensions.FirstOrDefault() ?? "png");
             }
         }
 

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using Discord;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats;
 using SixLabors.ImageSharp.Formats.Gif;
@@ -15,7 +17,18 @@ namespace NadekoBot.Extensions
         {
             return images.Merge(out _);
         }
-
+        public static MemoryStream ToStream(this Image<Rgba32> image)
+        {
+            var stream = new MemoryStream();
+            image.Save(stream, image.Metadata.DecodedImageFormat);
+            return stream;
+        }
+        public static MemoryStream ToStream(this SixLabors.ImageSharp.Image image)
+        {
+            var stream = new MemoryStream();
+            image.Save(stream, image.Metadata.DecodedImageFormat);
+            return stream;
+        }
         public static Image<Rgba32> Merge(this IEnumerable<Image<Rgba32>> images, out IImageFormat format)
         {
             format = PngFormat.Instance;
@@ -27,7 +40,7 @@ namespace NadekoBot.Extensions
                 {
                     var frame = imgArray[i].Frames.CloneFrame(frameNumber % imgArray[i].Frames.Count);
                     imgFrame.Mutate(x => x.DrawImage(frame, new Point(xOffset, 0), new GraphicsOptions()));
-                    xOffset += imgArray[i].Bounds().Width;
+                    xOffset += imgArray[i].Bounds.Width;
                 }
             }
 

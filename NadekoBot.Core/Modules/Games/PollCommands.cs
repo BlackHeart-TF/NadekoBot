@@ -8,6 +8,7 @@ using NadekoBot.Modules.Games.Services;
 using NadekoBot.Core.Services.Database.Models;
 using System.Text;
 using System.Linq;
+using Poll = NadekoBot.Core.Services.Database.Models.Poll;
 
 namespace NadekoBot.Modules.Games
 {

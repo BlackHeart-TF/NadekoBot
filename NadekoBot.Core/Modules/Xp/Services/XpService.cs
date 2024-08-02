@@ -24,6 +24,7 @@ using NadekoBot.Core.Modules.Xp;
 using Serilog;
 using StackExchange.Redis;
 using Image = SixLabors.ImageSharp.Image;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace NadekoBot.Modules.Xp.Services
 {
@@ -233,7 +234,7 @@ namespace NadekoBot.Modules.Xp.Services
                         {
                             if (x.NotifyType == XpNotificationLocation.Dm)
                             {
-                                var chan = await x.User.GetOrCreateDMChannelAsync();
+                                var chan = await x.User.CreateDMChannelAsync();
                                 if (chan != null)
                                     await chan.SendConfirmAsync(_strings.GetText("level_up_dm",
                                         x.Guild.Id,
@@ -252,7 +253,7 @@ namespace NadekoBot.Modules.Xp.Services
                             IMessageChannel chan;
                             if (x.NotifyType == XpNotificationLocation.Dm)
                             {
-                                chan = await x.User.GetOrCreateDMChannelAsync();
+                                chan = await x.User.CreateDMChannelAsync();
                             }
                             else // channel
                             {
@@ -813,25 +814,8 @@ namespace NadekoBot.Modules.Xp.Services
         public Task<(Stream Image, IImageFormat Format)> GenerateXpImageAsync(FullUserStats stats) => Task.Run(
             async () =>
             {
-                var usernameTextOptions = new TextGraphicsOptions()
-                {
-                    TextOptions = new TextOptions()
-                    {
-                        HorizontalAlignment = HorizontalAlignment.Left,
-                        VerticalAlignment = VerticalAlignment.Center,
-                    }
-                }.WithFallbackFonts(_fonts.FallBackFonts);
                 
-                var clubTextOptions = new TextGraphicsOptions()
-                {
-                    TextOptions = new TextOptions()
-                    {
-                        HorizontalAlignment = HorizontalAlignment.Right,
-                        VerticalAlignment = VerticalAlignment.Top,
-                    }
-                }.WithFallbackFonts(_fonts.FallBackFonts);
-                
-                using (var img = Image.Load<Rgba32>(_images.XpBackground, out var imageFormat))
+                using (var img = Image.Load<Rgba32>(_images.XpBackground))
                 {
                     if (_template.User.Name.Show)
                     {
@@ -840,7 +824,16 @@ namespace NadekoBot.Modules.Xp.Services
                         var usernameFont = _fonts.NotoSans
                             .CreateFont(fontSize, FontStyle.Bold);
 
-                        var size = TextMeasurer.Measure($"@{username}", new RendererOptions(usernameFont));
+                        var usernameTextOptions = new RichTextOptions(usernameFont)
+                        {
+                            HorizontalAlignment = HorizontalAlignment.Left,
+                            VerticalAlignment = VerticalAlignment.Center,
+
+                        }.WithFallbackFonts(_fonts.FallBackFonts);
+
+                        
+
+                        var size = TextMeasurer.MeasureSize($"@{username}", new TextOptions(usernameFont));
                         var scale = 400f / size.Width;
                         if (scale < 1)
                         {
@@ -850,7 +843,7 @@ namespace NadekoBot.Modules.Xp.Services
 
                         img.Mutate(x =>
                         {
-                            x.DrawText(usernameTextOptions,
+                            x.DrawText(
                                 "@" + username,
                                 usernameFont,
                                 _template.User.Name.Color,
@@ -866,8 +859,13 @@ namespace NadekoBot.Modules.Xp.Services
 
                         var clubFont = _fonts.NotoSans
                             .CreateFont(_template.Club.Name.FontSize, FontStyle.Regular);
-                        
-                        img.Mutate(x => x.DrawText(clubTextOptions,
+                        var clubTextOptions = new RichTextOptions(clubFont)
+                        {
+                            HorizontalAlignment = HorizontalAlignment.Right,
+                            VerticalAlignment = VerticalAlignment.Top,
+
+                        }.WithFallbackFonts(_fonts.FallBackFonts);
+                        img.Mutate(x => x.DrawText(
                             clubName,
                             clubFont,
                             _template.Club.Name.Color,
@@ -902,7 +900,7 @@ namespace NadekoBot.Modules.Xp.Services
                     }
 
 
-                    var pen = new Pen(SixLabors.ImageSharp.Color.Black, 1);
+                    var pen = new SolidPen(SixLabors.ImageSharp.Color.Black, 1);
 
                     var global = stats.Global;
                     var guild = stats.Guild;
@@ -1014,9 +1012,10 @@ namespace NadekoBot.Modules.Xp.Services
                                             .Resize(_template.User.Icon.Size.X, _template.User.Icon.Size.Y)
                                             .ApplyRoundedCorners(
                                                 Math.Max(_template.User.Icon.Size.X, _template.User.Icon.Size.Y) / 2));
-                                        using (var stream = tempDraw.ToStream())
+                                        using (var ms = new MemoryStream())
                                         {
-                                            data = stream.ToArray();
+                                            tempDraw.Save(ms, new SixLabors.ImageSharp.Formats.Png.PngEncoder());
+                                            data = ms.ToArray();
                                         }
                                     }
                                 }
@@ -1026,7 +1025,7 @@ namespace NadekoBot.Modules.Xp.Services
 
                             using (var toDraw = Image.Load(data))
                             {
-                                if (toDraw.Size() != new Size(_template.User.Icon.Size.X, _template.User.Icon.Size.Y))
+                                if (toDraw.Size != new Size(_template.User.Icon.Size.X, _template.User.Icon.Size.Y))
                                 {
                                     toDraw.Mutate(x =>
                                         x.Resize(_template.User.Icon.Size.X, _template.User.Icon.Size.Y));
@@ -1049,7 +1048,7 @@ namespace NadekoBot.Modules.Xp.Services
                     }
 
                     img.Mutate(x => x.Resize(_template.OutputSize.X, _template.OutputSize.Y));
-                    return ((Stream) img.ToStream(imageFormat), imageFormat);
+                    return ((Stream) img.ToStream(img.Metadata.DecodedImageFormat), img.Metadata.DecodedImageFormat);
                 }
             });
 
@@ -1127,9 +1126,10 @@ namespace NadekoBot.Modules.Xp.Services
                                     .ApplyRoundedCorners(
                                         Math.Max(_template.Club.Icon.Size.X, _template.Club.Icon.Size.Y) / 2.0f));
                                 ;
-                                using (var tds = tempDraw.ToStream())
+                                using (var ms = new MemoryStream())
                                 {
-                                    data = tds.ToArray();
+                                    tempDraw.Save(ms, new SixLabors.ImageSharp.Formats.Png.PngEncoder());
+                                    data = ms.ToArray();
                                 }
                             }
                         }
@@ -1139,7 +1139,7 @@ namespace NadekoBot.Modules.Xp.Services
 
                     using (var toDraw = Image.Load(data))
                     {
-                        if (toDraw.Size() != new Size(_template.Club.Icon.Size.X, _template.Club.Icon.Size.Y))
+                        if (toDraw.Size != new Size(_template.Club.Icon.Size.X, _template.Club.Icon.Size.Y))
                         {
                             toDraw.Mutate(x => x.Resize(_template.Club.Icon.Size.X, _template.Club.Icon.Size.Y));
                         }

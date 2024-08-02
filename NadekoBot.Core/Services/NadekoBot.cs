@@ -84,7 +84,8 @@ namespace NadekoBot
                 TotalShards = Credentials.TotalShards,
                 ShardId = shardId,
                 AlwaysDownloadUsers = false,
-                ExclusiveBulkDelete = true,
+                GatewayIntents = GatewayIntents.All
+                //ExclusiveBulkDelete = true,
             });
 
             CommandService = new CommandService(new CommandServiceConfig()

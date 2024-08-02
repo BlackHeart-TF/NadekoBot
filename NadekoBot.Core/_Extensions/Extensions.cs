@@ -273,24 +273,11 @@ namespace NadekoBot.Extensions
         /// <returns>The same <see cref="TextOptions"/> to allow chaining</returns>
         public static TextOptions WithFallbackFonts(this TextOptions opts, List<FontFamily> fallback)
         {
-            foreach (var ff in fallback)
-            {
-                opts.FallbackFonts.Add(ff);
-            }
+            opts.WithFallbackFonts(fallback);
+            
             return opts;
         }
 
-        /// <summary>
-        /// Adds fallback fonts to <see cref="TextGraphicsOptions"/>
-        /// </summary>
-        /// <param name="opts"><see cref="TextGraphicsOptions"/> to which fallback fonts will be added to</param>
-        /// <param name="fallback">List of fallback Font Families to add</param>
-        /// <returns>The same <see cref="TextGraphicsOptions"/> to allow chaining</returns>
-        public static TextGraphicsOptions WithFallbackFonts(this TextGraphicsOptions opts, List<FontFamily> fallback)
-        {
-            opts.TextOptions.WithFallbackFonts(fallback);
-            return opts;
-        }
 
         public static MemoryStream ToStream(this Image<Rgba32> img, IImageFormat format = null)
         {
@@ -323,7 +310,7 @@ namespace NadekoBot.Extensions
 
         public static async Task<IMessage> SendMessageToOwnerAsync(this IGuild guild, string message)
         {
-            var ownerPrivate = await (await guild.GetOwnerAsync().ConfigureAwait(false)).GetOrCreateDMChannelAsync()
+            var ownerPrivate = await (await guild.GetOwnerAsync().ConfigureAwait(false)).CreateDMChannelAsync()
                                 .ConfigureAwait(false);
 
             return await ownerPrivate.SendMessageAsync(message).ConfigureAwait(false);

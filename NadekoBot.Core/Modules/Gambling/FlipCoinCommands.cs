@@ -52,12 +52,12 @@ namespace NadekoBot.Modules.Gambling
                     var tailsArr = _images.Tails[rng.Next(0, _images.Tails.Count)];
                     if (rng.Next(0, 10) < 5)
                     {
-                        imgs[i] = Image.Load(headsArr);
+                        imgs[i] = Image.Load<Rgba32>(headsArr);
                         headCount++;
                     }
                     else
                     {
-                        imgs[i] = Image.Load(tailsArr);
+                        imgs[i] = Image.Load<Rgba32>(tailsArr);
                         tailCount++;
                     }
                 }

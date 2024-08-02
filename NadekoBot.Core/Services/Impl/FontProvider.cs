@@ -13,12 +13,12 @@ namespace NadekoBot.Core.Services.Impl
         {
             _fonts = new FontCollection();
 
-            NotoSans = _fonts.Install("data/fonts/NotoSans-Bold.ttf");
-            UniSans = _fonts.Install("data/fonts/Uni Sans.ttf");
+            NotoSans = _fonts.Add("data/fonts/NotoSans-Bold.ttf");
+            UniSans = _fonts.Add("data/fonts/Uni Sans.ttf");
 
             FallBackFonts = new List<FontFamily>();
 
-            //FallBackFonts.Add(_fonts.Install("data/fonts/OpenSansEmoji.ttf"));
+            //FallBackFonts.Add(_fonts.Add("data/fonts/OpenSansEmoji.ttf"));
 
             // try loading some emoji and jap fonts on windows as fallback fonts
             if (Environment.OSVersion.Platform == PlatformID.Win32NT)
@@ -26,9 +26,9 @@ namespace NadekoBot.Core.Services.Impl
                 try
                 {
                     string fontsfolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Fonts);
-                    FallBackFonts.Add(_fonts.Install(Path.Combine(fontsfolder, "seguiemj.ttf")));
-                    FallBackFonts.AddRange(_fonts.InstallCollection(Path.Combine(fontsfolder, "msgothic.ttc")));
-                    FallBackFonts.AddRange(_fonts.InstallCollection(Path.Combine(fontsfolder, "segoe.ttc")));
+                    FallBackFonts.Add(_fonts.Add(Path.Combine(fontsfolder, "seguiemj.ttf")));
+                    FallBackFonts.AddRange(_fonts.AddCollection(Path.Combine(fontsfolder, "msgothic.ttc")));
+                    FallBackFonts.AddRange(_fonts.AddCollection(Path.Combine(fontsfolder, "segoe.ttc")));
                 }
                 catch { }
             }
@@ -39,11 +39,11 @@ namespace NadekoBot.Core.Services.Impl
             {
                 if (font.EndsWith(".ttf"))
                 {
-                    FallBackFonts.Add(_fonts.Install(font));
+                    FallBackFonts.Add(_fonts.Add(font));
                 }
                 else if (font.EndsWith(".ttc"))
                 {
-                    FallBackFonts.AddRange(_fonts.InstallCollection(font));
+                    FallBackFonts.AddRange(_fonts.AddCollection(font));
                 }
             }
 

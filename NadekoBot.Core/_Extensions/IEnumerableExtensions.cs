@@ -106,43 +106,43 @@ namespace NadekoBot.Extensions
         /// <exception cref="ArgumentOutOfRangeException">
         /// <paramref name="size"/> is below 1.
         /// </exception>
-        public static IEnumerable<TSource[]> Chunk<TSource>(this IEnumerable<TSource> source, int size)
-        {
-            if (source == null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
+        //public static IEnumerable<TSource[]> Chunk<TSource>(this IEnumerable<TSource> source, int size)
+        //{
+        //    if (source == null)
+        //    {
+        //        throw new ArgumentNullException(nameof(source));
+        //    }
  
-            if (size < 1)
-            {
-                throw new ArgumentOutOfRangeException(nameof(size));
-            }
+        //    if (size < 1)
+        //    {
+        //        throw new ArgumentOutOfRangeException(nameof(size));
+        //    }
  
-            return ChunkIterator(source, size);
-        }
+        //    return ChunkIterator(source, size);
+        //}
  
-        private static IEnumerable<TSource[]> ChunkIterator<TSource>(IEnumerable<TSource> source, int size)
-        {
-            using IEnumerator<TSource> e = source.GetEnumerator();
-            while (e.MoveNext())
-            {
-                TSource[] chunk = new TSource[size];
-                chunk[0] = e.Current;
+        //private static IEnumerable<TSource[]> ChunkIterator<TSource>(IEnumerable<TSource> source, int size)
+        //{
+        //    using IEnumerator<TSource> e = source.GetEnumerator();
+        //    while (e.MoveNext())
+        //    {
+        //        TSource[] chunk = new TSource[size];
+        //        chunk[0] = e.Current;
  
-                for (int i = 1; i < size; i++)
-                {
-                    if (!e.MoveNext())
-                    {
-                        Array.Resize(ref chunk, i);
-                        yield return chunk;
-                        yield break;
-                    }
+        //        for (int i = 1; i < size; i++)
+        //        {
+        //            if (!e.MoveNext())
+        //            {
+        //                Array.Resize(ref chunk, i);
+        //                yield return chunk;
+        //                yield break;
+        //            }
  
-                    chunk[i] = e.Current;
-                }
+        //            chunk[i] = e.Current;
+        //        }
  
-                yield return chunk;
-            }
-        }
+        //        yield return chunk;
+        //    }
+        //}
     }
 }

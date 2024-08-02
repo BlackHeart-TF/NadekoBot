@@ -2,16 +2,12 @@
 
 Experimental changelog. Mostly based on [keepachangelog](https://keepachangelog.com/en/1.0.0/) except date format. 
 
-## [Unreleased]
-
-### Added
-
-- Added `.mquality` / `.musicquality` - Set encoding quality. Has 4 presets - Low, Medium, High, Highest. Default is Highest
+## [2.45] 02.08.2024
 
 ### Changed
 
-- `.warne` with no args will now show current state
-- Modified music code temporarily in a way which will increase cpu usage but reduce stuttering on some cases
+- .net8 and discord.net 3.15
+- youtube related videos wont work, commented out line. most things untested, but it does in fact respond to commands again
 
 ## [2.44.4] - 06.06.2021
 

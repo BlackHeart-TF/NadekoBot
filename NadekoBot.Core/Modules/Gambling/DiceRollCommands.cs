@@ -217,13 +217,13 @@ namespace NadekoBot.Modules.Gambling
                 if (num == 10)
                 {
                     var images = _images.Dice;
-                    using (var imgOne = Image.Load(images[1]))
-                    using (var imgZero = Image.Load(images[0]))
+                    using (var imgOne = Image.Load<Rgba32>(images[1]))
+                    using (var imgZero = Image.Load<Rgba32>(images[0]))
                     {
                         return new[] { imgOne, imgZero }.Merge();
                     }
                 }
-                return Image.Load(_images.Dice[num]);
+                return Image.Load<Rgba32>(_images.Dice[num]);
             }
         }
     }

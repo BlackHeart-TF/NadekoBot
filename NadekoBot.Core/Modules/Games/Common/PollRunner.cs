@@ -4,6 +4,7 @@ using NadekoBot.Core.Services.Database.Models;
 using NadekoBot.Core.Services;
 using System;
 using System.Threading;
+using Poll = NadekoBot.Core.Services.Database.Models.Poll;
 
 namespace NadekoBot.Modules.Games.Common
 {

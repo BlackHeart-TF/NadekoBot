@@ -110,6 +110,7 @@ namespace NadekoBot.Modules.Administration.Services
             }, null, TimeSpan.FromHours(1), TimeSpan.FromHours(1));
         }
 
+
         private readonly Timer _clearTimer;
         private readonly ConcurrentHashSet<ulong> _ignoreMessageIds = new ConcurrentHashSet<ulong>();
         private readonly IMemoryCache _memoryCache;
@@ -531,15 +532,16 @@ namespace NadekoBot.Modules.Administration.Services
             return isDeleted;
         }
 
-        private Task _client_GuildUserUpdated(SocketGuildUser before, SocketGuildUser after)
+        private Task _client_GuildUserUpdated(Cacheable<SocketGuildUser,ulong> cbefore, SocketGuildUser after)
         {
             var _ = Task.Run(async () =>
             {
                 try
                 {
+                    var before = cbefore.Value;
                     if (!GuildLogSettings.TryGetValue(before.Guild.Id, out LogSetting logSetting))
                         return;
-
+                    
                     ITextChannel logChannel;
                     if (logSetting.UserUpdatedId != null &&
                         (logChannel = await TryGetLogChannel(before.Guild, logSetting, LogType.UserUpdated)
@@ -608,10 +610,10 @@ namespace NadekoBot.Modules.Administration.Services
                                     return list;
                                 });
                         }
-                        else if (before.Activity?.Name != after.Activity?.Name)
+                        else if (before.Activities.FirstOrDefault()?.Name != after.Activities.FirstOrDefault()?.Name)
                         {
                             var str =
-                                $"👾`{PrettyCurrentTime(after.Guild)}`👤__**{after.Username}**__ is now playing **{after.Activity?.Name ?? "-"}**.";
+                                $"👾`{PrettyCurrentTime(after.Guild)}`👤__**{after.Username}**__ is now playing **{after.Activities.FirstOrDefault()?.Name ?? "-"}**.";
                             PresenceUpdates.AddOrUpdate(logChannel,
                                 new List<string>() {str}, (id, list) =>
                                 {
@@ -870,29 +872,29 @@ namespace NadekoBot.Modules.Administration.Services
         //    return Task.CompletedTask;
         //}
 
-        private Task _client_UserLeft(IGuildUser usr)
+        private Task _client_UserLeft(SocketGuild guild, SocketUser user)
         {
             var _ = Task.Run(async () =>
             {
                 try
                 {
-                    if (!GuildLogSettings.TryGetValue(usr.Guild.Id, out LogSetting logSetting)
+                    if (!GuildLogSettings.TryGetValue(guild.Id, out LogSetting logSetting)
                         || (logSetting.UserLeftId == null))
                         return;
 
                     ITextChannel logChannel;
-                    if ((logChannel = await TryGetLogChannel(usr.Guild, logSetting, LogType.UserLeft)
+                    if ((logChannel = await TryGetLogChannel(guild, logSetting, LogType.UserLeft)
                         .ConfigureAwait(false)) == null)
                         return;
                     var embed = new EmbedBuilder()
                         .WithOkColor()
                         .WithTitle("❌ " + GetText(logChannel.Guild, "user_left"))
-                        .WithDescription(usr.ToString())
-                        .AddField(efb => efb.WithName("Id").WithValue(usr.Id.ToString()))
-                        .WithFooter(efb => efb.WithText(CurrentTime(usr.Guild)));
+                        .WithDescription(user.ToString())
+                        .AddField(efb => efb.WithName("Id").WithValue(user.Id.ToString()))
+                        .WithFooter(efb => efb.WithText(CurrentTime(guild)));
 
-                    if (Uri.IsWellFormedUriString(usr.GetAvatarUrl(), UriKind.Absolute))
-                        embed.WithThumbnailUrl(usr.GetAvatarUrl());
+                    if (Uri.IsWellFormedUriString(user.GetAvatarUrl(), UriKind.Absolute))
+                        embed.WithThumbnailUrl(user.GetAvatarUrl());
 
                     await logChannel.EmbedAsync(embed).ConfigureAwait(false);
                 }
@@ -1016,7 +1018,7 @@ namespace NadekoBot.Modules.Administration.Services
             return Task.CompletedTask;
         }
 
-        private Task _client_MessageDeleted(Cacheable<IMessage, ulong> optMsg, ISocketMessageChannel ch)
+        private Task _client_MessageDeleted(Cacheable<IMessage, ulong> optMsg, Cacheable<IMessageChannel,ulong> ch)
         {
             var _ = Task.Run(async () =>
             {
@@ -1029,7 +1031,7 @@ namespace NadekoBot.Modules.Administration.Services
                     if (_ignoreMessageIds.Contains(msg.Id))
                         return;
 
-                    if (!(ch is ITextChannel channel))
+                    if (!(ch.Value is ITextChannel channel))
                         return;
 
                     if (!GuildLogSettings.TryGetValue(channel.Guild.Id, out LogSetting logSetting)

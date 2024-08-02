@@ -79,7 +79,7 @@ namespace NadekoBot.Core.Services.Impl
                 throw new ArgumentOutOfRangeException(nameof(count));
             var query = yt.Search.List("snippet");
             query.MaxResults = count;
-            query.RelatedToVideoId = id;
+            //query.RelatedToVideoId = id; TODO: FIX RELATED VIDEOS
             query.Type = "video";
             return (await query.ExecuteAsync().ConfigureAwait(false)).Items.Select(i => "http://www.youtube.com/watch?v=" + i.Id.VideoId);
         }

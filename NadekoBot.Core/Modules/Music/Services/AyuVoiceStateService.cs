@@ -1,9 +1,11 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Concurrent;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Ayu.Discord.Voice;
+using Discord;
 using Discord.WebSocket;
 using NadekoBot.Core.Services;
 
@@ -31,7 +33,15 @@ namespace NadekoBot.Modules.Music.Services
                 .GetProperties(BindingFlags.NonPublic | BindingFlags.Instance)
                 .First(x => x.Name == "ApiClient" && x.PropertyType.Name == "DiscordSocketApiClient");
             _dnetApiClient = prop.GetValue(_client, null);
-            _sendVoiceStateUpdateMethodInfo = _dnetApiClient.GetType().GetMethod("SendVoiceStateUpdateAsync");
+            Type[] parameterTypes = new Type[]
+            {
+                typeof(ulong),          // guildId
+                typeof(ulong?),         // channelId
+                typeof(bool),           // isDeafened
+                typeof(bool),           // isMuted
+                typeof(RequestOptions)  // requestOptions
+            };
+            _sendVoiceStateUpdateMethodInfo = _dnetApiClient.GetType().GetMethod("SendVoiceStateUpdateAsync",parameterTypes);
             
             _client.LeftGuild += ClientOnLeftGuild;
         }

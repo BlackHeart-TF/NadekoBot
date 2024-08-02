@@ -14,14 +14,14 @@ namespace NadekoBot.Common.Yml
             return type == typeof(Rgba32);
         }
 
-        public object ReadYaml(IParser parser, Type type)
+        public object ReadYaml(IParser parser, Type type,ObjectDeserializer deserializer)
         {
             var scalar = parser.Consume<Scalar>();
             var result = Rgba32.ParseHex(scalar.Value);
             return result;
         }
 
-        public void WriteYaml(IEmitter emitter, object value, Type type)
+        public void WriteYaml(IEmitter emitter, object value, Type type,ObjectSerializer serializer)
         {
             var color = (Rgba32)value;
             var val = (uint) (color.B << 0 | color.G << 8 | color.R << 16);
@@ -36,14 +36,14 @@ namespace NadekoBot.Common.Yml
             return type == typeof(CultureInfo);
         }
 
-        public object ReadYaml(IParser parser, Type type)
+        public object ReadYaml(IParser parser, Type type, ObjectDeserializer rootDeserializer)
         {
             var scalar = parser.Consume<Scalar>();
             var result = new CultureInfo(scalar.Value);
             return result;
         }
 
-        public void WriteYaml(IEmitter emitter, object value, Type type)
+        public void WriteYaml(IEmitter emitter, object value, Type type, ObjectSerializer rootDeserializer)
         {
             var ci = (CultureInfo)value;
             emitter.Emit(new Scalar(ci.Name));

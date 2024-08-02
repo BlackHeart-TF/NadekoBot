@@ -16,11 +16,23 @@ namespace NadekoBot.Common.Yml
             this.innerTypeDescriptor = innerTypeDescriptor ?? throw new ArgumentNullException("innerTypeDescriptor");
         }
 
+        
+
         public override IEnumerable<IPropertyDescriptor> GetProperties(Type type, object container)
         {
             return innerTypeDescriptor
                 .GetProperties(type, container)
                 .Select(d => new CommentsPropertyDescriptor(d));
+        }
+
+        public override string GetEnumName(Type enumType, string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string GetEnumValue(object enumValue)
+        {
+            throw new NotImplementedException();
         }
 
         private sealed class CommentsPropertyDescriptor : IPropertyDescriptor
@@ -50,6 +62,12 @@ namespace NadekoBot.Common.Yml
             }
 
             public bool CanWrite { get { return baseDescriptor.CanWrite; } }
+
+            public bool AllowNulls { get; set; }
+
+            public bool Required { get; set; }
+
+            public Type ConverterType { get; set; }
 
             public void Write(object target, object value)
             {

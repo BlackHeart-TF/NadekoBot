@@ -1,3 +1,10 @@
+
+# NadekoBot 2.5
+Updated to run on dotnet 8 - discord.net 3.15
+
+this was dont very quickly with lots of shortcuts taken. Youtube related videos arent fetched properly, probably numerous issues with guilds, mostly untested.
+
+## Links (no idea if any of these still work)
 [![Discord](https://discordapp.com/api/guilds/117523346618318850/widget.png)](https://discord.gg/nadekobot)
 [![Documentation Status](https://readthedocs.org/projects/nadekobot/badge/?version=latest)](http://nadekobot.readthedocs.io/en/latest/?badge=latest)
 [![Discord Bots](https://discordbots.org/api/widget/status/116275390695079945.svg)](https://top.gg/bot/116275390695079945)

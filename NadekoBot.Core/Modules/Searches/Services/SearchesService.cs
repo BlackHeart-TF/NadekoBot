@@ -183,14 +183,14 @@ namespace NadekoBot.Modules.Searches.Services
                 }
 
                 bg.Mutate(x => x.DrawText(
-                    new TextGraphicsOptions()
-                    {
-                        TextOptions = new TextOptions
-                        {
-                            HorizontalAlignment = HorizontalAlignment.Center,
-                            WrapTextWidth = 190,
-                        }.WithFallbackFonts(_fonts.FallBackFonts)
-                    },
+                    //new TextGraphicsOptions()
+                    //{
+                    //    TextOptions = new TextOptions
+                    //    {
+                    //        HorizontalAlignment = HorizontalAlignment.Center,
+                    //        WrapTextWidth = 190,
+                    //    }.WithFallbackFonts(_fonts.FallBackFonts)
+                    //},
                     text,
                     _fonts.RipFont,
                     SixLabors.ImageSharp.Color.Black,

@@ -12,7 +12,7 @@ namespace NadekoBot.Common.Yml
         {
         }
 
-        public override bool EnterMapping(IPropertyDescriptor key, IObjectDescriptor value, IEmitter context)
+        public override bool EnterMapping(IPropertyDescriptor key, IObjectDescriptor value, IEmitter context,ObjectSerializer serializer)
         {
             var commentsDescriptor = value as CommentsObjectDescriptor;
             if (commentsDescriptor != null && !string.IsNullOrWhiteSpace(commentsDescriptor.Comment))
@@ -20,7 +20,7 @@ namespace NadekoBot.Common.Yml
                 context.Emit(new Comment(commentsDescriptor.Comment.Replace("\n", "\n# "), false));
             }
 
-            return base.EnterMapping(key, value, context);
+            return base.EnterMapping(key, value, context, serializer);
         }
     }
 }
