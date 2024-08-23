@@ -557,15 +557,10 @@ namespace NadekoBot.Modules.Pokemon
                     str += $"\n{target.Mention} has no pokemon left!";
                     if (target.IsBot)
                     {
-                        //var pkmlist = target.GetPokemon();
-                        //foreach (var pkm in pkmlist)
-                            //pkm.Heal();
                         PokemonFunctions.DeletePokemon(defenderPokemon);
                     }
                     //do something?
                 }
-                //UpdatePokemon(attackerPokemon);
-                //UpdatePokemon(defenderPokemon);
                 await Context.Channel.EmbedAsync(new EmbedBuilder().WithErrorColor().WithDescription(str));
                 if (!target.IsBot)
                     await _cs.AddAsync(attacker.Id, $"Defeated {target.Username}'s pokemon {defenderPokemon.NickName}!", 1);
@@ -575,7 +570,9 @@ namespace NadekoBot.Modules.Pokemon
             {
                 var cpuMoves = target.ActivePokemon().GetMoves().Result;
                 await DoAttack(target, attacker, cpuMoves[new Random().Next(0,cpuMoves.Count()-1)].Name);
-                
+                var botpkm = target.ActivePokemon();
+                if (botpkm.HP <= 0)
+                    PokemonFunctions.DeletePokemon(botpkm);
             }
         }
 
