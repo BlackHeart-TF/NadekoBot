@@ -1,9 +1,4 @@
-[![nadeko0](https://cdn.nadeko.bot/tutorial/docs-top.png)](https://nadeko.bot/)  
-  
-[![nadeko1](https://cdn.nadeko.bot/tutorial/docs-mid.png)](https://invite.nadeko.bot/)  
- 
-[![nadeko2](https://cdn.nadeko.bot/tutorial/docs-bot.png)](https://nadeko.bot/commands)
 
-### Useful links
-- [Self hosting Guides and Docs](https://nadekobot.readthedocs.io/en/latest)
-- [Discord support server](https://discord.nadeko.bot)
+- Nadeko has been moved to https://github.com/nadeko-bot/nadekobot
+
+- This repo will stay here as a v3, v4 and v5 archive
