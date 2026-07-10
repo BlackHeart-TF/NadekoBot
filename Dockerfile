@@ -1,10 +1,11 @@
 # Use the .NET 8.0 SDK as the base image for the build stage
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /source
 
 # Copy the .csproj files for each project
 COPY src/Nadeko.Medusa/*.csproj src/Nadeko.Medusa/
 COPY src/NadekoBot/*.csproj src/NadekoBot/
+COPY src/NadekoBot.GrpcApiBase/*.csproj src/NadekoBot.GrpcApiBase/
 COPY src/NadekoBot.Coordinator/*.csproj src/NadekoBot.Coordinator/
 COPY src/NadekoBot.Generators/*.csproj src/NadekoBot.Generators/
 COPY src/NadekoBot.Voice/*.csproj src/NadekoBot.Voice/
@@ -28,7 +29,7 @@ RUN set -xe; \
     chmod +x /app/NadekoBot
 
 # Use the .NET 8.0 runtime as the base image for the final stage
-FROM mcr.microsoft.com/dotnet/runtime:8.0
+FROM mcr.microsoft.com/dotnet/runtime:9.0
 WORKDIR /app
 
 # Create a new user, install dependencies, and set up sudoers file

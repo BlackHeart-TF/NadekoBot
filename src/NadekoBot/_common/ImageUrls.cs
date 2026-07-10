@@ -16,6 +16,13 @@ public partial class ImageUrls : ICloneable<ImageUrls>
     public XpData Xp { get; set; }
 
     public SlotData Slots { get; set; }
+    public PokeBattleData PokeBattle { get; set; }
+
+    public class PokeBattleData
+    {
+        public Uri[] NurseJoy { get; set; }
+        public Uri[] PlayerCatch { get; set; }
+    }
 
     public class SlotData
     {

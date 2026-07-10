@@ -62,6 +62,7 @@ public abstract class NadekoContext : DbContext
     public DbSet<ArchivedTodoListModel> TodosArchive { get; set; }
     public DbSet<HoneypotChannel> HoneyPotChannels { get; set; }
 
+    public DbSet<PokemonSprite> PokemonSprite { get; set; }
 
     // public DbSet<GuildColors> GuildColors { get; set; }
 

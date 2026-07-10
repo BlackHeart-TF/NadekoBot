@@ -10,4 +10,6 @@ public interface IImageCache
     Task<byte[]?> GetSlotEmojiAsync(int number);
     Task<byte[]?> GetSlotBgAsync();
     Task<byte[]?> GetImageDataAsync(Uri url);
+    Task<string?> GetPokeBattleNurseJoyAsync();
+    Task<string?> GetPokeBattlePlayerCatchAsync();
 }

@@ -32,3 +32,14 @@ slots:
     - https://cdn.nadeko.bot/slots/15.png
     - https://cdn.nadeko.bot/slots/16.png
   bg: https://cdn.nadeko.bot/slots/slots_bg.png
+pokeBattle:
+  nurseJoy:
+    - http://i.imgur.com/tQV51BI.jpg
+    - http://i.imgur.com/NS3LOkg.png
+    - http://i.imgur.com/mrK5ClX.jpg
+    - http://i.imgur.com/moRXuEM.jpg
+  playerCatch:
+    - http://i.imgur.com/7tOkFAf.jpg
+    - http://i.imgur.com/Vwsd6SC.jpg
+    - http://i.imgur.com/XclmaVO.jpg
+    - http://i.imgur.com/9UlSGLx.png

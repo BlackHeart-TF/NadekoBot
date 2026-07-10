@@ -47,6 +47,15 @@ public sealed class ImageCache : IImageCache, INService
         var data = await GetImageDataAsync(url);
         return data;
     }
+    private async Task<string?> GetRandomUrlAsync(Uri[] urls)
+    {
+        if ((urls?.Length??0) == 0)
+            return null;
+
+        var url = urls[_rng.Next(0, urls.Length)];
+
+        return url.ToString();
+    }
 
     public Task<byte[]?> GetHeadsImageAsync()
         => GetRandomImageDataAsync(_ic.Data.Coins.Heads);
@@ -68,4 +77,10 @@ public sealed class ImageCache : IImageCache, INService
 
     public Task<byte[]?> GetSlotBgAsync()
         => GetImageDataAsync(_ic.Data.Slots.Bg);
+
+    public Task<string?> GetPokeBattleNurseJoyAsync()
+        => GetRandomUrlAsync(_ic.Data.PokeBattle.NurseJoy);
+
+    public Task<string?> GetPokeBattlePlayerCatchAsync()
+        => GetRandomUrlAsync(_ic.Data.PokeBattle.PlayerCatch);
 }
