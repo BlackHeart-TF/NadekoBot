@@ -308,11 +308,11 @@ namespace NadekoBot.Modules.PokeBattle.Services
 
         public MoveList GetMoves(PokemonSprite pokemon)
         {
+            var moves = new MoveList();
             if (pokemon?.Move1 == null)
             {
-                return null;
+                return moves;
             }
-            var moves = new MoveList();
             moves.AddIfNotNull(pokemonMoves[pokemon.Move1]);
             moves.AddIfNotNull(pokemonMoves[pokemon.Move2]);
             moves.AddIfNotNull(pokemonMoves[pokemon.Move3]);

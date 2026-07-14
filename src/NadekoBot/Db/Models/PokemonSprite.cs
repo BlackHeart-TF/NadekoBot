@@ -31,7 +31,7 @@ public class PokemonSprite : DbEntity
     public int SpecialAttack { get; set; }
     public int SpecialDefense { get; set; }
 
-    public string Move1 { get; set; }
+    public string Move1 { get; set; } = "splash";
     public string? Move2 { get; set; }
     public string? Move3 { get; set; }
     public string? Move4 { get; set; }

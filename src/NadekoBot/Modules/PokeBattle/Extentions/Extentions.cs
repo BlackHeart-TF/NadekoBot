@@ -164,6 +164,8 @@ public static class Extentions
         var learnableMove = pkm.GetLearnableMove();
         if (learnableMove != null)
         {
+            if (pkm is null)
+                Console.WriteLine("pkm is null");
             if (service.GetMoves(pkm).Count() >= 4)
             {
                 retString += $"**{pkm.NickName}** wants to learn **{learnableMove.Name}** *({service.pokemonMoves[learnableMove.Name].Type})*!\n Use `.learn <move to replace>` to learn {learnableMove.Name}.";
